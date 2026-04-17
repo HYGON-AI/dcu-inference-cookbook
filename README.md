@@ -84,7 +84,7 @@ cd dcu-llm-best-practices
 
 ## 📋 支持的模型类型
 
-### 大语言模型 (LLM)
+### 大语言模型 (LLM)（备注：后续根据实际情况修改，AI生成)
 
 | 模型系列 | 代表模型 | 推荐框架 |
 |---------|---------|---------|
@@ -94,7 +94,7 @@ cd dcu-llm-best-practices
 | Kimi-K2 | Kimi-K2-7B/13B/72B | vLLM / SGLang |
 | MiniMax | MiniMax-2.x (456B MoE) | vLLM / SGLang |
 
-### 多模态模型 (VLM)
+### 多模态模型 (VLM)（备注：后续根据实际情况修改，AI生成)
 
 | 模型类型 | 代表模型 | 推荐框架 |
 |---------|---------|---------|
@@ -105,7 +105,7 @@ cd dcu-llm-best-practices
 | 语音合成 | ChatTTS、CosyVoice | Transformers |
 | 视频生成 | Wan2.1、CogVideoX | Diffusers / ComfyUI |
 
-## 📋 硬件兼容性
+## 📋 硬件兼容性（备注：后续根据实际情况修改，AI生成）
 
 | 硬件型号 | 架构 | 显存 | 支持状态 |
 |---------|------|------|---------|

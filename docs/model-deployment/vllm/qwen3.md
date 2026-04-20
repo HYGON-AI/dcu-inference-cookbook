@@ -54,6 +54,20 @@ python -m vllm.entrypoints.openai.api_server \
     --dtype bfloat16
 ```
 
+### Qwen3-235B-A22B-FP8-Channelwise （MoE, TP4）
+
+```bash
+vllm serve Qwen/Qwen3-235B-A22B-FP8-Channel \
+    -tp 4 \
+    --trust-remote-code \
+    --disable-log-requests \
+    --dtype bfloat16 \
+    --kv-cache-dtype fp8_e4m3 \
+    -q slimquant_marlin \
+    --disable-cascade-attn \
+    -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
+```
+
 ## API 调用
 
 ### 普通对话

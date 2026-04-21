@@ -41,7 +41,7 @@ python -m sglang.launch_server \
     --port $port \
     --attention-backend fa3 \
     --page-size 64 \
-    --kv-cache-dtype fp8_e4m3 \
+    --kv-cache-dtype fp8_e4m3 / fp8_e5m2 \   # fp8_e4m3仅限于在NMZ卡,fp8_e5m2在非NMZ卡上使用
     --mem-fraction-static 0.90 \
     --disable-radix-cache \
     --chunked-prefill-size -1
@@ -66,7 +66,7 @@ python -m sglang.launch_server \
     --port $port \
     --attention-backend fa3 \
     --page-size 64 \
-    --kv-cache-dtype fp8_e4m3 \
+    --kv-cache-dtype fp8_e4m3 / fp8_e5m2 \   # fp8_e4m3仅限于在NMZ卡,fp8_e5m2在非NMZ卡上使用
     --mem-fraction-static 0.90 \
     --disable-radix-cache \
     --chunked-prefill-size -1
@@ -91,7 +91,7 @@ python -m sglang.launch_server \
     --port $port \
     --attention-backend fa3 \
     --page-size 64 \
-    --kv-cache-dtype fp8_e4m3 \
+    --kv-cache-dtype fp8_e4m3 / fp8_e5m2 \   # fp8_e4m3仅限于在NMZ卡,fp8_e5m2在非NMZ卡上使用
     --mem-fraction-static 0.90 \
     --disable-radix-cache \
     --chunked-prefill-size -1

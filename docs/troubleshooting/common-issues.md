@@ -2,6 +2,8 @@
 
 ## 环境相关
 
+### IB网卡
+
 ### Q: `torch.cuda.is_available()` 返回 False
 
 **排查步骤：**
@@ -120,17 +122,3 @@ image = pipe(prompt, num_inference_steps=20)  # 默认 50
 # 使用 torch.compile
 pipe.unet = torch.compile(pipe.unet, mode="reduce-overhead")
 ```
-
-## 语音模型相关
-
-### Q: Whisper 在 DCU 上报错
-
-- 确认使用 PyTorch ROCm 版本
-- 检查 torchaudio 是否正确安装
-- 尝试降低 batch size
-
-### Q: ChatTTS / CosyVoice 无法加载
-
-- 部分语音模型依赖特定 CUDA 算子
-- 检查是否有 ROCm 兼容版本
-- 尝试在 CPU 模式下运行验证功能

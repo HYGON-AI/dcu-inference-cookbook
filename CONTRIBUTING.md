@@ -53,6 +53,28 @@
 - 更新 README.md 中的目录结构
 - 添加必要的交叉引用
 
+### "最佳实践" 文档撰写规范
+
+> 参考示例：[docs/model-deployment/sglang/kimi-k2.5.md](docs/model-deployment/sglang/kimi-k2.5.md)
+
+**核心标准：别人复制你的命令，不需要问任何问题就能跑起来，并得到接近的结果。**
+
+**❌ 不要这样做：**
+
+- 不要定义额外的 shell 变量（除了必要的 vllm / sglang 环境变量），否则读者需要理解变量定义才能使用命令
+- 不要保留注释掉的代码，会干扰读者判断哪些命令需要执行
+
+**✅ 应该这样做：**
+
+- 使用官方模型名称，例如 `meta-llama/Llama-3-8B-Instruct`，因为每个人的本地模型路径各不相同
+- 提供 `curl` 调用示例，让读者可以立即验证服务是否正常，例如：
+
+  ```bash
+  curl http://localhost:8000/v1/completions \
+    -H "Content-Type: application/json" \
+    -d '{"model": "meta-llama/Llama-3-8B-Instruct", "prompt": "Hello", "max_tokens": 32}'
+  ```
+
 ## PR 规范
 
 - 标题清晰描述改动内容

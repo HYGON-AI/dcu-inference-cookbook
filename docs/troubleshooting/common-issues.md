@@ -4,6 +4,19 @@
 
 ### IB网卡
 
+配置的网卡需要满足：
+1.ibstat查询状态为Active
+2.未用于存储
+
+举例环境网卡状态：
+1.存储网卡：mlx5_0,mlx5_1
+2.状态Down网卡：mlx5_6,mlx5_7
+3.状态Active网卡：mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_8,mlx5_9
+
+有效设备：mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_8,mlx5_9
+
+最终参数：--disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_8,mlx5_9
+
 ### Q: `torch.cuda.is_available()` 返回 False
 
 **排查步骤：**

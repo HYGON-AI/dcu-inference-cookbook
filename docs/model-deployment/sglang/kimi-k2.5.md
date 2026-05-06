@@ -60,6 +60,10 @@ python3 -m sglang.launch_server \
 
 #### PD分离
 
+##### 网卡配置说明
+
+[配置参考](../../troubleshooting/common-issues.md#ib网卡)
+
 ##### P节点【tp8】：
 
 ```

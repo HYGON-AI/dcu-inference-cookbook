@@ -4,7 +4,7 @@
 
 ## 贡献方式
 
-### 📝 文档贡献
+### 📝 文档贡献(PR)
 
 最简单的贡献方式：
 
@@ -13,7 +13,7 @@
 3. 编写或修改文档
 4. 提交 PR
 
-### 🐛 问题报告
+### 🐛 问题报告(Issue)
 
 发现错误或有改进建议？请提交 Issue，包含：
 
@@ -21,39 +21,9 @@
 - 复现步骤
 - 期望行为
 - 实际行为
-- 环境信息（ROCm 版本、硬件型号等）
-
-### 📊 基准测试
-
-提交你的测试数据：
-
-1. 在 `docs/benchmarks/results/` 下创建结果文件
-2. 包含完整测试环境信息
-3. 使用统一的表格格式
-
-### 🔧 脚本贡献
-
-提交实用脚本到 `scripts/` 目录：
-
-- 环境安装脚本 → `scripts/setup/`
-- 示例脚本 → `scripts/examples/`
+- 环境信息（DTK 版本、硬件型号等）
 
 ## 文档规范
-
-### Markdown 格式
-
-- 使用中文撰写
-- 代码块标注语言类型
-- 表格对齐整齐
-- 链接使用相对路径
-
-### 目录结构
-
-- 新增文档放在对应子目录下
-- 更新 README.md 中的目录结构
-- 添加必要的交叉引用
-
-### "最佳实践" 文档撰写规范
 
 > 参考示例：[docs/model-deployment/sglang/kimi-k2.5.md](docs/model-deployment/sglang/kimi-k2.5.md)
 
@@ -76,14 +46,3 @@
     -H "Content-Type: application/json" \
     -d '{"model": "meta-llama/Llama-3-8B-Instruct", "prompt": "Hello", "max_tokens": 32}'
   ```
-
-## PR 规范
-
-- 标题清晰描述改动内容
-- 单个 PR 聚焦一个主题
-- 保持最小化改动
-- 通过预览检查格式
-
-## License
-
-贡献的内容遵循 [MIT License](../LICENSE)。

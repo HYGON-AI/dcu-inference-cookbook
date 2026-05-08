@@ -39,6 +39,7 @@
 - 使用官方模型名称，例如 `meta-llama/Llama-3-8B-Instruct`，因为每个人的本地模型路径各不相同
 - 使用框架默认端口，不要自定义 `--port`：vLLM 默认 `8000`，SGLang 默认 `30000`
 - SGLang 使用 `sglang serve` 启动服务，不要使用已废弃的 `python -m sglang.launch_server`
+- 仅针对以下三种 DCU 型号撰写适配文档：`K100_AI`、`BW1000`、`BW1100`，不要添加其他型号
 - 提供 `curl` 调用示例，让读者可以立即验证服务是否正常，例如：
 
   ```bash

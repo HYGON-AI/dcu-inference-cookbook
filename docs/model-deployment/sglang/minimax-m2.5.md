@@ -43,7 +43,7 @@ python3 -m sglang.launch_server --model-path hygon/MiniMax-M2.5-Channel-FP8-w8a8
                                 --trust-remote-code \
 				--page-size 64 \
                                 --dtype bfloat16  \
-				--tp-size 8 --pp-size 1 --data-parallel-size 1 \   
+				--tp-size 4 --pp-size 1 --dp-size 2 \   
 				--tool-call-parser minimax-m2 \
                                 --reasoning-parser minimax-append-think  \
                                 --mem-fraction-static 0.9 \ 

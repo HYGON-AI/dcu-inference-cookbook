@@ -2,13 +2,15 @@
 
 ## 模型简介
 
-MiniMax-2.5 是 MiniMax 推出的大规模 MoE（混合专家）语言模型系列，总参数量 229B，激活参数约 10B，在长文本理解和生成方面表现突出。
+MiniMax-2.x 是 MiniMax 推出的大规模 MoE（混合专家）语言模型系列，总参数量 229B，激活参数约 10B，在长文本理解和生成方面表现突出。
+支持模型MiniMax-2.5和MiniMax-2.7
 
 ## 模型列表
 
 | 模型 | 总参数 | 激活参数 | 上下文 | 量化方式 | 推荐硬件 |
 |------|--------|---------|--------|---------|---------|
 | MiniMax-2.5 | 229B | ~10B | 1M | INT8 W8A8 | 8x BW1100 144GB|
+| MiniMax-2.7 | 229B | ~10B | 1M | INT8 W8A8 | 8x BW1100 144GB|
 
 ## 启动命令
 
@@ -60,10 +62,8 @@ export VLLM_USE_GLOBAL_CACHE13=1 #减少显存碎片化
 export VLLM_FUSED_MOE_CHUNK_SIZE=16384  # --max-num-batched-tokens 16384
 export VLLM_USE_PIECEWISE=1
 export VLLM_USE_LIGHTOP_FUSED_TOPP_TOPK=1
-
-export VLLM_USE_OPT_OP=1 #新加变量
-export VLLM_MLA_CP=1
-export VLLM_MLA_CPLB=1
+export VLLM_USE_OPT_OP=1 
+export VLLM_USE_AITER_MOE_W8A8=0
 
 model_path=/mnt1/metax-tech/MiniMax-M2.5-W8A8/
 model=${model_path##*/}

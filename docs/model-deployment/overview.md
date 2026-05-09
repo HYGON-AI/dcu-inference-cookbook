@@ -79,24 +79,24 @@
 
 | 模型规模 | 推荐显存 | 单卡方案 | 多卡方案 |
 |---------|---------|---------|---------|
-| 1.5B | 4GB+ | 1x DCU 64GB | - |
-| 7B | 16GB+ | 1x DCU 64GB | - |
-| 14B | 32GB+ | 1x DCU 64GB | - |
-| 32B | 64GB+ | 1x DCU 128GB | 2x DCU TP |
-| 72B | 128GB+ | - | 2x DCU 128GB TP |
-| 72B | 128GB+ | - | 4x DCU 64GB TP |
-| 110B+ | 256GB+ | - | 4x DCU 128GB TP |
-| 456B (MoE) | 200GB+ | - | 4x DCU 128GB TP |
+| 1.5B | 4GB+ | 1x BW1000 64GB | - |
+| 7B | 16GB+ | 1x BW1000 64GB | - |
+| 14B | 32GB+ | 1x BW1000 64GB | - |
+| 32B | 64GB+ | 1x BW1100 144GB | 2x DCU TP |
+| 72B | 128GB+ | - | 2x BW1100 144GB TP |
+| 72B | 128GB+ | - | 4x BW1000 64GB TP |
+| 110B+ | 256GB+ | - | 4x BW1100 144GB TP |
+| 456B (MoE) | 200GB+ | - | 4x BW1100 144GB TP |
 
 ### 多模态模型
 
 | 模型 | 类型 | 推荐显存 | 方案 |
 |------|------|---------|------|
-| Qwen2.5-VL-7B | 视觉语言 | 20GB+ | 1x DCU 64GB |
-| InternVL2-26B | 视觉语言 | 56GB+ | 1x DCU 64GB |
-| Wan2.1-14B | 视频生成 | 32GB+ | 1x DCU 64GB |
-| Wan2.1-1.3B | 视频生成 | 8GB+ | 1x DCU 64GB |
-| FLUX.1-dev | 图像生成 | 24GB+ | 1x DCU 64GB |
+| Qwen2.5-VL-7B | 视觉语言 | 20GB+ | 1x BW1000 64GB |
+| InternVL2-26B | 视觉语言 | 56GB+ | 1x BW1000 64GB |
+| Wan2.1-14B | 视频生成 | 32GB+ | 1x BW1000 64GB |
+| Wan2.1-1.3B | 视频生成 | 8GB+ | 1x BW1000 64GB |
+| FLUX.1-dev | 图像生成 | 24GB+ | 1x BW1000 64GB |
 
 ## 部署模式
 

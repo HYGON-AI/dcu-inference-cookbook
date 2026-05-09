@@ -8,8 +8,8 @@ CogVideoX 是智谱 AI 开源的视频生成模型，支持文生视频和图生
 
 | 模型 | 参数量 | 分辨率 | 帧数 | 帧率 | 推荐硬件 |
 |------|--------|--------|------|------|---------|
-| CogVideoX-2B | 2B | 720x480 | 49 | 8fps | 1x DCU 64GB |
-| CogVideoX-5B | 5B | 720x480 | 49 | 8fps | 1x DCU 64GB |
+| CogVideoX-2B | 2B | 720x480 | 49 | 8fps | 1x BW1000 64GB |
+| CogVideoX-5B | 5B | 720x480 | 49 | 8fps | 1x BW1000 64GB |
 
 ## Diffusers 部署
 

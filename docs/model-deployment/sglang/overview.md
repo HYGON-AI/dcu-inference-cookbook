@@ -14,6 +14,8 @@ pip install "sglang[all]"
 | Qwen3.5 | 7B ~ 72B+ | [qwen3.5.md](qwen3.5.md) |
 | GLM-5 | 9B ~ 130B+ | [glm-5.md](glm-5.md) |
 | Kimi-K2 | 1.5B ~ 72B | [kimi-k2.md](kimi-k2.md) |
+| DeepSeek-R1 | 7B ~ 671B (MoE) | [deepseek-r1.md](deepseek-r1.md) |
+| DeepSeek-V3.2 | 671B (MoE) | [deepseek-v3.2.md](deepseek-v3.2.md) |
 | MiniMax-2.x | 456B (MoE) | [minimax-2.x.md](minimax-2.x.md) |
 
 ## 通用启动参数

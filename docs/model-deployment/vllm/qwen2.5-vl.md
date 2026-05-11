@@ -57,9 +57,6 @@ vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
 ## API调用
 ### 单张图片
 ```python
-from openai import OpenAI
-
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
     model="Qwen/Qwen2.5-VL-32B-Instruct",

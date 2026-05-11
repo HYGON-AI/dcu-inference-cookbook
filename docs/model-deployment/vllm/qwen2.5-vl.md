@@ -61,7 +61,7 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
-    model="Qwen2.5-VL-32B-Instruct",
+    model="Qwen/Qwen2.5-VL-32B-Instruct",
     messages=[
         {
             "role": "user",

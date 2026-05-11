@@ -22,7 +22,7 @@ Qwen2.5-VL 是 Qwen 系列的多模态视觉语言模型，包含3B 7B、32B、7
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-vllm serve --model Qwen/Qwen2.5-VL-3B-Instruct \
+vllm serve Qwen/Qwen2.5-VL-3B-Instruct \
     -tp 1 \
     --trust-remote-code \
 ```
@@ -31,7 +31,7 @@ vllm serve --model Qwen/Qwen2.5-VL-3B-Instruct \
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-vllm serve --model Qwen/Qwen2.5-VL-7B-Instruct \
+vllm serve Qwen/Qwen2.5-VL-7B-Instruct \
     -tp 1 \
     --trust-remote-code \
 ```
@@ -40,7 +40,7 @@ vllm serve --model Qwen/Qwen2.5-VL-7B-Instruct \
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-vllm serve --model Qwen/Qwen2.5-VL-32B-Instruct \
+vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 4 \
     --trust-remote-code \
 ```
@@ -49,7 +49,7 @@ vllm serve --model Qwen/Qwen2.5-VL-32B-Instruct \
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-vllm serve --model Qwen/Qwen2.5-VL-72B-Instruct \
+vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
     -tp 8 \
     --trust-remote-code \
 ```
@@ -84,7 +84,7 @@ print(response.choices[0].message.content)
 #### 多张图片
 ```python
 response = client.chat.completions.create(
-    model="Qwen2.5-VL-32B-Instruct",
+    model="Qwen/Qwen2.5-VL-32B-Instruct",
     messages=[
         {
             "role": "user",
@@ -116,7 +116,7 @@ def encode_image(image_path):
 b64_img = encode_image("local_photo.png")
 
 response = client.chat.completions.create(
-    model="Qwen2.5-VL-32B-Instruct",
+    model="Qwen/Qwen2.5-VL-32B-Instruct",
     messages=[
         {
             "role": "user",
@@ -142,7 +142,7 @@ print(response.choices[0].message.content)
 
 ```python
 response = client.chat.completions.create(
-    model="Qwen2.5-VL-32B-Instruct",
+    model="Qwen/Qwen2.5-VL-32B-Instruct",
     messages=[
         {
             "role": "user",

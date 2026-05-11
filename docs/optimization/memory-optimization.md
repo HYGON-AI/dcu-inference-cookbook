@@ -129,7 +129,7 @@ pipe.enable_sequential_cpu_offload()
 
 ```bash
 # 实时监控
-watch -n 1 rocm-smi --showmeminfo
+watch -n 1 hy-smi --showmeminfo
 
 # Python 中获取显存信息
 import torch

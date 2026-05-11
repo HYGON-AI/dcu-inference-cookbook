@@ -109,10 +109,10 @@ python -m vllm.entrypoints.openai.api_server \
 
 ```bash
 # 查看 DCU 利用率
-rocm-smi
+hy-smi
 
 # 持续监控
-watch -n 2 rocm-smi
+watch -n 2 hy-smi
 ```
 
 ## 已知限制

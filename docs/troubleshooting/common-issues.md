@@ -23,7 +23,7 @@
 
 ```bash
 # 1. 检查 DCU 设备是否被识别
-rocm-smi
+hy-smi
 # 或
 hipconfig
 
@@ -68,7 +68,7 @@ export LD_LIBRARY_PATH=/opt/rocm/lib:$LD_LIBRARY_PATH
 # 应使用 bf16，而非 fp32
 
 # 2. 检查 DCU 利用率
-rocm-smi
+hy-smi
 
 # 3. 确认 tensor-parallel 配置合理
 

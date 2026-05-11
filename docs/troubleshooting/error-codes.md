@@ -6,7 +6,7 @@
 |--------|------|---------|---------|
 | `hipErrorOutOfMemory` | 显存不足 | 模型/批次过大 | 减小 batch size 或使用量化 |
 | `hipErrorInvalidValue` | 无效参数 | 参数配置错误 | 检查 API 参数 |
-| `hipErrorNoDevice` | 无可用设备 | 驱动问题 | 检查 rocm-smi |
+| `hipErrorNoDevice` | 无可用设备 | 驱动问题 | 检查 hy-smi |
 | `hipErrorPeerAccessUnsupported` | 不支持 P2P | 硬件/拓扑限制 | 检查 DCU 拓扑 |
 
 ## PyTorch 错误

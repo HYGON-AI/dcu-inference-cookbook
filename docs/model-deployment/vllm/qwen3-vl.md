@@ -16,84 +16,86 @@ Qwen3-VL 是阿里云推出的新一代多模态视觉语言模型（Vision-Lang
 
 ---
 
-# 模型列表
+## 模型列表
 
-| 模型 | 参数量 | 上下文长度 | 推荐硬件 |
-|------|--------|------------|---------|
-| Qwen3-VL-2B-Instruct | 2B | 256K | 1x BW1000 64GB |
-| Qwen3-VL-2B-Thinking | 2B | 256K | 1x BW1000 64GB |
-| Qwen3-VL-4B-Instruct | 4B | 256K | 1x BW1000 64GB |
-| Qwen3-VL-4B-Thinking | 4B | 256K | 1x BW1000 64GB |
-| Qwen3-VL-8B-Instruct | 8B | 256K | 1x BW1000 64GB |
-| Qwen3-VL-8B-Thinking | 8B | 256K | 1x BW1000 64GB |
-| Qwen3-VL-30B-A3B-Instruct | 30B | 256K | 4x BW1000 64GB |
-| Qwen3-VL-30B-A3B-Thinking | 30B | 256K | 4x BW1000 64GB |
-| Qwen3-VL-235B-A22B-Instruct | 235B | 256K | 16x BW1000 64GB |
-| Qwen3-VL-235B-A22B-Thinking | 235B | 256K | 16x BW1000 64GB |
+| 模型 | 参数量 | 上下文长度 | 量化方式 | 推荐硬件 |
+|------|--------|------------|---------|---------|
+| Qwen3-VL-2B-Instruct | 2B | 256K |未量化(BF16)| 1x BW1000 64GB |
+| Qwen3-VL-2B-Thinking | 2B | 256K |未量化(BF16)| 1x BW1000 64GB |
+| Qwen3-VL-4B-Instruct | 4B | 256K |未量化(BF16)|1x BW1000 64GB |
+| Qwen3-VL-4B-Thinking | 4B | 256K |未量化(BF16)|1x BW1000 64GB |
+| Qwen3-VL-8B-Instruct | 8B | 256K |未量化(BF16)|1x BW1000 64GB |
+| Qwen3-VL-8B-Thinking | 8B | 256K |未量化(BF16)|1x BW1000 64GB |
+| Qwen3-VL-30B-A3B-Instruct | 30B | 256K |未量化(BF16)| 4x BW1000 64GB |
+| Qwen3-VL-30B-A3B-Thinking | 30B | 256K |未量化(BF16)| 4x BW1000 64GB |
+| Qwen3-VL-235B-A22B-Instruct | 235B | 256K |未量化(BF16)| 16x BW1000 64GB |
+| Qwen3-VL-235B-A22B-Thinking | 235B | 256K |未量化(BF16)| 16x BW1000 64GB |
 
 ---
 
+## 启动命令
 
-# vLLM 部署
-
-## 环境变量
+### Qwen3-VL-2B-Instruct
 
 ```bash
-export VLLM_USE_MODELSCOPE=1
-
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
-
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-```
-
----
-
-# 启动命令
-
-## Qwen3-VL-2B-Instruct
-
-```bash
 vllm serve Qwen/Qwen3-VL-2B-Instruct \
     --tensor-parallel-size 1 \
     --trust-remote-code \
 ```
 
-## Qwen3-VL-2B-Thinking
+### Qwen3-VL-2B-Thinking
 
 ```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-2B-Thinking \
     --tensor-parallel-size 1 \
     --trust-remote-code \
 ```
 
-## Qwen3-VL-4B-Instruct
+### Qwen3-VL-4B-Instruct
 
 ```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-4B-Instruct \
     --tensor-parallel-size 1 \
     --trust-remote-code \
 ```
 
-## Qwen3-VL-4B-Thinking
+### Qwen3-VL-4B-Thinking
 
 ```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-4B-Thinking \
     --tensor-parallel-size 1 \
     --trust-remote-code \
 ```
 
-## Qwen3-VL-8B-Instruct
+### Qwen3-VL-8B-Instruct
 
 ```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-8B-Instruct \
     --tensor-parallel-size 1 \
     --trust-remote-code \
 ```
 
-## Qwen3-VL-8B-Thinking
+### Qwen3-VL-8B-Thinking
 
 ```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-8B-Thinking \
     --tensor-parallel-size 1 \
     --trust-remote-code \
@@ -101,17 +103,23 @@ vllm serve Qwen/Qwen3-VL-8B-Thinking \
 
 
 
-## Qwen3-VL-30B-A3B-Instruct
+### Qwen3-VL-30B-A3B-Instruct
 
 ```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-30B-A3B-Instruct \
     --tensor-parallel-size 4 \
     --trust-remote-code \
 ```
 
-## Qwen3-VL-30B-A3B-Thinking
+### Qwen3-VL-30B-A3B-Thinking
 
 ```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
     --tensor-parallel-size 4 \
     --trust-remote-code \
@@ -119,39 +127,31 @@ vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
 
 
 
-## Qwen3-VL-235B-A22B-Instruct
+### Qwen3-VL-235B-A22B-Instruct
 
 ```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
     --tensor-parallel-size 16 \
     --trust-remote-code \
 ```
 
-## Qwen3-VL-235B-A22B-Thinking
+### Qwen3-VL-235B-A22B-Thinking
 
 ```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
     --tensor-parallel-size 16 \
     --trust-remote-code \
 ```
 
 
-# OpenAI API 调用示例
-
-## Python SDK
-
-```python
-from openai import OpenAI
-
-client = OpenAI(
-    base_url="http://localhost:8000/v1",
-    api_key="EMPTY"
-)
-```
-
----
-
-# 单张图片推理
+## OpenAI API 调用示例
+### 单张图片推理
 
 ```python
 response = client.chat.completions.create(
@@ -182,7 +182,7 @@ print(response.choices[0].message.content)
 
 ---
 
-# 多张图片推理
+### 多张图片推理
 
 ```python
 response = client.chat.completions.create(
@@ -217,7 +217,7 @@ response = client.chat.completions.create(
 
 ---
 
-# 本地图片（Base64）
+### 本地图片（Base64）
 
 ```python
 import base64
@@ -256,7 +256,7 @@ print(response.choices[0].message.content)
 
 ---
 
-# 视频理解示例
+### 视频理解示例
 
 ```python
 response = client.chat.completions.create(

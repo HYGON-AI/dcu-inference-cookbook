@@ -53,8 +53,9 @@ vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
     -tp 8 \
     --trust-remote-code \
 ```
-### API调用
-#### 单张图片
+
+## API调用
+### 单张图片
 ```python
 from openai import OpenAI
 
@@ -81,7 +82,7 @@ print(response.choices[0].message.content)
 
 ```
 
-#### 多张图片
+### 多张图片
 ```python
 response = client.chat.completions.create(
     model="Qwen/Qwen2.5-VL-32B-Instruct",
@@ -105,7 +106,7 @@ response = client.chat.completions.create(
     temperature=0.7,
 )
 ```
-#### 本地图片（Base64）
+### 本地图片（Base64）
 ```python
 import base64
 
@@ -137,9 +138,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 
 ```
-
-# 视频理解示例
-
+### 视频理解示例
 ```python
 response = client.chat.completions.create(
     model="Qwen/Qwen2.5-VL-32B-Instruct",

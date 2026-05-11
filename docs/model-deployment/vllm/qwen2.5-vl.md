@@ -81,6 +81,7 @@ print(response.choices[0].message.content)
 
 ### 多张图片
 ```python
+
 response = client.chat.completions.create(
     model="Qwen/Qwen2.5-VL-32B-Instruct",
     messages=[
@@ -105,6 +106,7 @@ response = client.chat.completions.create(
 ```
 ### 本地图片（Base64）
 ```python
+
 import base64
 
 def encode_image(image_path):
@@ -137,6 +139,7 @@ print(response.choices[0].message.content)
 ```
 ### 视频理解示例
 ```python
+
 response = client.chat.completions.create(
     model="Qwen/Qwen2.5-VL-32B-Instruct",
     messages=[

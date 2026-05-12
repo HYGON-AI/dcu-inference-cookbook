@@ -17,6 +17,7 @@ GLM-5 是智谱 AI 推出的新一代大语言模型，在中文理解、长文�
 rm -rf ~/.cache
 rm -rf ~/.triton
 
+export VLLM_USE_MODELSCOPE=1
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7     
 export ALLREDUCE_STREAM_WITH_COMPUTE=1           
 export NCCL_MIN_NCHANNELS=16                      
@@ -71,6 +72,7 @@ vllm serve "$MODEL_PATH" \
 rm -rf ~/.cache
 rm -rf ~/.triton
 
+export VLLM_USE_MODELSCOPE=1
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7     
 export ALLREDUCE_STREAM_WITH_COMPUTE=1           
 export NCCL_MIN_NCHANNELS=16                      
@@ -125,6 +127,8 @@ vllm serve "$MODEL_PATH" \
 ```bash
 rm -rf ~/.cache
 rm -rf ~/.triton
+
+export VLLM_USE_MODELSCOPE=1
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 export NCCL_MIN_NCHANNELS=16
@@ -189,6 +193,8 @@ vllm serve "$MODEL_PATH" \
 ```bash
 rm -rf ~/.cache
 rm -rf ~/.triton
+
+export VLLM_USE_MODELSCOPE=1
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 export NCCL_MIN_NCHANNELS=16
@@ -270,6 +276,10 @@ vllm serve "$MODEL_PATH" \
 ### D1节点(DP16EP16+MTP2)
 
 ```bash
+rm -rf ~/.cache
+rm -rf ~/.triton
+
+export VLLM_USE_MODELSCOPE=1
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 export NCCL_MIN_NCHANNELS=16

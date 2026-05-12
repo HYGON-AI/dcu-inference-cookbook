@@ -19,16 +19,10 @@ export VLLM_RANK6_NUMA=3
 export VLLM_RANK7_NUMA=3
 
 model_path=/model/Qwen3-235B-A22B-Instruct-2507
-model=${model_path##*/}
-time=$(date "+%Y-%m-%d-%H-%M-%S")
 data_type="float16"
 tp=8
 port=8507
 gpu_memory=0.9
-bwtype="nmz"
-log_date=$(date "+%Y-%m-%d")
-log_dir="${bwtype}_${model}/${log_date}"
-mkdir -p "${log_dir}"
 
 vllm serve ${model_path} \
  --dtype ${data_type} \
@@ -42,7 +36,6 @@ vllm serve ${model_path} \
  --max-model-len 61440 \
 --max-num-batched-tokens 204800 \
 --kv-cache-dtype fp8_e4m3 \
- 2>&1 | tee "${log_dir}/serve_${time}.log"
 ```
 
 
@@ -67,16 +60,11 @@ export VLLM_RANK6_NUMA=5
 export VLLM_RANK7_NUMA=4
 
 model_path=/model/Qwen3-235B-A22B-Instruct-2507
-model=${model_path##*/}
-time=$(date "+%Y-%m-%d-%H-%M-%S")
 data_type="float16"
 tp=8
 port=8507
 gpu_memory=0.9
-bwtype="bw1000"
-log_date=$(date "+%Y-%m-%d")
-log_dir="${bwtype}_${model}/${log_date}"
-mkdir -p "${log_dir}"
+
 
 vllm serve ${model_path} \
  --dtype ${data_type} \
@@ -89,7 +77,6 @@ vllm serve ${model_path} \
  --max-model-len 61440 \
  --kv-cache-dtype fp8_e5m2 \
  --disable-cascade-attn \
- 2>&1 | tee "${log_dir}/serve_${time}.log"
 ```
 
 # K100
@@ -114,15 +101,9 @@ export VLLM_RANK7_NUMA=1
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 
 model_path=/model/Qwen3-235B-A22B-Instruct-2507
-model=${model_path##*/}
-time=$(date "+%Y-%m-%d-%H-%M-%S")
 data_type="float16"
 tp=8
 port=8507
-bwtype="k100ai"
-log_date=$(date "+%Y-%m-%d")
-log_dir="${bwtype}_${model}/${log_date}"
-mkdir -p "${log_dir}"
 gpu_memory=0.95
 
 vllm serve ${model_path} \
@@ -135,5 +116,4 @@ vllm serve ${model_path} \
  --gpu-memory-utilization $gpu_memory \
  --disable-cascade-attn \
  --max-model-len 40960 \
- 2>&1 | tee "${log_dir}/serve_${time}.log"
 ```

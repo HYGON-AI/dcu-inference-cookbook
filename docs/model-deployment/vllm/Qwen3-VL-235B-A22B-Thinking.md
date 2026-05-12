@@ -43,3 +43,21 @@ vllm serve /model/Qwen3-VL-235BB-A22B-Thinking \
         --tensor-parallel-size 16
 
 ```
+# K100AI
+```
+export VLLM_HOST_IP=12.12.12.74
+export NCCL_SOCKET_IFNAME=ib0
+export GLOO_SOCKET_IFNAME=ib0
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export NCCL_IB_HCA=mlx5_0:1,mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MAX_NCHANNELS=16
+export NCCL_NET_GDR_READ=1
+export VLLM_RPC_TIMEOUT=1800000
+
+vllm serve /model/Qwen3-VL-235BB-A22B-Thinking \
+        --dtype float16 \
+        --disable-cascade-attn \
+        --distributed-executor-backend ray \
+        --tensor-parallel-size 16
+```

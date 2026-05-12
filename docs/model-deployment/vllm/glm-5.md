@@ -9,8 +9,68 @@ GLM-5 是智谱 AI 推出的新一代大语言模型，在中文理解、长文�
 | 模型 | 参数量 | 上下文 | 量化方式 | 推荐硬件 |
 |------|--------|--------|---------|---------|
 | GLM-5 | 754B | 198K | INT8 W8A8 | IFB:8x BW1100 144GB && PD分离:1P2D 24x BW1100 144GB |
+| GLM-5 | 754B | 198K | INT8 W4A8 | IFB:8x BW1100 144GB |
 
-## 启动命令
+## 启动命令 W4A8
+### IFB【TP8+MTP2】
+```
+rm -rf ~/.cache
+rm -rf ~/.triton
+
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7     
+export ALLREDUCE_STREAM_WITH_COMPUTE=1           
+export NCCL_MIN_NCHANNELS=16                      
+export NCCL_MAX_NCHANNELS=16                   
+export Allgather_Base_STREAM_WITH_COMPUTE=1
+export SENDRECV_STREAM_WITH_COMPUTE=1
+export HIP_KERNEL_EVENT_SYSTENFENCE=1   
+export VLLM_RPC_TIMEOUT=1800000
+export VLLM_USE_PD_SPLIT=1
+export VLLM_USE_PIECEWISE=0
+export VLLM_REJECT_SAMPLE_OPT=0 # 宽松采样，提高mtp接受率从而提高tpot性能，略微影响精度 default 1
+
+#===============融合算子=================
+export USE_FUSED_RMS_QUANT=1 #default 0
+export USE_FUSED_SILU_MUL_QUANT=1 #default 0
+
+#===============共享专家融合 已知精度异常=============
+export VLLM_ROCM_USE_AITER=0 #default 0
+export VLLM_ROCM_USE_AITER_MOE=0 #default 0
+export VLLM_ROCM_USE_AITER_FUSION_SHARED_EXPERTS=0 #default 0
+
+export VLLM_USE_GLOBAL_CACHE13=1 #减少显存碎片化 default 0
+export VLLM_FUSED_MOE_CHUNK_SIZE=16384 #default 32768
+export VLLM_CUSTOM_CACHE=1 #default 1
+export VLLM_USE_OPT_CAT=1
+export VLLM_USE_FUSED_FILL_RMS_CAT=1 #default 1
+export VLLM_USE_LIGHTOP_MOE_SUM_MUL_ADD=1
+export VLLM_USE_LIGHTOP_RMS_ROPE_CONCAT=0 # 不能和kvfp8一起开
+export VLLM_USE_V32_ENCODE=1
+export USE_LIGHTOP_TOPK=1
+export USE_LIGHTOP_PER_TOKEN_GROUP_QUANT_FP8=1
+export USE_LIGHTOP_CONVERT_REQ_INDEX_TO_GLOBAL_INDEX=1
+
+MODEL_PATH=/module/GLM-w4a8-V2_6_test
+
+vllm serve "$MODEL_PATH" \
+    -q slimquant_w4a8_marlin \
+    --port 8000 \
+    --trust-remote-code \
+    --dtype bfloat16 \
+    -tp 8 \
+    --max-model-len 72000 \
+    --gpu-memory-utilization 0.92 \
+    --disable-log-requests \
+    --enable-chunked-prefill \
+    --max-num-batched-tokens 16384 \
+    --enable-prefix-caching \
+    --kv-cache-dtype fp8_ds_mla \
+    -cc '{"pass_config": {"fuse_act_quant": false}}' \
+    --speculative_config '{"method": "mtp", "num_speculative_tokens": 2, "quantization": "slimquant_w4a8_marlin"}'
+```
+
+
+## 启动命令 W8A8
 
 ### IFB【TP8+MTP2】
 
@@ -28,7 +88,7 @@ export HIP_KERNEL_EVENT_SYSTENFENCE=1
 export VLLM_RPC_TIMEOUT=1800000
 export VLLM_USE_PD_SPLIT=1
 export VLLM_USE_PIECEWISE=0
-export VLLM_REJECT_SAMPLE_OPT=1 # 宽松采样，提高mtp接受率从而提高tpot性能，略微影响精度 default 1
+export VLLM_REJECT_SAMPLE_OPT=0 # 宽松采样，提高mtp接受率从而提高tpot性能，略微影响精度 default 1
 
 #===============融合算子=================
 export USE_FUSED_RMS_QUANT=1 #default 0
@@ -67,7 +127,7 @@ vllm serve "$MODEL_PATH" \
     --enable-prefix-caching \
     --kv-cache-dtype fp8_ds_mla \
     -cc '{"pass_config": {"fuse_act_quant": false}}' \
-    --speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_marlin"}'
+    --speculative_config '{"method": "mtp", "num_speculative_tokens": 2, "quantization": "slimquant_marlin"}'
 ```
 
 ### PD分离
@@ -89,7 +149,7 @@ export HIP_KERNEL_EVENT_SYSTEMFENCE=1
 export VLLM_RPC_TIMEOUT=1800000
 export VLLM_USE_PD_SPLIT=1
 export VLLM_USE_PIECEWISE=0
-export VLLM_REJECT_SAMPLE_OPT=1
+export VLLM_REJECT_SAMPLE_OPT=0
 #=====融合算子=====
 export USE_FUSED_RMS_QUANT=0 #default 0
 export USE_FUSED_SILU_MUL_QUANT=1 #default 0
@@ -137,13 +197,13 @@ vllm serve "$MODEL_PATH" \
 --enable-prefix-caching \
 --kv-cache-dtype fp8_ds_mla \
 -cc '{"pass_config": {"fuse_act_quant": false}}' \
---speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_marlin"}' \
+--speculative_config '{"method": "mtp", "num_speculative_tokens": 2, "quantization": "slimquant_marlin"}' \
 --enable-lightly-cp --enable-lightly-cplb \
 --enforce-eager \
 --kv-transfer-config '{"kv_connector":"DuSwiftConnectorDp","kv_role":"kv_producer","kv_buffer_size":"1e4","kv_port":"21002","kv_connector_extra_config":{"proxy_ip":"10.16.1.36","proxy_port":"30001","http_port":"20012","send_type":"PUT_ASYNC","instance_ip":"10.16.1.36"}}'
 ```
 
-### D0节点(DP16EP16+MTP3)
+### D0节点(DP16EP16+MTP2)
 
 ```bash
 rm -rf ~/.cache
@@ -158,7 +218,7 @@ export HIP_KERNEL_EVENT_SYSTEMFENCE=1
 export VLLM_RPC_TIMEOUT=1800000
 export VLLM_USE_PD_SPLIT=1
 export VLLM_USE_PIECEWISE=0
-export VLLM_REJECT_SAMPLE_OPT=1
+export VLLM_REJECT_SAMPLE_OPT=0
 #=====融合算子=====
 export USE_FUSED_RMS_QUANT=0 #default 0
 export USE_FUSED_SILU_MUL_QUANT=1 #default 0
@@ -223,7 +283,7 @@ vllm serve "$MODEL_PATH" \
 --enable-prefix-caching \
 --kv-cache-dtype fp8_ds_mla \
 --cc '{"pass_config": {"fuse_act_quant": false}}' \
---speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_marlin"}' \
+--speculative_config '{"method": "mtp", "num_speculative_tokens": 2, "quantization": "slimquant_marlin"}' \
 --kv-transfer-config '{"kv_connector": "DuSwiftConnectorDp", "kv_role": "kv_consumer", "kv_buffer_size": "1e9", "kv_port": "21003", "kv_connector_extra_config": {"proxy_ip": "10.16.1.36", "proxy_port": "30001", "http_port": "20013", "send_type": "PUT_ASYNC", "instance_ip": "10.16.1.42"}}' \
 --data-parallel-size-local 8 \
 --data-parallel-address 10.16.1.42 \
@@ -232,7 +292,7 @@ vllm serve "$MODEL_PATH" \
 --disable-custom-all-reduce
 ```
 
-### D1节点(DP16EP16+MTP3)
+### D1节点(DP16EP16+MTP2)
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
@@ -245,7 +305,7 @@ export HIP_KERNEL_EVENT_SYSTEMFENCE=1
 export VLLM_RPC_TIMEOUT=1800000
 export VLLM_USE_PD_SPLIT=1
 export VLLM_USE_PIECEWISE=0
-export VLLM_REJECT_SAMPLE_OPT=1
+export VLLM_REJECT_SAMPLE_OPT=0
 #=====融合算子=====
 export USE_FUSED_RMS_QUANT=0 #default 0
 export USE_FUSED_SILU_MUL_QUANT=1 #default 0
@@ -310,7 +370,7 @@ vllm serve "$MODEL_PATH" \
 --enable-prefix-caching \
 --kv-cache-dtype fp8_ds_mla \
 -cc '{"pass_config": {"fuse_act_quant": false}}' \
---speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_marlin"}' \
+--speculative_config '{"method": "mtp", "num_speculative_tokens": 2, "quantization": "slimquant_marlin"}' \
 --kv-transfer-config '{"kv_connector": "DuSwiftConnectorDp", "kv_role": "kv_consumer", "kv_buffer_size": "1e9", "kv_port": "21003", "kv_connector_extra_config": {"proxy_ip": "10.16.1.36", "proxy_port": "30001", "http_port": "20013", "send_type": "PUT_ASYNC", "instance_ip": "10.16.1.42"}}' \
 --data-parallel-size-local 8 \
 --data-parallel-address 10.16.1.42 \

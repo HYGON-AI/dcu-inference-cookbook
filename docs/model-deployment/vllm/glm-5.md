@@ -25,18 +25,11 @@ export Allgather_Base_STREAM_WITH_COMPUTE=1
 export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTENFENCE=1   
 export VLLM_RPC_TIMEOUT=1800000
-export VLLM_USE_PD_SPLIT=1
-export VLLM_USE_PIECEWISE=0
 export VLLM_REJECT_SAMPLE_OPT=0 # 宽松采样，提高mtp接受率从而提高tpot性能，略微影响精度 default 1
 
 #===============融合算子=================
 export USE_FUSED_RMS_QUANT=1 #default 0
 export USE_FUSED_SILU_MUL_QUANT=1 #default 0
-
-#===============共享专家融合 已知精度异常=============
-export VLLM_ROCM_USE_AITER=0 #default 0
-export VLLM_ROCM_USE_AITER_MOE=0 #default 0
-export VLLM_ROCM_USE_AITER_FUSION_SHARED_EXPERTS=0 #default 0
 
 export VLLM_USE_GLOBAL_CACHE13=1 #减少显存碎片化 default 0
 export VLLM_FUSED_MOE_CHUNK_SIZE=16384 #default 32768
@@ -50,7 +43,7 @@ export USE_LIGHTOP_TOPK=1
 export USE_LIGHTOP_PER_TOKEN_GROUP_QUANT_FP8=1
 export USE_LIGHTOP_CONVERT_REQ_INDEX_TO_GLOBAL_INDEX=1
 
-MODEL_PATH=/module/GLM-w4a8-V2_6_test
+MODEL_PATH=hygon/GLM-5-Channel-INT4-w4a8
 
 vllm serve "$MODEL_PATH" \
     -q slimquant_w4a8_marlin \
@@ -86,18 +79,11 @@ export Allgather_Base_STREAM_WITH_COMPUTE=1
 export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTENFENCE=1   
 export VLLM_RPC_TIMEOUT=1800000
-export VLLM_USE_PD_SPLIT=1
-export VLLM_USE_PIECEWISE=0
 export VLLM_REJECT_SAMPLE_OPT=0 # 宽松采样，提高mtp接受率从而提高tpot性能，略微影响精度 default 1
 
 #===============融合算子=================
 export USE_FUSED_RMS_QUANT=1 #default 0
 export USE_FUSED_SILU_MUL_QUANT=1 #default 0
-
-#===============共享专家融合 已知精度异常=============
-export VLLM_ROCM_USE_AITER=0 #default 0
-export VLLM_ROCM_USE_AITER_MOE=0 #default 0
-export VLLM_ROCM_USE_AITER_FUSION_SHARED_EXPERTS=0 #default 0
 
 export VLLM_USE_GLOBAL_CACHE13=1 #减少显存碎片化 default 0
 export VLLM_FUSED_MOE_CHUNK_SIZE=16384 #default 32768
@@ -111,7 +97,7 @@ export USE_LIGHTOP_TOPK=1
 export USE_LIGHTOP_PER_TOKEN_GROUP_QUANT_FP8=1
 export USE_LIGHTOP_CONVERT_REQ_INDEX_TO_GLOBAL_INDEX=1
 
-MODEL_PATH=/module/GLM-5-W8A8
+MODEL_PATH=hygon/GLM-5-Channel-INT8-w8a8
 
 vllm serve "$MODEL_PATH" \
     -q slimquant_marlin \
@@ -147,17 +133,12 @@ export Allgather_Base_STREAM_WITH_COMPUTE=1
 export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTEMFENCE=1
 export VLLM_RPC_TIMEOUT=1800000
-export VLLM_USE_PD_SPLIT=1
-export VLLM_USE_PIECEWISE=0
 export VLLM_REJECT_SAMPLE_OPT=0
+
 #=====融合算子=====
 export USE_FUSED_RMS_QUANT=0 #default 0
 export USE_FUSED_SILU_MUL_QUANT=1 #default 0
-#=====共享专家融合 已知精度异常=====
-export VLLM_ROCM_USE_AITER=0 #default 0
-export VLLM_ROCM_USE_AITER_MOE=0 #default 0
-export VLLM_ROCM_USE_AITER_FUSION_SHARED_EXPERTS=0 #default 0
-#注意：--compilation-config 中需要添加"custom_ops": ["all", "+rms_norm"]
+
 export VLLM_USE_GLOBAL_CACHE13=1 #减少显存碎片化 default 0
 export VLLM_FUSED_MOE_CHUNK_SIZE=16384 #default 32768
 export VLLM_CUSTOM_CACHE=1 #default 1
@@ -181,7 +162,7 @@ export ROCSHMEM_TOPO_FILE_FORCE=/mnt/glm5_pd/topo_400g.conf
 
 rm -rf ~/.cache
 rm -rf ~/.triton
-MODEL_PATH=/module/GLM-5-W8A8
+MODEL_PATH=hygon/GLM-5-Channel-INT8-w8a8
 
 vllm serve "$MODEL_PATH" \
 -q slimquant_marlin \
@@ -216,17 +197,11 @@ export Allgather_Base_STREAM_WITH_COMPUTE=1
 export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTEMFENCE=1
 export VLLM_RPC_TIMEOUT=1800000
-export VLLM_USE_PD_SPLIT=1
-export VLLM_USE_PIECEWISE=0
 export VLLM_REJECT_SAMPLE_OPT=0
 #=====融合算子=====
 export USE_FUSED_RMS_QUANT=0 #default 0
 export USE_FUSED_SILU_MUL_QUANT=1 #default 0
-#=====共享专家融合 已知精度异常=====
-export VLLM_ROCM_USE_AITER=0 #default 0
-export VLLM_ROCM_USE_AITER_MOE=0 #default 0
-export VLLM_ROCM_USE_AITER_FUSION_SHARED_EXPERTS=0 #default 0
-#注意：--compilation-config 中需要添加"custom_ops": ["all", "+rms_norm"]
+
 export VLLM_USE_GLOBAL_CACHE13=1 #减少显存碎片化 default 0
 export VLLM_FUSED_MOE_CHUNK_SIZE=16384 #default 32768
 export VLLM_CUSTOM_CACHE=1 #default 1
@@ -252,7 +227,7 @@ export NCCL_SDMA_COPY_ENABLE=0
 
 #deep_ep new
 export ROCSHMEM_HEAP_SIZE=4000000000
-export ROCSHMEM_TOPO_FILE_FORCE=/mnt/glm5_pd/topo_400g.config
+export ROCSHMEM_TOPO_FILE_FORCE=/mnt/glm5_pd/topo.config
 export USE_SPE MQP=1
 export ROCSHMEM_SQ_SIZE=1024
 export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=256
@@ -264,7 +239,7 @@ export VLLM_USE_DP_CONNECTOR=1
 
 rm -rf ~/.cache
 rm -rf ~/.triton
-MODEL_PATH=/module/GLM-5-W8A8
+MODEL_PATH=hygon/GLM-5-Channel-INT8-w8a8
 
 vllm serve "$MODEL_PATH" \
 -q slimquant_marlin \
@@ -303,16 +278,11 @@ export Allgather_Base_STREAM_WITH_COMPUTE=1
 export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTEMFENCE=1
 export VLLM_RPC_TIMEOUT=1800000
-export VLLM_USE_PD_SPLIT=1
-export VLLM_USE_PIECEWISE=0
 export VLLM_REJECT_SAMPLE_OPT=0
 #=====融合算子=====
 export USE_FUSED_RMS_QUANT=0 #default 0
 export USE_FUSED_SILU_MUL_QUANT=1 #default 0
-#=====共享专家融合 已知精度异常=====
-export VLLM_ROCM_USE_AITER=0 #default 0
-export VLLM_ROCM_USE_AITER_MOE=0 #default 0
-export VLLM_ROCM_USE_AITER_FUSION_SHARED_EXPERTS=0 #default 0
+
 #注意： --compilation-config 中需要添加"custom_ops": ["all", "+rms_norm"]
 export VLLM_USE_GLOBAL_CACHE13=1 #减少显存碎片化 default 0
 export VLLM_FUSED_MOE_CHUNK_SIZE=16384 #default 32768
@@ -340,7 +310,7 @@ export NCCL_SDMA_COPY_ENABLE=0
 
 #deep_ep new
 export ROCSHMEM_HEAP_SIZE=4000000000
-export ROCSHMEM_TOPO_FILE_FORCE=/mnt/glm5_pd/topo_400g.config
+export ROCSHMEM_TOPO_FILE_FORCE=/mnt/glm5_pd/topo.config
 export USE_SPE_MQP=1
 export ROCSHMEM_SQ_SIZE=1024
 export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=256
@@ -352,7 +322,9 @@ export VLLM_USE_DP_CONNECTOR=1
 
 rm -rf ~/.cache
 rm -rf ~/.triton
-MODEL_PATH=/module/GLM-5-W8A8
+
+MODEL_PATH=hygon/GLM-5-Channel-INT8-w8a8
+
 vllm serve "$MODEL_PATH" \
 -q slimquant_marlin \
 --port 20013 \

@@ -6,19 +6,15 @@ Qwen3.5 是 Qwen3 系列的增强版本，在推理能力、代码生成、多�
 
 ## 模型列表
 
-| 模型 | 参数量 | 上下文 | 量化方式 | 推荐硬件 |
+| 模型 | 参数量 | 上下文 | 量化方式|推荐硬件 |
 |------|--------|--------|---------|---------|
-| Qwen3.5-7B | 7B | 128K | BF16 | 1x BW1000 64GB |
-| Qwen3.5-14B | 14B | 128K | BF16 | 1x BW1000 64GB |
-| Qwen3.5-32B | 32B | 128K | BF16 | 1x BW1100 144GB / 2x DCU TP |
-| Qwen3.5-72B | 72B | 128K | BF16 | 2x BW1100 144GB TP / 4x BW1000 64GB TP |
-| Qwen3.5-397B| 397B| 128K | BF16 | 4x BW1100 144GB TP / 8x BW1100 144GB TP |
-
-## 镜像
-
-```txt
-10.16.6.35:5000/jenkins/model_test_env/sglang:daily-20260416-1454
-```
+| Qwen3.5-7B | 7B | 128K | 未量化(BF16) | 1x BW1000 64GB |
+| Qwen3.5-14B | 14B | 128K | 未量化(BF16) | 1x BW1000 64GB |
+| Qwen3.5-32B | 32B | 128K |  未量化(BF16) | 1x BW1100 144GB / 2x BW1000 64GB TP |
+| Qwen3.5-35B-A3B | 35B | 128K | 未量化(BF16) | 2x BW1100 144GB TP |
+| Qwen3.5-35B-A3B-Channel-FP8 | 35B | 128K | FP8-Channel-wise| 2x BW1100 144GB TP |
+| Qwen3.5-72B | 72B | 128K | 未量化(BF16) | 2x BW1100 144GB TP / 4x BW1000 64GB TP |
+| Qwen3.5-397B| 397B | 128K | 未量化(BF16) | 4x BW1100 144GB TP / 8x  BW1100 144GB TP |
 
 ## 启动命令
 
@@ -45,6 +41,64 @@ python -m sglang.launch_server \
     --mem-fraction-static 0.90 \
     --disable-radix-cache \
     --chunked-prefill-size -1
+```
+
+### Qwen3.5-35B-A3B（2卡）
+
+```bash
+export SGLANG_ENABLE_SPEC_V2=1
+export SGLANG_USE_FUSED_TOPK_SOFTMAX=1
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_CAUSAL_CONV1D=1
+export SGLANG_USE_AITER_LINEAR_ATTN=1
+export SGLANG_USE_CUDA_IPC_TRANSPORT=1
+sglang serve --model-path Qwen/Qwen3.5-35B-A3B \
+    --attention-backend fa3 \
+    --mm-attention-backend fa3 \
+    --speculative-algorithm EAGLE \
+    --enable-piecewise-cuda-graph \
+    --speculative-num-steps 3 \
+    --speculative-eagle-topk 1 \
+    --speculative-num-draft-tokens 4 \
+    --tp-size 2 --pp-size 1 \
+    --page-size 64  \
+    --mem-fraction-static 0.7 \
+    --mamba-scheduler-strategy extra_buffer \
+    --kv-cache-dtype fp8_e4m3  \
+    --trust-remote-code \
+    --chunked-prefill-size -1 
+```
+
+>NMZ 卡使用 fp8_e4m3，非 NMZ 卡使用 fp8_e5m2，请按照使用硬件情况进行配置。
+
+### Qwen3.5-35B-A3B-Channel-FP8（2卡）
+
+>此模型为Channel-wise FP8量化模型。
+
+```bash
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_FP8_W8A8_MOE=1
+export SGLANG_USE_FUSED_TOPK_SOFTMAX=1
+export SGLANG_USE_CAUSAL_CONV1D=1
+export SGLANG_USE_CUDA_IPC_TRANSPORT=1
+export SGLANG_USE_AITER_LINEAR_ATTN=1
+export SGLANG_ENABLE_SPEC_V2=1
+export SGLANG_USE_MODELSCOPE=1
+sglang serve --model-path  hygon/Qwen3.5-35B-A3B-Channel-FP8 \
+    --attention-backend fa3 \
+    --mm-attention-backend fa3 \
+    --speculative-algorithm EAGLE \
+    --enable-piecewise-cuda-graph \
+    --speculative-num-steps 3 \
+    --speculative-eagle-topk 1 \
+    --speculative-num-draft-tokens 4 \
+    --tp-size 2 --pp-size 1 \
+    --page-size 64  \
+    --mem-fraction-static 0.7 \
+    --chunked-prefill-size -1 \
+    --kv-cache-dtype fp8_e4m3  \
+    --trust-remote-code \
+    --mamba-scheduler-strategy extra_buffer
 ```
 
 ### Qwen3.5-72B（四卡）

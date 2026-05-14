@@ -1,4 +1,9 @@
-# DCU Inference Cookbook
+<div align="center">
+
+![DCU Inference Cookbook Logo](./assets/logo.svg)
+
+</div>
+
 
 ## 📖 简介
 

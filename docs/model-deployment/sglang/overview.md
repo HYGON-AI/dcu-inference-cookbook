@@ -86,8 +86,8 @@ result = json.loads(response.text)
 ## 性能监控
 
 ```bash
-rocm-smi
-watch -n 2 rocm-smi
+hy-smi
+watch -n 2 hy-smi
 ```
 
 ## 参考链接

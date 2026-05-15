@@ -201,7 +201,7 @@ for chunk in client.chat.completions.create(
 
 ## 已知限制
 
-- 部分 CUDA 专属算子需要 ROCm 适配
+- 部分 CUDA 专属算子需要 DTK 适配
 - Flash Attention 需要确认 DCU 兼容版本
 - 某些量化方法（AWQ/GPTQ）在 DCU 上可能有兼容性问题
 - VLM 多图场景显存消耗较大，注意 `--limit-mm-per-prompt` 设置

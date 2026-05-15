@@ -4,7 +4,7 @@
 
 ## 前置条件
 
-- 已安装 DCU 驱动和 ROCm（参考 [environment-setup.md](environment-setup.md)）
+- 已安装 DCU 驱动和 DTK（参考 [environment-setup.md](environment-setup.md)）
 - Python 3.10+ 环境
 - 至少一张 DCU（64GB 显存推荐）
 

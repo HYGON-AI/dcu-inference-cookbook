@@ -10,11 +10,13 @@ MiniMax-2.x 是 MiniMax 推出的大规模 MoE（混合专家）语言模型系�
 | 模型 | 总参数 | 激活参数 | 上下文 | 量化方式 | 推荐硬件 |
 |------|--------|---------|--------|---------|---------|
 | MiniMax-2.5 | 229B | ~10B | 1M | INT8 W8A8 | 8x BW1100 144GB|
+| MiniMax-2.5 | 229B | ~10B | 1M | INT8 W8A8 | 8x BW1000 64GB|
 | MiniMax-2.7 | 229B | ~10B | 1M | INT8 W8A8 | 8x BW1100 144GB|
+| MiniMax-2.7 | 229B | ~10B | 1M | INT8 W8A8 | 8x BW1000 64GB|
 
 ## 启动命令
 
-### MiniMax-Text-01（八卡 128GB）
+### MiniMax-2.x-w8a8-channel_wise-int8（8x BW1100 144GB）
 
 ```bash
 rm -rf ~/.cache
@@ -98,6 +100,250 @@ vllm serve ${model_path} \
  2>&1 | tee "${log_dir}/serve_${time}.log"
 
 ```
+
+### MiniMax-2.x-w8a8-channel_wise-int8（8x BW1000 64GB）
+
+```bash
+rm -rf ~/.cache
+rm -rf ~/.triton
+rm -rf /tmp/torchinductor_root/
+
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MAX_NCHANNELS=16
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export HSA_FORCE_FINE_GRAIN_PCIE=1
+export NCCL_P2P_LEVEL=SYS
+export NCCL_LAUNCH_MODE=GROUP
+export VLLM_NUMA_BIND=1
+export VLLM_RANK0_NUMA=0
+export VLLM_RANK1_NUMA=0
+export VLLM_RANK2_NUMA=1
+export VLLM_RANK3_NUMA=1
+export VLLM_RANK4_NUMA=2
+export VLLM_RANK5_NUMA=2
+export VLLM_RANK6_NUMA=3
+export VLLM_RANK7_NUMA=3
+export NCCL_NET_GDR_READ=1
+export VLLM_RPC_TIMEOUT=1800000
+export NCCL_NET_GDR_LEVEL=7
+export NCCL_SDMA_COPY_ENABLE=0
+export VLLM_USE_OPT_ZEROS=1
+export VLLM_USE_PD_SPLIT=1
+
+# export VLLM_TORCH_PROFILER_DIR=/home/work/prof/
+export VLLM_TORCH_PROFILER_DIR=/mnt/claw/torchprof
+export VLLM_V1_USE_FUSED_QKV_SPLIT_RMS_ROPE_KVSTORE=1
+export VLLM_USE_LIGHTOP=1
+export LMSLIM_USE_LIGHTOP=1
+export USE_FUSED_SILU_MUL_QUANT=1
+export USE_FUSED_RMS_QUANT=1
+export VLLM_USE_LIGHTOP_MOE_SUM_MUL_ADD=1 #moe_sum融合
+
+# 替换lightop接口
+export VLLM_USE_LIGHTOP_MOE_ALIGN=1
+export VLLM_USE_LIGHTOP_FILL_MOE_ALIGN=1
+export VLLM_USE_OPT_RESHAPE_AND_CACHE=1 
+# chunksize设置为16384
+export VLLM_USE_GLOBAL_CACHE13=1 #减少显存碎片化 
+export VLLM_FUSED_MOE_CHUNK_SIZE=16384  # --max-num-batched-tokens 16384
+export VLLM_USE_PIECEWISE=1
+export VLLM_USE_LIGHTOP_FUSED_TOPP_TOPK=1
+export VLLM_USE_OPT_OP=1 
+export VLLM_USE_AITER_MOE_W8A8=0
+
+model_path=/mnt1/metax-tech/MiniMax-M2.5-W8A8/
+model=${model_path##*/}
+time=$(date "+%Y-%m-%d-%H-%M-%S")
+data_type="bfloat16"
+port=8000
+gpu_memory=0.92
+
+bwtype="bw1000"
+log_date=$(date "+%Y-%m-%d")
+log_dir="${bwtype}_${model}/${log_date}"
+mkdir -p "${log_dir}"
+
+
+
+vllm serve ${model_path} \
+ --dtype ${data_type} \
+ --host 0.0.0.0 \
+ --port ${port} \
+ --trust-remote-code \
+ -tp 8 \
+ --gpu-memory-utilization $gpu_memory \
+ --disable-log-requests \
+ --max-model-len 73216 \
+ --max-num-batched-tokens 16384 \
+ -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
+ -q slimquant_marlin \
+ --enable-prefix-caching \
+ --disable-cascade-attn \
+ 2>&1 | tee "${log_dir}/serve_${time}.log"
+
+```
+
+### MiniMax-2.x-w8a8-channel_wise-fp8（8x BW1100 144GB）
+
+```bash
+rm -rf ~/.cache
+rm -rf ~/.triton
+rm -rf /tmp/torchinductor_root/
+
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MAX_NCHANNELS=16
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export HSA_FORCE_FINE_GRAIN_PCIE=1
+export NCCL_P2P_LEVEL=SYS
+export NCCL_LAUNCH_MODE=GROUP
+export VLLM_NUMA_BIND=1
+export VLLM_RANK0_NUMA=0
+export VLLM_RANK1_NUMA=0
+export VLLM_RANK2_NUMA=0
+export VLLM_RANK3_NUMA=0
+export VLLM_RANK4_NUMA=1
+export VLLM_RANK5_NUMA=1
+export VLLM_RANK6_NUMA=1
+export VLLM_RANK7_NUMA=1
+export NCCL_NET_GDR_READ=1
+export VLLM_RPC_TIMEOUT=1800000
+export NCCL_NET_GDR_LEVEL=7
+export NCCL_SDMA_COPY_ENABLE=0
+export VLLM_USE_OPT_ZEROS=1
+export VLLM_USE_PD_SPLIT=1
+export VLLM_TORCH_PROFILER_DIR=/home/work/prof/
+export VLLM_V1_USE_FUSED_QKV_SPLIT_RMS_ROPE_KVSTORE=1
+export VLLM_USE_LIGHTOP=1
+export LMSLIM_USE_LIGHTOP=1
+
+export VLLM_USE_LIGHTOP_MOE_SUM_MUL_ADD=1 #moe_sum融合
+export VLLM_USE_LIGHTOP_MOE_ALIGN=1
+
+export VLLM_USE_LIGHTOP_FILL_MOE_ALIGN=1
+export VLLM_USE_OPT_RESHAPE_AND_CACHE=1
+
+# chunksize设置为16384
+export VLLM_USE_GLOBAL_CACHE13=1 #减少显存碎片化
+export VLLM_FUSED_MOE_CHUNK_SIZE=16384  # --max-num-batched-tokens 16384
+export VLLM_USE_PIECEWISE=1
+export VLLM_USE_LIGHTOP_FUSED_TOPP_TOPK=1
+export VLLM_USE_OPT_OP=1 #新加变量
+export VLLM_USE_AITER_MOE_W8A8=0
+
+model_path=/mnt/MiniMax-M2___5-Channel-FP8-w8a8
+
+model=${model_path##*/}
+time=$(date "+%Y-%m-%d-%H-%M-%S")
+data_type="bfloat16"
+port=8000
+gpu_memory=0.92
+bwtype="nmz1100"
+# bwtype="bw1000"
+log_date=$(date "+%Y-%m-%d")
+log_dir="${bwtype}_${model}/${log_date}"
+mkdir -p "${log_dir}"
+
+
+vllm serve ${model_path} \
+ --dtype ${data_type} \
+ --host 0.0.0.0 \
+ --port ${port} \
+ --trust-remote-code \
+ -tp 4 -pp 2 \
+ --gpu-memory-utilization $gpu_memory \
+ --disable-log-requests \
+ --max-model-len 73216 \
+ --max-num-batched-tokens 16384 \
+ -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
+ --kv-cache-dtype fp8_e4m3 \
+ --enable-prefix-caching \
+ --disable-cascade-attn \
+ -q slimquant_marlin \
+ 2>&1 | tee "${log_dir}/serve_${time}.log"
+
+```
+
+### MiniMax-2.x-bf16（8x BW1100 144GB | 8x BW1000 64GB）
+
+```bash
+rm -rf ~/.cache
+rm -rf ~/.triton
+rm -rf /tmp/torchinductor_root/
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MAX_NCHANNELS=16
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export HSA_FORCE_FINE_GRAIN_PCIE=1
+export NCCL_P2P_LEVEL=SYS
+export NCCL_LAUNCH_MODE=GROUP
+export VLLM_NUMA_BIND=1
+export VLLM_RANK0_NUMA=0
+export VLLM_RANK1_NUMA=0
+export VLLM_RANK2_NUMA=0
+export VLLM_RANK3_NUMA=0
+export VLLM_RANK4_NUMA=1
+export VLLM_RANK5_NUMA=1
+export VLLM_RANK6_NUMA=1
+export VLLM_RANK7_NUMA=1
+export NCCL_NET_GDR_READ=1
+export VLLM_RPC_TIMEOUT=1800000
+export NCCL_NET_GDR_LEVEL=7
+export NCCL_SDMA_COPY_ENABLE=0
+export VLLM_USE_OPT_ZEROS=1
+export VLLM_USE_PD_SPLIT=1
+# export VLLM_TORCH_PROFILER_DIR=/home/work/prof/
+export VLLM_TORCH_PROFILER_DIR=/mnt/claw/torchprof
+export VLLM_V1_USE_FUSED_QKV_SPLIT_RMS_ROPE_KVSTORE=1
+export VLLM_USE_LIGHTOP=1
+export LMSLIM_USE_LIGHTOP=1
+
+export VLLM_USE_LIGHTOP_MOE_SUM_MUL_ADD=1 #moe_sum融合
+# 替换lightop接口
+export VLLM_USE_LIGHTOP_MOE_ALIGN=1
+export VLLM_USE_LIGHTOP_FILL_MOE_ALIGN=1
+# chunksize设置为16384
+export VLLM_USE_GLOBAL_CACHE13=1 #减少显存碎片化
+export VLLM_FUSED_MOE_CHUNK_SIZE=16384  # --max-num-batched-tokens 16384
+export VLLM_USE_PIECEWISE=1
+export VLLM_USE_LIGHTOP_FUSED_TOPP_TOPK=1
+export VLLM_USE_OPT_OP=1 
+export VLLM_USE_AITER_MOE_W8A8=0
+
+
+model_path=/mnt/MiniMax-M2.5-bf16
+model=${model_path##*/}
+time=$(date "+%Y-%m-%d-%H-%M-%S")
+data_type="bfloat16"
+port=8000
+gpu_memory=0.92
+bwtype="nmz1100"
+# bwtype="bw1000"
+log_date=$(date "+%Y-%m-%d")
+log_dir="${bwtype}_${model}/${log_date}"
+mkdir -p "${log_dir}"
+
+
+
+vllm serve ${model_path} \
+ --dtype ${data_type} \
+ --host 0.0.0.0 \
+ --port ${port} \
+ --trust-remote-code \
+ -tp 8 \
+ --gpu-memory-utilization $gpu_memory \
+ --disable-log-requests \
+ --max-model-len 73216 \
+ --max-num-batched-tokens 16384 \
+ -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
+ --enable-prefix-caching \
+ --kv-cache-dtype fp8_e4m3 \
+ --disable-cascade-attn \
+ 2>&1 | tee "${log_dir}/serve_${time}.log"
+
+```
+
 
 ### 显存不足时
 

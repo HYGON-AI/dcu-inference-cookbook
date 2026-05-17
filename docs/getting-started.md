@@ -111,7 +111,7 @@ print(processor.decode(predicted_ids[0]))
 
 ## 下一步
 
-- [模型部署方案概览](model-deployment/overview.md)
+- [模型部署文档](model-deployment/)
 - [多模态方案概览](multimodal/overview.md)
 - [性能调优指南](optimization/performance-tuning.md)
 - [框架适配详情](frameworks/vllm-dcu.md)

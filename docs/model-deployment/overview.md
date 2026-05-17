@@ -25,8 +25,8 @@
 
 | 框架 | 说明 | 文档 |
 |------|------|------|
-| vLLM | PagedAttention、高吞吐、Omni 全模态 | [vllm/](vllm/overview.md) |
-| SGLang | RadixAttention、灵活调度、结构化生成 | [sglang/](sglang/overview.md) |
+| vLLM | PagedAttention、高吞吐、Omni 全模态 | [vllm/](vllm/) |
+| SGLang | RadixAttention、灵活调度、结构化生成 | [sglang/](sglang/) |
 
 ### 图像 / 视频生成
 
@@ -103,7 +103,7 @@
 ### 在线推理 (Online Serving)
 - 低延迟、高并发
 - 推荐: vLLM / SGLang
-- 详见 → [vllm/](vllm/overview.md) / [sglang/](sglang/overview.md)
+- 详见 → [vllm/](vllm/) / [sglang/](sglang/)
 
 ### 离线推理 (Offline Batch)
 - 高吞吐、批处理

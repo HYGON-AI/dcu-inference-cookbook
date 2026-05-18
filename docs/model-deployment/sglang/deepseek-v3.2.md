@@ -24,7 +24,6 @@ export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
 export SGLANG_KVALLOC_KERNEL=1
 export SGLANG_USE_LIGHTOP=1
 export SGLANG_USE_OPT_CAT=1
-export SGLANG_USE_FP8_W8A8_MOE=1
 export SGLANG_USE_RMS_QUANT_PATH=1
 export USE_FUSED_RMS_QUANT_PATH=1
 export SGLANG_USE_FUSED_RMSNORM_ROPE=1
@@ -61,9 +60,7 @@ python3 -m sglang.launch_server \
     --model-path hygon/DeepSeek-V3.2-Channel-FP8-w8a8 \
     --numa-node 0 0 1 1 2 2 3 3 \
     --disable-radix-cache \
-    --chunked-prefill-size -1 \
-    --max-running-requests 256 \
-    --speculative-algorithm EAGLE --speculative-num-steps 2  --speculative-eagle-topk 1  --speculative-num-draft-tokens 1 \
+    --page-size 64 \
     --context-length 65536 \
     --quantization w8a8_fp8 \
     --kv-cache-dtype fp8_e4m3 \

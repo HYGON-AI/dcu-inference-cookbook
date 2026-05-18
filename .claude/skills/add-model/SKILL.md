@@ -15,10 +15,10 @@ description: Guide for adding a new model deployment doc to dcu-inference-cookbo
 2. **框架**：`vLLM` 还是 `SGLang`（二选一）
 
 3. **框架版本**：
-   - 选择 vLLM 时只接受：`0.15.0` 或 `0.18.0`（其他版本需要用户重新输入）
+   - 选择 vLLM 时只接受：`0.15.1` 或 `0.18.1`（其他版本需要用户重新输入）
    - 选择 SGLang 时只接受：`0.5.10`（其他版本需要用户重新输入）
 
-4. **硬件平台**：只接受 `K100_AI`、`BW1000`、`BW1100` 三选一（其他值需要用户重新输入）
+4. **硬件平台**：从 `K100_AI`、`BW1000`、`BW1100` 中选择，可多选（其他值需要用户重新输入）
 
 5. **启动命令**：
    - 若用户提供了完整的 `vllm serve` 或 `sglang serve` 命令，**原样采用，不做任何修改**
@@ -37,7 +37,7 @@ description: Guide for adding a new model deployment doc to dcu-inference-cookbo
 
 ### 各列说明
 
-- **框架版本**：使用信息收集阶段用户指定的框架版本（如 `0.18.0`、`0.5.10`）。
+- **框架版本**：使用信息收集阶段用户指定的框架版本（如 `0.18.1`、`0.5.10`）。
 
 - **模型权重**：模型在 ModelScope 上的完整路径，带链接。
   - 有 HYGON 量化版本时，优先使用 `hygon/` 前缀的 channelwise 模型：
@@ -363,7 +363,7 @@ curl http://<P_node_ip>:30001/v1/chat/completions ...
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [hygon/GLM-5-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT4-w4a8) | INT4 W4A8 | 0.18.0 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1100-8x)   |
-| [hygon/GLM-5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT8-w8a8) | INT8 W8A8 | 0.18.0 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x)   |
-|                                                                                                 | INT8 W8A8 | 0.18.0 | BW1100 | 24 | 1P2D | [**`>_`**](#glm-5-channel-int8-w8a8-1p2d-bw1100-24x) |
+| [hygon/GLM-5-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT4-w4a8) | INT4 W4A8 | 0.18.1 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1100-8x)   |
+| [hygon/GLM-5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT8-w8a8) | INT8 W8A8 | 0.18.1 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x)   |
+|                                                                                                 | INT8 W8A8 | 0.18.1 | BW1100 | 24 | 1P2D | [**`>_`**](#glm-5-channel-int8-w8a8-1p2d-bw1100-24x) |
 ````

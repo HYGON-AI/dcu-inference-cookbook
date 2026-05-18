@@ -4,17 +4,17 @@
 
 ### DCU 和 GPU 有什么区别？
 
-DCU（Deep Computing Unit）是 AMD 推出的加速处理器，基于 CDNA 架构。与 NVIDIA GPU 的主要区别：
+DCU（Deep Computing Unit）是 HYGON 推出的加速处理器，基于 CDNA 架构。与 NVIDIA GPU 的主要区别：
 
 - **编程模型**: 使用 HIP（Heterogeneous-compute Interface for Portability），兼容 CUDA API
-- **软件栈**: ROCm 替代 CUDA Toolkit
+- **软件栈**: DTK 替代 CUDA Toolkit
 - **生态**: 部分框架需要适配，主流框架（PyTorch、vLLM、Diffusers 等）已支持
 
 ### DCU 能直接运行 CUDA 代码吗？
 
 大部分 CUDA 代码可以通过 HIP 兼容层运行，但：
 - 部分 CUDA 专属算子需要手动适配
-- 第三方 CUDA 库（如 cuDNN）需要替换为 ROCm 对应库（MIOpen）
+- 第三方 CUDA 库（如 cuDNN）需要替换为 DTK 对应库（MIOpen）
 - 复杂的自定义 CUDA kernel 可能需要修改
 
 ### 如何选择推理框架？

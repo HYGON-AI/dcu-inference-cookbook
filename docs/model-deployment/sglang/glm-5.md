@@ -8,16 +8,16 @@ GLM-5 是智谱 AI 推出的新一代大语言模型，在中文理解、长文�
 
 | 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
-| [hygon/GLM-5-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT4-w4a8) | INT4 W4A8 | 0.5.10 | BW1000 |  8 | IFB | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1000-8x) |
-|                                                                                                 | INT4 W4A8 | 0.5.10 | BW1000 | 32 | 2P2D| [**`>_`**](#glm-5-channel-int4-w4a8-2p2d-bw1000-32x) |
-| [hygon/GLM-5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT8-w8a8) | INT8 W8A8 | 0.5.10 | BW1100 |  8 | IFB | [**`>_`**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x) |
-|                                                                                                 | INT8 W8A8 | 0.5.10 | BW1100 | 24 | 1P2D| [**`>_`**](#glm-5-channel-int8-w8a8-1p2d-bw1100-24x) |
-| [hygon/GLM-5-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-FP8-w8a8)   |  FP8 W8A8 | 0.5.10 | BW1100 |  8 | IFB | [**`>_`**](#glm-5-channel-fp8-w8a8-ifb-bw1100-8x)  |
-|                                                                                                 |  FP8 W8A8 | 0.5.10 | BW1100 | 24 | 1P2D| [**`>_`**](#glm-5-channel-fp8-w8a8-1p2d-bw1100-24x)  |
+| [hygon/GLM-5-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT4-w4a8) | INT4 W4A8 | 0.5.10 | BW1000 |  8 | IFB | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1000-8x-sglang-0510) |
+|                                                                                                 | INT4 W4A8 | 0.5.10 | BW1000 | 32 | 2P2D| [**`>_`**](#glm-5-channel-int4-w4a8-2p2d-bw1000-32x-sglang-0510) |
+| [hygon/GLM-5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT8-w8a8) | INT8 W8A8 | 0.5.10 | BW1100 |  8 | IFB | [**`>_`**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x-sglang-0510) |
+|                                                                                                 | INT8 W8A8 | 0.5.10 | BW1100 | 24 | 1P2D| [**`>_`**](#glm-5-channel-int8-w8a8-1p2d-bw1100-24x-sglang-0510) |
+| [hygon/GLM-5-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-FP8-w8a8)   |  FP8 W8A8 | 0.5.10 | BW1100 |  8 | IFB | [**`>_`**](#glm-5-channel-fp8-w8a8-ifb-bw1100-8x-sglang-0510)  |
+|                                                                                                 |  FP8 W8A8 | 0.5.10 | BW1100 | 24 | 1P2D| [**`>_`**](#glm-5-channel-fp8-w8a8-1p2d-bw1100-24x-sglang-0510)  |
 
 ## 启动命令
 
-### GLM-5-Channel-INT4-w4a8 IFB BW1000 8x
+### GLM-5-Channel-INT4-w4a8 IFB BW1000 8x SGLang 0.5.10
 
 ```bash
 export NCCL_MIN_NCHANNELS=16
@@ -74,7 +74,7 @@ sglang serve \
   --speculative-num-draft-tokens 4
 ```
 
-### GLM-5-Channel-INT4-w4a8 2P2D BW1000 32x
+### GLM-5-Channel-INT4-w4a8 2P2D BW1000 32x SGLang 0.5.10
 
 网卡配置参考：[IB 网卡](../../troubleshooting/common-issues.md#ib网卡)。
 
@@ -376,7 +376,7 @@ python3 -m sglang_router.launch_router \
   --port 30001
 ```
 
-### GLM-5-Channel-INT8-w8a8 IFB BW1100 8x
+### GLM-5-Channel-INT8-w8a8 IFB BW1100 8x SGLang 0.5.10
 
 ```bash
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -420,7 +420,7 @@ sglang serve \
   --mem-fraction-static 0.8
 ```
 
-### GLM-5-Channel-INT8-w8a8 1P2D BW1100 24x
+### GLM-5-Channel-INT8-w8a8 1P2D BW1100 24x SGLang 0.5.10
 
 网卡配置参考：[IB 网卡](../../troubleshooting/common-issues.md#ib网卡)。
 
@@ -654,7 +654,7 @@ python3 -m sglang_router.launch_router \
   --port 30001
 ```
 
-### GLM-5-Channel-FP8-w8a8 IFB BW1100 8x
+### GLM-5-Channel-FP8-w8a8 IFB BW1100 8x SGLang 0.5.10
 
 ```bash
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -698,7 +698,7 @@ sglang serve \
   --mem-fraction-static 0.8
 ```
 
-### GLM-5-Channel-FP8-w8a8 1P2D BW1100 24x
+### GLM-5-Channel-FP8-w8a8 1P2D BW1100 24x SGLang 0.5.10
 
 网卡配置参考：[IB 网卡](../../troubleshooting/common-issues.md#ib网卡)。
 

@@ -15,7 +15,7 @@ description: Guide for adding a new model deployment doc to dcu-inference-cookbo
 2. **框架**：`vLLM` 还是 `SGLang`（二选一）
 
 3. **框架版本**：
-   - 选择 vLLM 时只接受：`0.15.1` 或 `0.18.1`（其他版本需要用户重新输入）
+   - 选择 vLLM 时只接受：`0.15` 或 `0.18`（其他版本需要用户重新输入）
    - 选择 SGLang 时只接受：`0.5.10`（其他版本需要用户重新输入）
 
 4. **硬件平台**：从 `K100_AI`、`BW1000`、`BW1100` 中选择，可多选（其他值需要用户重新输入）
@@ -37,7 +37,7 @@ description: Guide for adding a new model deployment doc to dcu-inference-cookbo
 
 ### 各列说明
 
-- **框架版本**：使用信息收集阶段用户指定的框架版本（如 `0.18.1`、`0.5.10`）。
+- **框架版本**：使用信息收集阶段用户指定的框架版本（如 `0.18`、`0.5.10`）。
 
 - **模型权重**：模型在 ModelScope 上的完整路径，带链接。
   - 有 HYGON 量化版本时，优先使用 `hygon/` 前缀的 channelwise 模型：
@@ -71,30 +71,36 @@ description: Guide for adding a new model deployment doc to dcu-inference-cookbo
 
 **每一个表格行对应一个 `###` 章节**，章节标题格式固定为：
 
-```
-### <MODEL> <MODE> <HW> <Nx>
-```
+- **SGLang**（标题末尾加版本号）：
+  ```
+  ### <MODEL> <MODE> <HW> <Nx> SGLang <VERSION>
+  ```
+
+- **vLLM**（标题末尾加版本号）：
+  ```
+  ### <MODEL> <MODE> <HW> <Nx> vLLM <VERSION>
+  ```
 
 - `<MODEL>`：模型权重名（不含 `hygon/` 前缀，因为 `/` 会破坏锚点生成）
 - `<MODE>`：`IFB` 或 `xPyD`（如 `2P2D`、`1P2D`）
 - `<HW>`：推荐硬件简写（如 `BW1000`、`BW1100`）
 - `<Nx>`：总卡数加 `x`（如 `8x`、`32x`、`24x`）
+- `<VERSION>`：vLLM 版本（如 `0.18`、`0.15`）
 
-例如：
-- `### GLM-5-Channel-INT4-w4a8 IFB BW1000 8x` → anchor `#glm-5-channel-int4-w4a8-ifb-bw1000-8x`
-- `### GLM-5-Channel-INT4-w4a8 2P2D BW1000 32x` → anchor `#glm-5-channel-int4-w4a8-2p2d-bw1000-32x`
+例如（SGLang）：
+- `### GLM-5-Channel-INT4-w4a8 IFB BW1000 8x SGLang 0.5.10` → anchor `#glm-5-channel-int4-w4a8-ifb-bw1000-8x-sglang-0510`
+- `### GLM-5-Channel-INT4-w4a8 2P2D BW1000 32x SGLang 0.5.10` → anchor `#glm-5-channel-int4-w4a8-2p2d-bw1000-32x-sglang-0510`
+
+例如（vLLM）：
+- `### GLM-5-Channel-INT4-w4a8 IFB BW1100 8x vLLM 0.18` → anchor `#glm-5-channel-int4-w4a8-ifb-bw1100-8x-vllm-018`
+- `### GLM-5-Channel-INT8-w8a8 1P2D BW1100 24x vLLM 0.18` → anchor `#glm-5-channel-int8-w8a8-1p2d-bw1100-24x-vllm-018`
 
 ### SGLang IFB 章节结构
 
 SGLang IFB 章节只有一个 bash 代码块，无需子标题：
 
 ````markdown
-### GLM-5-Channel-INT4-w4a8 IFB BW1000 8x
-
-```bash
-export ...
-
-sglang serve \
+### GLM-5-Channel-INT4-w4a8 IFB BW1000 8x SGLang 0.5.10
   --model-path hygon/GLM-5-Channel-INT4-w4a8 \
   --trust-remote-code \
   --tp-size 8 \
@@ -107,7 +113,7 @@ sglang serve \
 SGLang PD 分离章节开头加一行 IB 网卡配置说明，然后用 `####` 划分各节点：
 
 ````markdown
-### GLM-5-Channel-INT4-w4a8 2P2D BW1000 32x
+### GLM-5-Channel-INT4-w4a8 2P2D BW1000 32x SGLang 0.5.10
 
 网卡配置参考：[IB 网卡](../../troubleshooting/common-issues.md#ib网卡)。
 
@@ -168,7 +174,7 @@ python3 -m sglang_router.launch_router \
 vLLM IFB 章节只有一个 bash 代码块，无需子标题：
 
 ````markdown
-### GLM-5-Channel-INT4-w4a8 IFB BW1100 8x
+### GLM-5-Channel-INT4-w4a8 IFB BW1100 8x vLLM 0.18
 
 ```bash
 export VLLM_USE_MODELSCOPE=1
@@ -188,7 +194,7 @@ vllm serve hygon/GLM-5-Channel-INT4-w4a8 \
 vLLM PD 分离的代理（proxy）内置于 P 节点进程中，通过 `--kv-transfer-config` 的 `proxy_port` 对外暴露，无需独立 Router 进程。章节开头加一行说明 P 节点和 D node 0 的示例 IP，然后用 `####` 划分各节点：
 
 ````markdown
-### GLM-5-Channel-INT8-w8a8 1P2D BW1100 24x
+### GLM-5-Channel-INT8-w8a8 1P2D BW1100 24x vLLM 0.18
 
 以下示例中 `10.16.1.36` 为 P 节点（也是代理节点），`10.16.1.42` 是 D node 0 的主节点，实际部署时请根据实际情况修改。
 
@@ -348,12 +354,12 @@ curl http://<P_node_ip>:30001/v1/chat/completions ...
 
 | 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
-| [hygon/GLM-5-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT4-w4a8) | INT4 W4A8 | 0.5.10 | BW1000 |  8 | IFB  | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1000-8x)   |
-|                                                                                                 | INT4 W4A8 | 0.5.10 | BW1000 | 32 | 2P2D | [**`>_`**](#glm-5-channel-int4-w4a8-2p2d-bw1000-32x) |
-| [hygon/GLM-5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT8-w8a8) | INT8 W8A8 | 0.5.10 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x)   |
-|                                                                                                 | INT8 W8A8 | 0.5.10 | BW1100 | 24 | 1P2D | [**`>_`**](#glm-5-channel-int8-w8a8-1p2d-bw1100-24x) |
-| [hygon/GLM-5-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-FP8-w8a8)   |  FP8 W8A8 | 0.5.10 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-fp8-w8a8-ifb-bw1100-8x)    |
-|                                                                                                 |  FP8 W8A8 | 0.5.10 | BW1100 | 24 | 1P2D | [**`>_`**](#glm-5-channel-fp8-w8a8-1p2d-bw1100-24x)  |
+| [hygon/GLM-5-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT4-w4a8) | INT4 W4A8 | 0.5.10 | BW1000 |  8 | IFB  | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1000-8x-sglang-0510)   |
+|                                                                                                 | INT4 W4A8 | 0.5.10 | BW1000 | 32 | 2P2D | [**`>_`**](#glm-5-channel-int4-w4a8-2p2d-bw1000-32x-sglang-0510) |
+| [hygon/GLM-5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT8-w8a8) | INT8 W8A8 | 0.5.10 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x-sglang-0510)   |
+|                                                                                                 | INT8 W8A8 | 0.5.10 | BW1100 | 24 | 1P2D | [**`>_`**](#glm-5-channel-int8-w8a8-1p2d-bw1100-24x-sglang-0510) |
+| [hygon/GLM-5-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-FP8-w8a8)   |  FP8 W8A8 | 0.5.10 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-fp8-w8a8-ifb-bw1100-8x-sglang-0510)    |
+|                                                                                                 |  FP8 W8A8 | 0.5.10 | BW1100 | 24 | 1P2D | [**`>_`**](#glm-5-channel-fp8-w8a8-1p2d-bw1100-24x-sglang-0510)  |
 ````
 
 ## 示例（vLLM GLM-5）
@@ -363,7 +369,7 @@ curl http://<P_node_ip>:30001/v1/chat/completions ...
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [hygon/GLM-5-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT4-w4a8) | INT4 W4A8 | 0.18.1 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1100-8x)   |
-| [hygon/GLM-5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT8-w8a8) | INT8 W8A8 | 0.18.1 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x)   |
-|                                                                                                 | INT8 W8A8 | 0.18.1 | BW1100 | 24 | 1P2D | [**`>_`**](#glm-5-channel-int8-w8a8-1p2d-bw1100-24x) |
+| [hygon/GLM-5-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT4-w4a8) | INT4 W4A8 | 0.18 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1100-8x-vllm-018)   |
+| [hygon/GLM-5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT8-w8a8) | INT8 W8A8 | 0.18 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x-vllm-018)   |
+|                                                                                                 | INT8 W8A8 | 0.18 | BW1100 | 24 | 1P2D | [**`>_`**](#glm-5-channel-int8-w8a8-1p2d-bw1100-24x-vllm-018) |
 ````

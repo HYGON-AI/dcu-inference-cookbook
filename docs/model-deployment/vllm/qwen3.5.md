@@ -8,22 +8,22 @@ Qwen3.5 是 Qwen3 系列的增强版本，在推理能力、代码生成、多�
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [Qwen/Qwen3.5-4B](https://www.modelscope.cn/models/Qwen/Qwen3.5-4B)           | BF16      | 0.18.0 | BW1000  | 1 | IFB | [**`>_`**](#qwen35-4b-ifb-bw1000-1x)           |
-|                                                                               | BF16      | 0.18.0 | K100_AI | 1 | IFB | [**`>_`**](#qwen35-4b-ifb-k100ai-1x)           |
-| [Qwen/Qwen3.5-9B](https://www.modelscope.cn/models/Qwen/Qwen3.5-9B)           | BF16      | 0.18.0 | BW1000  | 1 | IFB | [**`>_`**](#qwen35-9b-ifb-bw1000-1x)           |
-|                                                                               | BF16      | 0.18.0 | K100_AI | 1 | IFB | [**`>_`**](#qwen35-9b-ifb-k100ai-1x)           |
-| [Qwen/Qwen3.5-27B](https://www.modelscope.cn/models/Qwen/Qwen3.5-27B)         | BF16      | 0.18.0 | BW1000  | 2 | IFB | [**`>_`**](#qwen35-27b-ifb-bw1000-2x)          |
-|                                                                               | BF16      | 0.18.0 | K100_AI | 2 | IFB | [**`>_`**](#qwen35-27b-ifb-k100ai-2x)          |
-| [Qwen/Qwen3.5-35B-A3B](https://www.modelscope.cn/models/Qwen/Qwen3.5-35B-A3B) | BF16      | 0.18.0 | BW1000  | 2 | IFB | [**`>_`**](#qwen35-35b-a3b-ifb-bw1000-2x)      |
-|                                                                               | BF16      | 0.18.0 | K100_AI | 2 | IFB | [**`>_`**](#qwen35-35b-a3b-ifb-k100ai-2x)      |
-| [Qwen/Qwen3.5-35B-A3B-W8A8-INT8](https://www.modelscope.cn/models/Qwen/Qwen3.5-35B-A3B-W8A8-INT8) | INT8 W8A8 | 0.18.0 | BW1000  | 4 | IFB | [**`>_`**](#qwen35-35b-a3b-w8a8-int8-ifb-bw1000-4x) |
-|                                                                                              | INT8 W8A8 | 0.18.0 | K100_AI | 4 | IFB | [**`>_`**](#qwen35-35b-a3b-w8a8-int8-ifb-k100ai-4x) |
-| [Qwen/Qwen3.5-122B-A10B](https://www.modelscope.cn/models/Qwen/Qwen3.5-122B-A10B) | BF16   | 0.18.0 | BW1000  | 8 | IFB | [**`>_`**](#qwen35-122b-a10b-ifb-bw1000-8x)   |
-|                                                                                  | BF16   | 0.18.0 | K100_AI | 8 | IFB | [**`>_`**](#qwen35-122b-a10b-ifb-k100ai-8x)   |
-| [Qwen/Qwen3.5-122B-A10B-W8A8-INT8](https://www.modelscope.cn/models/Qwen/Qwen3.5-122B-A10B-W8A8-INT8) | INT8 W8A8 | 0.18.0 | BW1000  | 4 | IFB | [**`>_`**](#qwen35-122b-a10b-w8a8-int8-ifb-bw1000-4x) |
-|                                                                                               | INT8 W8A8 | 0.18.0 | K100_AI | 4 | IFB | [**`>_`**](#qwen35-122b-a10b-w8a8-int8-ifb-k100ai-4x) |
-| [Qwen/Qwen3.5-397B-A17B-W8A8-INT8](https://www.modelscope.cn/models/Qwen/Qwen3.5-397B-A17B-W8A8-INT8) | INT8 W8A8 | 0.18.0 | BW1000  | 8 | IFB | [**`>_`**](#qwen35-397b-a17b-w8a8-int8-ifb-bw1000-8x) |
-|                                                                                                | INT8 W8A8 | 0.18.0 | K100_AI | 8 | IFB | [**`>_`**](#qwen35-397b-a17b-w8a8-int8-ifb-k100ai-8x) |
+| [Qwen/Qwen3.5-4B](https://www.modelscope.cn/models/Qwen/Qwen3.5-4B)           | BF16      | 0.18 | BW1000  | 1 | IFB | [**`>_`**](#qwen35-4b-ifb-bw1000-1x)           |
+|                                                                               | BF16      | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen35-4b-ifb-k100ai-1x)           |
+| [Qwen/Qwen3.5-9B](https://www.modelscope.cn/models/Qwen/Qwen3.5-9B)           | BF16      | 0.18 | BW1000  | 1 | IFB | [**`>_`**](#qwen35-9b-ifb-bw1000-1x)           |
+|                                                                               | BF16      | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen35-9b-ifb-k100ai-1x)           |
+| [Qwen/Qwen3.5-27B](https://www.modelscope.cn/models/Qwen/Qwen3.5-27B)         | BF16      | 0.18 | BW1000  | 2 | IFB | [**`>_`**](#qwen35-27b-ifb-bw1000-2x)          |
+|                                                                               | BF16      | 0.18 | K100_AI | 2 | IFB | [**`>_`**](#qwen35-27b-ifb-k100ai-2x)          |
+| [Qwen/Qwen3.5-35B-A3B](https://www.modelscope.cn/models/Qwen/Qwen3.5-35B-A3B) | BF16      | 0.18 | BW1000  | 2 | IFB | [**`>_`**](#qwen35-35b-a3b-ifb-bw1000-2x)      |
+|                                                                               | BF16      | 0.18 | K100_AI | 2 | IFB | [**`>_`**](#qwen35-35b-a3b-ifb-k100ai-2x)      |
+| [Qwen/Qwen3.5-35B-A3B-W8A8-INT8](https://www.modelscope.cn/models/Qwen/Qwen3.5-35B-A3B-W8A8-INT8) | INT8 W8A8 | 0.18 | BW1000  | 4 | IFB | [**`>_`**](#qwen35-35b-a3b-w8a8-int8-ifb-bw1000-4x) |
+|                                                                                              | INT8 W8A8 | 0.18 | K100_AI | 4 | IFB | [**`>_`**](#qwen35-35b-a3b-w8a8-int8-ifb-k100ai-4x) |
+| [Qwen/Qwen3.5-122B-A10B](https://www.modelscope.cn/models/Qwen/Qwen3.5-122B-A10B) | BF16   | 0.18 | BW1000  | 8 | IFB | [**`>_`**](#qwen35-122b-a10b-ifb-bw1000-8x)   |
+|                                                                                  | BF16   | 0.18 | K100_AI | 8 | IFB | [**`>_`**](#qwen35-122b-a10b-ifb-k100ai-8x)   |
+| [Qwen/Qwen3.5-122B-A10B-W8A8-INT8](https://www.modelscope.cn/models/Qwen/Qwen3.5-122B-A10B-W8A8-INT8) | INT8 W8A8 | 0.18 | BW1000  | 4 | IFB | [**`>_`**](#qwen35-122b-a10b-w8a8-int8-ifb-bw1000-4x) |
+|                                                                                               | INT8 W8A8 | 0.18 | K100_AI | 4 | IFB | [**`>_`**](#qwen35-122b-a10b-w8a8-int8-ifb-k100ai-4x) |
+| [Qwen/Qwen3.5-397B-A17B-W8A8-INT8](https://www.modelscope.cn/models/Qwen/Qwen3.5-397B-A17B-W8A8-INT8) | INT8 W8A8 | 0.18 | BW1000  | 8 | IFB | [**`>_`**](#qwen35-397b-a17b-w8a8-int8-ifb-bw1000-8x) |
+|                                                                                                | INT8 W8A8 | 0.18 | K100_AI | 8 | IFB | [**`>_`**](#qwen35-397b-a17b-w8a8-int8-ifb-k100ai-8x) |
 
 ## 启动命令
 

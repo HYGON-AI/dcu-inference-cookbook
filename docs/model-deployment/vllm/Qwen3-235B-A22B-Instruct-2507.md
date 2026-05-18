@@ -8,9 +8,9 @@ Qwen3-235B-A22B-Instruct-2507 是通义千问 Qwen3 系列的 MoE 指令模型�
 
 | 模型 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| Qwen3-235B-A22B-Instruct-2507 | BF16 | 0.15 | BW1100 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-8x-vllm-018) |
-| Qwen3-235B-A22B-Instruct-2507 | BF16 | 0.15 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-018) |
-| Qwen3-235B-A22B-Instruct-2507 | BF16 | 0.15 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-018) |
+| Qwen3-235B-A22B-Instruct-2507 | BF16 | 0.15 | BW1100 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-8x-vllm-015) |
+| Qwen3-235B-A22B-Instruct-2507 | BF16 | 0.15 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-015) |
+| Qwen3-235B-A22B-Instruct-2507 | BF16 | 0.15 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-015) |
 
 ## 启动命令
 

@@ -6,11 +6,11 @@ Qwen3-235B-A22B-Instruct-2507 是通义千问 Qwen3 系列的 MoE 指令模型�
 
 ## 模型列表
 
-| 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
+| 模型 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [Qwen3-235B-A22B-Instruct-2507]| FP16 | 0.15 | BW1100 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-8x-vllm-018) |
-| [Qwen3-235B-A22B-Instruct-2507] | FP16 | 0.15 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-018) |
-| [Qwen3-235B-A22B-Instruct-2507]  | FP16 | 0.15 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-018) |
+| Qwen3-235B-A22B-Instruct-2507 | BF16 | 0.15 | BW1100 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-8x-vllm-018) |
+| Qwen3-235B-A22B-Instruct-2507 | BF16 | 0.15 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-018) |
+| Qwen3-235B-A22B-Instruct-2507 | BF16 | 0.15 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-018) |
 
 ## 启动命令
 
@@ -67,7 +67,7 @@ export NCCL_NET_GDR_LEVEL=7
 export NCCL_SDMA_COPY_ENABLE=0
 export VLLM_USE_OPT_ZEROS=1
 export VLLM_USE_PD_SPLIT=1
-export VLLM_RANK0_NUMA=0  #按照实际
+export VLLM_RANK0_NUMA=0  #按照实际的
 export VLLM_RANK1_NUMA=0
 export VLLM_RANK2_NUMA=1
 export VLLM_RANK3_NUMA=1
@@ -107,7 +107,7 @@ export NCCL_NET_GDR_LEVEL=7
 export NCCL_SDMA_COPY_ENABLE=0
 export VLLM_USE_OPT_ZEROS=1
 export VLLM_USE_PD_SPLIT=1
-export VLLM_RANK0_NUMA=0  #按照实际
+export VLLM_RANK0_NUMA=0  #按照实际的
 export VLLM_RANK1_NUMA=0
 export VLLM_RANK2_NUMA=1
 export VLLM_RANK3_NUMA=1
@@ -131,8 +131,8 @@ vllm serve ${model_path} \
     -tp ${tp} \
     --distributed-executor-backend mp \
     --gpu-memory-utilization ${gpu_memory} \
-    --disable-cascade-attn \
-    --max-model-len 40960
+    --max-model-len 40960 \
+    --disable-cascade-attn 
 ```
 
 ## API 调用
@@ -145,10 +145,10 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
-    model="Qwen/Qwen3-235B-A22B-Instruct-2507",
+    model="Qwen/Qwen3-235B-A22B-Instruct-2507", # 替换为实际使用的模型名
     messages=[
         {"role": "system", "content": "你是一个有帮助的 AI 助手。"},
-        {"role": "user", "content": "请介绍一下 Qwen3 模型的特点。"},
+        {"role": "user", "content": "请分析一下当前中国 AI 芯片产业的发展现状。"},
     ],
     max_tokens=2048,
 )
@@ -162,7 +162,7 @@ curl http://localhost:8000/v1/chat/completions \
     "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
     "messages": [
       {"role": "system", "content": "你是一个有帮助的 AI 助手。"},
-      {"role": "user", "content": "请介绍一下 Qwen3 模型的特点。"}
+      {"role": "user", "content": "请分析一下当前中国 AI 芯片产业的发展现状。"}
     ],
     "max_tokens": 128
   }'

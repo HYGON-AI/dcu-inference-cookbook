@@ -43,12 +43,42 @@ vllm serve Qwen/Qwen3.5-4B \
     --disable-cascade-attn
 ```
 
+### Qwen3.5-4B IFB K100_AI 1x
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+
+vllm serve Qwen/Qwen3.5-4B \
+    -tp 1 \
+    --max-num-batched-tokens 10240 \
+    --speculative-config.method mtp \
+    --speculative-config.num_speculative_tokens 3 \
+    --trust-remote-code \
+    --disable-cascade-attn
+```
+
 ### Qwen3.5-9B IFB BW1000 1x
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+
+vllm serve Qwen/Qwen3.5-9B \
+    -tp 1 \
+    --max-num-batched-tokens 10240 \
+    --trust-remote-code \
+    --disable-cascade-attn \
+    --speculative-config.method mtp \
+    --speculative-config.num_speculative_tokens 3
+```
+
+### Qwen3.5-9B IFB K100_AI 1x
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
 
 vllm serve Qwen/Qwen3.5-9B \
     -tp 1 \
@@ -75,12 +105,42 @@ vllm serve Qwen/Qwen3.5-27B \
     --speculative-config.num_speculative_tokens 3
 ```
 
+### Qwen3.5-27B IFB K100_AI 2x
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+
+vllm serve Qwen/Qwen3.5-27B \
+    -tp 2 \
+    --trust-remote-code \
+    --disable-cascade-attn \
+    --max-num-batched-tokens 10240 \
+    --speculative-config.method mtp \
+    --speculative-config.num_speculative_tokens 3
+```
+
 ### Qwen3.5-35B-A3B IFB BW1000 2x
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+
+vllm serve Qwen/Qwen3.5-35B-A3B \
+    -tp 2 \
+    --trust-remote-code \
+    --disable-cascade-attn \
+    --max-num-batched-tokens 10240 \
+    --speculative-config.method mtp \
+    --speculative-config.num_speculative_tokens 3
+```
+
+### Qwen3.5-35B-A3B IFB K100_AI 2x
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
 
 vllm serve Qwen/Qwen3.5-35B-A3B \
     -tp 2 \
@@ -109,12 +169,44 @@ vllm serve Qwen/Qwen3.5-35B-A3B-W8A8-INT8 \
     --speculative-config.quantization "slimquant_marlin"
 ```
 
+### Qwen3.5-35B-A3B-W8A8-INT8 IFB K100_AI 4x
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+
+vllm serve Qwen/Qwen3.5-35B-A3B-W8A8-INT8 \
+    -tp 4 \
+    --trust-remote-code \
+    --disable-cascade-attn \
+    --max-num-batched-tokens 10240 \
+    -q slimquant_marlin \
+    --speculative-config.method mtp \
+    --speculative-config.num_speculative_tokens 3 \
+    --speculative-config.quantization "slimquant_marlin"
+```
+
 ### Qwen3.5-122B-A10B IFB BW1000 8x
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+
+vllm serve Qwen/Qwen3.5-122B-A10B \
+    -tp 8 \
+    --trust-remote-code \
+    --disable-cascade-attn \
+    --max-num-batched-tokens 10240 \
+    --speculative-config.method mtp \
+    --speculative-config.num_speculative_tokens 3
+```
+
+### Qwen3.5-122B-A10B IFB K100_AI 8x
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
 
 vllm serve Qwen/Qwen3.5-122B-A10B \
     -tp 8 \
@@ -143,6 +235,23 @@ vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
     --speculative-config.quantization "slimquant_marlin"
 ```
 
+### Qwen3.5-122B-A10B-W8A8-INT8 IFB K100_AI 4x
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+
+vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
+    -tp 4 \
+    --disable-cascade-attn \
+    --max-num-batched-tokens 10240 \
+    --trust-remote-code \
+    -q slimquant_marlin \
+    --speculative-config.method mtp \
+    --speculative-config.num_speculative_tokens 3 \
+    --speculative-config.quantization "slimquant_marlin"
+```
+
 ### Qwen3.5-397B-A17B-W8A8-INT8 IFB BW1000 8x
 
 ```bash
@@ -152,115 +261,6 @@ export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 
 vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
     -tp 8 \
-    --disable-cascade-attn \
-    --max-num-batched-tokens 10240 \
-    --trust-remote-code \
-    -q slimquant_marlin \
-    --speculative-config.method mtp \
-    --speculative-config.num_speculative_tokens 3 \
-    --speculative-config.quantization "slimquant_marlin"
-```
-
-### Qwen3.5-4B IFB K100_AI 1x
-
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-
-vllm serve Qwen/Qwen3.5-4B \
-    -tp 1 \
-    --max-num-batched-tokens 10240 \
-    --speculative-config.method mtp \
-    --speculative-config.num_speculative_tokens 3 \
-    --trust-remote-code \
-    --disable-cascade-attn
-```
-
-### Qwen3.5-9B IFB K100_AI 1x
-
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-
-vllm serve Qwen/Qwen3.5-9B \
-    -tp 1 \
-    --max-num-batched-tokens 10240 \
-    --trust-remote-code \
-    --disable-cascade-attn \
-    --speculative-config.method mtp \
-    --speculative-config.num_speculative_tokens 3
-```
-
-### Qwen3.5-27B IFB K100_AI 2x
-
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-
-vllm serve Qwen/Qwen3.5-27B \
-    -tp 2 \
-    --trust-remote-code \
-    --disable-cascade-attn \
-    --max-num-batched-tokens 10240 \
-    --speculative-config.method mtp \
-    --speculative-config.num_speculative_tokens 3
-```
-
-### Qwen3.5-35B-A3B IFB K100_AI 2x
-
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-
-vllm serve Qwen/Qwen3.5-35B-A3B \
-    -tp 2 \
-    --trust-remote-code \
-    --disable-cascade-attn \
-    --max-num-batched-tokens 10240 \
-    --speculative-config.method mtp \
-    --speculative-config.num_speculative_tokens 3
-```
-
-### Qwen3.5-35B-A3B-W8A8-INT8 IFB K100_AI 4x
-
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-
-vllm serve Qwen/Qwen3.5-35B-A3B-W8A8-INT8 \
-    -tp 4 \
-    --trust-remote-code \
-    --disable-cascade-attn \
-    --max-num-batched-tokens 10240 \
-    -q slimquant_marlin \
-    --speculative-config.method mtp \
-    --speculative-config.num_speculative_tokens 3 \
-    --speculative-config.quantization "slimquant_marlin"
-```
-
-### Qwen3.5-122B-A10B IFB K100_AI 8x
-
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-
-vllm serve Qwen/Qwen3.5-122B-A10B \
-    -tp 8 \
-    --trust-remote-code \
-    --disable-cascade-attn \
-    --max-num-batched-tokens 10240 \
-    --speculative-config.method mtp \
-    --speculative-config.num_speculative_tokens 3
-```
-
-### Qwen3.5-122B-A10B-W8A8-INT8 IFB K100_AI 4x
-
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-
-vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
-    -tp 4 \
     --disable-cascade-attn \
     --max-num-batched-tokens 10240 \
     --trust-remote-code \

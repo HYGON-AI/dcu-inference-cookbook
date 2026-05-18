@@ -373,3 +373,44 @@ curl http://<P_node_ip>:30001/v1/chat/completions ...
 | [hygon/GLM-5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT8-w8a8) | INT8 W8A8 | 0.18 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x-vllm-018)   |
 |                                                                                                 | INT8 W8A8 | 0.18 | BW1100 | 24 | 1P2D | [**`>_`**](#glm-5-channel-int8-w8a8-1p2d-bw1100-24x-vllm-018) |
 ````
+
+## 最终步骤：更新 README 支持矩阵
+
+生成部署文档后，**必须同步更新 `README.md` 的 `📋 模型列表` 支持矩阵**。
+
+### 矩阵结构
+
+矩阵为 HTML 表格，列顺序固定：**厂商 → 模型 → 框架 → K100_AI → BW1000 → BW1100**。
+
+每个模型在矩阵中占两行（vLLM 行 + SGLang 行），模型名称列使用 `rowspan="2"`：
+
+```html
+<tr>
+  <td rowspan="2">ModelName</td>
+  <td>vLLM</td>
+  <td align="center">-</td>
+  <td align="center"><a href="docs/model-deployment/vllm/filename.md">✅</a></td>
+  <td align="center">-</td>
+</tr>
+<tr>
+  <td>SGLang</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+  <td align="center">-</td>
+</tr>
+```
+
+单元格取值：
+- **有文档且支持该硬件**：`<td align="center"><a href="docs/model-deployment/{vllm|sglang}/{filename}.md">✅</a></td>`
+- **已知不支持**：`<td align="center">-</td>`
+- **计划中/待验证**：`<td align="center">🚧</td>`
+
+### 操作步骤
+
+1. **在矩阵中查找该模型**：
+   - **找到了**：直接修改对应框架行（vLLM 或 SGLang）中各硬件平台的单元格，将已验证的平台改为带链接的 ✅，未覆盖的平台保持原值（`-` 或 `🚧`）。
+   - **找不到**：在对应厂商的 `<tbody>` 区块末尾插入两行新 `<tr>`（vLLM 行 + SGLang 行），参照上方结构模板。
+
+2. **文档路径**格式为：`docs/model-deployment/{vllm|sglang}/{filename}.md`，`{filename}` 与新建文档的文件名一致。
+
+3. **只改动必要行**，不调整其他模型的内容，保持 diff 最小。

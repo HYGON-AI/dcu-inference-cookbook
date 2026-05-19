@@ -6,20 +6,142 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 
 ## 模型列表
 
-| 模型 | 参数量 | 上下文 | 量化方式 | 推荐硬件 |
-|------|--------|--------|---------|---------|
-| Qwen3-0.6B | 0.6B | 128K | BF16 | 1x BW1000 64GB |
-| Qwen3-1.7B | 1.7B | 128K | BF16 | 1x BW1000 64GB |
-| Qwen3-4B | 4B | 128K | BF16 | 1x BW1000 64GB |
-| Qwen3-8B | 8B | 128K | BF16 | 1x BW1000 64GB |
-| Qwen3-14B | 14B | 128K | BF16 | 1x BW1000 64GB |
-| Qwen3-32B | 32B | 128K | BF16 | 1x BW1100 144GB / 2x DCU TP |
-| Qwen3-30B-A3B | 30B (MoE) | 128K | BF16 | 1x BW1100 144GB TP/2x BW1000 64GB |
-| Qwen3-235B-A22B | 235B (MoE) | 128K | BF16 | 4x BW1100 144GB TP/8x BW1000 64GB TP |
+| 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
+| -------- | -------- | --------- | -------- | ---- | -------- | -------- |
+| [Qwen/Qwen3-0.6B](https://www.modelscope.cn/models/Qwen/Qwen3-0.6B)           | BF16 | 0.15 | BW1000  | 1 | IFB | [**`>_`**](#qwen3-06b-ifb-bw1000-1x-vllm-015)           |
+| [Qwen/Qwen3-1.7B](https://www.modelscope.cn/models/Qwen/Qwen3-1.7B)           | BF16 | 0.15 | BW1000  | 1 | IFB | - |
+| [Qwen/Qwen3-4B](https://www.modelscope.cn/models/Qwen/Qwen3-4B)               | BF16 | 0.15 | BW1000  | 1 | IFB | - |
+| [Qwen/Qwen3-8B](https://www.modelscope.cn/models/Qwen/Qwen3-8B)               | BF16 | 0.15 | BW1000  | 1 | IFB | - |
+| [Qwen/Qwen3-14B](https://www.modelscope.cn/models/Qwen/Qwen3-14B)             | BF16 | 0.15 | BW1000  | 1 | IFB | - |
+| [Qwen/Qwen3-32B](https://www.modelscope.cn/models/Qwen/Qwen3-32B)             | BF16 | 0.15 | BW1100  | 1 | IFB | - |
+| [Qwen/Qwen3-30B-A3B](https://www.modelscope.cn/models/Qwen/Qwen3-30B-A3B)     | BF16 | 0.15 | BW1000  | 2 | IFB | [**`>_`**](#qwen3-30b-a3b-ifb-bw1000-2x-vllm-015)       |
+|                                                                               | BF16 | 0.15 | BW1100  | 1 | IFB | - |
+| [Qwen/Qwen3-235B-A22B](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B) | BF16 | 0.15 | BW1100  | 4 | IFB | - |
+|                                                                               | BF16 | 0.15 | BW1000  | 8 | IFB | - |
+| [Qwen/Qwen3-235B-A22B-Instruct-2507](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B-Instruct-2507) | BF16 | 0.15 | BW1100 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-8x-vllm-015) |
+|                                                                               | BF16 | 0.15 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-015) |
+|                                                                               | BF16 | 0.15 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-015) |
+| [Qwen/Qwen3-235B-A22B-FP8-Channel](https://www.modelscope.cn/models/hygon/Qwen3-235B-A22B-W8A8) | FP8 | 0.15 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-fp8-channelwise-ifb-bw1100-4x-vllm-015) |
 
 ## 启动命令
 
-### Qwen3-235B-A22B-FP8-Channelwise （MoE, TP4）
+### Qwen3-0.6B IFB BW1000 1x vLLM 0.15
+
+```bash
+export VLLM_USE_PIECEWISE=1
+
+vllm serve Qwen/Qwen3-0.6B \
+    -tp 1 \
+    --trust-remote-code \
+    --disable-log-requests \
+    --dtype bfloat16 \
+    --disable-cascade-attn \
+    -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
+```
+
+### Qwen3-30B-A3B IFB BW1000 2x vLLM 0.15
+
+```bash
+export VLLM_USE_PD_SPLIT=0
+
+vllm serve Qwen/Qwen3-30B-A3B \
+    -tp 2 \
+    --trust-remote-code \
+    --dtype float16 \
+    --disable-cascade-attn \
+    -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
+```
+
+### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 8x vLLM 0.15
+
+```bash
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MAX_NCHANNELS=16
+export NCCL_NET_GDR_READ=1
+export VLLM_RPC_TIMEOUT=1800000
+export NCCL_NET_GDR_LEVEL=7
+export NCCL_SDMA_COPY_ENABLE=0
+export VLLM_USE_OPT_ZEROS=1
+export VLLM_USE_PD_SPLIT=1  
+export VLLM_RANK0_NUMA=0   ##按照实际的
+export VLLM_RANK1_NUMA=0
+export VLLM_RANK2_NUMA=1
+export VLLM_RANK3_NUMA=1
+export VLLM_RANK4_NUMA=2
+export VLLM_RANK5_NUMA=2
+export VLLM_RANK6_NUMA=3
+export VLLM_RANK7_NUMA=3
+
+vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
+    --dtype float16 \
+    --trust-remote-code \
+    -tp 8 \
+    --disable-cascade-attn 
+```
+
+### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x vLLM 0.15
+
+```bash
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MAX_NCHANNELS=16
+export NCCL_NET_GDR_READ=1
+export VLLM_RPC_TIMEOUT=1800000
+export NCCL_NET_GDR_LEVEL=7
+export NCCL_SDMA_COPY_ENABLE=0
+export VLLM_USE_OPT_ZEROS=1
+export VLLM_USE_PD_SPLIT=1
+export VLLM_RANK0_NUMA=0  #按照实际的
+export VLLM_RANK1_NUMA=0
+export VLLM_RANK2_NUMA=1
+export VLLM_RANK3_NUMA=1
+export VLLM_RANK4_NUMA=2
+export VLLM_RANK5_NUMA=3
+export VLLM_RANK6_NUMA=3
+export VLLM_RANK7_NUMA=3
+
+vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
+    --dtype float16 \
+    --trust-remote-code \
+    -tp 8 \
+    --gpu-memory-utilization 0.95 \
+    --max-model-len 40960 \
+    --disable-cascade-attn
+```
+
+### Qwen3-235B-A22B-Instruct-2507 IFB K100_AI 8x vLLM 0.15
+
+```bash
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MAX_NCHANNELS=16
+export NCCL_NET_GDR_READ=1
+export VLLM_RPC_TIMEOUT=1800000
+export NCCL_NET_GDR_LEVEL=7
+export NCCL_SDMA_COPY_ENABLE=0
+export VLLM_USE_OPT_ZEROS=1
+export VLLM_USE_PD_SPLIT=1
+export VLLM_RANK0_NUMA=0  #按照实际的
+export VLLM_RANK1_NUMA=0
+export VLLM_RANK2_NUMA=1
+export VLLM_RANK3_NUMA=1
+export VLLM_RANK4_NUMA=2
+export VLLM_RANK5_NUMA=2
+export VLLM_RANK6_NUMA=3
+export VLLM_RANK7_NUMA=3
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+
+vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
+    --dtype float16 \
+    --trust-remote-code \
+    -tp 8 \
+    --gpu-memory-utilization 0.95 \
+    --max-model-len 40960 \
+    --disable-cascade-attn
+```
+
+### Qwen3-235B-A22B-FP8-Channelwise IFB BW1100 4x vLLM 0.15
 
 ```bash
 export VLLM_USE_LIGHTOP=1
@@ -35,44 +157,19 @@ export VLLM_USE_LIGHTOP_FUSED_TOPP_TOPK=1
 vllm serve Qwen/Qwen3-235B-A22B-FP8-Channel \
     -tp 4 \
     --trust-remote-code \
-    --disable-log-requests \
     --dtype bfloat16 \
-    --kv-cache-dtype fp8_e4m3 \
     -q slimquant_marlin \
     --disable-cascade-attn \
     -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
 ```
+## 环境变量
 
-### Qwen3-0.6B（TP1）
-
-```bash
-export VLLM_USE_PD_SPLIT=1
-export VLLM_USE_PICEWISE=1
-
-vllm serve Qwen/Qwen3-0.6B  \
-    -tp 1 \
-    --trust-remote-code \
-    --disable-log-requests \
-    --dtype bfloat16 \
-    --kv-cache-dtype fp8_e4m3 \
-    --disable-cascade-attn \
-    -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
-```
-
-### Qwen3-30B-A3B （MoE, TP2）
-
-```bash
-export VLLM_USE_PD_SPLIT=0
-export VLLM_USE_PICEWISE=0
-
-vllm serve Qwen/Qwen3-30B-A3B  \
-    -tp 2 \
-    --trust-remote-code \
-    --disable-log-requests \
-    --dtype bfloat16 \
-    --disable-cascade-attn \
-    -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
-```
+| 环境变量 | 值 | 对总吞吐 | 对 TPOT | 说明 |
+|---------|---|---------|---------|------|
+| `VLLM_USE_PD_SPLIT` | `1`（默认） | 友好 | 不友好 | PD 分离调度，prefill 独占 step，decode 被饿死 |
+| `VLLM_USE_PD_SPLIT` | `0` | 不友好 | 友好 | 混合调度，decode 不被 prefill 阻塞 |
+| `VLLM_USE_PIECEWISE` | `1` | 友好 | 不友好 | 分段 CUDA Graph，适配动态 batch，吞吐稳定 |
+| `VLLM_USE_PIECEWISE` | `0`（默认） | 不友好 | 友好 | 整块 CUDA Graph，执行开销小，单步延迟低 |
 
 ## API 调用
 
@@ -89,6 +186,18 @@ response = client.chat.completions.create(
     max_tokens=1024,
 )
 print(response.choices[0].message.content)
+```
+
+```bash
+curl http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "Qwen/Qwen3-8B",
+    "messages": [
+      {"role": "user", "content": "解释量子计算的基本原理"}
+    ],
+    "max_tokens": 1024
+  }'
 ```
 
 ### 思考模式（Thinking Mode）
@@ -138,10 +247,3 @@ response = client.chat.completions.create(
 )
 print(response.choices[0].message.tool_calls)
 ```
-
-## DCU 适配注意
-
-- Qwen3 原生支持 bf16，在 DCU 上运行稳定
-- MoE 模型（235B）激活参数 22B，实际显存需求低于同等 dense 模型
-- 思考模式会生成更多 token，注意 `--max-model-len` 设置
-- 长上下文（>32K）会显著增加 KV Cache 显存占用

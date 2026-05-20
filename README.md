@@ -57,7 +57,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center"><a href="docs/model-deployment/sglang/qwen3.5_397b.md">✅</a></td><td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/qwen3.5_397b.md">✅</a></td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/qwen3.5_397b.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/qwen3.5_397b.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">Qwen3-VL</td>
@@ -348,6 +348,7 @@
     </tr>
   </tbody>
 </table>
+
 
 ## 🤝 贡献
 

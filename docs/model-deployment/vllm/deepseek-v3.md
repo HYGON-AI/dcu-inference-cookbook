@@ -8,7 +8,7 @@ DeepSeek-V3 是由深度求索推出的基于MoE架构的高性能开源大语�
 
 | 模型                           | 参数量  | 上下文  | 量化方式 | 推荐硬件             |
 |------------------------------|------|------|---------|------------------|
-| DeepSeek-V3-0324 | 671B | 128K | FP8 W8A8 | 8x BW1100 144GB  |
+| [deepseek-ai/DeepSeek-V3-0324](https://www.modelscope.cn/models/deepseek-ai/DeepSeek-V3-0324) | 671B | 128K | BF16 | 8x BW1100 144GB  |
 
 ## 启动命令
 
@@ -17,6 +17,7 @@ DeepSeek-V3 是由深度求索推出的基于MoE架构的高性能开源大语�
 ```
 rm -rf ~/.cache
 rm -rf ~/.triton
+export VLLM_USE_MODELSCOPE=1
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 export NCCL_MAX_NCHANNELS=16
 export NCCL_MIN_NCHANNELS=16
@@ -29,18 +30,17 @@ export VLLM_USE_GLOBAL_CACHE13=1
 export VLLM_FUSED_MOE_CHUNK_SIZE=16384  
 export VLLM_USE_LIGHTOP=1
 export VLLM_USE_FLASH_ATTN_FP8=1
-vllm serve /path/to/DeepSeek-V3-0324-Channel-fp8  \
+vllm serve deepseek-ai/DeepSeek-V3-0324  \
         --trust-remote-code   \
-        -q slimquant_marlin \
-        -tp 8   \
         --dtype bfloat16  \
+        -tp 8   \
         --max-model-len 65536  \
         --disable-log-requests  \
         --gpu-memory-utilization 0.90 \
         --max-num-batched-tokens 16384 \
         --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
         --kv-cache-dtype fp8
-        --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3,"quantization": "slimquant_marlin"}' \
+        --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3}' \
 ```
 
 ## API 调用
@@ -51,7 +51,7 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
-    model="/path/to/DeepSeek-V3-0324-Channel-fp8",
+    model="deepseek-ai/DeepSeek-V3-0324",
     messages=[
         {"role": "system", "content": "你是一个专业的编程助手。"},
         {"role": "user", "content": "用 Python 实现一个高效的 LRU Cache"},
@@ -66,7 +66,7 @@ print(response.choices[0].message.content)
 
 ```bash
 curl http://0.0.0.0:8000/v1/completions -H "Content-Type: application/json" -d '{
-"model": "/path/to/DeepSeek-V3-0324-Channel-fp8",
+"model": "deepseek-ai/DeepSeek-V3-0324",
 "prompt":"你好，请用Python写一个贪吃蛇的游戏脚本",
 "temperature":0.0,
 "max_tokens": 1500

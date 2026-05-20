@@ -6,9 +6,9 @@ Kimi-K2.5 是月之暗面（Moonshot AI）推出的新一代大语言模型，�
 
 ## 模型列表
 
-| 模型 | 参数量 | 上下文 | 量化方式 | 推荐硬件 |
-|------|--------|--------|---------|---------|
-| Kimi-K2.5 | 1T | 256K | BF16 | IFB:8x BW1100 144GB |
+| 模型权重 | 量化方式 | 推荐硬件 |
+| -------- | -------- | -------- |
+| [moonshotai/Kimi-K2.5](https://www.modelscope.cn/models/moonshotai/Kimi-K2.5) | BF16 | 8x BW1100 144GB |
 
 ## 启动命令
 
@@ -17,6 +17,7 @@ Kimi-K2.5 是月之暗面（Moonshot AI）推出的新一代大语言模型，�
 ```bash
 rm -rf ~/.cache
 rm -rf ~/.triton
+export VLLM_USE_MODELSCOPE=1
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export VLLM_USE_LIGHTOP=1
 export VLLM_USE_PIECEWISE=1
@@ -29,7 +30,7 @@ export VLLM_USE_CAT_MLA=1
 export VLLM_USE_LIGHTOP_RMS_ROPE_CONCAT=0 
 export VLLM_ROCM_USE_AITER_MOE=1
 
-vllm serve /module/Kimi-K2.5/ \
+vllm serve moonshotai/Kimi-K2.5 \
     -tp 8 \
     --trust-remote-code   \
     --dtype bfloat16  \
@@ -46,7 +47,7 @@ vllm serve /module/Kimi-K2.5/ \
 curl http://localhost:8000/v1/chat/completions \
     -H "Content-Type: application/json"  \
     -d '{
-        "model": "/module/Kimi-K2.5/", 
+        "model": "moonshotai/Kimi-K2.5", 
         "messages": [{"role": "user", "content": "中国的首都是什么？"}], 
         "temperature": 0, 
         "max_tokens": 400

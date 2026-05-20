@@ -6,9 +6,9 @@ Kimi K2.5 是一个开源的原生多模态智能体模型，在 Kimi-K2-Base �
 
 ## 模型列表
 
-| 模型         | 参数量  | 上下文  | 量化方式 | 推荐硬件                             |
-| ---------- | ---- | ---- |---------| -------------------------------- |
-| Kimi-K2.5   | 1T   | 256K | INT4 W4A16 | 8x DCU 144GB TP                    |
+| 模型权重 | 量化方式 | 推荐硬件 |
+| -------- | -------- | -------- |
+| [moonshotai/Kimi-K2.5](https://www.modelscope.cn/models/moonshotai/Kimi-K2.5) | INT4 W4A16 | 8x BW1100 144GB |
 
 ## 启动命令
 
@@ -37,7 +37,7 @@ export NCCL_MIN_NCHANNELS=16
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 
 python3 -m sglang.launch_server \
-  --model-path /module/Kimi-K2.5 \
+  --model-path moonshotai/Kimi-K2.5 \
   --kv-cache-dtype fp8_e4m3 \
   --host $(hostname -I | awk '{print $1}') \
   --port 30000 \
@@ -91,7 +91,7 @@ export SGLANG_HEALTH_CHECK_TIMEOUT=60
 export SGLANG_ROCM_USE_AITER_MOE=1
 
 python3 -m sglang.launch_server \
-  --model-path /module/Kimi-K2.5 \
+  --model-path moonshotai/Kimi-K2.5 \
   --kv-cache-dtype fp8_e4m3 \
   --host $(hostname -I | awk '{print $1}') \
   --port 30000 \
@@ -140,7 +140,7 @@ export SGLANG_HEALTH_CHECK_TIMEOUT=60
 export SGLANG_ROCM_USE_AITER_MOE=1
 
 python3 -m sglang.launch_server \
-  --model-path /module/Kimi-K2.5 \
+  --model-path moonshotai/Kimi-K2.5 \
   --kv-cache-dtype fp8_e4m3 \
   --host $(hostname -I | awk '{print $1}') \
   --port 30000 \
@@ -165,7 +165,7 @@ python3 -m sglang.launch_server \
 ##### SGLang-Router
 
 ```
-python3 -m sglang_router.launch_router --pd-disaggregation --prefill http://10.16.6.62:30000 --decode http://10.16.6.69:30000 --policy round_robin --port 30020
+python3 -m sglang_router.launch_router --pd-disaggregation --prefill http://<P_node_ip>:30000 --decode http://<D_node_ip>:30000 --policy round_robin --port 30020
 ```
 
 ## API 调用
@@ -173,10 +173,10 @@ python3 -m sglang_router.launch_router --pd-disaggregation --prefill http://10.1
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://10.16.6.62:30000/v1", api_key="not-needed")
+client = OpenAI(base_url="http://localhost:30000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
-    model="Kimi-k2.5",
+    model="moonshotai/Kimi-K2.5",
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "中国的首都是哪里？"},
@@ -188,10 +188,10 @@ print(response.choices[0].message.content)
 
 ## curl 调用
 ```
-curl http://10.16.6.62:30000/v1/chat/completions \
+curl http://localhost:30000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "Kimi-k2.5",
+    "model": "moonshotai/Kimi-K2.5",
     "max_tokens": 2048,
     "messages": [
       {"role": "system", "content": "You are a helpful assistant."},

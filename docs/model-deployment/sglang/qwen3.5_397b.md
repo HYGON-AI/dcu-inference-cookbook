@@ -8,13 +8,13 @@ Qwen3.5-397B-A17B 是 Qwen3 系列的增强版本，采用 MoE 架构（397B 总
 
 | 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
-| [hygon/Qwen3.5-397B-A17B-Channel-FP8](https://www.modelscope.cn/models/hygon/Qwen3.5-397B-A17B-Channel-FP8) | FP8 W8A8 | 0.5.10 | K100_AI |  4 | IFB  | [**`>_`**](#qwen35-397b-a17b-channel-fp8-ifb-k100ai-4x-sglang-0510)   |
-|                                                                                                            | FP8 W8A8 | 0.5.10 | K100_AI | 12 | 1P1D | [**`>_`**](#qwen35-397b-a17b-channel-fp8-1p1d-k100ai-12x-sglang-0510) |
-| [hygon/Qwen3.5-397B-A17B-W8A8](https://www.modelscope.cn/models/hygon/Qwen3.5-397B-A17B-W8A8)              | INT8 W8A8 | 0.5.10 | BW1100 |  8 | IFB  | [**`>_`**](#qwen35-397b-a17b-w8a8-ifb-bw1100-8x-sglang-0510)          |
+| [hygon/Qwen3.5-397B-A17B-Channel-FP8](https://www.modelscope.cn/models/hygon/Qwen3.5-397B-A17B-Channel-FP8) | FP8 W8A8 | 0.5.10 | BW1100 |  4 | IFB  | [**`>_`**](#qwen35-397b-a17b-channel-fp8-ifb-k100ai-4x-sglang-0510)   |
+|                                                                                                            | FP8 W8A8 | 0.5.10 | BW1100 | 12 | 1P1D | [**`>_`**](#qwen35-397b-a17b-channel-fp8-1p1d-k100ai-12x-sglang-0510) |
+| [hygon/Qwen3.5-397B-A17B-W8A8](https://www.modelscope.cn/models/hygon/Qwen3.5-397B-A17B-W8A8)              | INT8 W8A8 | 0.5.10 | BW1000 |  8 | IFB  | [**`>_`**](#qwen35-397b-a17b-w8a8-ifb-bw1100-8x-sglang-0510)          |
 
 ## 启动命令
 
-### Qwen3.5-397B-A17B-Channel-FP8 IFB K100_AI 4x SGLang 0.5.10
+### Qwen3.5-397B-A17B-Channel-FP8 IFB BW1100 4x SGLang 0.5.10
 
 ```bash
 export NCCL_MIN_NCHANNELS=16
@@ -64,7 +64,7 @@ sglang serve \
 
 > 图文数据集场景需额外添加：环境变量 `export SGLANG_USE_CUDA_IPC_TRANSPORT=1`，启动命令添加 `--mm-attention-backend fa3`，并移除 `export SGLANG_USE_AITER_LINEAR_ATTN=1`。
 
-### Qwen3.5-397B-A17B-Channel-FP8 1P1D K100_AI 12x SGLang 0.5.10
+### Qwen3.5-397B-A17B-Channel-FP8 1P1D BW1100 12x SGLang 0.5.10
 
 网卡配置参考：[IB 网卡](../../troubleshooting/common-issues.md#ib网卡)。
 
@@ -184,7 +184,7 @@ python3 -m sglang_router.launch_router \
   --port 30001
 ```
 
-### Qwen3.5-397B-A17B-W8A8 IFB BW1100 8x SGLang 0.5.10
+### Qwen3.5-397B-A17B-W8A8 IFB BW1000 8x SGLang 0.5.10
 
 ```bash
 export NCCL_MIN_NCHANNELS=16
@@ -298,3 +298,4 @@ curl http://<router_ip>:30001/v1/chat/completions \
     ],
     "max_tokens": 128
   }'
+```

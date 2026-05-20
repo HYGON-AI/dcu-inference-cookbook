@@ -8,7 +8,7 @@ Kimi-K2.5 是月之暗面（Moonshot AI）推出的新一代大语言模型，�
 
 | 模型权重 | 量化方式 | 推荐硬件 |
 | -------- | -------- | -------- |
-| [moonshotai/Kimi-K2.5](https://www.modelscope.cn/models/moonshotai/Kimi-K2.5) | BF16 | 8x BW1100 144GB |
+| [moonshotai/Kimi-K2.5](https://www.modelscope.cn/models/moonshotai/Kimi-K2.5) | INT4 W4A16 | 8x BW1100 144GB |
 
 ## 启动命令
 

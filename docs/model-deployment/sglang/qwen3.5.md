@@ -8,11 +8,35 @@ Qwen3.5 是 Qwen3 系列的增强版本，在推理能力、代码生成、多�
 
 | 模型 | 参数量 | 上下文 | 量化方式|推荐硬件 |
 |------|--------|--------|---------|---------|
+| Qwen3.5-27B     | 27B | 128K | 未量化(BF16) | 2x BW1100 144GB TP |
 | Qwen3.5-35B-A3B | 35B | 128K | 未量化(BF16) | 2x BW1100 144GB TP |
 | Qwen3.5-35B-A3B-Channel-FP8-w8a8 | 35B | 128K | FP8-Channel-wise| 2x BW1100 144GB TP |
 | Qwen3.5-397B-A17B| 397B | 128K | 未量化(BF16) | 4x BW1100 144GB TP / 8x  BW1100 144GB TP |
 
 ## 启动命令
+
+### Qwen3.5-27B（2卡）
+
+```bash
+export SGLANG_ENABLE_SPEC_V2=1
+export SGLANG_USE_FUSED_TOPK_SOFTMAX=1
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_CAUSAL_CONV1D=1
+export SGLANG_USE_AITER_LINEAR_ATTN=1
+sglang serve --model-path Qwen/Qwen3.5-27B \
+    --attention-backend fa3 \
+    --mm-attention-backend fa3 \
+    --speculative-algorithm EAGLE \
+    --speculative-num-steps 3 \
+    --speculative-eagle-topk 1 \
+    --speculative-num-draft-tokens 4 \
+    --tp-size 2 --pp-size 1 \
+    --page-size 64  \
+    --mamba-scheduler-strategy extra_buffer \
+    --kv-cache-dtype fp8_e4m3  \
+    --trust-remote-code \
+    --chunked-prefill-size -1 
+```
 
 ### Qwen3.5-35B-A3B（2卡）
 
@@ -33,7 +57,6 @@ sglang serve --model-path Qwen/Qwen3.5-35B-A3B \
     --speculative-num-draft-tokens 4 \
     --tp-size 2 --pp-size 1 \
     --page-size 64  \
-    --mem-fraction-static 0.7 \
     --mamba-scheduler-strategy extra_buffer \
     --kv-cache-dtype fp8_e4m3  \
     --trust-remote-code \
@@ -65,7 +88,6 @@ sglang serve --model-path  hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
     --speculative-num-draft-tokens 4 \
     --tp-size 2 --pp-size 1 \
     --page-size 64  \
-    --mem-fraction-static 0.7 \
     --chunked-prefill-size -1 \
     --kv-cache-dtype fp8_e4m3  \
     --trust-remote-code \

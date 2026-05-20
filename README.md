@@ -39,7 +39,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">🚧</td><td align="center">🚧</td><td align="center">🚧</td>
+      <td align="center">🚧</td><td align="center">🚧</td><td align="center"><a href="docs/model-deployment/sglang/qwen3.6.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">Qwen3.5</td>

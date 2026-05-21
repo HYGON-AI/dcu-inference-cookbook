@@ -21,6 +21,8 @@
 
 ## 📋 模型列表
 
+✅ 已验证 &nbsp;|&nbsp; 🚧 开发中 &nbsp;|&nbsp; `-` 暂不支持
+
 <table>
   <tr>
     <td align="center"><b>厂商</b></td>

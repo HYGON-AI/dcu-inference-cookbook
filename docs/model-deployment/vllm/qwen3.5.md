@@ -186,10 +186,9 @@ vllm serve Qwen/Qwen3.5-27B-W8A8-INT8 \
     --trust-remote-code \
     --disable-cascade-attn \
     --max-num-batched-tokens 10240 \
-    -q slimquant_marlin \
     --speculative-config.method mtp \
-    --speculative-config.num_speculative_tokens 3 \
-    --speculative-config.quantization "slimquant_marlin"
+    --speculative-config.num_speculative_tokens 3 
+
 ```
 
 ### Qwen3.5-27B-W8A8-INT8 IFB BW1000 1x vLLM 0.18
@@ -204,10 +203,9 @@ vllm serve Qwen/Qwen3.5-27B-W8A8-INT8 \
     --trust-remote-code \
     --disable-cascade-attn \
     --max-num-batched-tokens 10240 \
-    -q slimquant_marlin \
     --speculative-config.method mtp \
-    --speculative-config.num_speculative_tokens 3 \
-    --speculative-config.quantization "slimquant_marlin"
+    --speculative-config.num_speculative_tokens 3 
+
 ```
 
 ### Qwen3.5-27B-W8A8-INT8 IFB K100_AI 1x vLLM 0.18
@@ -221,29 +219,12 @@ vllm serve Qwen/Qwen3.5-27B-W8A8-INT8 \
     --trust-remote-code \
     --disable-cascade-attn \
     --max-num-batched-tokens 10240 \
-    -q slimquant_marlin \
     --speculative-config.method mtp \
-    --speculative-config.num_speculative_tokens 3 \
-    --speculative-config.quantization "slimquant_marlin"
+    --speculative-config.num_speculative_tokens 3 
 ```
 
 ### Qwen3.5-27B-W8A8-FP8 IFB BW1100 1x vLLM 0.18
-
-```bash
-export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
-export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-
-vllm serve Qwen/Qwen3.5-27B-W8A8-FP8 \
-    -tp 1 \
-    --trust-remote-code \
-    --disable-cascade-attn \
-    --max-num-batched-tokens 10240 \
-    -q fp8 \
-    --speculative-config.method mtp \
-    --speculative-config.num_speculative_tokens 3 \
-    --speculative-config.quantization "fp8"
-```
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3.5-35B-A3B IFB BW1100 1x vLLM 0.18
 

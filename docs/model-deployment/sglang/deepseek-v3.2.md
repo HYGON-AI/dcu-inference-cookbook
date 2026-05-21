@@ -6,15 +6,13 @@ DeepSeek-V3.2 是 DeepSeek V3 系列的 MoE 大模型版本，面向高吞吐对
 
 ## 模型列表
 
-| 模型 | 参数量 | 上下文 | 推荐硬件 |
-|------|--------|--------|---------|
-| DeepSeek-V3.2 | 671B (MoE) | 128K | 8x DCU 144GB TP |
+| 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
+| -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
+| [hygon/DeepSeek-V3.2-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3.2-Channel-FP8-w8a8) | FP8 W8A8 | 0.5.10 | BW1100 | 8x | IFB | [**\`>_\`**](#deepseek-v32-channel-fp8-w8a8-ifb-bw1100-8x-sglang-0510) |
 
 ## 启动命令
 
-### DeepSeek-V3.2-Channel-FP8
-
-#### IFB【tp8】
+### DeepSeek-V3.2-Channel-FP8-w8a8 IFB BW1100 8x SGLang 0.5.10
 
 ```bash
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -77,7 +75,9 @@ python3 -m sglang.launch_server \
 
 ```
 
-## curl 调用
+## API 调用
+
+### IFB
 
 ```bash
 curl http://localhost:30000/v1/chat/completions \

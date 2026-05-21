@@ -6,13 +6,13 @@ DeepSeek V3.2 是深度求索公司于 2025 年底发布的大语言模型，基
 
 ## 模型列表
 
-| 模型 | 参数量 | 上下文 | 推荐硬件 |
-|------|--------|--------|---------|
-| Deepseek-v3.2 | 671B | 128K | 8x BW1100 144GB |
+| 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
+| -------- | -------- | --------- | -------- | ---- | -------- | -------- |
+| [hygon/DeepSeek-V3.2-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3.2-Channel-INT8-w8a8) | INT8 W8A8 | 0.18 | BW1100 | 8x | IFB | [**\`>_\`**](#deepseek-v32-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
 
 ## 启动命令
 
-### Deepseek-v3.2-w8a8（八卡 144G）
+### DeepSeek-V3.2-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.18
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7     
@@ -60,6 +60,8 @@ vllm serve hygon/DeepSeek-V3.2-Channel-INT8-w8a8 \
 
 ## API 调用
 
+### IFB
+
 ```python
 from openai import OpenAI
 
@@ -77,8 +79,6 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
  
 ```
-
-## curl 示例
 
 ```bash
 curl http://localhost:8000/v1/chat/completions \

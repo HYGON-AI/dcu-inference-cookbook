@@ -53,15 +53,6 @@
       <td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/qwen3.5.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/qwen3.5.md">✅</a></td>
     </tr>
     <tr>
-      <td rowspan="2">Qwen3.5-397B</td>
-      <td>vLLM</td>
-      <td align="center">-</td><td align="center">-</td><td align="center">-</td>
-    </tr>
-    <tr>
-      <td>SGLang</td>
-      <td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/qwen3.5_397b.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/qwen3.5_397b.md">✅</a></td>
-    </tr>
-    <tr>
       <td rowspan="2">Qwen3-VL</td>
       <td>vLLM</td>
       <td align="center">🚧</td><td align="center"><a href="docs/model-deployment/vllm/qwen3-vl.md">✅</a></td><td align="center">🚧</td>

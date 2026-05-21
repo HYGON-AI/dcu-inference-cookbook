@@ -7,17 +7,17 @@ MiniMax-2.x 是 MiniMax 推出的大规模 MoE（混合专家）语言模型系�
 
 ## 模型列表
 
-|                                               模型权重                                               |       量化方式       | 总参数 | 激活参数 | vLLM版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令                                                      |
-| :--------------------------------------------------------------------------------------------------: | :------------------: | ------ | -------- | -------- | :------: | :--: | :------: | ------------------------------------------------------------- |
-| [MiniMax-M2.5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-Channel-INT8-w8a8) | INT8  CHANNEL_W8A8 | 229B   | ~10B     | 0.15.1   |  BW1100  |  8  |   IFB   | [对应命令](#MiniMax-2.x-w8a8-channel_wise-int8(8x_BW1100_144GB)) |
-| [MiniMax-M2.5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-Channel-INT8-w8a8) | INT8  CHANNEL_W8A8 | 229B   | ~10B     | 0.15.1   |  BW1000  |  8  |   IFB   | [对应命令](#MiniMax-2.x-w8a8-channel_wise-int8(8x_BW1000_64GB))  |
-|  [MiniMax-M2.5-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-Channel-FP8-w8a8)  | FP8   CHANNEL_W8A8 | 229B   | ~10B     | 0.15.1   |  BW1100  |  8  |   IFB   | [对应命令](#MiniMax-2.x-w8a8-channel_wise-fp8(8x_BW1100_144GB))  |
-|              [MiniMax-M2.5-bf16](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-bf16)              |         BF16         | 229B   | ~10B     | 0.15.1   |  BW1100  |  8  |   IFB   | [对应命令](#MiniMax-2.x-bf16(8x_BW1100_144GB))                   |
-|              [MiniMax-M2.5-bf16](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-bf16)              |         BF16         | 229B   | ~10B     | 0.15.1   |  BW1000  |  8  |   IFB   | [对应命令](#MiniMax-2.x-bf16(8x_BW1000_64GB))                    |
+| 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
+| -------- | -------- | --------- | -------- | ---- | -------- | -------- |
+| [hygon/MiniMax-M2.5-W8A8](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-W8A8) | INT8 W8A8 | 0.15.1 | BW1100 | 8x | IFB | [**\`>_\`**](#minimax-m25-channel-int8-w8a8-ifb-bw1100-8x-vllm-0151) |
+|  | INT8 W8A8 | 0.15.1 | BW1000 | 8x | IFB | [**\`>_\`**](#minimax-m25-channel-int8-w8a8-ifb-bw1000-8x-vllm-0151) |
+| [hygon/MiniMax-M2.5-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-Channel-FP8-w8a8) | FP8 W8A8 | 0.15.1 | BW1100 | 8x | IFB | [**\`>_\`**](#minimax-m25-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0151) |
+| [hygon/MiniMax-M2.5-bf16](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-bf16) | BF16 | 0.15.1 | BW1100 | 8x | IFB | [**\`>_\`**](#minimax-m25-bf16-ifb-bw1100-8x-vllm-0151) |
+|  | BF16 | 0.15.1 | BW1000 | 8x | IFB | [**\`>_\`**](#minimax-m25-bf16-ifb-bw1000-8x-vllm-0151) |
 
 ## 启动命令
 
-### MiniMax-2.x-w8a8-channel_wise-int8(8x_BW1100_144GB)
+### MiniMax-M2.5-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.15.1
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
@@ -69,7 +69,7 @@ vllm serve /hygon/MiniMax-M2.5-W8A8 \
  --disable-cascade-attn
 ```
 
-### MiniMax-2.x-w8a8-channel_wise-int8(8x_BW1000_64GB)
+### MiniMax-M2.5-Channel-INT8-w8a8 IFB BW1000 8x vLLM 0.15.1
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
@@ -116,7 +116,7 @@ vllm serve /hygon/MiniMax-M2.5-W8A8 \
  --enable-prefix-caching \
  --disable-cascade-attn 
 ```
-### MiniMax-2.x-w8a8-channel_wise-fp8(8x_BW1100_144GB)
+### MiniMax-M2.5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.15.1
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export NCCL_MIN_NCHANNELS=16
@@ -162,7 +162,7 @@ vllm serve /hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
  -q slimquant_marlin 
 
 ```
-### MiniMax-2.x-bf16(8x_BW1100_144GB)
+### MiniMax-M2.5-bf16 IFB BW1100 8x vLLM 0.15.1
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export NCCL_MIN_NCHANNELS=16
@@ -205,7 +205,7 @@ vllm serve /hygon/MiniMax-M2.5-bf16 \
  --kv-cache-dtype fp8_e4m3 \
  --disable-cascade-attn
 ```
-### MiniMax-2.x-bf16(8x_BW1000_64GB)
+### MiniMax-M2.5-bf16 IFB BW1000 8x vLLM 0.15.1
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export NCCL_MIN_NCHANNELS=16
@@ -248,21 +248,9 @@ vllm serve /hygon/MiniMax-M2.5-bf16 \
  --disable-cascade-attn
 ```
 
-
-### 显存不足时
-
-```bash
-# 降低上下文长度
---max-model-len 8192
-
-# 启用 KV Cache 量化
---kv-cache-dtype fp8_e4m3
-
-# 降低显存利用率
---gpu-memory-utilization 0.9
-```
-
 ## API 调用
+
+### IFB
 
 ```python
 from openai import OpenAI
@@ -280,8 +268,6 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-## curl 调用
-
 ```python
 
 curl -X POST http://localhost:8000/v1/chat/completions \
@@ -295,11 +281,3 @@ curl -X POST http://localhost:8000/v1/chat/completions \
 }'
 
 ```
-
-## DCU 适配注意
-
-- MoE 架构：总参数 229B，但每次推理只激活约 10B，实际显存需求低于 dense 模型
-- 需要 `--trust-remote-code`
-- 建议使用 8x BW1100 144GB（1024GB 总显存）
-- 长上下文场景 KV Cache 占用大，MoE 模型尤为明显
-- 如果遇到 OOM，优先降低 `--max-model-len` 或启用 `--kv-cache-dtype fp8_e4m3`或降低显存利用率`--gpu-memory-utilization`

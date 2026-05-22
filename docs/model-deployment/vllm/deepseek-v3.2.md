@@ -8,11 +8,11 @@ DeepSeek V3.2 是深度求索公司于 2025 年底发布的大语言模型，基
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [hygon/DeepSeek-V3.2-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3.2-Channel-INT8-w8a8) | INT8 W8A8 | 0.18 | BW1100 | 8x | IFB | [**\`>_\`**](#deepseek-v32-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
+| [hygon/DeepSeek-V3.2-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3.2-Channel-INT8-w8a8) | INT8 W8A8 | 0.15 | BW1100 | 8x | IFB | [**\`>_\`**](#deepseek-v32-channel-int8-w8a8-ifb-bw1100-8x-vllm-015) |
 
 ## 启动命令
 
-### DeepSeek-V3.2-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.18
+### DeepSeek-V3.2-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.15
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7     

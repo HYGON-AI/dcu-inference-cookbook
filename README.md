@@ -21,7 +21,7 @@
 
 ## 📋 模型列表
 
-✅ 已验证 &nbsp;|&nbsp; 🚧 开发中 &nbsp;|&nbsp; `-` 暂不支持
+✅ 已验证 &nbsp;|&nbsp; 🚧 开发中 &nbsp;|&nbsp; `-` 暂未验证
 
 <table>
   <tr>

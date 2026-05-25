@@ -61,6 +61,8 @@ vllm serve hygon/DeepSeek-V3.2-Channel-INT8-w8a8 \
 
 ## API 调用
 
+### IFB
+
 ```python
 from openai import OpenAI
 
@@ -78,8 +80,6 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
  
 ```
-
-## curl 示例
 
 ```bash
 curl http://localhost:8000/v1/chat/completions \

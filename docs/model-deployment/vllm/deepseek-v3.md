@@ -31,7 +31,7 @@ export VLLM_USE_GLOBAL_CACHE13=1
 export VLLM_FUSED_MOE_CHUNK_SIZE=16384  
 export VLLM_USE_LIGHTOP=1
 export VLLM_USE_FLASH_ATTN_FP8=1
-vllm serve hygon/DeepSeek-V3-Channel-FP8-w8a8  \
+vllm serve hygon/DeepSeek-V3-0324-Channel-INT8-w8a8  \
         --trust-remote-code   \
         -q slimquant_marlin \
         --dtype bfloat16  \
@@ -47,13 +47,15 @@ vllm serve hygon/DeepSeek-V3-Channel-FP8-w8a8  \
 
 ## API 调用
 
+### IFB
+
 ```python
 from openai import OpenAI
 
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
-    model="hygon/DeepSeek-V3-Channel-FP8-w8a8",
+    model="hygon/DeepSeek-V3-0324-Channel-INT8-w8a8",
     messages=[
         {"role": "system", "content": "你是一个专业的编程助手。"},
         {"role": "user", "content": "用 Python 实现一个高效的 LRU Cache"},
@@ -64,11 +66,9 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-## curl 示例
-
 ```bash
 curl http://0.0.0.0:8000/v1/completions -H "Content-Type: application/json" -d '{
-"model": "hygon/DeepSeek-V3-Channel-FP8-w8a8",
+"model": "hygon/DeepSeek-V3-0324-Channel-INT8-w8a8",
 "prompt":"你好，请用Python写一个贪吃蛇的游戏脚本",
 "temperature":0.0,
 "max_tokens": 1500

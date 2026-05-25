@@ -6,13 +6,13 @@ Kimi-K2.5 是月之暗面（Moonshot AI）推出的新一代大语言模型，�
 
 ## 模型列表
 
-| 模型权重 | 量化方式 | 推荐硬件 |
-| -------- | -------- | -------- |
-| [moonshotai/Kimi-K2.5](https://www.modelscope.cn/models/moonshotai/Kimi-K2.5) | INT4 W4A16 | 8x BW1100 144GB |
+| 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
+| -------- | -------- | --------- | -------- | ---- | -------- | -------- |
+| [moonshotai/Kimi-K2.5](https://www.modelscope.cn/models/moonshotai/Kimi-K2.5) | INT4 W4A16 | 0.15 | BW1100 | 8 | IFB | [**`>_`**](#kimi-k25-ifb-bw1100-8x-vllm-015) |
 
 ## 启动命令
 
-### IFB【TP8】
+### Kimi-K2.5 IFB BW1100 8x vLLM 0.15
 
 ```bash
 rm -rf ~/.cache
@@ -42,6 +42,8 @@ vllm serve moonshotai/Kimi-K2.5 \
     --kv-cache-dtype fp8_e4m3
 ```
 ## API 调用
+
+### IFB
 
 ```bash
 curl http://localhost:8000/v1/chat/completions \

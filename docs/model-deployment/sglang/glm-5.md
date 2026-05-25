@@ -698,7 +698,6 @@ sglang serve \
   --kv-cache-dtype fp8_e4m3 \
   --dtype bfloat16 \
   --page-size 64 \
-  --quantization slimquant_marlin \
   --nsa-prefill-backend flashmla_auto \
   --nsa-decode-backend flashmla_kv \
   --mem-fraction-static 0.8
@@ -756,7 +755,6 @@ sglang serve \
   --page-size 64 \
   --nsa-prefill-backend flashmla_auto \
   --nsa-decode-backend flashmla_kv \
-  --quantization slimquant_marlin \
   --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 \
   --disaggregation-mode prefill
 ```
@@ -828,7 +826,6 @@ sglang serve \
   --mem-fraction-static 0.8 \
   --disable-radix-cache \
   --chunked-prefill-size -1 \
-  --quantization slimquant_marlin \
   --cuda-graph-max-bs 32 \
   --max-running-requests 512 \
   --speculative-algorithm EAGLE \
@@ -908,7 +905,6 @@ sglang serve \
   --mem-fraction-static 0.8 \
   --disable-radix-cache \
   --chunked-prefill-size -1 \
-  --quantization slimquant_marlin \
   --cuda-graph-max-bs 32 \
   --max-running-requests 512 \
   --speculative-algorithm EAGLE \

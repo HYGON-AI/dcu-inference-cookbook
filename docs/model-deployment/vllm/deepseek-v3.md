@@ -6,15 +6,16 @@ DeepSeek-V3 是由深度求索推出的基于MoE架构的高性能开源大语�
 
 ## 模型列表
 
-| 模型                           | 参数量  | 上下文  | 量化方式 | 推荐硬件             |
-|------------------------------|------|------|---------|------------------|
-| [hygon/DeepSeek-V3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3-Channel-FP8-w8a8) | 671B | 128K | FP8 W8A8 | 8x BW1100 144GB  |
+| 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
+| -------- | -------- | --------- | -------- | ---- | -------- | -------- |
+| [hygon/DeepSeek-V3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3-Channel-FP8-w8a8) | FP8 W8A8 | 0.15.1 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0151) |
+| [hygon/DeepSeek-V3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3-Channel-FP8-w8a8) | FP8 W8A8 | 0.18.1 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0181) |
 
 ## 启动命令
 
-### DeepSeek-V3-0324-Channel-FP8 TP8+MTP3
+### DeepSeek-V3-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.15.1
 
-```
+```bash
 rm -rf ~/.cache
 rm -rf ~/.triton
 export VLLM_USE_MODELSCOPE=1
@@ -72,5 +73,52 @@ curl http://0.0.0.0:8000/v1/completions -H "Content-Type: application/json" -d '
 "temperature":0.0,
 "max_tokens": 1500
 }'
+```
 
+## vLLM 0.18.1 版本
+
+### DeepSeek-V3-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18.1
+
+```bash
+export VLLM_HCU_USE_FLASHMLA=1
+vllm serve hygon/DeepSeek-V3-Channel-FP8-w8a8 \
+        --trust-remote-code   \
+        -q slimquant_marlin \
+        --dtype bfloat16  \
+        -tp 8   \
+        --max-model-len 65536  \
+        --gpu-memory-utilization 0.90 \
+        --max-num-batched-tokens 16384 \
+        --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
+        --kv-cache-dtype fp8 \
+        --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3,"quantization": "slimquant_marlin"}'
+```
+## API 调用
+
+```python
+from openai import OpenAI
+
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
+
+response = client.chat.completions.create(
+    model="hygon/DeepSeek-V3-Channel-FP8-w8a8",
+    messages=[
+        {"role": "system", "content": "你是一个专业的编程助手。"},
+        {"role": "user", "content": "用 Python 实现一个高效的 LRU Cache"},
+    ],
+    max_tokens=2048,
+    temperature=0.7,
+)
+print(response.choices[0].message.content)
+```
+
+## curl 示例
+
+```bash
+curl http://0.0.0.0:8000/v1/completions -H "Content-Type: application/json" -d '{
+"model": "hygon/DeepSeek-V3-Channel-FP8-w8a8",
+"prompt":"你好，请用Python写一个贪吃蛇的游戏脚本",
+"temperature":0.0,
+"max_tokens": 1500
+}'
 ```

@@ -6,13 +6,14 @@ DeepSeek V3.2 是深度求索公司于 2025 年底发布的大语言模型，基
 
 ## 模型列表
 
-| 模型 | 参数量 | 上下文 | 推荐硬件 |
-|------|--------|--------|---------|
-| Deepseek-v3.2 | 671B | 128K | 8x BW1100 144GB |
+| 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
+| -------- | -------- | --------- | -------- | ---- | -------- | -------- |
+| [hygon/DeepSeek-V3.2-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3.2-Channel-INT8-w8a8) | INT8 W8A8 | 0.15.1 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v32-channel-int8-w8a8-ifb-bw1100-8x-vllm-0151) |
+| [hygon/DeepSeek-V3.2-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3.2-Channel-INT8-w8a8) | INT8 W8A8 | 0.18.1 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v32-channel-int8-w8a8-ifb-bw1100-8x-vllm-0181) |
 
 ## 启动命令
 
-### Deepseek-v3.2-w8a8（八卡 144G）
+### DeepSeek-V3.2-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.15.1
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7     
@@ -87,6 +88,61 @@ curl http://localhost:8000/v1/chat/completions \
         "model": "hygon/DeepSeek-V3.2-Channel-INT8-w8a8", 
         "messages": [{"role": "user", "content": "中国的首都是什么？"}], 
         "temperature": 0, 
+        "max_tokens": 100
+    }'
+```
+
+## vLLM 0.18.1 版本
+
+以下启动命令为模板命令，可根据实际显存、网卡和业务吞吐需求调整。
+
+### DeepSeek-V3.2-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.18.1
+
+```bash
+export VLLM_HCU_USE_FLASHMLA=1
+vllm serve --model hygon/DeepSeek-V3.2-Channel-INT8 \
+--trust-remote-code \
+-q slimquant_marlin \
+--dtype bfloat16 \
+--max-model-len 28364 \
+-tp 8 \
+--gpu-memory-utilization 0.9 \
+--max-num-seqs 256 \
+--block-size 64 \
+--kv-cache-dtype fp8_ds_mla \
+--speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3, "quantization": "slimquant_marlin"}'
+```
+
+
+
+## API 调用
+
+### IFB
+
+```python
+from openai import OpenAI
+
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
+
+response = client.chat.completions.create(
+    model="hygon/DeepSeek-V3.2-Channel-INT8-w8a8",
+    messages=[
+        {"role": "user", "content": "请总结以下长文档的关键要点..."},
+    ],
+    max_tokens=4096,
+    temperature=0,
+)
+
+print(response.choices[0].message.content)
+```
+
+```bash
+curl http://localhost:8000/v1/chat/completions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": "hygon/DeepSeek-V3.2-Channel-INT8-w8a8",
+        "messages": [{"role": "user", "content": "中国的首都是哪里？"}],
+        "temperature": 0,
         "max_tokens": 100
     }'
 ```

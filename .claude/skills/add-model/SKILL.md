@@ -381,7 +381,7 @@ curl http://<P_node_ip>:30001/v1/chat/completions ...
 - ❌ 错误：新建 `qwen3-235b-a22b.md`
 
 **判断规则**：
-- 若 `docs/model-deployment/{vllm|sglang}/` 下已存在同系列文件（如 `qwen3.md`、`kimi-k2.md`），直接在该文件的 `## 模型列表` 表格末尾追加行，并在 `## 启动命令` 末尾追加对应章节。
+- 若 `docs/model-deployment/{vllm|sglang}/` 下已存在同系列文件（如 `qwen3.md`、`kimi-k2.md`），在该文件的 `## 模型列表` 表格末尾**追加**新行，并在 `## 启动命令` 末尾**追加**对应章节。**严禁修改文件中已有的任何内容**，包括已有行的模型 ID、命令参数、章节标题等。
 - 若不存在同系列文件，新建以系列命名的文件（如 `deepseek-v3.md`、`glm-5.md`）。
 
 ## 最终步骤：更新 README 支持矩阵

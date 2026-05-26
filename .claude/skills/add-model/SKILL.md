@@ -11,6 +11,7 @@ description: Guide for adding a new model deployment doc to dcu-inference-cookbo
 
 1. **模型卡**：模型在 ModelScope 或 HuggingFace 上的完整路径或 URL。
    例如：`hygon/GLM-5-Channel-INT4-w4a8`、`LLM-Research/Meta-Llama-3.1-70B-Instruct`
+   **后续所有文档严格使用此处用户指定的模型 ID，不得推断或替换为其他模型 ID。**
 
 2. **框架**：`vLLM` 还是 `SGLang`（二选一）
 
@@ -39,13 +40,9 @@ description: Guide for adding a new model deployment doc to dcu-inference-cookbo
 
 - **框架版本**：使用信息收集阶段用户指定的框架版本（如 `0.18`、`0.5.10`）。
 
-- **模型权重**：模型在 ModelScope 上的完整路径，带链接。
-  - 有 HYGON 量化版本时，优先使用 `hygon/` 前缀的 channelwise 模型：
-    `[hygon/<MODEL-NAME>](https://www.modelscope.cn/models/hygon/<MODEL-NAME>)`
+- **模型权重**：严格使用信息收集步骤 1 中用户指定的模型 ID，带 ModelScope 链接。不得推断、替换或猜测为其他模型 ID。
+  - `[<MODEL-ID>](https://www.modelscope.cn/models/<MODEL-ID>)`
     例如：`[hygon/GLM-5-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT4-w4a8)`
-  - 无 HYGON 量化版本时（如 BF16 部署），使用上游原始模型 ID：
-    例如：`[Qwen/Qwen3-235B-A22B](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B)`
-    或：`[moonshotai/Kimi-K2-Instruct](https://www.modelscope.cn/models/moonshotai/Kimi-K2-Instruct)`
   - 同一模型的多个行，后续行的模型权重列留空（用空格对齐）。
 
 - **量化方式**：使用标准格式，例如：`INT4 W4A8`、`INT8 W8A8`、`FP8 W8A8`、`BF16`。
@@ -54,6 +51,8 @@ description: Guide for adding a new model deployment doc to dcu-inference-cookbo
   - `K100_AI`
   - `BW1000 64GB`（简写 `BW1000`）
   - `BW1100 144GB`（简写 `BW1100`）
+
+  **表格行排序**：同一模型的多条行按硬件平台排序，顺序固定为 **BW1100 → BW1000 → K100_AI**。
 
 - **卡数**：整数，表示所需 DCU 数量。
 
@@ -354,12 +353,12 @@ curl http://<P_node_ip>:30001/v1/chat/completions ...
 
 | 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
-| [hygon/GLM-5-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT4-w4a8) | INT4 W4A8 | 0.5.10 | BW1000 |  8 | IFB  | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1000-8x-sglang-0510)   |
-|                                                                                                 | INT4 W4A8 | 0.5.10 | BW1000 | 32 | 2P2D | [**`>_`**](#glm-5-channel-int4-w4a8-2p2d-bw1000-32x-sglang-0510) |
 | [hygon/GLM-5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT8-w8a8) | INT8 W8A8 | 0.5.10 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x-sglang-0510)   |
 |                                                                                                 | INT8 W8A8 | 0.5.10 | BW1100 | 24 | 1P2D | [**`>_`**](#glm-5-channel-int8-w8a8-1p2d-bw1100-24x-sglang-0510) |
 | [hygon/GLM-5-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-FP8-w8a8)   |  FP8 W8A8 | 0.5.10 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-fp8-w8a8-ifb-bw1100-8x-sglang-0510)    |
 |                                                                                                 |  FP8 W8A8 | 0.5.10 | BW1100 | 24 | 1P2D | [**`>_`**](#glm-5-channel-fp8-w8a8-1p2d-bw1100-24x-sglang-0510)  |
+| [hygon/GLM-5-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT4-w4a8) | INT4 W4A8 | 0.5.10 | BW1000 |  8 | IFB  | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1000-8x-sglang-0510)   |
+|                                                                                                 | INT4 W4A8 | 0.5.10 | BW1000 | 32 | 2P2D | [**`>_`**](#glm-5-channel-int4-w4a8-2p2d-bw1000-32x-sglang-0510) |
 ````
 
 ## 示例（vLLM GLM-5）
@@ -373,6 +372,17 @@ curl http://<P_node_ip>:30001/v1/chat/completions ...
 | [hygon/GLM-5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT8-w8a8) | INT8 W8A8 | 0.18 | BW1100 |  8 | IFB  | [**`>_`**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x-vllm-018)   |
 |                                                                                                 | INT8 W8A8 | 0.18 | BW1100 | 24 | 1P2D | [**`>_`**](#glm-5-channel-int8-w8a8-1p2d-bw1100-24x-vllm-018) |
 ````
+
+## 文件命名规范
+
+**不要为每个具体模型变体单独创建文件。** 使用**模型系列**文件，将同系列的不同版本/规格合并在一个文件中：
+
+- ✅ 正确：在 `qwen3.md` 中增加 Qwen3-235B-A22B 的章节
+- ❌ 错误：新建 `qwen3-235b-a22b.md`
+
+**判断规则**：
+- 若 `docs/model-deployment/{vllm|sglang}/` 下已存在同系列文件（如 `qwen3.md`、`kimi-k2.md`），直接在该文件的 `## 模型列表` 表格末尾追加行，并在 `## 启动命令` 末尾追加对应章节。
+- 若不存在同系列文件，新建以系列命名的文件（如 `deepseek-v3.md`、`glm-5.md`）。
 
 ## 最终步骤：更新 README 支持矩阵
 

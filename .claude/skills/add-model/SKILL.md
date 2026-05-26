@@ -11,23 +11,17 @@ description: Guide for adding a new model deployment doc to dcu-inference-cookbo
 
 1. **模型卡**：模型在 ModelScope 或 HuggingFace 上的完整路径或 URL。
    例如：`hygon/GLM-5-Channel-INT4-w4a8`、`LLM-Research/Meta-Llama-3.1-70B-Instruct`
+   **后续所有文档严格使用此处用户指定的模型 ID，不得推断或替换为其他模型 ID。**
 
-2. **HYGON 量化模型**（仅当步骤 1 填写的不是 `hygon/` 前缀的模型时询问）：
-   询问用户是否有对应的 HYGON 量化版本，如有请提供完整模型 ID。
-   例如：`hygon/DeepSeek-R1-Channel-FP8-w8a8`
-   - 若用户提供了 `hygon/` 模型 ID，后续文档使用该 ID，并从名称中解析量化方式（`INT4`/`INT8`/`FP8` 等）
-   - 若用户明确表示没有 HYGON 量化版本，则直接使用步骤 1 的上游模型 ID（量化方式填 `BF16` 或用户指定值）
-   - **绝对不能**根据上游模型名称自行推断或猜测对应的 HYGON 模型 ID
+2. **框架**：`vLLM` 还是 `SGLang`（二选一）
 
-3. **框架**：`vLLM` 还是 `SGLang`（二选一）
-
-4. **框架版本**：
+3. **框架版本**：
    - 选择 vLLM 时只接受：`0.15` 或 `0.18`（其他版本需要用户重新输入）
    - 选择 SGLang 时只接受：`0.5.10`（其他版本需要用户重新输入）
 
-5. **硬件平台**：从 `K100_AI`、`BW1000`、`BW1100` 中选择，可多选（其他值需要用户重新输入）
+4. **硬件平台**：从 `K100_AI`、`BW1000`、`BW1100` 中选择，可多选（其他值需要用户重新输入）
 
-6. **启动命令**：
+5. **启动命令**：
    - 若用户提供了完整的 `vllm serve` 或 `sglang serve` 命令，**原样采用，不做任何修改**
    - 若用户未提供，根据模型信息和硬件平台**生成模板命令**，告知用户可按需修改
 
@@ -46,14 +40,9 @@ description: Guide for adding a new model deployment doc to dcu-inference-cookbo
 
 - **框架版本**：使用信息收集阶段用户指定的框架版本（如 `0.18`、`0.5.10`）。
 
-- **模型权重**：模型在 ModelScope 上的完整路径，带链接。
-  - 信息收集步骤 2 用户提供了 HYGON 量化 ID 时，使用该 ID（`hygon/` 前缀）：
-    `[hygon/<MODEL-NAME>](https://www.modelscope.cn/models/hygon/<MODEL-NAME>)`
+- **模型权重**：严格使用信息收集步骤 1 中用户指定的模型 ID，带 ModelScope 链接。不得推断、替换或猜测为其他模型 ID。
+  - `[<MODEL-ID>](https://www.modelscope.cn/models/<MODEL-ID>)`
     例如：`[hygon/GLM-5-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT4-w4a8)`
-  - 无 HYGON 量化版本时（如 BF16 部署），使用上游原始模型 ID：
-    例如：`[Qwen/Qwen3-235B-A22B](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B)`
-    或：`[moonshotai/Kimi-K2-Instruct](https://www.modelscope.cn/models/moonshotai/Kimi-K2-Instruct)`
-  - **严禁**根据上游模型名称自行推断 HYGON 模型 ID（如把 `deepseek-ai/DeepSeek-R1` 猜测为 `hygon/DeepSeek-R1-Channel-INT8-w8a8`）——必须由用户在步骤 2 明确提供。
   - 同一模型的多个行，后续行的模型权重列留空（用空格对齐）。
 
 - **量化方式**：使用标准格式，例如：`INT4 W4A8`、`INT8 W8A8`、`FP8 W8A8`、`BF16`。

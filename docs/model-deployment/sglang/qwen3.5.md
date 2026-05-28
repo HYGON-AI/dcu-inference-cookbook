@@ -11,7 +11,6 @@ Qwen3.5 是 Qwen3 系列的增强版本，在推理能力、代码生成、多�
 | [Qwen/Qwen3.5-27B](https://www.modelscope.cn/models/Qwen/Qwen3.5-27B) | BF16 | 0.5.10 | BW1100 | 2 | IFB | [**`>_`**](#qwen35-27b-ifb-bw1100-2x-sglang-0510) |
 | [Qwen/Qwen3.5-35B-A3B](https://www.modelscope.cn/models/Qwen/Qwen3.5-35B-A3B) | BF16 | 0.5.10 | BW1100 | 2 | IFB | [**`>_`**](#qwen35-35b-a3b-ifb-bw1100-2x-sglang-0510) |
 | [hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8) | FP8 W8A8 | 0.5.10 | BW1100 | 2 | IFB | [**`>_`**](#qwen35-35b-a3b-channel-fp8-w8a8-ifb-bw1100-2x-sglang-0510) |
-| [Qwen/Qwen3.5-397B-A17B](https://www.modelscope.cn/models/Qwen/Qwen3.5-397B-A17B) | BF16 | 0.5.10 | BW1100 | 4 | IFB | [**`>_`**](#qwen35-397b-a17b-ifb-bw1100-4x-sglang-0510) |
 
 ### Qwen3.5-397B-A17B 部署配置
 

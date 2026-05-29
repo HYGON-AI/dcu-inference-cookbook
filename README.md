@@ -155,7 +155,7 @@
     <tr>
       <td rowspan="2">DeepSeek-R1</td>
       <td>vLLM</td>
-      <td align="center">-</td><td align="center">-</td><td align="center">-</td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/deepseek-r1.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/deepseek-r1.md">✅</a></td>
     </tr>
     <tr>
       <td>SGLang</td>

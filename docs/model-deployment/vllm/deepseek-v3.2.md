@@ -62,6 +62,8 @@ vllm serve hygon/DeepSeek-V3.2-Channel-INT8-w8a8 \
 ## API 调用
 ### IFB
 
+### IFB
+
 ```python
 from openai import OpenAI
 

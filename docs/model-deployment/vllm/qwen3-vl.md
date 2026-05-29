@@ -18,24 +18,24 @@ Qwen3-VL 是阿里云推出的新一代多模态视觉语言模型（Vision-Lang
 
 ## 模型列表
 
-| 模型 | 参数量 | 上下文长度 | 量化方式 | 推荐硬件 |
-|------|--------|------------|---------|---------|
-| Qwen3-VL-2B-Instruct | 2B | 256K |未量化(BF16)| 1x BW1000 64GB |
-| Qwen3-VL-2B-Thinking | 2B | 256K |未量化(BF16)| 1x BW1000 64GB |
-| Qwen3-VL-4B-Instruct | 4B | 256K |未量化(BF16)|1x BW1000 64GB |
-| Qwen3-VL-4B-Thinking | 4B | 256K |未量化(BF16)|1x BW1000 64GB |
-| Qwen3-VL-8B-Instruct | 8B | 256K |未量化(BF16)|1x BW1000 64GB |
-| Qwen3-VL-8B-Thinking | 8B | 256K |未量化(BF16)|1x BW1000 64GB |
-| Qwen3-VL-30B-A3B-Instruct | 30B | 256K |未量化(BF16)| 4x BW1000 64GB |
-| Qwen3-VL-30B-A3B-Thinking | 30B | 256K |未量化(BF16)| 4x BW1000 64GB |
-| Qwen3-VL-235B-A22B-Instruct | 235B | 256K |未量化(BF16)| 16x BW1000 64GB |
-| Qwen3-VL-235B-A22B-Thinking | 235B | 256K |未量化(BF16)| 16x BW1000 64GB |
+| 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
+| -------- | -------- | --------- | -------- | ---- | -------- | -------- |
+| [Qwen/Qwen3-VL-2B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-2B-Instruct) | BF16 | 0.18 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-vl-2b-instruct-ifb-bw1000-1x-vllm-018) |
+| [Qwen/Qwen3-VL-2B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-2B-Thinking) | BF16 | 0.18 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-vl-2b-thinking-ifb-bw1000-1x-vllm-018) |
+| [Qwen/Qwen3-VL-4B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-4B-Instruct) | BF16 | 0.18 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-vl-4b-instruct-ifb-bw1000-1x-vllm-018) |
+| [Qwen/Qwen3-VL-4B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-4B-Thinking) | BF16 | 0.18 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-vl-4b-thinking-ifb-bw1000-1x-vllm-018) |
+| [Qwen/Qwen3-VL-8B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Instruct) | BF16 | 0.18 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-vl-8b-instruct-ifb-bw1000-1x-vllm-018) |
+| [Qwen/Qwen3-VL-8B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Thinking) | BF16 | 0.18 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-vl-8b-thinking-ifb-bw1000-1x-vllm-018) |
+| [Qwen/Qwen3-VL-30B-A3B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-30B-A3B-Instruct) | BF16 | 0.18 | BW1000 | 4x | IFB | [**\`>_\`**](#qwen3-vl-30b-a3b-instruct-ifb-bw1000-4x-vllm-018) |
+| [Qwen/Qwen3-VL-30B-A3B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-30B-A3B-Thinking) | BF16 | 0.18 | BW1000 | 4x | IFB | [**\`>_\`**](#qwen3-vl-30b-a3b-thinking-ifb-bw1000-4x-vllm-018) |
+| [Qwen/Qwen3-VL-235B-A22B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-235B-A22B-Instruct) | BF16 | 0.18 | BW1000 | 16x | IFB | [**\`>_\`**](#qwen3-vl-235b-a22b-instruct-ifb-bw1000-16x-vllm-018) |
+| [Qwen/Qwen3-VL-235B-A22B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-235B-A22B-Thinking) | BF16 | 0.18 | BW1000 | 16x | IFB | [**\`>_\`**](#qwen3-vl-235b-a22b-thinking-ifb-bw1000-16x-vllm-018) |
 
 ---
 
 ## 启动命令
 
-### Qwen3-VL-2B-Instruct
+### Qwen3-VL-2B-Instruct IFB BW1000 1x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
@@ -46,7 +46,7 @@ vllm serve Qwen/Qwen3-VL-2B-Instruct \
     --trust-remote-code \
 ```
 
-### Qwen3-VL-2B-Thinking
+### Qwen3-VL-2B-Thinking IFB BW1000 1x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
@@ -57,7 +57,7 @@ vllm serve Qwen/Qwen3-VL-2B-Thinking \
     --trust-remote-code \
 ```
 
-### Qwen3-VL-4B-Instruct
+### Qwen3-VL-4B-Instruct IFB BW1000 1x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
@@ -68,7 +68,7 @@ vllm serve Qwen/Qwen3-VL-4B-Instruct \
     --trust-remote-code \
 ```
 
-### Qwen3-VL-4B-Thinking
+### Qwen3-VL-4B-Thinking IFB BW1000 1x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
@@ -79,7 +79,7 @@ vllm serve Qwen/Qwen3-VL-4B-Thinking \
     --trust-remote-code \
 ```
 
-### Qwen3-VL-8B-Instruct
+### Qwen3-VL-8B-Instruct IFB BW1000 1x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
@@ -90,7 +90,7 @@ vllm serve Qwen/Qwen3-VL-8B-Instruct \
     --trust-remote-code \
 ```
 
-### Qwen3-VL-8B-Thinking
+### Qwen3-VL-8B-Thinking IFB BW1000 1x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
@@ -103,7 +103,7 @@ vllm serve Qwen/Qwen3-VL-8B-Thinking \
 
 
 
-### Qwen3-VL-30B-A3B-Instruct
+### Qwen3-VL-30B-A3B-Instruct IFB BW1000 4x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
@@ -114,7 +114,7 @@ vllm serve Qwen/Qwen3-VL-30B-A3B-Instruct \
     --trust-remote-code \
 ```
 
-### Qwen3-VL-30B-A3B-Thinking
+### Qwen3-VL-30B-A3B-Thinking IFB BW1000 4x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
@@ -127,7 +127,7 @@ vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
 
 
 
-### Qwen3-VL-235B-A22B-Instruct
+### Qwen3-VL-235B-A22B-Instruct IFB BW1000 16x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
@@ -138,7 +138,7 @@ vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
     --trust-remote-code \
 ```
 
-### Qwen3-VL-235B-A22B-Thinking
+### Qwen3-VL-235B-A22B-Thinking IFB BW1000 16x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
@@ -150,8 +150,11 @@ vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
 ```
 
 
-## OpenAI API 调用示例
-### 单张图片推理
+## API 调用
+
+### IFB
+
+#### 单张图片推理
 
 ```python
 response = client.chat.completions.create(
@@ -182,7 +185,7 @@ print(response.choices[0].message.content)
 
 ---
 
-### 多张图片推理
+#### 多张图片推理
 
 ```python
 response = client.chat.completions.create(
@@ -217,7 +220,7 @@ response = client.chat.completions.create(
 
 ---
 
-### 本地图片（Base64）
+#### 本地图片（Base64）
 
 ```python
 import base64
@@ -256,7 +259,7 @@ print(response.choices[0].message.content)
 
 ---
 
-### 视频理解示例
+#### 视频理解示例
 
 ```python
 response = client.chat.completions.create(

@@ -34,7 +34,7 @@
   </tr>
   <tbody>
     <tr>
-      <td rowspan="20" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/620760a26e3b7210c2ff1943/-s1gyJfvbE1RgO5iBeNOi.png" height="40"/><br/>Qwen</td>
+      <td rowspan="18" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/620760a26e3b7210c2ff1943/-s1gyJfvbE1RgO5iBeNOi.png" height="40"/><br/>Qwen</td>
       <td rowspan="2">Qwen3.6</td>
       <td>vLLM</td>
       <td align="center">🚧</td><td align="center">🚧</td><td align="center">🚧</td>

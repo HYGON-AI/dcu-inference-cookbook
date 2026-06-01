@@ -663,45 +663,54 @@ python3 -m sglang_router.launch_router \
 ### GLM-5-Channel-FP8-w8a8 IFB BW1100 8x SGLang 0.5.10
 
 ```bash
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MAX_NCHANNELS=16
+export SGLANG_ENABLE_SPEC_V2=1
+export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export HIP_KERNEL_EVENT_SYSTENFENCE=1
 export SGLANG_CHUNKED_PREFIX_CACHE_THRESHOLD=0
-export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
 export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
-export SGLANG_KVALLOC_KERNEL=1
-export SGLANG_TORCH_PROFILER_DIR=/workspace/profile
-export SGLANG_SET_CPU_AFFINITY=1
 export HIP_KERNEL_BATCH_CEILING=100
-export GPU_MAX_HW_QUEUES=3
-export SGLANG_USE_MODELSCOPE=1
-export HIP_GRAPH_ACCUMULATE_DISPATCH=0
-export HIP_H2D_DISABLE_COPY_BUFFER=0
-export HIP_D2H_DISABLE_COPY_BUFFER=0
-export HIP_H2D_DIRECT_COPY_THRESHOLD=32768
-export HIP_H2D_HSAAPI_COPY_THRESHOLD=32768
-export HIP_D2H_DIRECT_COPY_THRESHOLD=512
-export HIP_D2H_HSAAPI_COPY_THRESHOLD=512
+export GPU_FORCE_BLIT_COPY_SIZE=16
 export HSA_KERNARG_POOL_SIZE=8388608
 export ROC_AQL_QUEUE_SIZE=131072
-export NCCL_MAX_NCHANNELS=16
-export NCCL_MIN_NCHANNELS=16
-export HIP_GRAPH_USE_CMD_CACHE=0
-export NCCL_SOCKET_IFNAME=ens19f0
-export GLOO_SOCKET_IFNAME=ens19f0
-export NCCL_IB_HCA=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_8,mlx5_9
 export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_FP8_W8A8_MOE=1
 export SGLANG_ROCM_USE_AITER_MOE=0
+export SGLANG_KVALLOC_KERNEL=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
+export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
+export SGLANG_GET_LAST_LOC=1
+export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
+export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
+export HIP_GRAPH_ACCUMULATE_DISPATCH=1
+export HIP_GRAPH_USE_CMD_CACHE=0
+export SGLANG_USE_MODELSCOPE=1
 
 sglang serve \
   --model-path hygon/GLM-5-Channel-FP8-w8a8 \
   --trust-remote-code \
   --tp-size 8 \
-  --kv-cache-dtype fp8_e4m3 \
-  --dtype bfloat16 \
-  --page-size 64 \
-  --quantization slimquant_marlin \
   --nsa-prefill-backend flashmla_auto \
   --nsa-decode-backend flashmla_kv \
-  --mem-fraction-static 0.8
+  --dtype bfloat16 \
+  --dist-timeout 10000 \
+  --watchdog-timeout 3600 \
+  --page-size 64 \
+  --kv-cache-dtype fp8_e4m3 \
+  --mem-fraction-static 0.9 \
+  --chunked-prefill-size 8192 \
+  --cuda-graph-max-bs 32 \
+  --max-running-requests 32 \
+  --reasoning-parser glm45 \
+  --tool-call-parser glm47 \
+  --speculative-algorithm EAGLE \
+  --speculative-num-steps 3 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 4
 ```
 
 ### GLM-5-Channel-FP8-w8a8 1P2D BW1100 24x SGLang 0.5.10
@@ -738,6 +747,7 @@ export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,m
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 export SGLANG_USE_LIGHTOP=1
 export SGLANG_ROCM_USE_AITER_MOE=0
+export SGLANG_USE_FP8_W8A8_MOE=1
 
 sglang serve \
   --model-path hygon/GLM-5-Channel-FP8-w8a8 \
@@ -756,7 +766,6 @@ sglang serve \
   --page-size 64 \
   --nsa-prefill-backend flashmla_auto \
   --nsa-decode-backend flashmla_kv \
-  --quantization slimquant_marlin \
   --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 \
   --disaggregation-mode prefill
 ```
@@ -778,6 +787,7 @@ export GPU_FORCE_BLIT_COPY_SIZE=16
 export HSA_KERNARG_POOL_SIZE=8388608
 export ROC_AQL_QUEUE_SIZE=131072
 export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_FP8_W8A8_MOE=1
 export SGLANG_KVALLOC_KERNEL=1
 export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
 export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
@@ -828,7 +838,6 @@ sglang serve \
   --mem-fraction-static 0.8 \
   --disable-radix-cache \
   --chunked-prefill-size -1 \
-  --quantization slimquant_marlin \
   --cuda-graph-max-bs 32 \
   --max-running-requests 512 \
   --speculative-algorithm EAGLE \
@@ -880,6 +889,7 @@ export NCCL_SOCKET_IFNAME=enp33s0f3u1
 export GLOO_SOCKET_IFNAME=enp33s0f3u1
 export ROCBLAS_TENSILE_LIBPATH=/home/library_gpu6_glm5_int8
 export SGLANG_USE_MODELSCOPE=1
+export SGLANG_USE_FP8_W8A8_MOE=1
 
 sglang serve \
   --model-path hygon/GLM-5-Channel-FP8-w8a8 \
@@ -908,7 +918,6 @@ sglang serve \
   --mem-fraction-static 0.8 \
   --disable-radix-cache \
   --chunked-prefill-size -1 \
-  --quantization slimquant_marlin \
   --cuda-graph-max-bs 32 \
   --max-running-requests 512 \
   --speculative-algorithm EAGLE \

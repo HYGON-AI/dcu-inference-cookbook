@@ -98,8 +98,13 @@ description: Guide for adding a new model deployment doc to dcu-inference-cookbo
 
 SGLang IFB 章节只有一个 bash 代码块，无需子标题：
 
+**缩进规范**：`sglang serve \` 单独占第一行，后续每个参数独占一行，统一缩进 **2 个空格**。
+
 ````markdown
 ### GLM-5-Channel-INT4-w4a8 IFB BW1000 8x SGLang 0.5.10
+
+```bash
+sglang serve \
   --model-path hygon/GLM-5-Channel-INT4-w4a8 \
   --trust-remote-code \
   --tp-size 8 \
@@ -109,7 +114,7 @@ SGLang IFB 章节只有一个 bash 代码块，无需子标题：
 
 ### SGLang PD 分离章节结构
 
-SGLang PD 分离章节开头加一行 IB 网卡配置说明，然后用 `####` 划分各节点：
+SGLang PD 分离章节开头加一行 IB 网卡配置说明，然后用 `####` 划分各节点。**缩进规范同 IFB**：`sglang serve \` 首行，后续参数缩进 2 个空格。
 
 ````markdown
 ### GLM-5-Channel-INT4-w4a8 2P2D BW1000 32x SGLang 0.5.10
@@ -172,6 +177,8 @@ python3 -m sglang_router.launch_router \
 
 vLLM IFB 章节只有一个 bash 代码块，无需子标题：
 
+**缩进规范**：`vllm serve <model-id> \` 单独占第一行，后续每个参数独占一行，统一缩进 **4 个空格**。
+
 ````markdown
 ### GLM-5-Channel-INT4-w4a8 IFB BW1100 8x vLLM 0.18
 
@@ -190,7 +197,7 @@ vllm serve hygon/GLM-5-Channel-INT4-w4a8 \
 
 ### vLLM PD 分离章节结构
 
-vLLM PD 分离的代理（proxy）内置于 P 节点进程中，通过 `--kv-transfer-config` 的 `proxy_port` 对外暴露，无需独立 Router 进程。章节开头加一行说明 P 节点和 D node 0 的示例 IP，然后用 `####` 划分各节点：
+vLLM PD 分离的代理（proxy）内置于 P 节点进程中，通过 `--kv-transfer-config` 的 `proxy_port` 对外暴露，无需独立 Router 进程。**缩进规范同 IFB**：`vllm serve <model-id> \` 首行，后续参数缩进 4 个空格。章节开头加一行说明 P 节点和 D node 0 的示例 IP，然后用 `####` 划分各节点：
 
 ````markdown
 ### GLM-5-Channel-INT8-w8a8 1P2D BW1100 24x vLLM 0.18

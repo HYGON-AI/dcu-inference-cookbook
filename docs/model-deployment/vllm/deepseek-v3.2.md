@@ -82,11 +82,11 @@ print(response.choices[0].message.content)
 
 ```bash
 curl http://localhost:8000/v1/chat/completions \
-    -H "Content-Type: application/json"  \
-    -d '{
-        "model": "hygon/DeepSeek-V3.2-Channel-INT8-w8a8", 
-        "messages": [{"role": "user", "content": "中国的首都是什么？"}], 
-        "temperature": 0, 
-        "max_tokens": 100
-    }'
+  -H "Content-Type: application/json"  \
+  -d '{
+      "model": "hygon/DeepSeek-V3.2-Channel-INT8-w8a8", 
+      "messages": [{"role": "user", "content": "中国的首都是什么？"}], 
+      "temperature": 0, 
+      "max_tokens": 100
+  }'
 ```

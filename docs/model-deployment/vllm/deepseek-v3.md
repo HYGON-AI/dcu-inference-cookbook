@@ -34,17 +34,17 @@ export VLLM_FUSED_MOE_CHUNK_SIZE=16384
 export VLLM_USE_LIGHTOP=1
 export VLLM_USE_FLASH_ATTN_FP8=1
 vllm serve hygon/DeepSeek-V3-0324-Channel-INT8-w8a8  \
-        --trust-remote-code   \
-        -q slimquant_marlin \
-        --dtype bfloat16  \
-        -tp 8   \
-        --max-model-len 65536  \
-        --disable-log-requests  \
-        --gpu-memory-utilization 0.90 \
-        --max-num-batched-tokens 16384 \
-        --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
-        --kv-cache-dtype fp8
-        --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3,"quantization": "slimquant_marlin"}' \
+  --trust-remote-code   \
+  -q slimquant_marlin \
+  --dtype bfloat16  \
+  -tp 8   \
+  --max-model-len 65536  \
+  --disable-log-requests  \
+  --gpu-memory-utilization 0.90 \
+  --max-num-batched-tokens 16384 \
+  --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
+  --kv-cache-dtype fp8 \
+  --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3,"quantization": "slimquant_marlin"}'
 ```
 
 ### DeepSeek-V3-W4A8 IFB BW1100 8x vLLM 0.15
@@ -73,19 +73,19 @@ export VLLM_USE_FLASH_MLA=1
 export VLLM_USE_CAT_MLA=1
 
 vllm serve hygon/DeepSeek-V3-0528-W4A8-V2 \
-    --trust-remote-code \
-    --dtype bfloat16 \
-    -q slimquant_w4a8_marlin \
-    -tp 8 \
-    --max-model-len 40960 \
-    --gpu-memory-utilization 0.90 \
-    --max-num-seqs 256 \
-    --max-num-batched-tokens 8192 \
-    --block-size 64 \
-    --enable-chunked-prefill \
-    --enable-prefix-caching \
-    --kv-cache-dtype fp8_e5m2 \
-    --speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_w4a8_marlin"}'
+  --trust-remote-code \
+  --dtype bfloat16 \
+  -q slimquant_w4a8_marlin \
+  -tp 8 \
+  --max-model-len 40960 \
+  --gpu-memory-utilization 0.90 \
+  --max-num-seqs 256 \
+  --max-num-batched-tokens 8192 \
+  --block-size 64 \
+  --enable-chunked-prefill \
+  --enable-prefix-caching \
+  --kv-cache-dtype fp8_e5m2 \
+  --speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_w4a8_marlin"}'
 ```
 
 ### DeepSeek-V3-W4A8 IFB BW1000 8x vLLM 0.15
@@ -113,19 +113,19 @@ export VLLM_USE_FUSED_FILL_RMS_CAT=1
 export VLLM_USE_FLASH_MLA=1
 
 vllm serve hygon/DeepSeek-V3-0528-W4A8-V2 \
-    --trust-remote-code \
-    --dtype bfloat16 \
-    -q slimquant_w4a8_marlin \
-    -tp 8 \
-    --max-model-len 40960 \
-    --gpu-memory-utilization 0.90 \
-    --max-num-seqs 256 \
-    --max-num-batched-tokens 8192 \
-    --block-size 64 \
-    --enable-chunked-prefill \
-    --enable-prefix-caching \
-    --kv-cache-dtype fp8_e5m2 \
-    --speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_w4a8_marlin"}'
+  --trust-remote-code \
+  --dtype bfloat16 \
+  -q slimquant_w4a8_marlin \
+  -tp 8 \
+  --max-model-len 40960 \
+  --gpu-memory-utilization 0.90 \
+  --max-num-seqs 256 \
+  --max-num-batched-tokens 8192 \
+  --block-size 64 \
+  --enable-chunked-prefill \
+  --enable-prefix-caching \
+  --kv-cache-dtype fp8_e5m2 \
+  --speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_w4a8_marlin"}'
 ```
 
 ## API 调用

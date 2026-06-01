@@ -26,7 +26,6 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     --enable-chunked-prefill \
     --max-model-len 32768 \
     --allowed-local-media-path /path-to/VL_data/ \
-    --port 2028
 ```
 
 ## API 调用
@@ -36,7 +35,7 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:2028/v1", api_key="not-needed")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
     model="Qwen/Qwen2.5-VL-32B-Instruct",
@@ -55,7 +54,7 @@ print(response.choices[0].message.content)
 ```
 
 ```bash
-curl http://localhost:4048/v1/chat/completions \
+curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
     "model": "Qwen/Qwen2.5-VL-32B-Instruct",

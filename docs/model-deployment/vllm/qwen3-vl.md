@@ -43,7 +43,7 @@ export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-2B-Instruct \
   --tensor-parallel-size 1 \
-  --trust-remote-code \
+  --trust-remote-code
 ```
 
 ### Qwen3-VL-2B-Thinking IFB BW1000 1x vLLM 0.18
@@ -54,7 +54,7 @@ export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-2B-Thinking \
   --tensor-parallel-size 1 \
-  --trust-remote-code \
+  --trust-remote-code
 ```
 
 ### Qwen3-VL-4B-Instruct IFB BW1000 1x vLLM 0.18
@@ -65,7 +65,7 @@ export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-4B-Instruct \
   --tensor-parallel-size 1 \
-  --trust-remote-code \
+  --trust-remote-code
 ```
 
 ### Qwen3-VL-4B-Thinking IFB BW1000 1x vLLM 0.18
@@ -76,7 +76,7 @@ export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-4B-Thinking \
   --tensor-parallel-size 1 \
-  --trust-remote-code \
+  --trust-remote-code
 ```
 
 ### Qwen3-VL-8B-Instruct IFB BW1000 1x vLLM 0.18
@@ -87,7 +87,7 @@ export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-8B-Instruct \
   --tensor-parallel-size 1 \
-  --trust-remote-code \
+  --trust-remote-code
 ```
 
 ### Qwen3-VL-8B-Thinking IFB BW1000 1x vLLM 0.18
@@ -98,7 +98,7 @@ export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-8B-Thinking \
   --tensor-parallel-size 1 \
-  --trust-remote-code \
+  --trust-remote-code
 ```
 
 
@@ -111,7 +111,7 @@ export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-30B-A3B-Instruct \
   --tensor-parallel-size 4 \
-  --trust-remote-code \
+  --trust-remote-code
 ```
 
 ### Qwen3-VL-30B-A3B-Thinking IFB BW1000 4x vLLM 0.18
@@ -122,7 +122,7 @@ export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
   --tensor-parallel-size 4 \
-  --trust-remote-code \
+  --trust-remote-code
 ```
 
 
@@ -135,7 +135,7 @@ export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
   --tensor-parallel-size 16 \
-  --trust-remote-code \
+  --trust-remote-code
 ```
 
 ### Qwen3-VL-235B-A22B-Thinking IFB BW1000 16x vLLM 0.18
@@ -146,7 +146,7 @@ export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
   --tensor-parallel-size 16 \
-  --trust-remote-code \
+  --trust-remote-code
 ```
 
 

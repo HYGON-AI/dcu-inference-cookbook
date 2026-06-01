@@ -43,8 +43,8 @@ vllm serve hygon/DeepSeek-V3-0324-Channel-INT8-w8a8  \
   --gpu-memory-utilization 0.90 \
   --max-num-batched-tokens 16384 \
   --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
-  --kv-cache-dtype fp8
-  --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3,"quantization": "slimquant_marlin"}' \
+  --kv-cache-dtype fp8 \
+  --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3,"quantization": "slimquant_marlin"}'
 ```
 
 ### DeepSeek-V3-W4A8 IFB BW1100 8x vLLM 0.15

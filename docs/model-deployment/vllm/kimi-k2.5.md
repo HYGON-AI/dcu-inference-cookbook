@@ -31,15 +31,15 @@ export VLLM_USE_LIGHTOP_RMS_ROPE_CONCAT=0
 export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve moonshotai/Kimi-K2.5 \
-    -tp 8 \
-    --trust-remote-code   \
-    --dtype bfloat16  \
-    --max-model-len 65536  \
-    --disable-log-requests  \
-    --enable-prefix-caching \
-    --gpu-memory-utilization 0.90 \
-    --max-num-batched-tokens 16384 \
-    --kv-cache-dtype fp8_e4m3
+  -tp 8 \
+  --trust-remote-code   \
+  --dtype bfloat16  \
+  --max-model-len 65536  \
+  --disable-log-requests  \
+  --enable-prefix-caching \
+  --gpu-memory-utilization 0.90 \
+  --max-num-batched-tokens 16384 \
+  --kv-cache-dtype fp8_e4m3
 ```
 ## API 调用
 
@@ -47,11 +47,11 @@ vllm serve moonshotai/Kimi-K2.5 \
 
 ```bash
 curl http://localhost:8000/v1/chat/completions \
-    -H "Content-Type: application/json"  \
-    -d '{
-        "model": "moonshotai/Kimi-K2.5", 
-        "messages": [{"role": "user", "content": "中国的首都是什么？"}], 
-        "temperature": 0, 
-        "max_tokens": 400
-    }'
+  -H "Content-Type: application/json"  \
+  -d '{
+      "model": "moonshotai/Kimi-K2.5", 
+      "messages": [{"role": "user", "content": "中国的首都是什么？"}], 
+      "temperature": 0, 
+      "max_tokens": 400
+  }'
 ```

@@ -31,12 +31,12 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 export VLLM_USE_PIECEWISE=1
 
 vllm serve Qwen/Qwen3-0.6B \
-    -tp 1 \
-    --trust-remote-code \
-    --disable-log-requests \
-    --dtype bfloat16 \
-    --disable-cascade-attn \
-    -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
+  -tp 1 \
+  --trust-remote-code \
+  --disable-log-requests \
+  --dtype bfloat16 \
+  --disable-cascade-attn \
+  -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
 ```
 
 ### Qwen3-30B-A3B IFB BW1000 2x vLLM 0.15
@@ -45,11 +45,11 @@ vllm serve Qwen/Qwen3-0.6B \
 export VLLM_USE_PD_SPLIT=0
 
 vllm serve Qwen/Qwen3-30B-A3B \
-    -tp 2 \
-    --trust-remote-code \
-    --dtype float16 \
-    --disable-cascade-attn \
-    -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
+  -tp 2 \
+  --trust-remote-code \
+  --dtype float16 \
+  --disable-cascade-attn \
+  -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
 ```
 
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 8x vLLM 0.15
@@ -65,10 +65,10 @@ export VLLM_RANK6_NUMA=3
 export VLLM_RANK7_NUMA=3
 
 vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
-    --dtype float16 \
-    --trust-remote-code \
-    -tp 8 \
-    --disable-cascade-attn 
+  --dtype float16 \
+  --trust-remote-code \
+  -tp 8 \
+  --disable-cascade-attn 
 ```
 
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x vLLM 0.15
@@ -84,12 +84,12 @@ export VLLM_RANK6_NUMA=3
 export VLLM_RANK7_NUMA=3
 
 vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
-    --dtype float16 \
-    --trust-remote-code \
-    -tp 8 \
-    --gpu-memory-utilization 0.95 \
-    --max-model-len 40960 \
-    --disable-cascade-attn
+  --dtype float16 \
+  --trust-remote-code \
+  -tp 8 \
+  --gpu-memory-utilization 0.95 \
+  --max-model-len 40960 \
+  --disable-cascade-attn
 ```
 
 ### Qwen3-235B-A22B-Instruct-2507 IFB K100_AI 8x vLLM 0.15
@@ -106,12 +106,12 @@ export VLLM_RANK7_NUMA=3
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 
 vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
-    --dtype float16 \
-    --trust-remote-code \
-    -tp 8 \
-    --gpu-memory-utilization 0.95 \
-    --max-model-len 40960 \
-    --disable-cascade-attn
+  --dtype float16 \
+  --trust-remote-code \
+  -tp 8 \
+  --gpu-memory-utilization 0.95 \
+  --max-model-len 40960 \
+  --disable-cascade-attn
 ```
 
 ### Qwen3-235B-A22B-FP8-Channelwise IFB BW1100 4x vLLM 0.15
@@ -128,12 +128,12 @@ export VLLM_USE_PIECEWISE=1
 export VLLM_USE_LIGHTOP_FUSED_TOPP_TOPK=1
 
 vllm serve Qwen/Qwen3-235B-A22B-FP8-Channel \
-    -tp 4 \
-    --trust-remote-code \
-    --dtype bfloat16 \
-    -q slimquant_marlin \
-    --disable-cascade-attn \
-    -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
+  -tp 4 \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  -q slimquant_marlin \
+  --disable-cascade-attn \
+  -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
 ```
 ## 环境变量
 
@@ -165,11 +165,11 @@ print(response.choices[0].message.content)
 curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "Qwen/Qwen3-8B",
-    "messages": [
-      {"role": "user", "content": "解释量子计算的基本原理"}
-    ],
-    "max_tokens": 1024
+  "model": "Qwen/Qwen3-8B",
+  "messages": [
+    {"role": "user", "content": "解释量子计算的基本原理"}
+  ],
+  "max_tokens": 1024
   }'
 ```
 

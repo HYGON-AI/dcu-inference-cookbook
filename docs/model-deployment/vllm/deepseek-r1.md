@@ -39,19 +39,19 @@ export VLLM_USE_FLASH_MLA=1
 export VLLM_USE_CAT_MLA=1
 
 vllm serve hygon/DeepSeek-R1-0528-W4A8-V2 \
-    --trust-remote-code \
-    --dtype bfloat16 \
-    -q slimquant_w4a8_marlin \
-    -tp 8 \
-    --max-model-len 40960 \
-    --gpu-memory-utilization 0.90 \
-    --max-num-seqs 256 \
-    --max-num-batched-tokens 8192 \
-    --block-size 64 \
-    --enable-chunked-prefill \
-    --enable-prefix-caching \
-    --kv-cache-dtype fp8_e5m2 \
-    --speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_w4a8_marlin"}'
+  --trust-remote-code \
+  --dtype bfloat16 \
+  -q slimquant_w4a8_marlin \
+  -tp 8 \
+  --max-model-len 40960 \
+  --gpu-memory-utilization 0.90 \
+  --max-num-seqs 256 \
+  --max-num-batched-tokens 8192 \
+  --block-size 64 \
+  --enable-chunked-prefill \
+  --enable-prefix-caching \
+  --kv-cache-dtype fp8_e5m2 \
+  --speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_w4a8_marlin"}'
 ```
 
 ### DeepSeek-R1-W4A8 IFB BW1000 8x vLLM 0.15
@@ -79,19 +79,19 @@ export VLLM_USE_FUSED_FILL_RMS_CAT=1
 export VLLM_USE_FLASH_MLA=1
 
 vllm serve hygon/DeepSeek-R1-0528-W4A8-V2 \
-    --trust-remote-code \
-    --dtype bfloat16 \
-    -q slimquant_w4a8_marlin \
-    -tp 8 \
-    --max-model-len 40960 \
-    --gpu-memory-utilization 0.90 \
-    --max-num-seqs 256 \
-    --max-num-batched-tokens 8192 \
-    --block-size 64 \
-    --enable-chunked-prefill \
-    --enable-prefix-caching \
-    --kv-cache-dtype fp8_e5m2 \
-    --speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_w4a8_marlin"}'
+  --trust-remote-code \
+  --dtype bfloat16 \
+  -q slimquant_w4a8_marlin \
+  -tp 8 \
+  --max-model-len 40960 \
+  --gpu-memory-utilization 0.90 \
+  --max-num-seqs 256 \
+  --max-num-batched-tokens 8192 \
+  --block-size 64 \
+  --enable-chunked-prefill \
+  --enable-prefix-caching \
+  --kv-cache-dtype fp8_e5m2 \
+  --speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_w4a8_marlin"}'
 ```
 
 ## API 调用
@@ -119,11 +119,11 @@ print(response.choices[0].message.content)
 curl http://0.0.0.0:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "hygon/DeepSeek-R1-0528-W4A8-V2",
-    "messages": [
-      {"role": "user", "content": "你好，请用Python写一个贪吃蛇的游戏脚本"}
-    ],
-    "max_tokens": 1500,
-    "temperature": 0.0
+  "model": "hygon/DeepSeek-R1-0528-W4A8-V2",
+  "messages": [
+    {"role": "user", "content": "你好，请用Python写一个贪吃蛇的游戏脚本"}
+  ],
+  "max_tokens": 1500,
+  "temperature": 0.0
   }'
 ```

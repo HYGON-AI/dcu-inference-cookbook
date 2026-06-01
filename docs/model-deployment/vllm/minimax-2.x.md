@@ -55,18 +55,18 @@ export VLLM_USE_AITER_MOE_W8A8=0
 
 
 vllm serve /hygon/MiniMax-M2.5-W8A8 \
- --host 0.0.0.0 \
- --trust-remote-code \
- -tp 4 -pp 2 \
- --gpu-memory-utilization 0.92 \
- --disable-log-requests \
- --max-model-len 73216 \
- --max-num-batched-tokens 16384 \
- -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
- -q slimquant_marlin \
- --kv-cache-dtype fp8_e4m3 \
- --enable-prefix-caching \
- --disable-cascade-attn
+  --host 0.0.0.0 \
+  --trust-remote-code \
+  -tp 4 -pp 2 \
+  --gpu-memory-utilization 0.92 \
+  --disable-log-requests \
+  --max-model-len 73216 \
+  --max-num-batched-tokens 16384 \
+  -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
+  -q slimquant_marlin \
+  --kv-cache-dtype fp8_e4m3 \
+  --enable-prefix-caching \
+  --disable-cascade-attn
 ```
 
 ### MiniMax-M2.5-Channel-INT8-w8a8 IFB BW1000 8x vLLM 0.15.1
@@ -104,17 +104,17 @@ export VLLM_USE_OPT_OP=1
 export VLLM_USE_AITER_MOE_W8A8=0
 
 vllm serve /hygon/MiniMax-M2.5-W8A8 \
- --host 0.0.0.0 \
- --trust-remote-code \
- -tp 8 \
- --gpu-memory-utilization 0.92 \
- --disable-log-requests \
- --max-model-len 73216 \
- --max-num-batched-tokens 16384 \
- -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
- -q slimquant_marlin \
- --enable-prefix-caching \
- --disable-cascade-attn 
+  --host 0.0.0.0 \
+  --trust-remote-code \
+  -tp 8 \
+  --gpu-memory-utilization 0.92 \
+  --disable-log-requests \
+  --max-model-len 73216 \
+  --max-num-batched-tokens 16384 \
+  -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
+  -q slimquant_marlin \
+  --enable-prefix-caching \
+  --disable-cascade-attn 
 ```
 ### MiniMax-M2.5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.15.1
 ```bash
@@ -148,18 +148,18 @@ export VLLM_USE_AITER_MOE_W8A8=0
 
 
 vllm serve /hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
- --host 0.0.0.0 \
- --trust-remote-code \
- -tp 4 -pp 2 \
- --gpu-memory-utilization 0.92 \
- --disable-log-requests \
- --max-model-len 73216 \
- --max-num-batched-tokens 16384 \
- -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
- --kv-cache-dtype fp8_e4m3 \
- --enable-prefix-caching \
- --disable-cascade-attn \
- -q slimquant_marlin 
+  --host 0.0.0.0 \
+  --trust-remote-code \
+  -tp 4 -pp 2 \
+  --gpu-memory-utilization 0.92 \
+  --disable-log-requests \
+  --max-model-len 73216 \
+  --max-num-batched-tokens 16384 \
+  -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
+  --kv-cache-dtype fp8_e4m3 \
+  --enable-prefix-caching \
+  --disable-cascade-attn \
+  -q slimquant_marlin 
 
 ```
 ### MiniMax-M2.5-bf16 IFB BW1100 8x vLLM 0.15.1
@@ -193,17 +193,17 @@ export VLLM_USE_AITER_MOE_W8A8=0
 
 
 vllm serve /hygon/MiniMax-M2.5-bf16 \
- --host 0.0.0.0 \
- --trust-remote-code \
- -tp 8 \
- --gpu-memory-utilization 0.92 \
- --disable-log-requests \
- --max-model-len 73216 \
- --max-num-batched-tokens 16384 \
- -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
- --enable-prefix-caching \
- --kv-cache-dtype fp8_e4m3 \
- --disable-cascade-attn
+  --host 0.0.0.0 \
+  --trust-remote-code \
+  -tp 8 \
+  --gpu-memory-utilization 0.92 \
+  --disable-log-requests \
+  --max-model-len 73216 \
+  --max-num-batched-tokens 16384 \
+  -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
+  --enable-prefix-caching \
+  --kv-cache-dtype fp8_e4m3 \
+  --disable-cascade-attn
 ```
 ### MiniMax-M2.5-bf16 IFB BW1000 8x vLLM 0.15.1
 ```bash
@@ -236,16 +236,16 @@ export VLLM_USE_AITER_MOE_W8A8=0
 
 
 vllm serve /hygon/MiniMax-M2.5-bf16 \
- --host 0.0.0.0 \
- --trust-remote-code \
- -tp 8 \
- --gpu-memory-utilization 0.92 \
- --disable-log-requests \
- --max-model-len 73216 \
- --max-num-batched-tokens 16384 \
- -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
- --enable-prefix-caching \
- --disable-cascade-attn
+  --host 0.0.0.0 \
+  --trust-remote-code \
+  -tp 8 \
+  --gpu-memory-utilization 0.92 \
+  --disable-log-requests \
+  --max-model-len 73216 \
+  --max-num-batched-tokens 16384 \
+  -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
+  --enable-prefix-caching \
+  --disable-cascade-attn
 ```
 
 ## API 调用

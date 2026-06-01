@@ -26,7 +26,6 @@ vllm serve qwen/Qwen2-72B \
     --trust-remote-code \
     --dtype bfloat16 \
     --kv-cache-dtype fp8_e5m2 \
-    --port 2028
 ```
 
 ## API 调用
@@ -36,7 +35,7 @@ vllm serve qwen/Qwen2-72B \
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:2028/v1", api_key="not-needed")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
     model="qwen/Qwen2-72B",
@@ -47,7 +46,7 @@ print(response.choices[0].message.content)
 ```
 
 ```bash
-curl http://localhost:2028/v1/chat/completions \
+curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
     "model": "qwen/Qwen2-72B",

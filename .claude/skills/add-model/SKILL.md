@@ -177,7 +177,7 @@ python3 -m sglang_router.launch_router \
 
 vLLM IFB 章节只有一个 bash 代码块，无需子标题：
 
-**缩进规范**：`vllm serve <model-id> \` 单独占第一行，后续每个参数独占一行，统一缩进 **4 个空格**。
+**缩进规范**：`vllm serve <model-id> \` 单独占第一行，后续每个参数独占一行，统一缩进 **2 个空格**。
 
 ````markdown
 ### GLM-5-Channel-INT4-w4a8 IFB BW1100 8x vLLM 0.18
@@ -187,17 +187,17 @@ export VLLM_USE_MODELSCOPE=1
 export ...
 
 vllm serve hygon/GLM-5-Channel-INT4-w4a8 \
-    -q <quantization> \
-    --trust-remote-code \
-    --dtype bfloat16 \
-    -tp 8 \
-    ...
+  -q <quantization> \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  -tp 8 \
+  ...
 ```
 ````
 
 ### vLLM PD 分离章节结构
 
-vLLM PD 分离的代理（proxy）内置于 P 节点进程中，通过 `--kv-transfer-config` 的 `proxy_port` 对外暴露，无需独立 Router 进程。**缩进规范同 IFB**：`vllm serve <model-id> \` 首行，后续参数缩进 4 个空格。章节开头加一行说明 P 节点和 D node 0 的示例 IP，然后用 `####` 划分各节点：
+vLLM PD 分离的代理（proxy）内置于 P 节点进程中，通过 `--kv-transfer-config` 的 `proxy_port` 对外暴露，无需独立 Router 进程。**缩进规范同 IFB**：`vllm serve <model-id> \` 首行，后续参数缩进 2 个空格。章节开头加一行说明 P 节点和 D node 0 的示例 IP，然后用 `####` 划分各节点：
 
 ````markdown
 ### GLM-5-Channel-INT8-w8a8 1P2D BW1100 24x vLLM 0.18
@@ -212,12 +212,12 @@ export ...
 export VLLM_USE_DP_CONNECTOR=1
 
 vllm serve hygon/GLM-5-Channel-INT8-w8a8 \
-    -q slimquant_marlin \
-    --trust-remote-code \
-    ...
-    --enable-lightly-cp --enable-lightly-cplb \
-    --enforce-eager \
-    --kv-transfer-config '{"kv_connector":"DuSwiftConnectorDp","kv_role":"kv_producer","kv_buffer_size":"1e4","kv_port":"21002","kv_connector_extra_config":{"proxy_ip":"<P_node_ip>","proxy_port":"30001","http_port":"8000","send_type":"PUT_ASYNC","instance_ip":"<P_node_ip>"}}'
+  -q slimquant_marlin \
+  --trust-remote-code \
+  ...
+  --enable-lightly-cp --enable-lightly-cplb \
+  --enforce-eager \
+  --kv-transfer-config '{"kv_connector":"DuSwiftConnectorDp","kv_role":"kv_producer","kv_buffer_size":"1e4","kv_port":"21002","kv_connector_extra_config":{"proxy_ip":"<P_node_ip>","proxy_port":"30001","http_port":"8000","send_type":"PUT_ASYNC","instance_ip":"<P_node_ip>"}}'
 ```
 
 #### D node 0
@@ -228,15 +228,15 @@ export ...
 export VLLM_USE_DP_CONNECTOR=1
 
 vllm serve hygon/GLM-5-Channel-INT8-w8a8 \
-    -q slimquant_marlin \
-    --trust-remote-code \
-    ...
-    --kv-transfer-config '{"kv_connector":"DuSwiftConnectorDp","kv_role":"kv_consumer","kv_buffer_size":"1e9","kv_port":"21003","kv_connector_extra_config":{"proxy_ip":"<P_node_ip>","proxy_port":"30001","http_port":"8000","send_type":"PUT_ASYNC","instance_ip":"<D_node0_ip>"}}' \
-    --data-parallel-size-local 8 \
-    --data-parallel-address <D_node0_ip> \
-    --data-parallel-rpc-port 1127 \
-    --data-parallel-start-rank 0 \
-    --disable-custom-all-reduce
+  -q slimquant_marlin \
+  --trust-remote-code \
+  ...
+  --kv-transfer-config '{"kv_connector":"DuSwiftConnectorDp","kv_role":"kv_consumer","kv_buffer_size":"1e9","kv_port":"21003","kv_connector_extra_config":{"proxy_ip":"<P_node_ip>","proxy_port":"30001","http_port":"8000","send_type":"PUT_ASYNC","instance_ip":"<D_node0_ip>"}}' \
+  --data-parallel-size-local 8 \
+  --data-parallel-address <D_node0_ip> \
+  --data-parallel-rpc-port 1127 \
+  --data-parallel-start-rank 0 \
+  --disable-custom-all-reduce
 ```
 
 #### D node 1

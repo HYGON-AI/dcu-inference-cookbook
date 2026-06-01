@@ -48,7 +48,6 @@ Qwen3.5 是 Qwen3 系列的增强版本，在推理能力、代码生成、多�
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 
 vllm serve Qwen/Qwen3.5-4B \
@@ -64,7 +63,6 @@ vllm serve Qwen/Qwen3.5-4B \
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 
 vllm serve Qwen/Qwen3.5-4B \
@@ -92,7 +90,6 @@ vllm serve Qwen/Qwen3.5-4B \
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 
 vllm serve Qwen/Qwen3.5-9B \
@@ -108,7 +105,6 @@ vllm serve Qwen/Qwen3.5-9B \
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 
 vllm serve Qwen/Qwen3.5-9B \
@@ -136,7 +132,6 @@ vllm serve Qwen/Qwen3.5-9B \
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 
 vllm serve Qwen/Qwen3.5-27B \
@@ -152,7 +147,6 @@ vllm serve Qwen/Qwen3.5-27B \
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 
 vllm serve Qwen/Qwen3.5-27B \
@@ -262,8 +256,9 @@ vllm serve Qwen/Qwen3.5-27B-W8A8-INT8 \
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3.5-35B-A3B \
     -tp 1 \
@@ -278,8 +273,9 @@ vllm serve Qwen/Qwen3.5-35B-A3B \
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3.5-35B-A3B \
     -tp 2 \
@@ -360,8 +356,9 @@ vllm serve Qwen/Qwen3.5-35B-A3B-W8A8-INT8 \
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3.5-122B-A10B \
     -tp 4 \
@@ -376,8 +373,9 @@ vllm serve Qwen/Qwen3.5-122B-A10B \
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3.5-122B-A10B \
     -tp 8 \

@@ -37,10 +37,10 @@ Qwen3.5 是 Qwen3 系列的增强版本，在推理能力、代码生成、多�
 |                                                                                               | INT8 W8A8 | 0.18 | BW1000  | 4 | IFB | [**`>_`**](#qwen35-122b-a10b-w8a8-int8-ifb-bw1000-4x-vllm-018) |
 |                                                                                               | INT8 W8A8 | 0.18 | K100_AI | 4 | IFB | [**`>_`**](#qwen35-122b-a10b-w8a8-int8-ifb-k100_ai-4x-vllm-018) |
 | [Qwen/Qwen3.5-122B-A10B-W8A8-FP8](https://modelscope.cn/models/hygon/Qwen3.5-122B-A10B-Channel-FP8-w8a8)    | FP8 W8A8  | 0.18 | BW1100  | 2 | IFB | [**`>_`**](#qwen35-122b-a10b-w8a8-fp8-ifb-bw1100-2x-vllm-018) |
-| [Qwen/Qwen3.5-397B-A17B-W8A8-INT8](https://modelscope.cn/models/hygon/Qwen3.5-397B-A17B-Channel-INT8-w8a8) | INT8 W8A8 | 0.18 | BW1100  | 4 | IFB | [**`>_`**](#qwen35-397b-a17b-w8a8-int8-ifb-bw1100-4x-vllm-018) |
+| [Qwen/Qwen3.5-397B-A17B-W8A8-INT8](https://modelscope.cn/models/hygon/Qwen3.5-397B-A17B-Channel-INT8-w8a8) | INT8 W8A8 | 0.18 | BW1100  | 8 | IFB | [**`>_`**](#qwen35-397b-a17b-w8a8-int8-ifb-bw1100-8x-vllm-018) |
 |                                                                                                | INT8 W8A8 | 0.18 | BW1000  | 8 | IFB | [**`>_`**](#qwen35-397b-a17b-w8a8-int8-ifb-bw1000-8x-vllm-018) |
 |                                                                                                | INT8 W8A8 | 0.18 | K100_AI | 8 | IFB | [**`>_`**](#qwen35-397b-a17b-w8a8-int8-ifb-k100_ai-8x-vllm-018) |
-| [Qwen/Qwen3.5-397B-A17B-W8A8-FP8](https://modelscope.cn/models/Qwen/Qwen3.5-397B-A17B-W8A8-FP8) | FP8 W8A8 | 0.18 | BW1100  | 4 | IFB | [**`>_`**](#qwen35-397b-a17b-w8a8-fp8-ifb-bw1100-4x-vllm-018) |
+| [Qwen/Qwen3.5-397B-A17B-W8A8-FP8](https://modelscope.cn/models/Qwen/Qwen3.5-397B-A17B-W8A8-FP8) | FP8 W8A8 | 0.18 | BW1100  | 8 | IFB | [**`>_`**](#qwen35-397b-a17b-w8a8-fp8-ifb-bw1100-8x-vllm-018) |
 
 ## 启动命令
 
@@ -485,7 +485,7 @@ vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
 
 <!-- TODO: 启动命令待补充 -->
 
-### Qwen3.5-397B-A17B-W8A8-INT8 IFB BW1100 4x vLLM 0.18
+### Qwen3.5-397B-A17B-W8A8-INT8 IFB BW1100 8x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
@@ -493,7 +493,7 @@ export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 
 vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
-  -tp 4 \
+  -tp 8 \
   --disable-cascade-attn \
   --max-num-batched-tokens 10240 \
   --trust-remote-code \
@@ -536,7 +536,7 @@ vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
   --speculative-config.num_speculative_tokens 3 
 ```
 
-### Qwen3.5-397B-A17B-W8A8-FP8 IFB BW1100 4x vLLM 0.18
+### Qwen3.5-397B-A17B-W8A8-FP8 IFB BW1100 8x vLLM 0.18
 
 <!-- TODO: 启动命令待补充 -->
 

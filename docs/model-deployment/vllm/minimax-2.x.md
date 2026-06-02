@@ -21,7 +21,6 @@ MiniMax-2.x 是 MiniMax 推出的大规模 MoE（混合专家）语言模型系�
 ### MiniMax-M2.5-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.15.1
 
 ```bash
-export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export NCCL_MIN_NCHANNELS=16
 export NCCL_MAX_NCHANNELS=16
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
@@ -75,7 +74,6 @@ vllm serve /hygon/MiniMax-M2.5-W8A8 \
 ### MiniMax-M2.5-Channel-INT8-w8a8 IFB BW1000 8x vLLM 0.15.1
 
 ```bash
-export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export NCCL_MIN_NCHANNELS=16
 export NCCL_MAX_NCHANNELS=16
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
@@ -128,7 +126,7 @@ vllm serve /hygon/MiniMax-M2.5-W8A8 \
 export VLLM_ROCM_USE_AITER_MOE=0
 export VLLM_HCU_USE_PD_SPLIT=1
 
-vllm serve /mnt/MiniMax-M2.5-W8A8 \
+vllm serve /hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
   -tp 8 \
   --trust-remote-code \
   --max-model-len 73216 \
@@ -145,7 +143,6 @@ vllm serve /mnt/MiniMax-M2.5-W8A8 \
 ### MiniMax-M2.5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.15.1
 
 ```bash
-export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export NCCL_MIN_NCHANNELS=16
 export NCCL_MAX_NCHANNELS=16
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
@@ -242,7 +239,6 @@ vllm serve /hygon/MiniMax-M2.5-bf16 \
 ### MiniMax-M2.5-bf16 IFB BW1000 8x vLLM 0.15.1
 
 ```bash
-export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export NCCL_MIN_NCHANNELS=16
 export NCCL_MAX_NCHANNELS=16
 export ALLREDUCE_STREAM_WITH_COMPUTE=1

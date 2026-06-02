@@ -15,6 +15,7 @@ GLM-4.7 是智谱 AI 推出的大语言模型，支持长上下文和高效推�
 ### GLM-4.7-W8A8 IFB BW1100 8x vLLM 0.18
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 
 vllm serve metax-tech/GLM-4.7-W8A8 \

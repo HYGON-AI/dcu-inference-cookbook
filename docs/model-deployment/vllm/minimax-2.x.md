@@ -54,7 +54,7 @@ export VLLM_USE_OPT_OP=1
 export VLLM_USE_AITER_MOE_W8A8=0
 
 
-vllm serve /hygon/MiniMax-M2.5-W8A8 \
+vllm serve hygon/MiniMax-M2.5-W8A8 \
   --host 0.0.0.0 \
   --trust-remote-code \
   -tp 4 -pp 2 \
@@ -290,7 +290,7 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
-    model="/hygon/MiniMax-M2.5-W8A8",
+    model="hygon/MiniMax-M2.5-W8A8",
     messages=[
         {"role": "system", "content": "你是一个专业的 AI 助手。"},
         {"role": "user", "content": "请详细分析大模型在金融领域的应用前景"},
@@ -304,7 +304,7 @@ print(response.choices[0].message.content)
 curl -X POST http://localhost:8000/v1/chat/completions \
 -H "Content-Type: application/json" \
 -d '{
-    "model": "/hygon/MiniMax-M2.5-W8A8",
+    "model": "hygon/MiniMax-M2.5-W8A8",
     "messages": [
         {"role": "user", "content": "中国的首都是哪里？"}
     ],

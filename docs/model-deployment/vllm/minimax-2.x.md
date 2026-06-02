@@ -12,7 +12,7 @@ MiniMax-2.x 是 MiniMax 推出的大规模 MoE（混合专家）语言模型系�
 | [hygon/MiniMax-M2.5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-Channel-INT8-w8a8) | INT8 W8A8 | 0.15.1 | BW1100 | 8x | IFB | [**\`>_\`**](#minimax-m25-channel-int8-w8a8-ifb-bw1100-8x-vllm-0151) |
 |  | INT8 W8A8 | 0.15.1 | BW1000 | 8x | IFB | [**\`>_\`**](#minimax-m25-channel-int8-w8a8-ifb-bw1000-8x-vllm-0151) |
 | [hygon/MiniMax-M2.5-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-Channel-FP8-w8a8) | FP8 W8A8 | 0.15.1 | BW1100 | 8x | IFB | [**\`>_\`**](#minimax-m25-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0151) |
-|  | FP8 W8A8 | 0.18.1 | BW1100 | 4x | IFB | [**\`>_\`**](#minimax-m25-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0181) |
+|  | FP8 W8A8 | 0.18.1 | BW1100 | 8x | IFB | [**\`>_\`**](#minimax-m25-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0181) |
 | [hygon/MiniMax-M2.5-bf16](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-bf16) | BF16 | 0.15.1 | BW1100 | 8x | IFB | [**\`>_\`**](#minimax-m25-bf16-ifb-bw1100-8x-vllm-0151) |
 |  | BF16 | 0.15.1 | BW1000 | 8x | IFB | [**\`>_\`**](#minimax-m25-bf16-ifb-bw1000-8x-vllm-0151) |
 

@@ -8,12 +8,15 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
+| [Qwen/Qwen3-0.6B](https://www.modelscope.cn/models/Qwen/Qwen3-0.6B)           | BF16 | 0.18 | BW1000  | 1 | IFB | [**`>_`**](#qwen3-06b-ifb-bw1000-1x-vllm-018)           |
 | [Qwen/Qwen3-0.6B](https://www.modelscope.cn/models/Qwen/Qwen3-0.6B)           | BF16 | 0.15 | BW1000  | 1 | IFB | [**`>_`**](#qwen3-06b-ifb-bw1000-1x-vllm-015)           |
 | [Qwen/Qwen3-1.7B](https://www.modelscope.cn/models/Qwen/Qwen3-1.7B)           | BF16 | 0.15 | BW1000  | 1 | IFB | - |
+| [Qwen/Qwen3-4B](https://www.modelscope.cn/models/Qwen/Qwen3-4B)               | BF16 | 0.18 | BW1000  | 1 | IFB | [**`>_`**](#qwen3-4b-ifb-bw1000-1x-vllm-018) |
 | [Qwen/Qwen3-4B](https://www.modelscope.cn/models/Qwen/Qwen3-4B)               | BF16 | 0.15 | BW1000  | 1 | IFB | - |
 | [Qwen/Qwen3-8B](https://www.modelscope.cn/models/Qwen/Qwen3-8B)               | BF16 | 0.15 | BW1000  | 1 | IFB | - |
 | [Qwen/Qwen3-14B](https://www.modelscope.cn/models/Qwen/Qwen3-14B)             | BF16 | 0.15 | BW1000  | 1 | IFB | - |
 | [Qwen/Qwen3-32B](https://www.modelscope.cn/models/Qwen/Qwen3-32B)             | BF16 | 0.15 | BW1100  | 1 | IFB | - |
+| [Qwen/Qwen3-30B-A3B](https://www.modelscope.cn/models/Qwen/Qwen3-30B-A3B)     | BF16 | 0.18 | BW1000  | 2 | IFB | [**`>_`**](#qwen3-30b-a3b-ifb-bw1000-2x-vllm-018) |
 | [Qwen/Qwen3-30B-A3B](https://www.modelscope.cn/models/Qwen/Qwen3-30B-A3B)     | BF16 | 0.15 | BW1000  | 2 | IFB | [**`>_`**](#qwen3-30b-a3b-ifb-bw1000-2x-vllm-015)       |
 |                                                                               | BF16 | 0.15 | BW1100  | 1 | IFB | - |
 | [Qwen/Qwen3-235B-A22B](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B) | BF16 | 0.15 | BW1100  | 4 | IFB | - |
@@ -38,6 +41,37 @@ vllm serve Qwen/Qwen3-0.6B \
   --disable-cascade-attn \
   -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
 ```
+### Qwen3-0.6B IFB BW1000 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_HCU_USE_PD_SPLIT=1
+vllm serve Qwen/Qwen3-0.6B \
+    -tp 1 \
+    --trust-remote-code \
+    --disable-log-requests \
+    --dtype bfloat16 \
+    --disable-cascade-attn \
+    -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
+```
+
+### Qwen3-4B IFB BW1000 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_HCU_USE_PD_SPLIT=1
+
+vllm serve Qwen/Qwen3-0.6B \
+    -tp 1 \
+    --trust-remote-code \
+    --disable-log-requests \
+    --dtype bfloat16 \
+    --disable-cascade-attn \
+    --max-num-batched-tokens 10240 \
+    --kv-cache-dtype fp8_e5m2 \
+    -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
+```
+
 
 ### Qwen3-30B-A3B IFB BW1000 2x vLLM 0.15
 
@@ -50,6 +84,19 @@ vllm serve Qwen/Qwen3-30B-A3B \
   --dtype float16 \
   --disable-cascade-attn \
   -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
+```
+
+### Qwen3-30B-A3B IFB BW1000 2x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
+vllm serve Qwen3/Qwen3-30B-A3B-Instruct-2507 \
+    -tp 2 \
+    --trust-remote-code \
+    --max-num-batched-tokens 10240 \
 ```
 
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 8x vLLM 0.15

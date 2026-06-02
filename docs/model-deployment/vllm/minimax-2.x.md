@@ -11,8 +11,8 @@ MiniMax-2.x 是 MiniMax 推出的大规模 MoE（混合专家）语言模型系�
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
 | [hygon/MiniMax-M2.5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-Channel-INT8-w8a8) | INT8 W8A8 | 0.15.1 | BW1100 | 8x | IFB | [**\`>_\`**](#minimax-m25-channel-int8-w8a8-ifb-bw1100-8x-vllm-0151) |
 |  | INT8 W8A8 | 0.15.1 | BW1000 | 8x | IFB | [**\`>_\`**](#minimax-m25-channel-int8-w8a8-ifb-bw1000-8x-vllm-0151) |
-| [hygon/MiniMax-M2.5-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-Channel-FP8-w8a8) | FP8 W8A8 | 0.15.1 | BW1100 | 8x | IFB | [**\`>_\`**](#minimax-m25-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0151) |
-|  | FP8 W8A8 | 0.18.1 | BW1100 | 8x | IFB | [**\`>_\`**](#minimax-m25-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0181) |
+| [hygon/MiniMax-M2.5-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-Channel-FP8-w8a8) | FP8 W8A8 | 0.18.1 | BW1100 | 8x | IFB | [**\`>_\`**](#minimax-m25-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0181) |
+|  | FP8 W8A8 | 0.15.1 | BW1100 | 8x | IFB | [**\`>_\`**](#minimax-m25-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0151) |
 | [hygon/MiniMax-M2.5-bf16](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-bf16) | BF16 | 0.15.1 | BW1100 | 8x | IFB | [**\`>_\`**](#minimax-m25-bf16-ifb-bw1100-8x-vllm-0151) |
 |  | BF16 | 0.15.1 | BW1000 | 8x | IFB | [**\`>_\`**](#minimax-m25-bf16-ifb-bw1000-8x-vllm-0151) |
 
@@ -122,6 +122,27 @@ vllm serve /hygon/MiniMax-M2.5-W8A8 \
   --disable-cascade-attn 
 ```
 
+### MiniMax-M2.5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18.1
+
+```bash
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export VLLM_ROCM_USE_AITER_MOE=0
+export VLLM_HCU_USE_PD_SPLIT=1
+
+vllm serve /mnt/MiniMax-M2.5-W8A8 \
+  -tp 8 \
+  --trust-remote-code \
+  --max-model-len 73216 \
+  --max-num-batched-tokens 16384 \
+  --enable-prefix-caching \
+  --gpu-memory-utilization 0.92 \
+  --kv-cache-dtype fp8_e4m3 \
+  -cc '{"pass_config": {"fuse_act_quant": false},
+        "cudagraph_mode": "full",
+        "custom_ops": ["all"]}' \
+  -q slimquant_marlin
+```
+
 ### MiniMax-M2.5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.15.1
 
 ```bash
@@ -170,27 +191,6 @@ vllm serve /hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
   --disable-cascade-attn \
   -q slimquant_marlin 
 
-```
-
-### MiniMax-M2.5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18.1
-
-```bash
-export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-export VLLM_ROCM_USE_AITER_MOE=0
-export VLLM_HCU_USE_PD_SPLIT=1
-
-vllm serve /mnt/MiniMax-M2.5-W8A8 \
-  -tp 8 \
-  --trust-remote-code \
-  --max-model-len 73216 \
-  --max-num-batched-tokens 16384 \
-  --enable-prefix-caching \
-  --gpu-memory-utilization 0.92 \
-  --kv-cache-dtype fp8_e4m3 \
-  -cc '{"pass_config": {"fuse_act_quant": false},
-        "cudagraph_mode": "full",
-        "custom_ops": ["all"]}' \
-  -q slimquant_marlin
 ```
 
 ### MiniMax-M2.5-bf16 IFB BW1100 8x vLLM 0.15.1

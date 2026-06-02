@@ -169,9 +169,6 @@ vllm serve /hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
 ### MiniMax-M2.5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18.1
 
 ```bash
-rm -rf ~/.cache
-rm -rf ~/.triton
-rm -rf /tmp/torchinductor_root/
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export VLLM_ROCM_USE_AITER_MOE=0
 export VLLM_HCU_USE_PD_SPLIT=1

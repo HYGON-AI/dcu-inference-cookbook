@@ -174,7 +174,7 @@ rm -rf ~/.triton
 rm -rf /tmp/torchinductor_root/
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export VLLM_ROCM_USE_AITER_MOE=0
-export VLLM_USE_PIECEWISE=1
+export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve /mnt/MiniMax-M2.5-W8A8 \
     -tp 8 \

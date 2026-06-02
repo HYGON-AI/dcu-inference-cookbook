@@ -117,29 +117,9 @@ vllm serve /hygon/MiniMax-M2.5-W8A8 \
   --enable-prefix-caching \
   --disable-cascade-attn 
 ```
-### MiniMax-M2.5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18.1
-
-```bash
-rm -rf ~/.cache
-rm -rf ~/.triton
-rm -rf /tmp/torchinductor_root/
-export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-export VLLM_ROCM_USE_AITER_MOE=0
-export VLLM_USE_PIECEWISE=1
-
-vllm serve /mnt/MiniMax-M2.5-W8A8 \
-    -tp 8 \
-    --trust-remote-code \
-    --max-model-len 73216 \
-    --max-num-batched-tokens 16384 \
-    --enable-prefix-caching \
-    --gpu-memory-utilization 0.92 \
-    --kv-cache-dtype fp8_e4m3 \
-    -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
-    -q slimquant_marlin
-```
 
 ### MiniMax-M2.5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.15.1
+
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export NCCL_MIN_NCHANNELS=16
@@ -185,7 +165,31 @@ vllm serve /hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
   -q slimquant_marlin 
 
 ```
+
+### MiniMax-M2.5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18.1
+
+```bash
+rm -rf ~/.cache
+rm -rf ~/.triton
+rm -rf /tmp/torchinductor_root/
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export VLLM_ROCM_USE_AITER_MOE=0
+export VLLM_USE_PIECEWISE=1
+
+vllm serve /mnt/MiniMax-M2.5-W8A8 \
+    -tp 8 \
+    --trust-remote-code \
+    --max-model-len 73216 \
+    --max-num-batched-tokens 16384 \
+    --enable-prefix-caching \
+    --gpu-memory-utilization 0.92 \
+    --kv-cache-dtype fp8_e4m3 \
+    -cc '{"pass_config": {"fuse_act_quant": false}, "cudagraph_mode": "full", "custom_ops": ["all"]}' \
+    -q slimquant_marlin
+```
+
 ### MiniMax-M2.5-bf16 IFB BW1100 8x vLLM 0.15.1
+
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export NCCL_MIN_NCHANNELS=16
@@ -228,7 +232,9 @@ vllm serve /hygon/MiniMax-M2.5-bf16 \
   --kv-cache-dtype fp8_e4m3 \
   --disable-cascade-attn
 ```
+
 ### MiniMax-M2.5-bf16 IFB BW1000 8x vLLM 0.15.1
+
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export NCCL_MIN_NCHANNELS=16
@@ -291,8 +297,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-```python
-
+```bash
 curl -X POST http://localhost:8000/v1/chat/completions \
 -H "Content-Type: application/json" \
 -d '{

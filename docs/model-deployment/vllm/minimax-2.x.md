@@ -192,7 +192,6 @@ vllm serve /hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
 ### MiniMax-M2.5-bf16 IFB BW1100 8x vLLM 0.15.1
 
 ```bash
-export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export NCCL_MIN_NCHANNELS=16
 export NCCL_MAX_NCHANNELS=16
 export ALLREDUCE_STREAM_WITH_COMPUTE=1

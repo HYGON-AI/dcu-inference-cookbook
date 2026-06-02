@@ -104,7 +104,7 @@ export VLLM_USE_LIGHTOP_FUSED_TOPP_TOPK=1
 export VLLM_USE_OPT_OP=1
 export VLLM_USE_AITER_MOE_W8A8=0
 
-vllm serve /hygon/MiniMax-M2.5-W8A8 \
+vllm serve hygon/MiniMax-M2.5-W8A8 \
   --host 0.0.0.0 \
   --trust-remote-code \
   -tp 8 \
@@ -126,7 +126,7 @@ vllm serve /hygon/MiniMax-M2.5-W8A8 \
 export VLLM_ROCM_USE_AITER_MOE=0
 export VLLM_HCU_USE_PD_SPLIT=1
 
-vllm serve /hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
+vllm serve hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
   -tp 8 \
   --trust-remote-code \
   --max-model-len 73216 \
@@ -171,7 +171,7 @@ export VLLM_USE_OPT_OP=1
 export VLLM_USE_AITER_MOE_W8A8=0
 
 
-vllm serve /hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
+vllm serve hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
   --host 0.0.0.0 \
   --trust-remote-code \
   -tp 4 -pp 2 \
@@ -219,7 +219,7 @@ export VLLM_USE_OPT_OP=1
 export VLLM_USE_AITER_MOE_W8A8=0
 
 
-vllm serve /hygon/MiniMax-M2.5-bf16 \
+vllm serve hygon/MiniMax-M2.5-bf16 \
   --host 0.0.0.0 \
   --trust-remote-code \
   -tp 8 \
@@ -265,7 +265,7 @@ export VLLM_USE_OPT_OP=1
 export VLLM_USE_AITER_MOE_W8A8=0
 
 
-vllm serve /hygon/MiniMax-M2.5-bf16 \
+vllm serve hygon/MiniMax-M2.5-bf16 \
   --host 0.0.0.0 \
   --trust-remote-code \
   -tp 8 \

@@ -357,6 +357,16 @@
       <td>SGLang</td>
       <td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/mimo-v2-flash.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/mimo-v2-flash.md">✅</a></td>
     </tr>
+    <tr>
+      <td rowspan="2" align="center">Wan</td>
+      <td rowspan="2">Wan2.2-I2V</td>
+      <td>vLLM-Omni</td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/wan2.2-i2v.md">✅</a></td><td align="center">🚧</td>
+    </tr>
+    <tr>
+      <td>SGLang</td>
+      <td align="center">-</td><td align="center">-</td><td align="center">-</td>
+    </tr>
   </tbody>
 </table>
 

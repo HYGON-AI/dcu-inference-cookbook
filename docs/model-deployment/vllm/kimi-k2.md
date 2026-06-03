@@ -8,22 +8,22 @@ Kimi-K2 是月之暗面（Moonshot AI）推出的新一代大语言模型，以�
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [moonshotai/Kimi-K2-Instruct](https://www.modelscope.cn/models/moonshotai/Kimi-K2-Instruct) | FP8 W8A8 | 0.18 | BW1100 | 16 | IFB | [**`>_`**](#kimi-k2-instruct-ifb-bw1100-16x-vllm-018) |
+| [moonshotai/Kimi-K2-Instruct](https://www.modelscope.cn/models/moonshotai/Kimi-K2-Instruct) | FP8 W8A8 | 0.15 | BW1100 | 16 | IFB | [**`>_`**](#kimi-k2-instruct-ifb-bw1100-16x-vllm-015) |
 
 ## 启动命令
 
-### Kimi-K2-Instruct IFB BW1100 16x vLLM 0.18
+### Kimi-K2-Instruct IFB BW1100 16x vLLM 0.15
 
 ```bash
 export VLLM_USE_MODELSCOPE=1
 
 vllm serve moonshotai/Kimi-K2-Instruct \
-    --trust-remote-code \
-    --dtype bfloat16 \
-    -tp 16 \
-    --max-model-len 65536 \
-    --gpu-memory-utilization 0.90 \
-    --disable-log-requests
+  --trust-remote-code \
+  --dtype bfloat16 \
+  -tp 16 \
+  --max-model-len 65536 \
+  --gpu-memory-utilization 0.90 \
+  --disable-log-requests
 ```
 
 ## API 调用

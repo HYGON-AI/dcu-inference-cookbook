@@ -21,6 +21,8 @@
 
 ## 📋 模型列表
 
+✅ 已验证 &nbsp;|&nbsp; 🚧 开发中 &nbsp;|&nbsp; `-` 暂未验证
+
 <table>
   <tr>
     <td align="center"><b>厂商</b></td>
@@ -32,19 +34,19 @@
   </tr>
   <tbody>
     <tr>
-      <td rowspan="18" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/620760a26e3b7210c2ff1943/-s1gyJfvbE1RgO5iBeNOi.png" height="40"/><br/>Qwen</td>
+      <td rowspan="22" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/620760a26e3b7210c2ff1943/-s1gyJfvbE1RgO5iBeNOi.png" height="40"/><br/>Qwen</td>
       <td rowspan="2">Qwen3.6</td>
       <td>vLLM</td>
       <td align="center">🚧</td><td align="center">🚧</td><td align="center">🚧</td>
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">🚧</td><td align="center">🚧</td><td align="center">🚧</td>
+      <td align="center">🚧</td><td align="center">🚧</td><td align="center"><a href="docs/model-deployment/sglang/qwen3.6.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">Qwen3.5</td>
       <td>vLLM</td>
-      <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/qwen3.5.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwen3.5.md">✅</a></td>
+      <td align="center"><a href="docs/model-deployment/vllm/qwen3.5.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwen3.5.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwen3.5.md">✅</a></td>
     </tr>
     <tr>
       <td>SGLang</td>
@@ -89,7 +91,7 @@
     <tr>
       <td rowspan="2">Qwen3</td>
       <td>vLLM</td>
-      <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/qwen3.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwen3.md">✅</a></td>
+      <td align="center"><a href="docs/model-deployment/vllm/qwen3.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwen3.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwen3.md">✅</a></td>
     </tr>
     <tr>
       <td>SGLang</td>
@@ -98,7 +100,7 @@
     <tr>
       <td rowspan="2">Qwen2.5-VL</td>
       <td>vLLM</td>
-      <td align="center">🚧</td><td align="center">🚧</td><td align="center">🚧</td>
+      <td align="center">🚧</td><td align="center"><a href="docs/model-deployment/vllm/qwen2.5-vl.md">✅</a></td><td align="center">🚧</td>
     </tr>
     <tr>
       <td>SGLang</td>
@@ -112,6 +114,24 @@
     <tr>
       <td>SGLang</td>
       <td align="center">🚧</td><td align="center">🚧</td><td align="center">🚧</td>
+    </tr>
+    <tr>
+      <td rowspan="2">Qwen2-VL</td>
+      <td>vLLM</td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/qwen2-vl.md">✅</a></td><td align="center">-</td>
+    </tr>
+    <tr>
+      <td>SGLang</td>
+      <td align="center">-</td><td align="center">-</td><td align="center">-</td>
+    </tr>
+    <tr>
+      <td rowspan="2">Qwen2-72B</td>
+      <td>vLLM</td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/qwen2.md">✅</a></td><td align="center">-</td>
+    </tr>
+    <tr>
+      <td>SGLang</td>
+      <td align="center">-</td><td align="center">-</td><td align="center">-</td>
     </tr>
     <tr>
       <td rowspan="10" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6538815d1bdb3c40db94fbfa/xMBly9PUMphrFVMxLX4kq.png" height="40"/><br/>DeepSeek</td>
@@ -153,7 +173,7 @@
     <tr>
       <td rowspan="2">DeepSeek-R1</td>
       <td>vLLM</td>
-      <td align="center">-</td><td align="center">-</td><td align="center">-</td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/deepseek-r1.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/deepseek-r1.md">✅</a></td>
     </tr>
     <tr>
       <td>SGLang</td>
@@ -195,7 +215,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">-</td><td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/glm-5.md">✅</a></td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/glm-5.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/glm-5.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">GLM-4.7</td>
@@ -278,7 +298,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">-</td><td align="center">-</td><td align="center">-</td>
+      <td align="center">-</td><td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/minimax-m2.7.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">MiniMax-M2.5</td>
@@ -335,10 +355,11 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">-</td><td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/mimo-v2-flash.md">✅</a></td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/mimo-v2-flash.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/mimo-v2-flash.md">✅</a></td>
     </tr>
   </tbody>
 </table>
+
 
 ## 🤝 贡献
 

@@ -123,8 +123,6 @@ export VLLM_USE_CAT_MLA=1
 export VLLM_USE_LIGHTOP=1
 export VLLM_USE_LIGHTOP_FILL_MOE_ALIGN=1
 
-
-
 vllm serve hygon/DeepSeek-R1-Channel-FP8-w8a8\
   --trust-remote-code \
   -q slimquant_marlin \

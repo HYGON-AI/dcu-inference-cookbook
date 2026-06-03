@@ -111,7 +111,7 @@ export VLLM_RANK5_NUMA=2
 export VLLM_RANK6_NUMA=3
 export VLLM_RANK7_NUMA=3
 
-vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
+vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --dtype float16 \
   --trust-remote-code \
   -tp 8 \
@@ -130,7 +130,7 @@ export VLLM_RANK5_NUMA=3
 export VLLM_RANK6_NUMA=3
 export VLLM_RANK7_NUMA=3
 
-vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
+vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --dtype float16 \
   --trust-remote-code \
   -tp 8 \
@@ -152,7 +152,7 @@ export VLLM_RANK6_NUMA=3
 export VLLM_RANK7_NUMA=3
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 
-vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
+vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --dtype float16 \
   --trust-remote-code \
   -tp 8 \

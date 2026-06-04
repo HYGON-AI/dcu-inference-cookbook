@@ -22,7 +22,7 @@ description: Guide for adding a new model deployment doc to dcu-inference-cookbo
 4. **硬件平台**：从 `K100_AI`、`BW1000`、`BW1100` 中选择，可多选（其他值需要用户重新输入）
 
 5. **启动命令**：
-   - 若用户提供了完整的 `vllm serve` 或 `sglang serve` 命令，**原样采用，不做任何修改**
+   - 若用户提供了完整的 `vllm serve` 或 `sglang serve` 命令，**可以对齐格式（缩进、换行等），但是内容不做任何修改**
    - 若用户未提供，根据模型信息和硬件平台**生成模板命令**，告知用户可按需修改
 
 收集完以上全部信息后，再按照下方规范生成文档。

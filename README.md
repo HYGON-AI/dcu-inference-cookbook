@@ -368,7 +368,7 @@
       <td align="center">-</td><td align="center">-</td><td align="center">-</td>
     </tr>
     <tr>
-      <td align="center">BAAI</td>
+      <td align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/1664511063789-632c234f42c386ebd2710434.png" height="40"/><br/>BAAI</td>
       <td>bge-reranker-v2-minicpm-layerwise</td>
       <td>Infinity</td>
       <td align="center">-</td><td align="center"><a href="docs/model-deployment/infinity/bge-reranker-v2-minicpm-layerwise.md">✅</a></td><td align="center">-</td>

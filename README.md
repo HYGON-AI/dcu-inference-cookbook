@@ -367,6 +367,12 @@
       <td>SGLang</td>
       <td align="center">-</td><td align="center">-</td><td align="center">-</td>
     </tr>
+    <tr>
+      <td align="center">BAAI</td>
+      <td>bge-reranker-v2-minicpm-layerwise</td>
+      <td>Infinity</td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/infinity/bge-reranker-v2-minicpm-layerwise.md">✅</a></td><td align="center">-</td>
+    </tr>
   </tbody>
 </table>
 

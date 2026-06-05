@@ -358,7 +358,7 @@
       <td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/mimo-v2-flash.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/mimo-v2-flash.md">✅</a></td>
     </tr>
     <tr>
-      <td rowspan="2" align="center">Wan</td>
+      <td rowspan="2" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/67b610677ea7952def8b29c6/N6jQbbeaa_FcUY-wI1dgG.png" height="40"/><br/>Wan</td>
       <td rowspan="2">Wan2.2-I2V</td>
       <td>vLLM-Omni</td>
       <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/wan2.2-i2v.md">✅</a></td><td align="center">🚧</td>

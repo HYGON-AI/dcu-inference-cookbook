@@ -159,19 +159,34 @@ curl http://0.0.0.0:8000/v1/completions -H "Content-Type: application/json" -d '
 ### DeepSeek-V3-0324-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18.1
 
 ```bash
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export NCCL_MAX_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export Allgather_Base_STREAM_WITH_COMPUTE=1
+export SENDRECV_STREAM_WITH_COMPUTE=1
+export HIP_KERNEL_EVENT_SYSTENFENCE=1
 export VLLM_HCU_USE_FLASHMLA=1
 
-vllm serve hygon/DeepSeek-V3-Channel-FP8-w8a8 \
-    --trust-remote-code   \
+vllm serve hygon/DeepSeek-V3-0324-Channel-FP8-w8a8 \
+    --trust-remote-code \
     -q slimquant_marlin \
-    --dtype bfloat16  \
-    -tp 8   \
-    --max-model-len 65536  \
+    -tp 8 \
+    --dtype bfloat16 \
+    --max-model-len 35000 \
     --gpu-memory-utilization 0.90 \
     --max-num-batched-tokens 16384 \
-    --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
-    --kv-cache-dtype fp8 \
-    --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3,"quantization": "slimquant_marlin"}'
+    --compilation-config '{
+        "cudagraph_mode": "PIECEWISE",
+        "pass_config": {
+            "fuse_act_quant": false
+        }
+    }' \
+    --speculative_config '{
+        "method": "deepseek_mtp",
+        "num_speculative_tokens": 2,
+        "quantization": "slimquant_marlin"
+    }' \
+    --kv-cache-dtype fp8_e4m3
 ```
 ## API 调用
 

@@ -175,18 +175,9 @@ vllm serve hygon/DeepSeek-V3-0324-Channel-FP8-w8a8 \
     --max-model-len 35000 \
     --gpu-memory-utilization 0.90 \
     --max-num-batched-tokens 16384 \
-    --compilation-config '{
-        "cudagraph_mode": "PIECEWISE",
-        "pass_config": {
-            "fuse_act_quant": false
-        }
-    }' \
-    --speculative_config '{
-        "method": "deepseek_mtp",
-        "num_speculative_tokens": 2,
-        "quantization": "slimquant_marlin"
-    }' \
-    --kv-cache-dtype fp8_e4m3
+    --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
+    --kv-cache-dtype fp8 \
+    --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3,"quantization": "slimquant_marlin"}'
 ```
 ## API 调用
 

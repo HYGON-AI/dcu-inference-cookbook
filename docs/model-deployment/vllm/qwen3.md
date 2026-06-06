@@ -283,7 +283,7 @@ vllm serve /public/opendas/DL_DATA/llm-models/qwen3/Qwen3-235B-A22B-Instruct-250
   --max-model-len 40960
 ```
 
-### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 8x vLLM 0.18
+### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 4x vLLM 0.18
 
 <!-- TODO: 启动命令待补充 -->
 

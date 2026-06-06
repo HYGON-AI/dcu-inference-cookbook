@@ -159,12 +159,8 @@ curl http://0.0.0.0:8000/v1/completions -H "Content-Type: application/json" -d '
 ### DeepSeek-V3-0324-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18.1
 
 ```bash
-export ALLREDUCE_STREAM_WITH_COMPUTE=1
 export NCCL_MAX_NCHANNELS=16
 export NCCL_MIN_NCHANNELS=16
-export Allgather_Base_STREAM_WITH_COMPUTE=1
-export SENDRECV_STREAM_WITH_COMPUTE=1
-export HIP_KERNEL_EVENT_SYSTENFENCE=1
 export VLLM_HCU_USE_FLASHMLA=1
 
 vllm serve hygon/DeepSeek-V3-0324-Channel-FP8-w8a8 \

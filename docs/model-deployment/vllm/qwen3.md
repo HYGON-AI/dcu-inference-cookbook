@@ -76,6 +76,26 @@ vllm serve Qwen/Qwen3-0.6B \
     -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
 ```
 
+### Qwen3-0.6B IFB BW1100 1x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
+
+### Qwen3-0.6B IFB K100_AI 1x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
+
+### Qwen3-1.7B IFB BW1100 1x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
+
+### Qwen3-1.7B IFB BW1000 1x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
+
+### Qwen3-1.7B IFB K100_AI 1x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
+
 ### Qwen3-4B IFB BW1000 1x vLLM 0.18
 
 ```bash
@@ -95,6 +115,14 @@ vllm serve Qwen/Qwen3-0.6B \
     --kv-cache-dtype fp8_e5m2 \
     -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
 ```
+
+### Qwen3-4B IFB BW1100 1x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
+
+### Qwen3-4B IFB K100_AI 1x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-8B IFB BW1100 1x vLLM 0.18
 
@@ -164,6 +192,14 @@ vllm serve Qwen3/Qwen3-30B-A3B-Instruct-2507 \
     --trust-remote-code \
     --max-num-batched-tokens 10240 \
 ```
+
+### Qwen3-30B-A3B IFB BW1100 1x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
+
+### Qwen3-30B-A3B IFB K100_AI 2x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-235B-A22B IFB BW1100 4x vLLM 0.18
 
@@ -252,6 +288,18 @@ vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --max-model-len 40960
 ```
 
+### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 8x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
+
+### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
+
+### Qwen3-235B-A22B-Instruct-2507 IFB K100_AI 8x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
+
 ### Qwen3-235B-A22B-FP8-Channelwise IFB BW1100 4x vLLM 0.15
 
 ```bash
@@ -278,6 +326,18 @@ vllm serve Qwen/Qwen3-235B-A22B-FP8-Channel \
 
   -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
 ```
+### Qwen3-235B-A22B-FP8-Channelwise IFB BW1100 4x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
+
+### Qwen3-235B-A22B-FP8-Channelwise IFB BW1000 4x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
+
+### Qwen3-235B-A22B-FP8-Channelwise IFB K100_AI 4x vLLM 0.18
+
+<!-- TODO: 启动命令待补充 -->
+
 ## 环境变量
 
 | 环境变量 | 值 | 对总吞吐 | 对 TPOT | 说明 |

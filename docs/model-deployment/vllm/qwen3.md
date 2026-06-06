@@ -87,111 +87,39 @@ vllm serve Qwen/Qwen3-0.6B \
 
 ### Qwen3-8B IFB BW1100 1x vLLM 0.18
 
-```bash
-export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-
-vllm serve Qwen/Qwen3-8B \
-  -tp 1 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240
-```
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-8B IFB BW1000 1x vLLM 0.18
 
-```bash
-export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-
-vllm serve Qwen/Qwen3-8B \
-  -tp 1 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240
-```
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-8B IFB K100_AI 1x vLLM 0.18
 
-```bash
-vllm serve Qwen/Qwen3-8B \
-  -tp 1 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240
-```
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-14B IFB BW1100 1x vLLM 0.18
 
-```bash
-export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-
-vllm serve Qwen/Qwen3-14B \
-  -tp 1 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240
-```
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-14B IFB BW1000 1x vLLM 0.18
 
-```bash
-export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-
-vllm serve Qwen/Qwen3-14B \
-  -tp 1 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240
-```
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-14B IFB K100_AI 1x vLLM 0.18
 
-```bash
-vllm serve Qwen/Qwen3-14B \
-  -tp 1 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240
-```
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-32B IFB BW1100 1x vLLM 0.18
 
-```bash
-export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-
-vllm serve Qwen/Qwen3-32B \
-  -tp 1 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240
-```
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-32B IFB BW1000 2x vLLM 0.18
 
-```bash
-export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-
-vllm serve Qwen/Qwen3-32B \
-  -tp 2 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240
-```
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-32B IFB K100_AI 2x vLLM 0.18
 
-```bash
-vllm serve Qwen/Qwen3-32B \
-  -tp 2 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240
-```
+<!-- TODO: 启动命令待补充 -->
 
 
 ### Qwen3-30B-A3B IFB BW1000 2x vLLM 0.15
@@ -222,41 +150,15 @@ vllm serve Qwen3/Qwen3-30B-A3B-Instruct-2507 \
 
 ### Qwen3-235B-A22B IFB BW1100 4x vLLM 0.18
 
-```bash
-export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-
-vllm serve Qwen/Qwen3-235B-A22B \
-  -tp 4 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240
-```
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-235B-A22B IFB BW1000 8x vLLM 0.18
 
-```bash
-export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-
-vllm serve Qwen/Qwen3-235B-A22B \
-  -tp 8 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240
-```
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-235B-A22B IFB K100_AI 8x vLLM 0.18
 
-```bash
-vllm serve Qwen/Qwen3-235B-A22B \
-  -tp 8 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240
-```
+<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 8x vLLM 0.15
 

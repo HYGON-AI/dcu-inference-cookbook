@@ -8,14 +8,34 @@ DeepSeek-V3 是由深度求索推出的基于MoE架构的高性能开源大语�
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [hygon/DeepSeek-V3-0324-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3-0324-Channel-FP8-w8a8) | FP8 W8A8 | 0.15.1 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-0324-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0151) |
-|                                                                                    | FP8 W8A8 | 0.18.1 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-0324-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0181) |
-| [hygon/DeepSeek-V3-0528-W4A8-V2](https://www.modelscope.cn/models/hygon/DeepSeek-V3-0528-W4A8-V2)   | W4A8     | 0.15   | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-w4a8-ifb-bw1100-8x-vllm-015)                |
-|                                                                                    | W4A8     | 0.15   | BW1000 | 8 | IFB | [**`>_`**](#deepseek-v3-w4a8-ifb-bw1000-8x-vllm-015)                |
+| [hygon/DeepSeek-V3-0324-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3-0324-Channel-FP8-w8a8) | FP8 W8A8 | 0.18    | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-0324-channel-fp8-w8a8-ifb-bw1100-8x-vllm-018) |
+|                                                                                    | FP8 W8A8 | 0.15    | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-0324-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
+| [hygon/DeepSeek-V3-0528-W4A8-V2](https://www.modelscope.cn/models/hygon/DeepSeek-V3-0528-W4A8-V2)   | W4A8     | 0.15    | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-w4a8-ifb-bw1100-8x-vllm-015)                |
+|                                                                                    | W4A8     | 0.15    | BW1000 | 8 | IFB | [**`>_`**](#deepseek-v3-w4a8-ifb-bw1000-8x-vllm-015)                |
 
 ## 启动命令
 
-### DeepSeek-V3-0324-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.15.1
+### DeepSeek-V3-0324-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18
+
+```bash
+export NCCL_MAX_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export VLLM_HCU_USE_FLASHMLA=1
+
+vllm serve hygon/DeepSeek-V3-0324-Channel-FP8-w8a8 \
+    --trust-remote-code \
+    -q slimquant_marlin \
+    -tp 8 \
+    --dtype bfloat16 \
+    --max-model-len 35000 \
+    --gpu-memory-utilization 0.90 \
+    --max-num-batched-tokens 16384 \
+    --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
+    --kv-cache-dtype fp8 \
+    --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3,"quantization": "slimquant_marlin"}'
+```
+
+### DeepSeek-V3-0324-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.15
 
 ```bash
 rm -rf ~/.cache
@@ -45,26 +65,6 @@ vllm serve hygon/DeepSeek-V3-0324-Channel-INT8-w8a8  \
   --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
   --kv-cache-dtype fp8 \
   --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3,"quantization": "slimquant_marlin"}'
-```
-
-### DeepSeek-V3-0324-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18.1
-
-```bash
-export NCCL_MAX_NCHANNELS=16
-export NCCL_MIN_NCHANNELS=16
-export VLLM_HCU_USE_FLASHMLA=1
-
-vllm serve hygon/DeepSeek-V3-0324-Channel-FP8-w8a8 \
-    --trust-remote-code \
-    -q slimquant_marlin \
-    -tp 8 \
-    --dtype bfloat16 \
-    --max-model-len 35000 \
-    --gpu-memory-utilization 0.90 \
-    --max-num-batched-tokens 16384 \
-    --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
-    --kv-cache-dtype fp8 \
-    --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3,"quantization": "slimquant_marlin"}'
 ```
 
 ### DeepSeek-V3-W4A8 IFB BW1100 8x vLLM 0.15

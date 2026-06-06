@@ -32,7 +32,7 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 | [Qwen/Qwen3-235B-A22B](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B) | BF16 | 0.18 | BW1100  | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-ifb-bw1100-4x-vllm-018)     |
 |                                                                               | BF16 | 0.18 | BW1000  | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-ifb-bw1000-8x-vllm-018)     |
 |                                                                               | BF16 | 0.18 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-ifb-k100_ai-8x-vllm-018)    |
-| [Qwen/Qwen3-235B-A22B-Instruct-2507](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B-Instruct-2507) | BF16 | 0.18 | BW1100 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-8x-vllm-018) |
+| [Qwen/Qwen3-235B-A22B-Instruct-2507](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B-Instruct-2507) | BF16 | 0.18 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-018) |
 |                                                                               | BF16 | 0.18 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-018) |
 |                                                                               | BF16 | 0.18 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-018) |
 | [Qwen/Qwen3-235B-A22B-FP8-Channel](https://www.modelscope.cn/models/hygon/Qwen3-235B-A22B-W8A8) | FP8 | 0.18 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-fp8-channelwise-ifb-bw1100-4x-vllm-018) |
@@ -273,18 +273,13 @@ export VLLM_RANK4_NUMA=2
 export VLLM_RANK5_NUMA=2
 export VLLM_RANK6_NUMA=3
 export VLLM_RANK7_NUMA=3
-export ALLREDUCE_STREAM_WITH_COMPUTE=1
-
 export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export VLLM_ROCM_USE_AITER=1
 export VLLM_ROCM_USE_AITER_MOE=1
-
-vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
-  --dtype float16 \
+vllm serve /public/opendas/DL_DATA/llm-models/qwen3/Qwen3-235B-A22B-Instruct-2507 \
   --trust-remote-code \
   -tp 8 \
-  --gpu-memory-utilization 0.95 \
   --max-model-len 40960
 ```
 

@@ -30,9 +30,17 @@ vllm serve hygon/DeepSeek-V3-0324-Channel-FP8-w8a8 \
     --max-model-len 35000 \
     --gpu-memory-utilization 0.90 \
     --max-num-batched-tokens 16384 \
-    --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
+    --compilation-config '{
+        "pass_config": {
+            "fuse_act_quant": false
+        }
+    }' \
     --kv-cache-dtype fp8 \
-    --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3,"quantization": "slimquant_marlin"}'
+    --speculative_config '{
+        "method": "deepseek_mtp",
+        "num_speculative_tokens": 3,
+        "quantization": "slimquant_marlin"
+    }'
 ```
 
 ### DeepSeek-V3-0324-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.15
@@ -62,9 +70,17 @@ vllm serve hygon/DeepSeek-V3-0324-Channel-INT8-w8a8  \
   --disable-log-requests  \
   --gpu-memory-utilization 0.90 \
   --max-num-batched-tokens 16384 \
-  --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
+  --compilation-config '{
+      "pass_config": {
+          "fuse_act_quant": false
+      }
+  }' \
   --kv-cache-dtype fp8 \
-  --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3,"quantization": "slimquant_marlin"}'
+  --speculative_config '{
+      "method": "deepseek_mtp",
+      "num_speculative_tokens": 3,
+      "quantization": "slimquant_marlin"
+  }'
 ```
 
 ### DeepSeek-V3-W4A8 IFB BW1100 8x vLLM 0.15
@@ -105,7 +121,11 @@ vllm serve hygon/DeepSeek-V3-0528-W4A8-V2 \
   --enable-chunked-prefill \
   --enable-prefix-caching \
   --kv-cache-dtype fp8_e5m2 \
-  --speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_w4a8_marlin"}'
+  --speculative_config '{
+      "method": "mtp",
+      "num_speculative_tokens": 3,
+      "quantization": "slimquant_w4a8_marlin"
+  }'
 ```
 
 ### DeepSeek-V3-W4A8 IFB BW1000 8x vLLM 0.15
@@ -145,7 +165,11 @@ vllm serve hygon/DeepSeek-V3-0528-W4A8-V2 \
   --enable-chunked-prefill \
   --enable-prefix-caching \
   --kv-cache-dtype fp8_e5m2 \
-  --speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_w4a8_marlin"}'
+  --speculative_config '{
+      "method": "mtp",
+      "num_speculative_tokens": 3,
+      "quantization": "slimquant_w4a8_marlin"
+  }'
 ```
 
 ## API 调用

@@ -46,6 +46,11 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 ```bash
 export VLLM_USE_PIECEWISE=1
 
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
+
 vllm serve Qwen/Qwen3-0.6B \
   -tp 1 \
   --trust-remote-code \
@@ -59,6 +64,9 @@ vllm serve Qwen/Qwen3-0.6B \
 ```bash
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
+
 vllm serve Qwen/Qwen3-0.6B \
     -tp 1 \
     --trust-remote-code \
@@ -73,6 +81,9 @@ vllm serve Qwen/Qwen3-0.6B \
 ```bash
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export VLLM_HCU_USE_PD_SPLIT=1
+
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve Qwen/Qwen3-0.6B \
     -tp 1 \
@@ -127,6 +138,11 @@ vllm serve Qwen/Qwen3-0.6B \
 ```bash
 export VLLM_USE_PD_SPLIT=0
 
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
+
 vllm serve Qwen/Qwen3-30B-A3B \
   -tp 2 \
   --trust-remote-code \
@@ -142,6 +158,7 @@ export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export VLLM_ROCM_USE_AITER=1
 export VLLM_ROCM_USE_AITER_MOE=1
+
 vllm serve Qwen3/Qwen3-30B-A3B-Instruct-2507 \
     -tp 2 \
     --trust-remote-code \
@@ -172,6 +189,11 @@ export VLLM_RANK5_NUMA=2
 export VLLM_RANK6_NUMA=3
 export VLLM_RANK7_NUMA=3
 
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
+
 vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --dtype float16 \
   --trust-remote-code \
@@ -190,6 +212,11 @@ export VLLM_RANK4_NUMA=2
 export VLLM_RANK5_NUMA=3
 export VLLM_RANK6_NUMA=3
 export VLLM_RANK7_NUMA=3
+
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --dtype float16 \
@@ -212,6 +239,11 @@ export VLLM_RANK6_NUMA=3
 export VLLM_RANK7_NUMA=3
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
+
 vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --dtype float16 \
   --trust-remote-code \
@@ -232,6 +264,11 @@ export VLLM_USE_GLOBAL_CACHE13=1
 export VLLM_FUSED_MOE_CHUNK_SIZE=16384
 export VLLM_USE_PIECEWISE=1
 export VLLM_USE_LIGHTOP_FUSED_TOPP_TOPK=1
+
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve Qwen/Qwen3-235B-A22B-FP8-Channel \
   -tp 4 \

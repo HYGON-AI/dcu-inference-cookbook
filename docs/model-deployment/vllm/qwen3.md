@@ -44,8 +44,9 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 ### Qwen3-0.6B IFB BW1000 1x vLLM 0.18
 
 ```bash
+export VLLM_NUMA_BIND=1
+export VLLM_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_ROCM_USE_AITER=1
 export VLLM_ROCM_USE_AITER_MOE=1
 
@@ -81,8 +82,9 @@ vllm serve Qwen/Qwen3-0.6B \
 ### Qwen3-4B IFB BW1000 1x vLLM 0.18
 
 ```bash
+export VLLM_NUMA_BIND=1
+export VLLM_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_HCU_USE_PD_SPLIT=1
 
 export VLLM_ROCM_USE_AITER=1
 export VLLM_ROCM_USE_AITER_MOE=1
@@ -146,7 +148,8 @@ vllm serve Qwen/Qwen3-0.6B \
 ### Qwen3-30B-A3B IFB BW1000 2x vLLM 0.18
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_NUMA_BIND=1
+export VLLM_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export VLLM_ROCM_USE_AITER=1
 export VLLM_ROCM_USE_AITER_MOE=1
@@ -178,8 +181,18 @@ vllm serve Qwen3/Qwen3-30B-A3B-Instruct-2507 \
 <!-- TODO: 启动命令待补充 -->
 
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 4x vLLM 0.18
+```bash
+export VLLM_NUMA_BIND=1
+export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
 
-<!-- TODO: 启动命令待补充 -->
+vllm serve Qwen3/Qwen3-235B-A22B-Instruct-2507 \
+    -tp 2 \
+    --trust-remote-code \
+    --max-num-batched-tokens 10240 \
+```
 
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x vLLM 0.18
 

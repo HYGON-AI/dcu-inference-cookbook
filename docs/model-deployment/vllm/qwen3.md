@@ -49,9 +49,9 @@ export VLLM_USE_PIECEWISE=1
 vllm serve Qwen/Qwen3-0.6B \
   -tp 1 \
   --trust-remote-code \
-  --disable-log-requests \
+
   --dtype bfloat16 \
-  --disable-cascade-attn \
+
   -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
 ```
 ### Qwen3-0.6B IFB BW1000 1x vLLM 0.18
@@ -62,9 +62,9 @@ export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3-0.6B \
     -tp 1 \
     --trust-remote-code \
-    --disable-log-requests \
+
     --dtype bfloat16 \
-    --disable-cascade-attn \
+
     -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
 ```
 
@@ -77,9 +77,9 @@ export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3-0.6B \
     -tp 1 \
     --trust-remote-code \
-    --disable-log-requests \
+
     --dtype bfloat16 \
-    --disable-cascade-attn \
+
     --max-num-batched-tokens 10240 \
     --kv-cache-dtype fp8_e5m2 \
     -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
@@ -131,7 +131,7 @@ vllm serve Qwen/Qwen3-30B-A3B \
   -tp 2 \
   --trust-remote-code \
   --dtype float16 \
-  --disable-cascade-attn \
+
   -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
 ```
 
@@ -162,7 +162,7 @@ vllm serve Qwen3/Qwen3-30B-A3B-Instruct-2507 \
 
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 8x vLLM 0.15
 
-```bash 
+```bash
 export VLLM_RANK0_NUMA=0   ##按照实际的
 export VLLM_RANK1_NUMA=0
 export VLLM_RANK2_NUMA=1
@@ -176,7 +176,7 @@ vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --dtype float16 \
   --trust-remote-code \
   -tp 8 \
-  --disable-cascade-attn 
+
 ```
 
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x vLLM 0.15
@@ -196,8 +196,7 @@ vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --trust-remote-code \
   -tp 8 \
   --gpu-memory-utilization 0.95 \
-  --max-model-len 40960 \
-  --disable-cascade-attn
+  --max-model-len 40960
 ```
 
 ### Qwen3-235B-A22B-Instruct-2507 IFB K100_AI 8x vLLM 0.15
@@ -218,8 +217,7 @@ vllm serve /Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --trust-remote-code \
   -tp 8 \
   --gpu-memory-utilization 0.95 \
-  --max-model-len 40960 \
-  --disable-cascade-attn
+  --max-model-len 40960
 ```
 
 ### Qwen3-235B-A22B-FP8-Channelwise IFB BW1100 4x vLLM 0.15
@@ -240,7 +238,7 @@ vllm serve Qwen/Qwen3-235B-A22B-FP8-Channel \
   --trust-remote-code \
   --dtype bfloat16 \
   -q slimquant_marlin \
-  --disable-cascade-attn \
+
   -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
 ```
 ## 环境变量

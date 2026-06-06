@@ -158,6 +158,29 @@ vllm serve hygon/GLM-5-Channel-INT4-w4a8 \
     --kv-cache-dtype fp8_ds_mla
 ```
 
+### GLM-5-Channel-INT4-w4a8 IFB BW1000 16x vLLM 0.18 非异步调度 PP+MTP
+
+以下示例为单节点部署。
+
+```bash
+export VLLM_ROCM_USE_AITER_MOE=1
+export VLLM_HCU_USE_FLASHMLA=1
+export LMSLIM_USE_GLOBAL_MOE_CACHE=1
+
+vllm serve /models/GLM-w4a8-V2_6_test \
+    --trust-remote-code \
+    --dtype bfloat16 \
+    --distributed-executor-backend ray \
+    -tp 8 \
+    -pp 2 \
+    --max-model-len 56320 \
+    --gpu-memory-utilization 0.92 \
+    --max-num-batched-tokens 8192 \
+    --kv-cache-dtype fp8_ds_mla \
+    --speculative_config '{"method": "mtp", "num_speculative_tokens": 2}' \
+    --no-async-scheduling
+```
+
 **vLLM 0.15**
 
 ### GLM-5-Channel-INT4-w4a8 IFB BW1100 8x vLLM 0.15

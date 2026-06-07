@@ -51,7 +51,7 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 |                                                                               | BF16 | 0.15 | BW1000  | 2 | IFB | [**``>_``**](#qwen3-30b-a3b-instruct-2507-ifb-bw1000-2x-vllm-015) |
 |                                                                               | BF16 | 0.15 | K100_AI | 2   | IFB | [**``>_``**](#qwen3-30b-a3b-instruct-2507-ifb-k100_ai-2x-vllm-015) |
 | [Qwen3/Qwen3-30B-A3B-Instruct-2507-W8A8-INT8](https://www.modelscope.cn/models/Qwen/Qwen3-30B-A3B-Instruct-2507-W8A8-INT8) | INT8 W8A8 | 0.18 | BW1100 | 1 | IFB | [**``>_``**](#qwen3-30b-a3b-instruct-2507-w8a8-int8-ifb-bw1100-1x-vllm-018) |
-|                                                                               | INT8 W8A8 | 0.18 | BW1000 | 2 | IFB | [**``>_``**](#qwen3-30b-a3b-instruct-2507-w8a8-int8-ifb-bw1000-2x-vllm-018) |
+|                                                                               | INT8 W8A8 | 0.18 | BW1000 | 1 | IFB | [**``>_``**](#qwen3-30b-a3b-instruct-2507-w8a8-int8-ifb-bw1000-1x-vllm-018) |
 |                                                                               | INT8 W8A8 | 0.18 | K100_AI | 2 | IFB | [**``>_``**](#qwen3-30b-a3b-instruct-2507-w8a8-int8-ifb-k100_ai-2x-vllm-018) |
 | [Qwen/Qwen3-235B-A22B-Instruct-2507](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B-Instruct-2507) | BF16 | 0.18 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-018) |
 |                                                                               | BF16 | 0.18 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-018) |
@@ -650,11 +650,35 @@ vllm serve Qwen/Qwen3-30B-A3B \
 
 ### Qwen3-30B-A3B-Instruct-2507-W8A8-INT8 IFB BW1100 1x vLLM 0.18
 
-<!-- TODO: 启动命令待补充 -->
+```bash
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
 
-### Qwen3-30B-A3B-Instruct-2507-W8A8-INT8 IFB BW1000 2x vLLM 0.18
+vllm serve Qwen3/Qwen3-30B-A3B-Instruct-2507-W8A8 \
+    -tp 1 \
+    --trust-remote-code \
+    --max-num-batched-tokens 10240 \
+    -q slimquant_marlin 
+```
 
-<!-- TODO: 启动命令待补充 -->
+
+### Qwen3-30B-A3B-Instruct-2507-W8A8-INT8 IFB BW1000 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve Qwen3/Qwen3-30B-A3B-Instruct-2507-W8A8 \
+    -tp 1 \
+    --trust-remote-code \
+    --max-num-batched-tokens 10240 \
+    -q slimquant_marlin 
+```
+
 
 ### Qwen3-30B-A3B-Instruct-2507-W8A8-INT8 IFB K100_AI 2x vLLM 0.18
 

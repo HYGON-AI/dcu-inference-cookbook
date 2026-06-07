@@ -50,9 +50,6 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 |                                                                               | BF16 | 0.15 | BW1100  | 1 | IFB | [**``>_``**](#qwen3-30b-a3b-instruct-2507-ifb-bw1100-1x-vllm-015) |
 |                                                                               | BF16 | 0.15 | BW1000  | 2 | IFB | [**``>_``**](#qwen3-30b-a3b-instruct-2507-ifb-bw1000-2x-vllm-015) |
 |                                                                               | BF16 | 0.15 | K100_AI | 2   | IFB | [**``>_``**](#qwen3-30b-a3b-instruct-2507-ifb-k100_ai-2x-vllm-015) |
-| [Qwen/Qwen3-235B-A22B](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B) | BF16 | 0.15 | BW1100  | 4 | IFB | [**``>_``**](#qwen3-235b-a22b-ifb-bw1100-4x-vllm-015) |
-|                                                                               | BF16 | 0.15 | BW1000  | 8 | IFB | [**``>_``**](#qwen3-235b-a22b-ifb-bw1000-8x-vllm-015) |
-|                                                                               | BF16 | 0.15 | K100_AI | 8   | IFB | [**``>_``**](#qwen3-235b-a22b-ifb-k100_ai-8x-vllm-015) |
 | [Qwen/Qwen3-235B-A22B-Instruct-2507](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B-Instruct-2507) | BF16 | 0.18 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-018) |
 |                                                                               | BF16 | 0.18 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-018) |
 |                                                                               | BF16 | 0.18 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-018) |
@@ -645,17 +642,6 @@ vllm serve Qwen/Qwen3-30B-A3B \
 <!-- TODO: 启动命令待补充 -->
 
 
-
-### Qwen3-235B-A22B IFB BW1100 4x vLLM 0.15
-
-<!-- TODO: 启动命令待补充 -->
-
-### Qwen3-235B-A22B IFB BW1000 8x vLLM 0.15
-
-<!-- TODO: 启动命令待补充 -->
-### Qwen3-235B-A22B IFB K100_AI 8x vLLM 0.15
-
-<!-- TODO: 启动命令待补充 -->
 
 
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 4x vLLM 0.18

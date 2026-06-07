@@ -61,9 +61,6 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 |                                                                               | BF16 | 0.15 | K100_AI | 8 | IFB | [**``>_``**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-015) |
 | [Qwen/Qwen3-235B-A22B-FP8-Channel](https://www.modelscope.cn/models/hygon/Qwen3-235B-A22B-W8A8) | FP8 | 0.18 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-fp8-channelwise-ifb-bw1100-4x-vllm-018) |
 |                                                                               | FP8  | 0.15 | BW1100 | 4 | IFB | [**``>_``**](#qwen3-235b-a22b-fp8-channelwise-ifb-bw1100-4x-vllm-015) |
-| [Qwen/Qwen3-4B-Thinking-2507](https://www.modelscope.cn/models/Qwen/Qwen3-4B-Thinking-2507) | BF16 | 0.15 | BW1100  | 1 | IFB | [**``>_``**](#qwen3-4b-thinking-2507-ifb-bw1100-1x-vllm-015) |
-|                                                                               | BF16 | 0.15 | BW1000  | 1 | IFB | [**``>_``**](#qwen3-4b-thinking-2507-ifb-bw1000-1x-vllm-015) |
-|                                                                               | BF16 | 0.15 | K100_AI | 1 | IFB | [**``>_``**](#qwen3-4b-thinking-2507-ifb-k100_ai-1x-vllm-015) |
 
 
 ## 启动命令
@@ -822,35 +819,6 @@ vllm serve Qwen/Qwen3-235B-A22B-FP8-Channel \
   -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
 ```
 
-### Qwen3-4B-Thinking-2507 IFB BW1100 1x vLLM 0.15
-
-```bash
-vllm serve Qwen/Qwen3-4B-Thinking-2507 \
-  -tp 1 \
-  --max-num-batched-tokens 10240 \
-  --trust-remote-code \
-  --disable-cascade-attn
-```
-
-### Qwen3-4B-Thinking-2507 IFB BW1000 1x vLLM 0.15
-
-```bash
-vllm serve Qwen/Qwen3-4B-Thinking-2507 \
-  -tp 1 \
-  --max-num-batched-tokens 10240 \
-  --trust-remote-code \
-  --disable-cascade-attn
-```
-
-### Qwen3-4B-Thinking-2507 IFB K100_AI 1x vLLM 0.15
-
-```bash
-vllm serve Qwen/Qwen3-4B-Thinking-2507 \
-  -tp 1 \
-  --max-num-batched-tokens 10240 \
-  --trust-remote-code \
-  --disable-cascade-attn
-```
 
 
 

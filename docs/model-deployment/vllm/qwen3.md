@@ -477,7 +477,7 @@ vllm serve Qwen/Qwen3-14B \
     -tp 1 \
     --trust-remote-code \
     --max-num-batched-tokens 10240 \
-    --kv-cache-dtype fp8_e5m2 
+    --kv-cache-dtype fp8_e4m3
 ```
 
 ### Qwen3-14B IFB BW1000 1x vLLM 0.18
@@ -499,7 +499,7 @@ vllm serve Qwen/Qwen3-14B \
     -tp 1 \
     --trust-remote-code \
     --max-num-batched-tokens 10240 \
-    --kv-cache-dtype fp8_e4m3 
+    --kv-cache-dtype fp8_e5m2
 ```
 
 ### Qwen3-14B IFB K100_AI 1x vLLM 0.18

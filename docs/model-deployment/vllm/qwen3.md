@@ -310,7 +310,7 @@ export VLLM_RANK5_NUMA=1
 export VLLM_RANK6_NUMA=1
 export VLLM_RANK7_NUMA=1
 
-vllm serve Qwen/Qwen3-0.6B \
+vllm serve Qwen/Qwen3-4B \
     -tp 1 \
     --trust-remote-code \
     --max-num-batched-tokens 10240 
@@ -819,6 +819,7 @@ vllm serve Qwen3/Qwen3-235B-A22B-Instruct-2507 \
     -tp 8 \
     --gpu-memory-utilization 0.95 \
     --trust-remote-code \
+    --max-model-len 40960 \
     --max-num-batched-tokens 10240 
 ```
 

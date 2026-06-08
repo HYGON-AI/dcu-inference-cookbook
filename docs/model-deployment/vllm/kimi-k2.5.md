@@ -25,7 +25,6 @@ vllm serve moonshotai/Kimi-K2.5 \
     --trust-remote-code   \
     --dtype bfloat16  \
     --max-model-len 65536  \
-    --disable-log-requests  \
     --enable-prefix-caching \
     --gpu-memory-utilization 0.90 \
     --max-num-batched-tokens 16384 \

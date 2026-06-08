@@ -603,6 +603,7 @@ vllm serve Qwen/Qwen3-14B \
     --max-num-batched-tokens 10240 \
     --kv-cache-dtype fp8_e5m2 
 ```
+### Qwen3-30B-A3B-Instruct-2507 IFB BW1100 1x vLLM 0.15
 
 ### Qwen3-32B IFB K100_AI 2x vLLM 0.18
 

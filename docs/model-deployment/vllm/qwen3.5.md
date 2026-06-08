@@ -291,10 +291,6 @@ vllm serve Qwen/Qwen3.5-35B-A3B \
 ### Qwen3.5-35B-A3B IFB K100_AI 2x vLLM 0.18
 
 ```bash
-
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
-
 vllm serve Qwen/Qwen3.5-35B-A3B \
   -tp 2 \
   --trust-remote-code \
@@ -352,9 +348,6 @@ vllm serve Qwen/Qwen3.5-35B-A3B-W8A8-INT8 \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
-
 vllm serve Qwen/Qwen3.5-35B-A3B-W8A8-INT8 \
   -tp 1 \
   --trust-remote-code \
@@ -406,10 +399,6 @@ vllm serve Qwen/Qwen3.5-122B-A10B \
 ### Qwen3.5-122B-A10B IFB K100_AI 8x vLLM 0.18
 
 ```bash
-
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
-
 vllm serve Qwen/Qwen3.5-122B-A10B \
   -tp 8 \
   --trust-remote-code \
@@ -432,9 +421,6 @@ export LMSLIM_USE_LIGHTOP=1
 export VLLM_USE_LIGHTOP_MOE_ALIGN=1
 export VLLM_USE_LIGHTOP_FILL_MOE_ALIGN=1
 export VLLM_USE_LIGHTOP_FUSED_TOPP_TOPK=1
-
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve Qwen/Qwen3.5-122B-A10B-AWQ \
   --tensor-parallel-size 4 \
@@ -502,9 +488,6 @@ vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
-
 vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
   -tp 4 \
   --disable-cascade-attn \
@@ -565,9 +548,6 @@ vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
   -tp 8 \

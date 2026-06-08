@@ -13,6 +13,17 @@ Qwen3.5 是 Qwen3 系列的增强版本，在推理能力、代码生成、多�
 | [Qwen/Qwen3.5-35B-A3B](https://www.modelscope.cn/models/Qwen/Qwen3.5-35B-A3B) | BF16 | 0.5.10 | BW1100 | 2 | IFB | [**`>_`**](#qwen35-35b-a3b-ifb-bw1100-2x-sglang-0510) |
 | [hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8) | FP8 W8A8 | 0.5.10 | BW1100 | 2 | IFB | [**`>_`**](#qwen35-35b-a3b-channel-fp8-w8a8-ifb-bw1100-2x-sglang-0510) |
 
+### Qwen3.5-122B-A10B 部署配置
+
+Qwen3.5-122B-A10B 采用 MoE 架构（122B 总参数 / 10B 激活参数）。
+
+| 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
+| -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
+|                                                               [Qwen/Qwen3.5-122B-A10B](https://modelscope.cn/models/Qwen/Qwen3.5-122B-A10B)                                                | BF16      | 0.5.10    | BW1100 |  4 | SGLang  | [**`>_`**](#qwen35-122b-a10b-bw1000-8x-sglang-0510)   |
+  | | BF16 | 0.5.10     | BW1000     |  8 | SGLang | [**`>_`**](#qwen35-122b-a10b-ifb-bw1100-4x-sglang-0510) |
+|                                                                     [hygon/Qwen3.5-122B-A10B-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Qwen3.5-122B-A10B-Channel-FP8-w8a8)                                     | FP8 W8A8  | 0.5.10     | BW1100     |  4 | SGLang | [**`>_`**](#qwen35-122b-a10b-fp8-bw1101-4x-sglang-0510) |
+
+
 ### Qwen3.5-397B-A17B 部署配置
 
 Qwen3.5-397B-A17B 采用 MoE 架构（397B 总参数 / 17B 激活参数）。
@@ -22,6 +33,7 @@ Qwen3.5-397B-A17B 采用 MoE 架构（397B 总参数 / 17B 激活参数）。
 | [hygon/Qwen3.5-397B-A17B-Channel-FP8](https://www.modelscope.cn/models/hygon/Qwen3.5-397B-A17B-Channel-FP8) | FP8 W8A8 | 0.5.10 | BW1100 |  4 | IFB  | [**`>_`**](#qwen35-397b-a17b-channel-fp8-ifb-bw1100-4x-sglang-0510)   |
 |                                                                                                            | FP8 W8A8 | 0.5.10 | BW1100 | 12 | 1P1D | [**`>_`**](#qwen35-397b-a17b-channel-fp8-1p1d-bw1100-12x-sglang-0510) |
 | [hygon/Qwen3.5-397B-A17B-W8A8](https://www.modelscope.cn/models/hygon/Qwen3.5-397B-A17B-W8A8)              | INT8 W8A8 | 0.5.10 | BW1000 |  8 | IFB  | [**`>_`**](#qwen35-397b-a17b-w8a8-ifb-bw1000-8x-sglang-0510)          |
+
 
 ## 启动命令
 
@@ -131,6 +143,161 @@ sglang serve --model-path hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
     --trust-remote-code \
     --mamba-scheduler-strategy extra_buffer
 ```
+
+---
+
+## Qwen3.5-122B-A10B 部署配置
+
+### Qwen3.5-122B-A10B BW1000 8x SGLang 0.5.10
+```bash
+export USE_DCU_CUSTOM_ALLREDUCE=1
+export SGL_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export SGLANG_SET_CPU_AFFINITY=1
+export HIP_KERNEL_BATCH_CEILING=100
+export GPU_MAX_HW_QUEUES=3
+export SGLANG_ENABLE_SPEC_V2=1
+export SGLANG_KVALLOC_KERNEL=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
+export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
+export SGLANG_GET_LAST_LOC=1
+export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
+export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
+export HIP_H2D_DISABLE_COPY_BUFFER=0 
+export HIP_D2H_DISABLE_COPY_BUFFER=0 
+export HIP_H2D_DIRECT_COPY_THRESHOLD=32768 
+export HIP_H2D_HSAAPI_COPY_THRESHOLD=32768 
+export HIP_D2H_DIRECT_COPY_THRESHOLD=512  
+export HIP_D2H_HSAAPI_COPY_THRESHOLD=512 
+export SGLANG_USE_FUSED_RMSNORM_ROPE=1
+export HSA_KERNARG_POOL_SIZE=8388608
+export ROC_AQL_QUEUE_SIZE=131072
+
+export NCCL_MAX_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_MARLIN_W16A16_MOE=1
+
+
+sglang serve \
+  --model-path Qwen/Qwen3.5-122B-A10B \
+  --trust-remote-code \
+  --numa-node 0 0 0 0 1 1 1 1 \
+  --dtype bfloat16 \
+  --tp-size 4 \
+  --pp-size 1 \
+  --page-size 64 \
+  --kv-cache-dtype fp8_e5m2 \
+  --mem-fraction-static 0.9 \
+  --disable-radix-cache \
+  --attention-backend fa3 
+```
+
+### Qwen3.5-122B-A10B IFB BW1100 4x SGLang 0.5.10
+```bash
+export USE_DCU_CUSTOM_ALLREDUCE=1
+export SGL_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export SGLANG_SET_CPU_AFFINITY=1
+export HIP_KERNEL_BATCH_CEILING=100
+export GPU_MAX_HW_QUEUES=3
+export SGLANG_ENABLE_SPEC_V2=1
+export SGLANG_KVALLOC_KERNEL=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
+export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
+export SGLANG_GET_LAST_LOC=1
+export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
+export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
+export HIP_H2D_DISABLE_COPY_BUFFER=0 
+export HIP_D2H_DISABLE_COPY_BUFFER=0 
+export HIP_H2D_DIRECT_COPY_THRESHOLD=32768 
+export HIP_H2D_HSAAPI_COPY_THRESHOLD=32768 
+export HIP_D2H_DIRECT_COPY_THRESHOLD=512  
+export HIP_D2H_HSAAPI_COPY_THRESHOLD=512 
+export SGLANG_USE_FUSED_RMSNORM_ROPE=1
+export HSA_KERNARG_POOL_SIZE=8388608
+export ROC_AQL_QUEUE_SIZE=131072
+
+export NCCL_MAX_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_MARLIN_W16A16_MOE=1
+
+
+sglang serve \
+  --model-path Qwen/Qwen3.5-122B-A10B \
+  --trust-remote-code \
+  --numa-node 0 0 0 0 1 1 1 1 \
+  --dtype bfloat16 \
+  --tp-size 4 \
+  --pp-size 1 \
+  --page-size 64 \
+  --kv-cache-dtype fp8_e4m3 \
+  --mem-fraction-static 0.9 \
+  --disable-radix-cache \
+  --attention-backend fa3 
+```
+
+
+### Qwen3.5-122B-A10B-FP8 BW1101 4x SGLang 0.5.10
+```bash
+export USE_DCU_CUSTOM_ALLREDUCE=1
+export SGL_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export SGLANG_SET_CPU_AFFINITY=1
+export HIP_KERNEL_BATCH_CEILING=100
+export GPU_MAX_HW_QUEUES=3
+export SGLANG_ENABLE_SPEC_V2=1
+export SGLANG_KVALLOC_KERNEL=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
+export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
+export SGLANG_GET_LAST_LOC=1
+export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
+export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
+export HIP_H2D_DISABLE_COPY_BUFFER=0
+export HIP_D2H_DISABLE_COPY_BUFFER=0 
+export HIP_H2D_DIRECT_COPY_THRESHOLD=32768 
+export HIP_H2D_HSAAPI_COPY_THRESHOLD=32768
+export HIP_D2H_DIRECT_COPY_THRESHOLD=512 
+export HIP_D2H_HSAAPI_COPY_THRESHOLD=512 
+export SGLANG_USE_FUSED_RMSNORM_ROPE=1
+export HSA_KERNARG_POOL_SIZE=8388608
+export ROC_AQL_QUEUE_SIZE=131072
+export NCCL_MAX_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_MARLIN_W16A16_MOE=1
+export SGLANG_ROCM_USE_AITER_MOE=true
+export SGLANG_USE_FP8_W8A8_MOE=0
+
+
+sglang serve \
+  --numa-node 0 0 0 0 1 1 1 1 \
+  --dtype bfloat16 \
+  --model-path hygon/Qwen3.5-122B-A10B-Channel-FP8-w8a8 \
+  --trust-remote-code \
+  --tp-size 4 \
+  --pp-size 1 \
+  --kv-cache-dtype fp8_e4m3 \
+  --page-size 64 \
+  --disable-radix-cache \
+  --mem-fraction-static 0.9 \
+  --attention-backend fa3
+```
+
 
 ### Qwen3.5-397B-A17B-Channel-FP8 IFB BW1100 4x SGLang 0.5.10
 
@@ -435,4 +602,3 @@ curl http://<router_ip>:30001/v1/chat/completions \
     "max_tokens": 128
   }'
 ```
-

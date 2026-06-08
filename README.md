@@ -10,14 +10,8 @@
 本仓库整理了在 DCU 硬件上部署、调优和运行 AI 模型的经验与最佳实践，涵盖：
 
 - **大语言模型 (LLM)** — 文本生成、对话、代码补全等
-- **全模态模型 (Omni)** — 文本+图像+音频统一理解与生成
 - **多模态模型 (VLM)** — 视觉语言模型、图像生成、语音识别等
-- **环境搭建** — DTK 工具链、驱动安装、Python 环境配置
-- **模型部署** — 推理服务、分布式部署、多卡方案
-- **性能优化** — 显存优化、算子调优、量化、KV Cache 策略
-- **框架适配** — vLLM (含 Omni)、SGLang、Transformers、ComfyUI 等
-- **故障排查** — 常见问题、错误码、FAQ
-- **性能基准** — 各模型在 DCU 上的实测数据
+- **全模态模型 (Omni)** — 文本+图像+音频统一理解与生成
 
 ## 📋 模型列表
 
@@ -358,7 +352,7 @@
       <td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/mimo-v2-flash.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/mimo-v2-flash.md">✅</a></td>
     </tr>
     <tr>
-      <td rowspan="2" align="center">Wan</td>
+      <td rowspan="2" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/67b610677ea7952def8b29c6/N6jQbbeaa_FcUY-wI1dgG.png" height="40"/><br/>Wan</td>
       <td rowspan="2">Wan2.2-I2V</td>
       <td>vLLM-Omni</td>
       <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/wan2.2-i2v.md">✅</a></td><td align="center">🚧</td>
@@ -366,6 +360,16 @@
     <tr>
       <td>SGLang</td>
       <td align="center">-</td><td align="center">-</td><td align="center">-</td>
+    </tr>
+    <tr>
+      <td rowspan="2" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/1664511063789-632c234f42c386ebd2710434.png" height="40"/><br/>BAAI</td>
+      <td rowspan="2">BGE</td>
+      <td>Infinity</td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/infinity/bge-reranker-v2-minicpm-layerwise.md">✅</a></td><td align="center">-</td>
+    </tr>
+    <tr>
+      <td>vLLM</td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/bge-reranker.md">✅</a></td><td align="center">-</td>
     </tr>
   </tbody>
 </table>

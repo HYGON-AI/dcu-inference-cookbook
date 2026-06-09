@@ -50,7 +50,7 @@ vllm serve hygon/DeepSeek-R1-0528-W4A8-V2 \
   --block-size 64 \
   --enable-chunked-prefill \
   --enable-prefix-caching \
-  --kv-cache-dtype fp8_e5m2 \
+  --kv-cache-dtype fp8 \
   --speculative_config '{"method": "mtp", "num_speculative_tokens": 3, "quantization": "slimquant_w4a8_marlin"}'
 ```
 

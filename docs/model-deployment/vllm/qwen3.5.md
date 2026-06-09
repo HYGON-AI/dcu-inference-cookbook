@@ -258,6 +258,7 @@ vllm serve Qwen/Qwen3.5-27B-W8A8-INT8 \
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
 export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3.5-35B-A3B \
@@ -275,6 +276,7 @@ vllm serve Qwen/Qwen3.5-35B-A3B \
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
 export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3.5-35B-A3B \
@@ -358,6 +360,7 @@ vllm serve Qwen/Qwen3.5-35B-A3B-W8A8-INT8 \
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
 export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3.5-122B-A10B \
@@ -375,6 +378,7 @@ vllm serve Qwen/Qwen3.5-122B-A10B \
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
 export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3.5-122B-A10B \
@@ -437,6 +441,7 @@ export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 
+
 vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
   -tp 2 \
   --disable-cascade-attn \
@@ -454,6 +459,7 @@ vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+
 
 vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
   -tp 4 \
@@ -492,6 +498,8 @@ export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 
+
+
 vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
   -tp 8 \
   --disable-cascade-attn \
@@ -509,6 +517,7 @@ vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+
 
 vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
   -tp 8 \

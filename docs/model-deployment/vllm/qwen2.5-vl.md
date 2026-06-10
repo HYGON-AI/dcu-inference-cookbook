@@ -9,6 +9,8 @@ Qwen2.5-VL 是阿里通义千问视觉语言模型系列，支持图像、视频
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
 | [Qwen/Qwen2.5-VL-32B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2.5-VL-32B-Instruct) | BF16 | 0.18 | BW1000 | 2 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-bw1000-2x-vllm-018) |
+|                                                                               | BF16 | 0.18 | BW1100 | 1 | IFB | [**\`>_\`**](#qwen25-vl-32b-instruct-ifb-bw1100-1x-vllm-018) |
+|                                                                               | BF16 | 0.18 | K100_AI | 4 | IFB | [**\`>_\`**](#qwen25-vl-32b-instruct-ifb-k100_ai-4x-vllm-018) |
 
 ## 启动命令
 
@@ -22,6 +24,32 @@ export VLLM_HCU_USE_CUSTOM_OPS=1
 
 vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 2 \
+    --trust-remote-code \
+    --enable-chunked-prefill \
+    --max-model-len 32768 \
+    --allowed-local-media-path /path-to/VL_data/ \
+```
+
+### Qwen2.5-VL-32B-Instruct IFB BW1100 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_HCU_USE_CUSTOM_OPS=1
+
+vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
+    -tp 1 \
+    --trust-remote-code \
+    --enable-chunked-prefill \
+    --max-model-len 32768 \
+    --allowed-local-media-path /path-to/VL_data/ \
+```
+
+### Qwen2.5-VL-32B-Instruct IFB K100_AI 4x vLLM 0.18
+
+```bash
+vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
+    -tp 4 \
     --trust-remote-code \
     --enable-chunked-prefill \
     --max-model-len 32768 \

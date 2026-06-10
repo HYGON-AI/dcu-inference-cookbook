@@ -23,11 +23,16 @@ Qwen3-VL 是阿里云推出的新一代多模态视觉语言模型（Vision-Lang
 | [Qwen/Qwen3-VL-2B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-2B-Instruct) | BF16 | 0.18 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-vl-2b-instruct-ifb-bw1000-1x-vllm-018) |
 | [Qwen/Qwen3-VL-2B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-2B-Thinking) | BF16 | 0.18 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-vl-2b-thinking-ifb-bw1000-1x-vllm-018) |
 | [Qwen/Qwen3-VL-4B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-4B-Instruct) | BF16 | 0.18 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-vl-4b-instruct-ifb-bw1000-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | BW1100  | 1x | IFB | [**\`>_\`**](#qwen3-vl-4b-instruct-ifb-bw1100-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | K100_AI | 1x | IFB | [**\`>_\`**](#qwen3-vl-4b-instruct-ifb-k100_ai-1x-vllm-018) |
 | [Qwen/Qwen3-VL-4B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-4B-Thinking) | BF16 | 0.18 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-vl-4b-thinking-ifb-bw1000-1x-vllm-018) |
 | [Qwen/Qwen3-VL-8B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Instruct) | BF16 | 0.18 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-vl-8b-instruct-ifb-bw1000-1x-vllm-018) |
 | [Qwen/Qwen3-VL-8B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Thinking) | BF16 | 0.18 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-vl-8b-thinking-ifb-bw1000-1x-vllm-018) |
 | [Qwen/Qwen3-VL-30B-A3B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-30B-A3B-Instruct) | BF16 | 0.18 | BW1000 | 4x | IFB | [**\`>_\`**](#qwen3-vl-30b-a3b-instruct-ifb-bw1000-4x-vllm-018) |
 | [Qwen/Qwen3-VL-30B-A3B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-30B-A3B-Thinking) | BF16 | 0.18 | BW1000 | 4x | IFB | [**\`>_\`**](#qwen3-vl-30b-a3b-thinking-ifb-bw1000-4x-vllm-018) |
+| [Qwen/Qwen3-VL-32B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-32B-Instruct) | BF16 | 0.18 | BW1000 | 2x | IFB | [**\`>_\`**](#qwen3-vl-32b-instruct-ifb-bw1000-2x-vllm-018) |
+|                                                                               | BF16 | 0.18 | BW1100 | 1x | IFB | [**\`>_\`**](#qwen3-vl-32b-instruct-ifb-bw1100-1x-vllm-018) |
+|                                                                               | BF16 | 0.18 | K100_AI | 4x | IFB | [**\`>_\`**](#qwen3-vl-32b-instruct-ifb-k100_ai-4x-vllm-018) |
 | [Qwen/Qwen3-VL-235B-A22B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-235B-A22B-Instruct) | BF16 | 0.18 | BW1000 | 16x | IFB | [**\`>_\`**](#qwen3-vl-235b-a22b-instruct-ifb-bw1000-16x-vllm-018) |
 | [Qwen/Qwen3-VL-235B-A22B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-235B-A22B-Thinking) | BF16 | 0.18 | BW1000 | 16x | IFB | [**\`>_\`**](#qwen3-vl-235b-a22b-thinking-ifb-bw1000-16x-vllm-018) |
 
@@ -63,6 +68,25 @@ vllm serve Qwen/Qwen3-VL-2B-Thinking \
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+vllm serve Qwen/Qwen3-VL-4B-Instruct \
+  --tensor-parallel-size 1 \
+  --trust-remote-code
+```
+
+### Qwen3-VL-4B-Instruct IFB BW1100 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+vllm serve Qwen/Qwen3-VL-4B-Instruct \
+  --tensor-parallel-size 1 \
+  --trust-remote-code
+```
+
+### Qwen3-VL-4B-Instruct IFB K100_AI 1x vLLM 0.18
+
+```bash
 vllm serve Qwen/Qwen3-VL-4B-Instruct \
   --tensor-parallel-size 1 \
   --trust-remote-code
@@ -121,6 +145,37 @@ export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
+  --tensor-parallel-size 4 \
+  --trust-remote-code
+```
+
+
+### Qwen3-VL-32B-Instruct IFB BW1000 2x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+vllm serve Qwen/Qwen3-VL-32B-Instruct \
+  --tensor-parallel-size 2 \
+  --trust-remote-code
+```
+
+### Qwen3-VL-32B-Instruct IFB BW1100 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+vllm serve Qwen/Qwen3-VL-32B-Instruct \
+  --tensor-parallel-size 1 \
+  --trust-remote-code
+```
+
+### Qwen3-VL-32B-Instruct IFB K100_AI 4x vLLM 0.18
+
+```bash
+vllm serve Qwen/Qwen3-VL-32B-Instruct \
   --tensor-parallel-size 4 \
   --trust-remote-code
 ```

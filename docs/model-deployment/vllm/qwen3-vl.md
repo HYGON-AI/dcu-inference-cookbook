@@ -20,39 +20,39 @@ Qwen3-VL 是阿里云推出的新一代多模态视觉语言模型（Vision-Lang
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [Qwen/Qwen3-VL-2B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-2B-Instruct) | BF16 | 0.18 | BW1100  | 1x | IFB | [**\`>_\`**](#qwen3-vl-2b-instruct-ifb-bw1100-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | BW1000  | 1x | IFB | [**\`>_\`**](#qwen3-vl-2b-instruct-ifb-bw1000-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | K100_AI | 1x | IFB | [**\`>_\`**](#qwen3-vl-2b-instruct-ifb-k100_ai-1x-vllm-018) |
-| [Qwen/Qwen3-VL-2B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-2B-Thinking) | BF16 | 0.18 | BW1100  | 1x | IFB | [**\`>_\`**](#qwen3-vl-2b-thinking-ifb-bw1100-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | BW1000  | 1x | IFB | [**\`>_\`**](#qwen3-vl-2b-thinking-ifb-bw1000-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | K100_AI | 1x | IFB | [**\`>_\`**](#qwen3-vl-2b-thinking-ifb-k100_ai-1x-vllm-018) |
-| [Qwen/Qwen3-VL-4B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-4B-Instruct) | BF16 | 0.18 | BW1100  | 1x | IFB | [**\`>_\`**](#qwen3-vl-4b-instruct-ifb-bw1100-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | BW1000  | 1x | IFB | [**\`>_\`**](#qwen3-vl-4b-instruct-ifb-bw1000-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | K100_AI | 1x | IFB | [**\`>_\`**](#qwen3-vl-4b-instruct-ifb-k100_ai-1x-vllm-018) |
-| [Qwen/Qwen3-VL-4B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-4B-Thinking) | BF16 | 0.18 | BW1100  | 1x | IFB | [**\`>_\`**](#qwen3-vl-4b-thinking-ifb-bw1100-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | BW1000  | 1x | IFB | [**\`>_\`**](#qwen3-vl-4b-thinking-ifb-bw1000-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | K100_AI | 1x | IFB | [**\`>_\`**](#qwen3-vl-4b-thinking-ifb-k100_ai-1x-vllm-018) |
-| [Qwen/Qwen3-VL-8B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Instruct) | BF16 | 0.18 | BW1100  | 1x | IFB | [**\`>_\`**](#qwen3-vl-8b-instruct-ifb-bw1100-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | BW1000  | 1x | IFB | [**\`>_\`**](#qwen3-vl-8b-instruct-ifb-bw1000-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | K100_AI | 1x | IFB | [**\`>_\`**](#qwen3-vl-8b-instruct-ifb-k100_ai-1x-vllm-018) |
-| [Qwen/Qwen3-VL-8B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Thinking) | BF16 | 0.18 | BW1100  | 1x | IFB | [**\`>_\`**](#qwen3-vl-8b-thinking-ifb-bw1100-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | BW1000  | 1x | IFB | [**\`>_\`**](#qwen3-vl-8b-thinking-ifb-bw1000-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | K100_AI | 1x | IFB | [**\`>_\`**](#qwen3-vl-8b-thinking-ifb-k100_ai-1x-vllm-018) |
-| [Qwen/Qwen3-VL-30B-A3B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-30B-A3B-Instruct) | BF16 | 0.18 | BW1100  | 1x | IFB | [**\`>_\`**](#qwen3-vl-30b-a3b-instruct-ifb-bw1100-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | BW1000  | 2x | IFB | [**\`>_\`**](#qwen3-vl-30b-a3b-instruct-ifb-bw1000-2x-vllm-018) |
-|                                                                               | BF16      | 0.18 | K100_AI | 2x | IFB | [**\`>_\`**](#qwen3-vl-30b-a3b-instruct-ifb-k100_ai-2x-vllm-018) |
-| [Qwen/Qwen3-VL-30B-A3B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-30B-A3B-Thinking) | BF16 | 0.18 | BW1100  | 1x | IFB | [**\`>_\`**](#qwen3-vl-30b-a3b-thinking-ifb-bw1100-1x-vllm-018) |
-|                                                                               | BF16      | 0.18 | BW1000  | 2x | IFB | [**\`>_\`**](#qwen3-vl-30b-a3b-thinking-ifb-bw1000-2x-vllm-018) |
-|                                                                               | BF16      | 0.18 | K100_AI | 2x | IFB | [**\`>_\`**](#qwen3-vl-30b-a3b-thinking-ifb-k100_ai-2x-vllm-018) |
-| [Qwen/Qwen3-VL-32B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-32B-Instruct) | BF16 | 0.18 | BW1100 | 1x | IFB | [**\`>_\`**](#qwen3-vl-32b-instruct-ifb-bw1100-1x-vllm-018) |
-|                                                                               | BF16 | 0.18 | BW1000 | 2x | IFB | [**\`>_\`**](#qwen3-vl-32b-instruct-ifb-bw1000-2x-vllm-018) |
-|                                                                               | BF16 | 0.18 | K100_AI | 2x | IFB | [**\`>_\`**](#qwen3-vl-32b-instruct-ifb-k100_ai-2x-vllm-018) |
-| [Qwen/Qwen3-VL-235B-A22B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-235B-A22B-Instruct) | BF16 | 0.18 | BW1100  | 8x  | IFB | [**\`>_\`**](#qwen3-vl-235b-a22b-instruct-ifb-bw1100-8x-vllm-018) |
-|                                                                               | BF16      | 0.18 | BW1000  | 16x | IFB | [**\`>_\`**](#qwen3-vl-235b-a22b-instruct-ifb-bw1000-16x-vllm-018) |
-|                                                                               | BF16      | 0.18 | K100_AI | 16x | IFB | [**\`>_\`**](#qwen3-vl-235b-a22b-instruct-ifb-k100_ai-16x-vllm-018) |
-| [Qwen/Qwen3-VL-235B-A22B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-235B-A22B-Thinking) | BF16 | 0.18 | BW1100  | 8x  | IFB | [**\`>_\`**](#qwen3-vl-235b-a22b-thinking-ifb-bw1100-8x-vllm-018) |
-|                                                                               | BF16      | 0.18 | BW1000  | 16x | IFB | [**\`>_\`**](#qwen3-vl-235b-a22b-thinking-ifb-bw1000-16x-vllm-018) |
-|                                                                               | BF16      | 0.18 | K100_AI | 16x | IFB | [**\`>_\`**](#qwen3-vl-235b-a22b-thinking-ifb-k100_ai-16x-vllm-018) |
+| [Qwen/Qwen3-VL-2B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-2B-Instruct) | BF16 | 0.18 | BW1100  | 1x | IFB | [**`>_`**](#qwen3-vl-2b-instruct-ifb-bw1100-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | BW1000  | 1x | IFB | [**`>_`**](#qwen3-vl-2b-instruct-ifb-bw1000-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | K100_AI | 1x | IFB | [**`>_`**](#qwen3-vl-2b-instruct-ifb-k100_ai-1x-vllm-018) |
+| [Qwen/Qwen3-VL-2B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-2B-Thinking) | BF16 | 0.18 | BW1100  | 1x | IFB | [**`>_`**](#qwen3-vl-2b-thinking-ifb-bw1100-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | BW1000  | 1x | IFB | [**`>_`**](#qwen3-vl-2b-thinking-ifb-bw1000-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | K100_AI | 1x | IFB | [**`>_`**](#qwen3-vl-2b-thinking-ifb-k100_ai-1x-vllm-018) |
+| [Qwen/Qwen3-VL-4B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-4B-Instruct) | BF16 | 0.18 | BW1100  | 1x | IFB | [**`>_`**](#qwen3-vl-4b-instruct-ifb-bw1100-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | BW1000  | 1x | IFB | [**`>_`**](#qwen3-vl-4b-instruct-ifb-bw1000-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | K100_AI | 1x | IFB | [**`>_`**](#qwen3-vl-4b-instruct-ifb-k100_ai-1x-vllm-018) |
+| [Qwen/Qwen3-VL-4B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-4B-Thinking) | BF16 | 0.18 | BW1100  | 1x | IFB | [**`>_`**](#qwen3-vl-4b-thinking-ifb-bw1100-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | BW1000  | 1x | IFB | [**`>_`**](#qwen3-vl-4b-thinking-ifb-bw1000-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | K100_AI | 1x | IFB | [**`>_`**](#qwen3-vl-4b-thinking-ifb-k100_ai-1x-vllm-018) |
+| [Qwen/Qwen3-VL-8B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Instruct) | BF16 | 0.18 | BW1100  | 1x | IFB | [**`>_`**](#qwen3-vl-8b-instruct-ifb-bw1100-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | BW1000  | 1x | IFB | [**`>_`**](#qwen3-vl-8b-instruct-ifb-bw1000-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | K100_AI | 1x | IFB | [**`>_`**](#qwen3-vl-8b-instruct-ifb-k100_ai-1x-vllm-018) |
+| [Qwen/Qwen3-VL-8B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Thinking) | BF16 | 0.18 | BW1100  | 1x | IFB | [**`>_`**](#qwen3-vl-8b-thinking-ifb-bw1100-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | BW1000  | 1x | IFB | [**`>_`**](#qwen3-vl-8b-thinking-ifb-bw1000-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | K100_AI | 1x | IFB | [**`>_`**](#qwen3-vl-8b-thinking-ifb-k100_ai-1x-vllm-018) |
+| [Qwen/Qwen3-VL-30B-A3B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-30B-A3B-Instruct) | BF16 | 0.18 | BW1100  | 1x | IFB | [**`>_`**](#qwen3-vl-30b-a3b-instruct-ifb-bw1100-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | BW1000  | 2x | IFB | [**`>_`**](#qwen3-vl-30b-a3b-instruct-ifb-bw1000-2x-vllm-018) |
+|                                                                               | BF16      | 0.18 | K100_AI | 2x | IFB | [**`>_`**](#qwen3-vl-30b-a3b-instruct-ifb-k100_ai-2x-vllm-018) |
+| [Qwen/Qwen3-VL-30B-A3B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-30B-A3B-Thinking) | BF16 | 0.18 | BW1100  | 1x | IFB | [**`>_`**](#qwen3-vl-30b-a3b-thinking-ifb-bw1100-1x-vllm-018) |
+|                                                                               | BF16      | 0.18 | BW1000  | 2x | IFB | [**`>_`**](#qwen3-vl-30b-a3b-thinking-ifb-bw1000-2x-vllm-018) |
+|                                                                               | BF16      | 0.18 | K100_AI | 2x | IFB | [**`>_`**](#qwen3-vl-30b-a3b-thinking-ifb-k100_ai-2x-vllm-018) |
+| [Qwen/Qwen3-VL-32B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-32B-Instruct) | BF16 | 0.18 | BW1100 | 1x | IFB | [**`>_`**](#qwen3-vl-32b-instruct-ifb-bw1100-1x-vllm-018) |
+|                                                                               | BF16 | 0.18 | BW1000 | 2x | IFB | [**`>_`**](#qwen3-vl-32b-instruct-ifb-bw1000-2x-vllm-018) |
+|                                                                               | BF16 | 0.18 | K100_AI | 2x | IFB | [**`>_`**](#qwen3-vl-32b-instruct-ifb-k100_ai-2x-vllm-018) |
+| [Qwen/Qwen3-VL-235B-A22B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-235B-A22B-Instruct) | BF16 | 0.18 | BW1100  | 8x  | IFB | [**`>_`**](#qwen3-vl-235b-a22b-instruct-ifb-bw1100-8x-vllm-018) |
+|                                                                               | BF16      | 0.18 | BW1000  | 16x | IFB | [**`>_`**](#qwen3-vl-235b-a22b-instruct-ifb-bw1000-16x-vllm-018) |
+|                                                                               | BF16      | 0.18 | K100_AI | 16x | IFB | [**`>_`**](#qwen3-vl-235b-a22b-instruct-ifb-k100_ai-16x-vllm-018) |
+| [Qwen/Qwen3-VL-235B-A22B-Thinking](https://www.modelscope.cn/models/Qwen/Qwen3-VL-235B-A22B-Thinking) | BF16 | 0.18 | BW1100  | 8x  | IFB | [**`>_`**](#qwen3-vl-235b-a22b-thinking-ifb-bw1100-8x-vllm-018) |
+|                                                                               | BF16      | 0.18 | BW1000  | 16x | IFB | [**`>_`**](#qwen3-vl-235b-a22b-thinking-ifb-bw1000-16x-vllm-018) |
+|                                                                               | BF16      | 0.18 | K100_AI | 16x | IFB | [**`>_`**](#qwen3-vl-235b-a22b-thinking-ifb-k100_ai-16x-vllm-018) |
 
 ---
 

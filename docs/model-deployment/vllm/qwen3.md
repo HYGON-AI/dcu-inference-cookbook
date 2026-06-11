@@ -937,6 +937,7 @@ export VLLM_RANK7_NUMA=1
 vllm serve Qwen3/Qwen3-235B-A22B-FP8-Channelwise \
     -tp 4 \
     --trust-remote-code \
+    -q slimquant_marlin \
     --max-num-batched-tokens 10240 
 ```
 ### Qwen3-235B-A22B-FP8-Channelwise IFB BW1100 4x vLLM 0.15

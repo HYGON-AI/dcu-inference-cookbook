@@ -1,0 +1,93 @@
+name: quality-baseline-scan
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  encoding-baseline-scan:
+    name: encoding-baseline-scan
+    runs-on: [self-hosted, linux, x64, quality]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check UTF-8 and garbled characters
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          skip_dirs = {
+              ".git", ".github", "node_modules", "venv", ".venv",
+              "__pycache__", "dist", "build", "target", ".tox",
+              ".mypy_cache", ".pytest_cache", ".ruff_cache"
+          }
+
+          binary_exts = {
+              ".png", ".jpg", ".jpeg", ".gif", ".ico", ".pdf",
+              ".zip", ".gz", ".tar", ".tgz", ".jar", ".so", ".dll",
+              ".exe", ".bin", ".onnx", ".pt", ".pth", ".safetensors",
+              ".whl", ".mp4", ".avi"
+          }
+
+          bad = []
+
+          for path in Path(".").rglob("*"):
+              if not path.is_file():
+                  continue
+
+              if set(path.parts) & skip_dirs:
+                  continue
+
+              if path.suffix.lower() in binary_exts:
+                  continue
+
+              data = path.read_bytes()
+
+              if b"\x00" in data[:4096]:
+                  continue
+
+              try:
+                  text = data.decode("utf-8")
+              except UnicodeDecodeError as e:
+                  bad.append(f"{path}: not valid UTF-8: {e}")
+                  continue
+
+              if "\ufffd" in text:
+                  bad.append(f"{path}: contains replacement character")
+
+              if "\r\n" in text:
+                  bad.append(f"{path}: contains CRLF line endings")
+
+          if bad:
+              print("Encoding baseline scan failed:")
+              for item in bad:
+                  print(" -", item)
+              raise SystemExit(1)
+
+          print("Encoding baseline scan passed.")
+          PY
+
+  secret-baseline-scan:
+    name: secret-baseline-scan
+    runs-on: [self-hosted, linux, x64, quality]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks baseline scan
+        shell: bash
+        run: |
+          docker run --rm \
+            -v "$PWD:/repo" \
+            zricethezav/gitleaks:v8.24.2 \
+            detect --source /repo --no-git --verbose

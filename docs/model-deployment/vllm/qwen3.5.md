@@ -48,8 +48,6 @@ Qwen3.5 是 Qwen3 系列的增强版本，在推理能力、代码生成、多�
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve Qwen/Qwen3.5-4B \
   -tp 1 \
@@ -64,8 +62,6 @@ vllm serve Qwen/Qwen3.5-4B \
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve Qwen/Qwen3.5-4B \
   -tp 1 \
@@ -94,8 +90,6 @@ vllm serve Qwen/Qwen3.5-4B \
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve Qwen/Qwen3.5-9B \
   -tp 1 \
@@ -110,8 +104,6 @@ vllm serve Qwen/Qwen3.5-9B \
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve Qwen/Qwen3.5-9B \
   -tp 1 \
@@ -140,8 +132,6 @@ vllm serve Qwen/Qwen3.5-9B \
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve Qwen/Qwen3.5-27B \
   -tp 1 \
@@ -156,8 +146,6 @@ vllm serve Qwen/Qwen3.5-27B \
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve Qwen/Qwen3.5-27B \
   -tp 2 \

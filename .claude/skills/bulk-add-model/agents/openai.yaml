@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bulk Add Model"
+  short_description: "Batch derive model deployment docs from an existing model entry"
+  default_prompt: "Use bulk-add-model to add multiple model variants by referencing an existing deployment model."

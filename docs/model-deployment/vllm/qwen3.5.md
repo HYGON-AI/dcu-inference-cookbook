@@ -194,7 +194,8 @@ vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
   -q slimquant_marlin \
-  --speculative-config.num_speculative_tokens 3 
+  --speculative-config.num_speculative_tokens 3 \
+  --speculative-config.quantization "slimquant_marlin"
 
 ```
 
@@ -212,8 +213,8 @@ vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
   -q slimquant_marlin \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
-  --speculative-config.num_speculative_tokens 3 
-
+  --speculative-config.num_speculative_tokens 3 \
+  --speculative-config.quantization "slimquant_marlin"
 ```
 
 ### Qwen3.5-27B-Channel-INT8-w8a8 IFB K100_AI 1x vLLM 0.18
@@ -229,7 +230,8 @@ vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
   --max-num-batched-tokens 10240 \
   -q slimquant_marlin \
   --speculative-config.method mtp \
-  --speculative-config.num_speculative_tokens 3 
+  --speculative-config.num_speculative_tokens 3 \
+  --speculative-config.quantization "slimquant_marlin"
 ```
 
 ### Qwen3.5-27B-W8A8 IFB K100_AI 2x vLLM 0.18

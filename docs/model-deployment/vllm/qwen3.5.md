@@ -185,8 +185,7 @@ vllm serve Qwen/Qwen3.5-27B \
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
+
 
 vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
   -tp 1 \
@@ -206,8 +205,6 @@ vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
   -tp 1 \
@@ -329,8 +326,7 @@ vllm serve Qwen/Qwen3.5-35B-A3B \
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
+
 
 vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
   -tp 1 \
@@ -348,8 +344,6 @@ vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
   -tp 1 \
@@ -384,8 +378,6 @@ vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
   -tp 1 \
@@ -403,8 +395,6 @@ vllm serve hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
   -tp 1 \

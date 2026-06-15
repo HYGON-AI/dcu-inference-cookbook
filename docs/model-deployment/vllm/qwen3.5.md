@@ -17,18 +17,20 @@ Qwen3.5 是 Qwen3 系列的增强版本，在推理能力、代码生成、多�
 | [Qwen/Qwen3.5-27B](https://www.modelscope.cn/models/Qwen/Qwen3.5-27B)         | BF16      | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen35-27b-ifb-bw1100-1x-vllm-018)          |
 |                                                                               | BF16      | 0.18 | BW1000  | 2 | IFB | [**`>_`**](#qwen35-27b-ifb-bw1000-2x-vllm-018)          |
 |                                                                               | BF16      | 0.18 | K100_AI | 2 | IFB | [**`>_`**](#qwen35-27b-ifb-k100_ai-2x-vllm-018)          |
-| [Qwen/Qwen3.5-27B-W8A8-INT8](https://modelscope.cn/models/hygon/Qwen3.5-27B-Channel-INT8-w8a8) | INT8 W8A8 | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen35-27b-w8a8-int8-ifb-bw1100-1x-vllm-018) |
-|                                                                                              | INT8 W8A8 | 0.18 | BW1000  | 1 | IFB | [**`>_`**](#qwen35-27b-w8a8-int8-ifb-bw1000-1x-vllm-018) |
-|                                                                                              | INT8 W8A8 | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen35-27b-w8a8-int8-ifb-k100_ai-1x-vllm-018) |
+| [hygon/Qwen3.5-27B-Channel-INT8-w8a8]() | INT8 W8A8 | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen35-27b-channel-int8-w8a8-ifb-bw1100-1x-vllm-018) |
+|                                                                                              | INT8 W8A8 | 0.18 | BW1000  | 1 | IFB | [**`>_`**](#qwen35-27b-channel-int8-w8a8-ifb-bw1000-1x-vllm-018) |
+|                                                                                              | INT8 W8A8 | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen35-27b-channel-int8-w8a8-ifb-k100_ai-1x-vllm-018) |
 | [Qwen/Qwen3.5-27B-W8A8](https://modelscope.cn/models/metax-tech/Qwen3.5-27B-W8A8) | W8A8 | 0.18 | K100_AI | 2 | IFB | [**`>_`**](#qwen35-27b-w8a8-ifb-k100_ai-2x-vllm-018) |
 | [Qwen/Qwen3.5-27B-W8A8-FP8](https://modelscope.cn/models/hygon/Qwen3.5-27B-Channel-FP8-w8a8) | FP8 W8A8  | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen35-27b-w8a8-fp8-ifb-bw1100-1x-vllm-018) |
 | [Qwen/Qwen3.5-35B-A3B](https://www.modelscope.cn/models/Qwen/Qwen3.5-35B-A3B) | BF16      | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen35-35b-a3b-ifb-bw1100-1x-vllm-018)     |
 |                                                                               | BF16      | 0.18 | BW1000  | 2 | IFB | [**`>_`**](#qwen35-35b-a3b-ifb-bw1000-2x-vllm-018)      |
 |                                                                               | BF16      | 0.18 | K100_AI | 2 | IFB | [**`>_`**](#qwen35-35b-a3b-ifb-k100_ai-2x-vllm-018)      |
-| [Qwen/Qwen3.5-35B-A3B-W8A8-INT8](https://modelscope.cn/models/hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8) | INT8 W8A8 | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen35-35b-a3b-w8a8-int8-ifb-bw1100-1x-vllm-018) |
-|                                                                                              | INT8 W8A8 | 0.18 | BW1000  | 1 | IFB | [**`>_`**](#qwen35-35b-a3b-w8a8-int8-ifb-bw1000-1x-vllm-018) |
-|                                                                                              | INT8 W8A8 | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen35-35b-a3b-w8a8-int8-ifb-k100_ai-1x-vllm-018) |
-| [Qwen/Qwen3.5-35B-A3B-W8A8-FP8](https://modelscope.cn/models/hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8)       | FP8 W8A8  | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen35-35b-a3b-w8a8-fp8-ifb-bw1100-1x-vllm-018) |
+| [hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8) | INT8 W8A8 | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen35-35b-a3b-channel-int8-w8a8-ifb-bw1100-1x-vllm-018) |
+|                                                                                              | INT8 W8A8 | 0.18 | BW1000  | 1 | IFB | [**`>_`**](#qwen35-35b-a3b-channel-int8-w8a8-ifb-bw1000-1x-vllm-018) |
+|                                                                                              | INT8 W8A8 | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen35-35b-a3b-channel-int8-w8a8-ifb-k100_ai-1x-vllm-018) |
+| [hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8)       | FP8 W8A8  | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen35-35b-a3b-channel-fp8-w8a8-ifb-bw1100-1x-vllm-018) |
+|                                                                                              | FP8 W8A8  | 0.18 | BW1000  | 1 | IFB | [**`>_`**](#qwen35-35b-a3b-channel-fp8-w8a8-ifb-bw1000-1x-vllm-018) |
+|                                                                                              | FP8 W8A8  | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen35-35b-a3b-channel-fp8-w8a8-ifb-k100_ai-1x-vllm-018) |
 | [Qwen/Qwen3.5-122B-A10B](https://www.modelscope.cn/models/Qwen/Qwen3.5-122B-A10B) | BF16   | 0.18 | BW1100  | 4 | IFB | [**`>_`**](#qwen35-122b-a10b-ifb-bw1100-4x-vllm-018)  |
 |                                                                                  | BF16   | 0.18 | BW1000  | 8 | IFB | [**`>_`**](#qwen35-122b-a10b-ifb-bw1000-8x-vllm-018)   |
 |                                                                                  | BF16   | 0.18 | K100_AI | 8 | IFB | [**`>_`**](#qwen35-122b-a10b-ifb-k100_ai-8x-vllm-018)   |
@@ -133,6 +135,8 @@ vllm serve Qwen/Qwen3.5-9B \
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve Qwen/Qwen3.5-27B \
   -tp 1 \
@@ -148,6 +152,8 @@ vllm serve Qwen/Qwen3.5-27B \
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
 
 vllm serve Qwen/Qwen3.5-27B \
   -tp 2 \
@@ -161,6 +167,10 @@ vllm serve Qwen/Qwen3.5-27B \
 ### Qwen3.5-27B IFB K100_AI 2x vLLM 0.18
 
 ```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+
+
 vllm serve Qwen/Qwen3.5-27B \
   -tp 2 \
   --trust-remote-code \
@@ -169,6 +179,65 @@ vllm serve Qwen/Qwen3.5-27B \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3
 ```
+
+### Qwen3.5-27B-Channel-INT8-w8a8 IFB BW1100 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
+
+vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
+  -tp 1 \
+  --trust-remote-code \
+  --disable-cascade-attn \
+  --max-num-batched-tokens 10240 \
+  --speculative-config.method mtp \
+  -q slimquant_marlin \
+  --speculative-config.num_speculative_tokens 3 \
+  --speculative-config.quantization "slimquant_marlin"
+
+
+```
+
+### Qwen3.5-27B-Channel-INT8-w8a8 IFB BW1000 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
+
+vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
+  -tp 1 \
+  --trust-remote-code \
+  --disable-cascade-attn \
+  -q slimquant_marlin \
+  --max-num-batched-tokens 10240 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --speculative-config.quantization "slimquant_marlin"
+
+```
+
+### Qwen3.5-27B-Channel-INT8-w8a8 IFB K100_AI 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+
+vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
+  -tp 1 \
+  --trust-remote-code \
+  --disable-cascade-attn \
+  --max-num-batched-tokens 10240 \
+  -q slimquant_marlin \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --speculative-config.quantization "slimquant_marlin"
+```
+
 ### Qwen3.5-27B-W8A8 IFB K100_AI 2x vLLM 0.18
 
 ```bash
@@ -199,54 +268,6 @@ vllm serve Qwen/Qwen3.5-27B-W8A8 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --default-chat-template-kwargs '{"enable_thinking": false}'
-```
-### Qwen3.5-27B-W8A8-INT8 IFB BW1100 1x vLLM 0.18
-
-```bash
-export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
-export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-
-vllm serve Qwen/Qwen3.5-27B-W8A8-INT8 \
-  -tp 1 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240 \
-  --speculative-config.method mtp \
-  --speculative-config.num_speculative_tokens 3 
-
-```
-
-### Qwen3.5-27B-W8A8-INT8 IFB BW1000 1x vLLM 0.18
-
-```bash
-export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
-export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-
-vllm serve Qwen/Qwen3.5-27B-W8A8-INT8 \
-  -tp 1 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240 \
-  --speculative-config.method mtp \
-  --speculative-config.num_speculative_tokens 3 
-
-```
-
-### Qwen3.5-27B-W8A8-INT8 IFB K100_AI 1x vLLM 0.18
-
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-
-vllm serve Qwen/Qwen3.5-27B-W8A8-INT8 \
-  -tp 1 \
-  --trust-remote-code \
-  --disable-cascade-attn \
-  --max-num-batched-tokens 10240 \
-  --speculative-config.method mtp \
-  --speculative-config.num_speculative_tokens 3 
 ```
 
 ### Qwen3.5-27B-W8A8-FP8 IFB BW1100 1x vLLM 0.18
@@ -291,6 +312,9 @@ vllm serve Qwen/Qwen3.5-35B-A3B \
 ### Qwen3.5-35B-A3B IFB K100_AI 2x vLLM 0.18
 
 ```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+
 vllm serve Qwen/Qwen3.5-35B-A3B \
   -tp 2 \
   --trust-remote-code \
@@ -300,14 +324,15 @@ vllm serve Qwen/Qwen3.5-35B-A3B \
   --speculative-config.num_speculative_tokens 3
 ```
 
-### Qwen3.5-35B-A3B-W8A8-INT8 IFB BW1100 1x vLLM 0.18
+### Qwen3.5-35B-A3B-Channel-INT8-w8a8 IFB BW1100 1x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
 
-vllm serve Qwen/Qwen3.5-35B-A3B-W8A8-INT8 \
+vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
   --disable-cascade-attn \
@@ -318,14 +343,15 @@ vllm serve Qwen/Qwen3.5-35B-A3B-W8A8-INT8 \
   --speculative-config.quantization "slimquant_marlin"
 ```
 
-### Qwen3.5-35B-A3B-W8A8-INT8 IFB BW1000 1x vLLM 0.18
+### Qwen3.5-35B-A3B-Channel-INT8-w8a8 IFB BW1000 1x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_FLASH_ATTN=1
-export VLLM_HCU_USE_FLASH_ATTN_UNIFIED=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
 
-vllm serve Qwen/Qwen3.5-35B-A3B-W8A8-INT8 \
+vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
   --disable-cascade-attn \
@@ -336,23 +362,75 @@ vllm serve Qwen/Qwen3.5-35B-A3B-W8A8-INT8 \
   --speculative-config.quantization "slimquant_marlin"
 ```
 
-### Qwen3.5-35B-A3B-W8A8-INT8 IFB K100_AI 1x vLLM 0.18
+### Qwen3.5-35B-A3B-Channel-INT8-w8a8 IFB K100_AI 1x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 
-vllm serve Qwen/Qwen3.5-35B-A3B-W8A8-INT8 \
+vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
+  -tp 1 \
+  --trust-remote-code \
+  --disable-cascade-attn \
+  --max-num-batched-tokens 10240 \
+  -q slimquant_marlin \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 
+  --speculative-config.quantization "slimquant_marlin"
+```
+
+### Qwen3.5-35B-A3B-Channel-FP8-w8a8 IFB BW1100 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
+
+vllm serve hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
+  -tp 1 \
+  --trust-remote-code \
+  --disable-cascade-attn \
+  --max-num-batched-tokens 10240 \
+  -q slimquant_marlin \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --speculative-config.quantization "slimquant_marlin"
+```
+
+### Qwen3.5-35B-A3B-Channel-FP8-w8a8 IFB BW1000 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_FLASH_ATTN=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_ROCM_USE_AITER=1
+export VLLM_ROCM_USE_AITER_MOE=1
+
+vllm serve hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
+  -tp 1 \
+  --trust-remote-code \
+  --disable-cascade-attn \
+  --max-num-batched-tokens 10240 \
+  -q slimquant_marlin \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --speculative-config.quantization "slimquant_marlin"
+```
+
+### Qwen3.5-35B-A3B-Channel-FP8-w8a8 IFB K100_AI 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+
+vllm serve hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
   -tp 1 \
   --trust-remote-code \
   --disable-cascade-attn \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
-  --speculative-config.num_speculative_tokens 3 
+  --speculative-config.num_speculative_tokens 3
 ```
-
-### Qwen3.5-35B-A3B-W8A8-FP8 IFB BW1100 1x vLLM 0.18
-<!-- TODO: 启动命令待补充 -->
 
 ### Qwen3.5-122B-A10B IFB BW1100 4x vLLM 0.18
 

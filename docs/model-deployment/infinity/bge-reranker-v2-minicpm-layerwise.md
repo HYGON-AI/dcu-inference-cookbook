@@ -10,6 +10,12 @@ bge-reranker-v2-minicpm-layerwise 是 BAAI 发布的层序 reranker 模型，基
 | -------- | -------- | ---- | -------- | ---- | -------- | -------- |
 | [BAAI/bge-reranker-v2-minicpm-layerwise](https://www.modelscope.cn/models/BAAI/bge-reranker-v2-minicpm-layerwise) | BF16 | infinity_emb | BW1000 | 1 | IFB | [**`>_`**](#bw1000-1x-infinity_emb) |
 
+## 环境准备
+
+```bash
+pip install sentence-transformers>=3.0.0,<4.0.0 orjson
+```
+
 ## 启动命令
 
 ### BW1000 1x infinity_emb

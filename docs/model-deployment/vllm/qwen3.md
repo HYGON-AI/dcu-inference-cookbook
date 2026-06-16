@@ -730,7 +730,7 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507-W8A8 \
   -tp 1 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
-    -q slimquant_marlin 
+  -q slimquant_marlin 
 ```
 
 

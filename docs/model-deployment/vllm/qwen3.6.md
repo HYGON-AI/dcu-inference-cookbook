@@ -119,8 +119,8 @@ client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 response = client.chat.completions.create(
     model="Qwen/Qwen3.6-35B-A3B",
     messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "中国的首都是哪里？"},
+        {"role": "system", "content": "你是一个专业的编程助手。"},
+        {"role": "user", "content": "用 Python 实现一个高效的 LRU Cache"},
     ],
     max_tokens=2048,
 )
@@ -131,13 +131,11 @@ print(response.choices[0].message.content)
 curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "Qwen/Qwen3.6-35B-A3B",
-    "max_tokens": 2048,
-    "messages": [
-      {"role": "system", "content": "You are a helpful assistant."},
-      {"role": "user", "content": [
-        {"type": "text", "text": "中国的首都是哪里？"}
-      ]}
-    ]
+  "model": "Qwen/Qwen3.6-35B-A3B",
+  "messages": [
+    {"role": "system", "content": "你是一个专业的编程助手。"},
+    {"role": "user", "content": "用 Python 实现一个高效的 LRU Cache"}
+  ],
+  "max_tokens": 128
   }'
 ```

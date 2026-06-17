@@ -95,38 +95,20 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 ### Qwen3-0.6B IFB BW1100 1x vLLM 0.18
 
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-0.6B \
   -tp 1 \
-  --kv-cache-dtype fp8_e4m3 \
-  --trust-remote-code 
+  --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3
 ```
 
 ### Qwen3-0.6B IFB BW1000 1x vLLM 0.18
 
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-0.6B \
   -tp 1 \
@@ -137,17 +119,8 @@ vllm serve Qwen/Qwen3-0.6B \
 ### Qwen3-0.6B IFB K100_AI 1x vLLM 0.18
 
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-0.6B \
   -tp 1 \
@@ -175,64 +148,34 @@ vllm serve Qwen/Qwen3-0.6B \
 ### Qwen3-1.7B IFB BW1100 1x vLLM 0.18
 
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-1.7B \
   -tp 1 \
   --trust-remote-code \
-  --dtype bfloat16 \
   --kv-cache-dtype fp8_e4m3 
 ```
 
 ### Qwen3-1.7B IFB BW1000 1x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-1.7B \
   -tp 1 \
   --trust-remote-code \
-  --dtype bfloat16 \
   --kv-cache-dtype fp8_e5m2 
 ```
 
 ### Qwen3-1.7B IFB K100_AI 1x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
-export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
 
 vllm serve Qwen/Qwen3-1.7B \
   -tp 1 \
-  --trust-remote-code \
-  --dtype bfloat16 
+  --trust-remote-code
 ```
 
 ### Qwen3-1.7B IFB BW1100 1x vLLM 0.15
@@ -247,59 +190,32 @@ vllm serve Qwen/Qwen3-1.7B \
 
 ### Qwen3-4B IFB BW1100 1x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-4B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --kv-cache-dtype fp8_e4m3 
+  --kv-cache-dtype fp8_e4m3 \
+  --max-num-batched-tokens 10240
 ```
 
 ### Qwen3-4B IFB BW1000 1x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-4B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --kv-cache-dtype fp8_e5m2 
+  --kv-cache-dtype fp8_e5m2 \
+  --max-num-batched-tokens 10240
 ```
 
 ### Qwen3-4B IFB K100_AI 1x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
-export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
 
 vllm serve Qwen/Qwen3-4B \
   -tp 1 \
@@ -315,28 +231,24 @@ vllm serve Qwen/Qwen3-4B \
 
 ### Qwen3-4B-Channel-INT8-w8a8 IFB BW1100 1x vLLM 0.18
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=0
-export VLLM_ROCM_USE_AITER=0
-export VLLM_ROCM_USE_AITER_MOE=0
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
 vllm serve Qwen/Qwen3-4B-Channel-INT8-w8a8 \
   -tp  1 \
-  --q slimquant_marlin \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 
+  --max-num-batched-tokens 10240 \
+  --q slimquant_marlin
 ```
 
 ### Qwen3-4B-Channel-INT8-w8a8 IFB BW1000 1x vLLM 0.18
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=0
-export VLLM_ROCM_USE_AITER=0
-export VLLM_ROCM_USE_AITER_MOE=0
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
 vllm serve Qwen/Qwen3-4B-Channel-INT8-w8a8 \
   -tp  1 \
-  --q slimquant_marlin \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 
+  --max-num-batched-tokens 10240 \
+  --q slimquant_marlin
 ```
 
 
@@ -350,59 +262,32 @@ vllm serve Qwen/Qwen3-4B-Channel-INT8-w8a8 \
 
 ### Qwen3-8B IFB BW1100 1x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-8B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --kv-cache-dtype fp8_e4m3 
+  --kv-cache-dtype fp8_e4m3 \
+  --max-num-batched-tokens 10240
 ```
 
 ### Qwen3-8B IFB BW1000 1x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-8B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --kv-cache-dtype fp8_e5m2 
+  --kv-cache-dtype fp8_e5m2 \
+  --max-num-batched-tokens 10240 
 ```
 
 ### Qwen3-8B IFB K100_AI 1x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
-export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
 
 vllm serve Qwen/Qwen3-8B \
   -tp 1 \
@@ -418,28 +303,24 @@ vllm serve Qwen/Qwen3-8B \
 
 ### Qwen3-8B-Channel-INT8-w8a8 IFB BW1100 1x vLLM 0.18
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=0
-export VLLM_ROCM_USE_AITER=0
-export VLLM_ROCM_USE_AITER_MOE=0
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
 vllm serve Qwen/Qwen3-8B-Channel-INT8-w8a8 \
   -tp  1 \
-  --q slimquant_marlin \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 
+  --max-num-batched-tokens 10240 \
+  --q slimquant_marlin
 ```
 
 ### Qwen3-8B-Channel-INT8-w8a8 IFB BW1000 1x vLLM 0.18
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=0
-export VLLM_ROCM_USE_AITER=0
-export VLLM_ROCM_USE_AITER_MOE=0
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
 vllm serve Qwen/Qwen3-8B-Channel-INT8-w8a8 \
   -tp  1 \
-  --q slimquant_marlin \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 
+  --max-num-batched-tokens 10240 \
+  --q slimquant_marlin
 ```
 
 ### Qwen3-8B-Channel-INT8-w8a8 IFB K100_AI 1x vLLM 0.18
@@ -452,59 +333,32 @@ vllm serve Qwen/Qwen3-8B-Channel-INT8-w8a8 \
 
 ### Qwen3-14B IFB BW1100 1x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-14B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --kv-cache-dtype fp8_e4m3
+  --kv-cache-dtype fp8_e4m3 \
+  --max-num-batched-tokens 10240
 ```
 
 ### Qwen3-14B IFB BW1000 1x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-14B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --kv-cache-dtype fp8_e5m2
+  --kv-cache-dtype fp8_e5m2 \
+  --max-num-batched-tokens 10240
 ```
 
 ### Qwen3-14B IFB K100_AI 1x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
-export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
 
 vllm serve Qwen/Qwen3-14B \
   -tp 1 \
@@ -520,28 +374,24 @@ vllm serve Qwen/Qwen3-14B \
 
 ### Qwen3-14B-Channel-INT8-w8a8 IFB BW1100 1x vLLM 0.18
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=0
-export VLLM_ROCM_USE_AITER=0
-export VLLM_ROCM_USE_AITER_MOE=0
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
 vllm serve Qwen/Qwen3-14B-Channel-INT8-w8a8 \
   -tp  1 \
-  --q slimquant_marlin \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 
+  --max-num-batched-tokens 10240 \
+  --q slimquant_marlin
 ```
 
 ### Qwen3-14B-Channel-INT8-w8a8 IFB BW1000 1x vLLM 0.18
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=0
-export VLLM_ROCM_USE_AITER=0
-export VLLM_ROCM_USE_AITER_MOE=0
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
 vllm serve Qwen/Qwen3-14B-Channel-INT8-w8a8 \
   -tp  1 \
-  --q slimquant_marlin \
   --trust-remote-code \
-  --max-num-batched-tokens 10240
+  --max-num-batched-tokens 10240 \
+  --q slimquant_marlin
 ``` 
 
 ### Qwen3-14B-Channel-INT8-w8a8 IFB K100_AI 1x vLLM 0.18
@@ -554,60 +404,33 @@ vllm serve Qwen/Qwen3-14B-Channel-INT8-w8a8 \
 
 ### Qwen3-32B IFB BW1100 1x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-32B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --kv-cache-dtype fp8_e4m3 
+  --kv-cache-dtype fp8_e4m3 \
+  --max-num-batched-tokens 10240
 ```
 
 ### Qwen3-32B IFB BW1000 2x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-32B \
   -tp 2 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --kv-cache-dtype fp8_e5m2 
+  --kv-cache-dtype fp8_e5m2 \
+  --max-num-batched-tokens 10240
 ```
 
 ### Qwen3-32B IFB K100_AI 2x vLLM 0.18
 
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
-export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
 
 vllm serve Qwen/Qwen3-32B \
   -tp 2 \
@@ -623,19 +446,10 @@ vllm serve Qwen/Qwen3-32B \
 
 ### Qwen3-30B-A3B-Instruct-2507 IFB BW1100 1x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export VLLM_ROCM_USE_AITER=1
 export VLLM_ROCM_USE_AITER_MOE=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
   -tp 1 \
@@ -645,19 +459,10 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
 
 ### Qwen3-30B-A3B-Instruct-2507 IFB BW1000 2x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export VLLM_ROCM_USE_AITER=1
 export VLLM_ROCM_USE_AITER_MOE=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
   -tp 2 \
@@ -667,19 +472,8 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
 
 ### Qwen3-30B-A3B-Instruct-2507 IFB K100_AI 2x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
-export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_ROCM_USE_AITER=1
-export VLLM_ROCM_USE_AITER_MOE=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
 
 vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
   -tp 2 \
@@ -706,15 +500,14 @@ vllm serve Qwen/Qwen3-30B-A3B \
 
 ### Qwen3-30B-A3B-Instruct-2507-W8A8-INT8 IFB BW1100 1x vLLM 0.18
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=0
-export VLLM_ROCM_USE_AITER=0
-export VLLM_ROCM_USE_AITER_MOE=0
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
 vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507-W8A8 \
   -tp  1 \
-  --q slimquant_marlin \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 
+  --max-num-batched-tokens 10240 \
+  --q slimquant_marlin
 ```
 
 
@@ -723,14 +516,12 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507-W8A8 \
 ```bash
 export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_ROCM_USE_AITER=0
-export VLLM_ROCM_USE_AITER_MOE=0
 
 vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507-W8A8 \
   -tp 1 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
-  -q slimquant_marlin 
+  --q slimquant_marlin 
 ```
 
 
@@ -744,19 +535,10 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507-W8A8 \
 
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 4x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export VLLM_ROCM_USE_AITER=1
 export VLLM_ROCM_USE_AITER_MOE=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   -tp 4 \
@@ -767,26 +549,16 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x vLLM 0.18
 
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export VLLM_ROCM_USE_AITER=1
 export VLLM_ROCM_USE_AITER_MOE=1
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   -tp 8 \
-  --gpu-memory-utilization 0.95 \
   --trust-remote-code \
-  --max-model-len 40960 \
-  --max-num-batched-tokens 10240 
+  --max-num-batched-tokens 10240 \
+  --gpu-memory-utilization 0.95
 ```
 
 
@@ -797,14 +569,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 4x vLLM 0.15
 
 ```bash
-export VLLM_RANK0_NUMA=0   ##按照实际的
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=1
-export VLLM_RANK3_NUMA=1
-export VLLM_RANK4_NUMA=2
-export VLLM_RANK5_NUMA=2
-export VLLM_RANK6_NUMA=3
-export VLLM_RANK7_NUMA=3
 
 vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --dtype float16 \
@@ -816,14 +580,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x vLLM 0.15
 
 ```bash
-export VLLM_RANK0_NUMA=0  #按照实际的
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=1
-export VLLM_RANK3_NUMA=1
-export VLLM_RANK4_NUMA=2
-export VLLM_RANK5_NUMA=3
-export VLLM_RANK6_NUMA=3
-export VLLM_RANK7_NUMA=3
 
 vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --dtype float16 \
@@ -837,14 +593,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
 ### Qwen3-235B-A22B-Instruct-2507 IFB K100_AI 8x vLLM 0.15
 
 ```bash
-export VLLM_RANK0_NUMA=0  #按照实际的
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=1
-export VLLM_RANK3_NUMA=1
-export VLLM_RANK4_NUMA=2
-export VLLM_RANK5_NUMA=2
-export VLLM_RANK6_NUMA=3
-export VLLM_RANK7_NUMA=3
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 
 vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
@@ -860,15 +608,13 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
 
 ### Qwen3-235B-A22B-Channel-INT8-w8a8 IFB BW1100 2x vLLM 0.18
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=0
-export VLLM_ROCM_USE_AITER=0
-export VLLM_ROCM_USE_AITER_MOE=0
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
 vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8  \
   -tp  2 \
-  --q slimquant_marlin \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
+  --q slimquant_marlin \
   --max-model-len 40960 \
   --gpu-memory-utilization 0.95
 
@@ -877,15 +623,13 @@ vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8  \
 
 ### Qwen3-235B-A22B-Channel-INT8-w8a8 IFB BW1000 4x vLLM 0.18
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=0
-export VLLM_ROCM_USE_AITER=0
-export VLLM_ROCM_USE_AITER_MOE=0
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
 vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8 \
   -tp  4 \
-  --q slimquant_marlin \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
+  --q slimquant_marlin \
   --max-model-len 40960 \
   --gpu-memory-utilization 0.95
 ```
@@ -900,24 +644,12 @@ vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8 \
 
 ### Qwen3-235B-A22B-FP8-Channelwise IFB BW1100 4x vLLM 0.18
 ```bash
-export VLLM_NUMA_BIND=1
-export VLLM_USE_PD_SPLIT=1
+export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_ROCM_USE_AITER=0
-export VLLM_ROCM_USE_AITER_MOE=0
-export VLLM_RANK0_NUMA=0
-export VLLM_RANK1_NUMA=0
-export VLLM_RANK2_NUMA=0
-export VLLM_RANK3_NUMA=0
-export VLLM_RANK4_NUMA=1
-export VLLM_RANK5_NUMA=1
-export VLLM_RANK6_NUMA=1
-export VLLM_RANK7_NUMA=1
 
 vllm serve Qwen/Qwen3-235B-A22B-FP8-Channelwise \
   -tp 4 \
   --trust-remote-code \
-    -q slimquant_marlin \
   --max-num-batched-tokens 10240 
 ```
 

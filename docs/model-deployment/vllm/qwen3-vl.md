@@ -378,7 +378,7 @@ export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
   -tp 8 \
   -pp 2 \
-  --trust-remote-code \
+  --trust-remote-code 
 ```
 
 ### Qwen3-VL-235B-A22B-Thinking IFB K100_AI 16x vLLM 0.18

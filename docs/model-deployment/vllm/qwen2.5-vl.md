@@ -17,16 +17,12 @@ Qwen2.5-VL 是阿里通义千问视觉语言模型系列，支持图像、视频
 ### Qwen2.5-VL-32B-Instruct IFB BW1000 2x vLLM 0.18
 
 ```bash
-export HIP_VISIBLE_DEVICES=1,2
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_HCU_USE_CUSTOM_OPS=1
 
 vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 2 \
     --trust-remote-code \
-    --enable-chunked-prefill \
-    --max-model-len 32768 \
     --allowed-local-media-path /path-to/VL_data/ \
 ```
 
@@ -35,8 +31,6 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
 ```bash
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-export VLLM_HCU_USE_CUSTOM_OPS=1
-
 vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 1 \
     --trust-remote-code \
@@ -48,11 +42,11 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
 ### Qwen2.5-VL-32B-Instruct IFB K100_AI 4x vLLM 0.18
 
 ```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
 vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 4 \
     --trust-remote-code \
-    --enable-chunked-prefill \
-    --max-model-len 32768 \
     --allowed-local-media-path /path-to/VL_data/ \
 ```
 

@@ -35,8 +35,7 @@ sglang serve --model-path Qwen/Qwen3.6-27B \
     --page-size 64 \
     --mamba-scheduler-strategy extra_buffer \
     --kv-cache-dtype fp8_e4m3 \
-    --trust-remote-code \
-    --chunked-prefill-size -1
+    --trust-remote-code
 ```
 
 ### Qwen3.6-35B-A3B IFB BW1100 2x SGLang 0.5.10

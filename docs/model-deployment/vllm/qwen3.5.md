@@ -426,7 +426,7 @@ export VLLM_HCU_USE_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
 
 vllm serve hygon/Qwen3.5-122B-A10B-Channel-FP8-w8a8 \
-  -tp 2 \
+  -tp 4 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   -q slimquant_marlin \

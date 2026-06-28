@@ -35,7 +35,7 @@ vllm serve hygon/DeepSeek-V3-0324-Channel-FP8-w8a8 \
             "fuse_act_quant": false
         }
     }' \
-    --kv-cache-dtype fp8 \
+    --kv-cache-dtype fp8_e4m3 \
     --speculative_config '{
         "method": "deepseek_mtp",
         "num_speculative_tokens": 3,

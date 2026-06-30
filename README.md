@@ -367,7 +367,7 @@
       <td align="center">-</td><td align="center">-</td><td align="center">-</td>
     </tr>
     <tr>
-      <td>SGLang</td>
+      <td>SGLang Diffusion</td>
       <td align="center">-</td><td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/wan2.2-t2v.md">✅</a></td>
     </tr>
     <tr>

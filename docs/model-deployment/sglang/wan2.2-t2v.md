@@ -16,8 +16,6 @@ Wan2.2-T2V-A14B 是阿里通义实验室推出的文生视频（Text-to-Video）
 
 ### Wan2.2-T2V-A14B-Diffusers Online BW1100 4x SGLang 0.5.10
 
-#### 启动 SGLang Diffusion Server
-
 ```bash
 export MODEL_PATH=${MODEL_PATH:-/models/Wan2.2-T2V-A14B-Diffusers}
 export HIP_VISIBLE_DEVICES=${HIP_VISIBLE_DEVICES:-0,1,2,3}
@@ -54,7 +52,9 @@ sglang serve \
   --output-path outputs
 ```
 
-#### API 调用
+## API 调用
+
+### Online Inference
 
 ```bash
 curl -sS -X POST "http://localhost:30237/v1/videos" \

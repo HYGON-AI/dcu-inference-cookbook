@@ -10,7 +10,7 @@ Wan2.2-T2V-A14B 是阿里通义实验室推出的文生视频（Text-to-Video）
 
 | 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
-| [Wan-AI/Wan2.2-T2V-A14B-Diffusers](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B-Diffusers) | BF16 | 0.5.10 | BW1100 | 4x | Online | [**`>_`**](#wan22-t2v-a14b-diffusers-online-bw1100-4x-sglang-0510) |
+| [Wan-AI/Wan2.2-T2V-A14B-Diffusers](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B-Diffusers) | BF16 | 0.5.10 | BW1100 | 4x | Online | [启动命令](#wan22-t2v-a14b-diffusers-online-bw1100-4x-sglang-0510) |
 
 ## 启动命令
 
@@ -81,13 +81,13 @@ curl -sS -X POST "http://localhost:30237/v1/videos" \
 curl -sS "http://localhost:30237/v1/videos/<video-id>"
 ```
 
-当 `status` 为 `completed` 时，`file_path` 字段指向生成的视频文件。
+当状态为 `completed` 时，返回结果中的文件路径字段指向生成的视频文件。
 
 ## 性能参考
 
 以下数据在 BW1100（NMZ）4 卡节点上验证，输入为 `1280x720`、`81` 帧、`16` FPS、`40` inference steps，提示词为 `A curious raccoon`。
 
-| 配置 | Pixel 总耗时 | Denoise 耗时 | 单步耗时 | Decode 耗时 | API inference_time_s |
+| 配置 | Pixel 总耗时 | Denoise 耗时 | 单步耗时 | Decode 耗时 | API 推理耗时 |
 | ---- | ------------ | ------------ | -------- | ----------- | -------------------- |
 | SLA + Cache-DiT，FSDP off，text encoder offload off | 214.66s | 199.35s | 4.98s/step | 13.46s | 213.04s |
 
@@ -95,9 +95,9 @@ curl -sS "http://localhost:30237/v1/videos/<video-id>"
 
 ## 关键参数说明
 
-- `--attention-backend sla_attn`：启用 SLA 注意力后端，是 Wan2.2-T2V 在 DCU 上加速的核心开关。
-- `--attention-backend-config sla_topk=0.25`：推荐的质量与性能折中配置；更低 topk 可能继续提速，但需要额外做视频质量验证。
-- `SGLANG_CACHE_DIT_ENABLED=true`：开启 Cache-DiT，Wan2.2 双 transformer 会分别启用缓存优化。
+- SLA 注意力后端：Wan2.2-T2V 在 DCU 上加速的核心开关，对应启动命令中的 attention backend。
+- SLA topk 0.25：推荐的质量与性能折中配置；更低 topk 可能继续提速，但需要额外做视频质量验证。
+- Cache-DiT：Wan2.2 双 transformer 会分别启用缓存优化，可降低 denoise 阶段耗时。
 - `--use-fsdp-inference false`：BW1100（NMZ）显存充足时推荐关闭 FSDP，可获得更低延迟。
 - `--text-encoder-cpu-offload false`：将 text encoder 保持在卡上，减少在线请求时的 CPU/GPU 搬运开销。
 - `--ulysses-degree 4 --ring-degree 1`：4 卡序列并行推荐配置。
@@ -118,12 +118,12 @@ curl -sS "http://localhost:30237/v1/videos/<video-id>"
 启动和请求完成后，建议确认日志中包含以下关键行：
 
 ```text
-attention_backend: sla_attn
-Using Wan sla_topk=0.25
-Using Wan sla_skip_linear=True
+attention backend: SLA
+Using Wan SLA topk 0.25
+Using Wan SLA skip linear
 cache-dit enabled on dual transformers
 [DenoisingStage] average time per step
 Pixel data generated successfully
 ```
 
-如果日志中没有 `cache-dit enabled on dual transformers`，说明 Cache-DiT 未生效；如果 `text_encoder_cpu_offload` 或 `use_fsdp_inference` 与预期不一致，需要重新检查启动参数。
+如果日志中没有 `cache-dit enabled on dual transformers`，说明 Cache-DiT 未生效；如果 text encoder CPU offload 或 FSDP inference 与预期不一致，需要重新检查启动参数。

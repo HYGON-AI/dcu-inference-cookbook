@@ -16,9 +16,10 @@ Wan2.2-T2V-A14B 是阿里通义实验室推出的文生视频（Text-to-Video）
 
 ### Wan2.2-T2V-A14B-Diffusers Online BW1100 4x SGLang 0.5.10
 
-以下命令启用 Cache-DiT，可降低 Wan2.2 双 transformer denoise 阶段耗时。
+以下命令保留 BW1100 硬件队列性能配置，并启用 Cache-DiT，可降低 Wan2.2 双 transformer denoise 阶段耗时。
 
 ```bash
+export GPU_MAX_HW_QUEUES=3
 export SGLANG_CACHE_DIT_ENABLED=true
 export SGLANG_CACHE_DIT_RDT=0.24
 export SGLANG_CACHE_DIT_MC=3

@@ -16,11 +16,9 @@ Wan2.2-T2V-A14B 是阿里通义实验室推出的文生视频（Text-to-Video）
 
 ### Wan2.2-T2V-A14B-Diffusers Online BW1100 4x SGLang 0.5.10
 
-```bash
-export GPU_MAX_HW_QUEUES=3
-export LD_LIBRARY_PATH=/opt/rocblas-install/lib:${LD_LIBRARY_PATH:-}
+以下命令启用 Cache-DiT，可降低 Wan2.2 双 transformer denoise 阶段耗时。
 
-# Cache-DiT 可降低 Wan2.2 双 transformer denoise 阶段耗时
+```bash
 export SGLANG_CACHE_DIT_ENABLED=true
 export SGLANG_CACHE_DIT_RDT=0.24
 export SGLANG_CACHE_DIT_MC=3
@@ -29,7 +27,6 @@ sglang serve \
   --model-type diffusion \
   --model-path Wan-AI/Wan2.2-T2V-A14B-Diffusers \
   --host 0.0.0.0 \
-  --port 30237 \
   --pin-cpu-memory \
   --num-gpus 4 \
   --attention-backend sla_attn \
@@ -52,7 +49,7 @@ sglang serve \
 ### Online Inference
 
 ```bash
-curl -sS -X POST "http://localhost:30237/v1/videos" \
+curl -sS -X POST "http://localhost:30000/v1/videos" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "Wan-AI/Wan2.2-T2V-A14B-Diffusers",
@@ -73,7 +70,7 @@ curl -sS -X POST "http://localhost:30237/v1/videos" \
 返回结果中会包含 video id。可以通过如下接口轮询任务状态：
 
 ```bash
-curl -sS "http://localhost:30237/v1/videos/<video-id>"
+curl -sS "http://localhost:30000/v1/videos/<video-id>"
 ```
 
 当状态为 `completed` 时，返回结果中的文件路径字段指向生成的视频文件。

@@ -17,11 +17,6 @@ Wan2.2-T2V-A14B 是阿里通义实验室推出的文生视频（Text-to-Video）
 ### Wan2.2-T2V-A14B-Diffusers Online BW1100 4x SGLang 0.5.10
 
 ```bash
-export MODEL_PATH=${MODEL_PATH:-/models/Wan2.2-T2V-A14B-Diffusers}
-export HIP_VISIBLE_DEVICES=${HIP_VISIBLE_DEVICES:-0,1,2,3}
-export CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-${HIP_VISIBLE_DEVICES}}
-
-export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export GPU_MAX_HW_QUEUES=3
 export LD_LIBRARY_PATH=/opt/rocblas-install/lib:${LD_LIBRARY_PATH:-}
 
@@ -32,7 +27,7 @@ export SGLANG_CACHE_DIT_MC=3
 
 sglang serve \
   --model-type diffusion \
-  --model-path "${MODEL_PATH}" \
+  --model-path Wan-AI/Wan2.2-T2V-A14B-Diffusers \
   --host 0.0.0.0 \
   --port 30237 \
   --pin-cpu-memory \
@@ -60,7 +55,7 @@ sglang serve \
 curl -sS -X POST "http://localhost:30237/v1/videos" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "/models/Wan2.2-T2V-A14B-Diffusers",
+    "model": "Wan-AI/Wan2.2-T2V-A14B-Diffusers",
     "prompt": "A curious raccoon",
     "size": "1280x720",
     "num_frames": 81,

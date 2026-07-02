@@ -229,7 +229,11 @@ sglang serve \
   --mem-fraction-static 0.90 \
   --disable-radix-cache \
   --chunked-prefill-size -1 \
-  --enable-piecewise-cuda-graph \
+  --disable-cuda-graph \
+  --speculative-algorithm EAGLE \
+  --speculative-num-steps 3 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 4 \
   --disaggregation-mode prefill \
   --load-balance-method round_robin \
   --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9

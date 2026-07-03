@@ -27,7 +27,7 @@ export SGLANG_USE_AITER_LINEAR_ATTN=1
 sglang serve --model-path Qwen/Qwen3.6-27B \
     --attention-backend fa3 \
     --mm-attention-backend fa3 \
-    --speculative-algorithm EAGLE \
+    --speculative-algorithm NEXTN \
     --speculative-num-steps 3 \
     --speculative-eagle-topk 1 \
     --speculative-num-draft-tokens 4 \
@@ -35,6 +35,7 @@ sglang serve --model-path Qwen/Qwen3.6-27B \
     --page-size 64 \
     --mamba-scheduler-strategy extra_buffer \
     --kv-cache-dtype fp8_e4m3 \
+    --reasoning-parser qwen3 \
     --trust-remote-code
 ```
 

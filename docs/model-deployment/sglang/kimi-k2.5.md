@@ -10,6 +10,8 @@ Kimi K2.5 是一个开源的原生多模态智能体模型，在 Kimi-K2-Base �
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
 | [moonshotai/Kimi-K2.5](https://www.modelscope.cn/models/moonshotai/Kimi-K2.5) | INT4 W4A16 | 0.5.10 | BW1100 | 8 | IFB | [**`>_`**](#kimi-k25-ifb-bw1100-8x-sglang-0510) |
 |  | INT4 W4A16 | 0.5.10 | BW1100 | 16 | 1P1D | [**`>_`**](#kimi-k25-1p1d-bw1100-16x-sglang-0510) |
+| [hygon/Kimi-K2.5-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Kimi-K2.5-Channel-FP8-w8a8) | FP8 W8A8 | 0.5.10 | BW1100 | 8 | IFB | [**`>_`**](#kimi-k25-fp8-ifb-bw1100-8x-sglang-0510) |
+
 
 ## 启动命令
 
@@ -163,6 +165,56 @@ python3 -m sglang.launch_server \
 
 ```
 python3 -m sglang_router.launch_router --pd-disaggregation --prefill http://<P_node_ip>:30000 --decode http://<D_node_ip>:30000 --policy round_robin --port 30020
+```
+
+### Kimi-K2.5-FP8 IFB BW1100 8x SGLang 0.5.10
+
+```
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_OPT_CAT=1
+export USE_DCU_CUSTOM_ALLREDUCE=1
+#export SGL_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export SGLANG_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export HIP_GRAPH_ACCUMULATE_DISPATCH=0
+export SGLANG_TORCH_PROFILER_DIR=/workspace/profiling
+export SGLANG_KVALLOC_KERNEL=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
+export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
+export SGLANG_GET_LAST_LOC=1
+export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
+export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
+export NCCL_MAX_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+
+export SGLANG_USE_FP8_W8A8_MOE=1
+export SGLANG_ALLOW_OVERWRITE_LONGER_CONTEXT_LEN=1 
+
+python3 -m sglang.launch_server \
+  --model-path /workspace/tlh/Kimi-K2.5-Channel-FP8-w8a8 \
+  --kv-cache-dtype fp8_e4m3 \
+  --host $(hostname -I | awk '{print $1}') \
+  --port 30000 \
+  --trust-remote-code \
+  --page-size 64 \
+  --dist-init-addr $(hostname -I | awk '{print $1}'):5001 \
+  --nnodes 1 \
+  --node-rank 0 \
+  --dtype bfloat16 \
+  --tp-size 8 \
+  --pp-size 1 \
+  --mem-fraction-static 0.98 \
+  --attention-backend dcu_mla \
+  --enable-torch-compile \
+  --numa-node 0 0 0 0 1 1 1 1 \
+  --chunked-prefill-size 32768 \
+  --max-running-requests 1 \
+  --context-length 294912 \
+  --max-total-tokens 294912  \
+  --disable-radix-cache 
 ```
 
 ## API 调用

@@ -12,6 +12,25 @@ Wan2.2-T2V-A14B 是阿里通义实验室推出的文生视频（Text-to-Video）
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
 | [Wan-AI/Wan2.2-T2V-A14B-Diffusers](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B-Diffusers) | BF16 | 0.5.10 | BW1100 | 4x | Online | [启动命令](#wan22-t2v-a14b-diffusers-online-bw1100-4x-sglang-0510) |
 
+## 镜像信息
+
+以下 SGLang 0.5.10 镜像已在 BW1100（NMZ）4 卡节点上完成 Wan2.2-T2V-A14B-Diffusers 在线推理验证，可作为本文档推荐配置的运行环境基础镜像。
+
+```bash
+docker pull 10.16.1.152:5000/jenkins/model_test_env/sglang:0.5.10rc0-ubuntu22.04-dtk26.04-py3.10-20260602-2235
+```
+
+| 项目 | 信息 |
+| ---- | ---- |
+| 镜像地址 | `10.16.1.152:5000/jenkins/model_test_env/sglang:0.5.10rc0-ubuntu22.04-dtk26.04-py3.10-20260602-2235` |
+| 镜像 digest | `sha256:e7c76c0332baa97bdda25aafc7661a00ce946c88f05a1164c351d514528d231e` |
+| SGLang 包版本 | `0.5.10rc0+das.opt2.alpha.dtk2604` |
+| Python / PyTorch | `Python 3.10.12` / `torch 2.9.0` |
+| 验证硬件 | BW1100（NMZ）`gfx938`，4 卡 |
+| 验证参数 | `1280x720`、`81` 帧、`16` FPS、`40` inference steps，`seed=42` |
+| 验证提示词 | `A curious raccoon` |
+| 验证结果 | Pixel 总耗时 `214.83s`，Denoise `199.42s`，单步 `4.9851s/step`，Decode `13.47s`，API 推理耗时 `213.15s` |
+
 ## 启动命令
 
 ### Wan2.2-T2V-A14B-Diffusers Online BW1100 4x SGLang 0.5.10

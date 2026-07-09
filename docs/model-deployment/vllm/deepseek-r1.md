@@ -8,12 +8,107 @@ DeepSeek-R1 是 DeepSeek 推出的推理强化模型，面向复杂推理、数�
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
+| [hygon/DeepSeek-R1-Channel-INT8](https://www.modelscope.cn/models/hygon/DeepSeek-R1-Channel-INT8) | INT8 W8A8 | 0.18 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-channel-int8-ifb-bw1100-8x-vllm-018) |
+|                                                                                                 | INT8 W8A8 | 0.18 | BW1000 | 16 | IFB | [**`>_`**](#deepseek-r1-channel-int8-ifb-bw1000-16x-vllm-018) |
 | [hygon/DeepSeek-R1-W4A8-V2_6](https://www.modelscope.cn/models/hygon/DeepSeek-R1-W4A8-V2_6) | INT4 W4A8 | 0.18 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-v2_6-ifb-bw1100-8x-vllm-018) |
 |                                                                                              | INT4 W4A8 | 0.18 | BW1000 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-v2_6-ifb-bw1000-8x-vllm-018) |
 | [hygon/DeepSeek-R1-0528-W4A8-V2](https://www.modelscope.cn/models/hygon/DeepSeek-R1-0528-W4A8-V2) | W4A8 | 0.15 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-ifb-bw1100-8x-vllm-015) |
 | [hygon/DeepSeek-R1-0528-W4A8-V2](https://www.modelscope.cn/models/hygon/DeepSeek-R1-0528-W4A8-V2) | W4A8 | 0.15 | BW1000 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-ifb-bw1000-8x-vllm-015) |
 
 ## 启动命令
+
+### DeepSeek-R1-Channel-INT8 IFB BW1100 8x vLLM 0.18
+
+```bash
+rm -rf ~/.cache
+rm -rf ~/.triton
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export NCCL_MAX_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export VLLM_USE_OPT_CAT=1
+export VLLM_HCU_USE_CAT_MLA=1
+export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=1
+export VLLM_HCU_USE_FLASHMLA=1
+
+vllm serve hygon/DeepSeek-R1-Channel-INT8 \
+  --trust-remote-code \
+  -q slimquant_marlin \
+  -tp 8 \
+  --dtype bfloat16 \
+  --gpu-memory-utilization 0.90 \
+  --no-enable-prefix-caching \
+  --max-model-len 65536 \
+  --max-num-seqs 256 \
+  --max-num-batched-tokens 16384 \
+  --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
+  --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3, "quantization": "slimquant_marlin"}' \
+  --kv-cache-dtype fp8_e4m3
+```
+
+### DeepSeek-R1-Channel-INT8 IFB BW1000 16x vLLM 0.18
+
+#### Node 0
+
+```bash
+rm -rf ~/.cache
+rm -rf ~/.triton
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export NCCL_MAX_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export VLLM_USE_OPT_CAT=1
+export VLLM_HCU_USE_CAT_MLA=1
+export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=1
+export VLLM_HCU_USE_FLASHMLA=1
+
+vllm serve hygon/DeepSeek-R1-Channel-INT8 \
+  --trust-remote-code \
+  -q slimquant_marlin \
+  -tp 16 \
+  --dtype bfloat16 \
+  --gpu-memory-utilization 0.90 \
+  --no-enable-prefix-caching \
+  --max-model-len 65536 \
+  --max-num-seqs 256 \
+  --max-num-batched-tokens 16384 \
+  --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
+  --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3, "quantization": "slimquant_marlin"}' \
+  --nnodes 2 \
+  --node-rank 0 \
+  --master-addr 12.5.6.42 \
+  --master-port 29512
+```
+
+#### Node 1
+
+```bash
+rm -rf ~/.cache
+rm -rf ~/.triton
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export NCCL_MAX_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export VLLM_USE_OPT_CAT=1
+export VLLM_HCU_USE_CAT_MLA=1
+export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=1
+export VLLM_HCU_USE_FLASHMLA=1
+
+vllm serve hygon/DeepSeek-R1-Channel-INT8 \
+  --trust-remote-code \
+  -q slimquant_marlin \
+  -tp 16 \
+  --dtype bfloat16 \
+  --gpu-memory-utilization 0.90 \
+  --no-enable-prefix-caching \
+  --max-model-len 65536 \
+  --max-num-seqs 256 \
+  --max-num-batched-tokens 16384 \
+  --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
+  --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 3, "quantization": "slimquant_marlin"}' \
+  --nnodes 2 \
+  --node-rank 1 \
+  --master-addr 12.5.6.42 \
+  --headless \
+  --master-port 29512
+```
 
 ### DeepSeek-R1-W4A8-V2_6 IFB BW1100 8x vLLM 0.18
 

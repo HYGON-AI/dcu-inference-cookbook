@@ -135,8 +135,6 @@ sglang serve --model-path hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
 ### Qwen3.5-397B-A17B-Channel-FP8 IFB BW1100 4x SGLang 0.5.10
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -190,8 +188,6 @@ sglang serve \
 #### P node 0
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -246,8 +242,6 @@ sglang serve \
 #### D node 0
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -312,8 +306,6 @@ python3 -m sglang_router.launch_router \
 ### Qwen3.5-397B-A17B-W8A8 IFB BW1000 8x SGLang 0.5.10
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1

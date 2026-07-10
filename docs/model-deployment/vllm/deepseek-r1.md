@@ -62,8 +62,6 @@ vllm serve hygon/DeepSeek-R1-W4A8-V2_6 \
 rm -rf ~/.cache
 rm -rf ~/.triton
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export Allgather_Base_STREAM_WITH_COMPUTE=1
 export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTENFENCE=1
@@ -103,8 +101,6 @@ vllm serve hygon/DeepSeek-R1-0528-W4A8-V2 \
 rm -rf ~/.cache
 rm -rf ~/.triton
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export Allgather_Base_STREAM_WITH_COMPUTE=1
 export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTENFENCE=1

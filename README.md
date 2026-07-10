@@ -257,7 +257,7 @@
       <td align="center">-</td><td align="center">-</td><td align="center">-</td>
     </tr>
     <tr>
-      <td rowspan="2" align="center"><img src="https://modelscope.cn/models/Tencent-Hunyuan/Hy3/resolve/master/assets/logo-en.png" height="40"/><br/>Tencent</td>
+      <td rowspan="2" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/5dd96eb166059660ed1ee413/Lp3m-XLpjQGwBItlvn69q.png" height="40"/><br/>Tencent</td>
       <td rowspan="2">Hy3</td>
       <td>vLLM</td>
       <td align="center">-</td><td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/hy3.md">✅</a></td>

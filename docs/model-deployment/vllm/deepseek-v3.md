@@ -18,8 +18,6 @@ DeepSeek-V3 是由深度求索推出的基于MoE架构的高性能开源大语�
 ### DeepSeek-V3-0324-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18
 
 ```bash
-export NCCL_MAX_NCHANNELS=16
-export NCCL_MIN_NCHANNELS=16
 export VLLM_HCU_USE_FLASHMLA=1
 
 vllm serve hygon/DeepSeek-V3-0324-Channel-FP8-w8a8 \
@@ -50,8 +48,6 @@ rm -rf ~/.cache
 rm -rf ~/.triton
 export VLLM_USE_MODELSCOPE=1
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
-export NCCL_MAX_NCHANNELS=16
-export NCCL_MIN_NCHANNELS=16
 export Allgather_Base_STREAM_WITH_COMPUTE=1
 export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTENFENCE=1
@@ -89,8 +85,6 @@ vllm serve hygon/DeepSeek-V3-0324-Channel-INT8-w8a8  \
 rm -rf ~/.cache
 rm -rf ~/.triton
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export Allgather_Base_STREAM_WITH_COMPUTE=1
 export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTENFENCE=1
@@ -134,8 +128,6 @@ vllm serve hygon/DeepSeek-V3-0528-W4A8-V2 \
 rm -rf ~/.cache
 rm -rf ~/.triton
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export Allgather_Base_STREAM_WITH_COMPUTE=1
 export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTENFENCE=1

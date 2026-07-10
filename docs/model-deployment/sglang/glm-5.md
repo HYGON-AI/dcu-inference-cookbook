@@ -20,8 +20,6 @@ GLM-5 是智谱 AI 推出的新一代大语言模型，在中文理解、长文�
 ### GLM-5-Channel-INT4-w4a8 IFB BW1000 8x SGLang 0.5.10
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -98,8 +96,6 @@ export HIP_D2H_HSAAPI_COPY_THRESHOLD=512
 export HSA_KERNARG_POOL_SIZE=8388608
 export HSA_FORCE_FINE_GRAIN_PCIE=1
 export ROC_AQL_QUEUE_SIZE=131072
-export NCCL_MAX_NCHANNELS=16
-export NCCL_MIN_NCHANNELS=16
 export NCCL_IB_HCA=mlx5_bond_0,mlx5_bond_1,mlx5_bond_2,mlx5_bond_3
 export NCCL_SOCKET_IFNAME=eth0
 export GLOO_SOCKET_IFNAME=eth0
@@ -163,8 +159,6 @@ export HIP_D2H_HSAAPI_COPY_THRESHOLD=512
 export HSA_KERNARG_POOL_SIZE=8388608
 export HSA_FORCE_FINE_GRAIN_PCIE=1
 export ROC_AQL_QUEUE_SIZE=131072
-export NCCL_MAX_NCHANNELS=16
-export NCCL_MIN_NCHANNELS=16
 export NCCL_IB_HCA=mlx5_bond_0,mlx5_bond_1,mlx5_bond_2,mlx5_bond_3
 export NCCL_SOCKET_IFNAME=eth0
 export GLOO_SOCKET_IFNAME=eth0
@@ -208,8 +202,6 @@ sglang serve \
 #### D node 0
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -291,8 +283,6 @@ sglang serve \
 说明：`--dist-init-addr` 填写当前分组 node0 的 IP，下面示例使用 `10.16.1.46`。
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -402,8 +392,6 @@ export HIP_D2H_DIRECT_COPY_THRESHOLD=512
 export HIP_D2H_HSAAPI_COPY_THRESHOLD=512
 export HSA_KERNARG_POOL_SIZE=8388608
 export ROC_AQL_QUEUE_SIZE=131072
-export NCCL_MAX_NCHANNELS=16
-export NCCL_MIN_NCHANNELS=16
 export HIP_GRAPH_USE_CMD_CACHE=0
 export NCCL_SOCKET_IFNAME=ens19f0
 export GLOO_SOCKET_IFNAME=ens19f0
@@ -452,8 +440,6 @@ export HIP_D2H_HSAAPI_COPY_THRESHOLD=512
 export HIP_GRAPH_USE_CMD_CACHE=0
 export HSA_KERNARG_POOL_SIZE=8388608
 export ROC_AQL_QUEUE_SIZE=131072
-export NCCL_MAX_NCHANNELS=16
-export NCCL_MIN_NCHANNELS=16
 export MC_TOPO_FILE_FORCE=/home/mc_topo_400g.config
 export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
@@ -486,8 +472,6 @@ sglang serve \
 #### D node 0
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -570,8 +554,6 @@ sglang serve \
 说明：`--dist-init-addr` 填写当前分组 node0 的 IP，下面示例使用 `10.16.1.46`。
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -663,8 +645,6 @@ python3 -m sglang_router.launch_router \
 ### GLM-5-Channel-FP8-w8a8 IFB BW1100 8x SGLang 0.5.10
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -740,8 +720,6 @@ export HIP_D2H_HSAAPI_COPY_THRESHOLD=512
 export HIP_GRAPH_USE_CMD_CACHE=0
 export HSA_KERNARG_POOL_SIZE=8388608
 export ROC_AQL_QUEUE_SIZE=131072
-export NCCL_MAX_NCHANNELS=16
-export NCCL_MIN_NCHANNELS=16
 export MC_TOPO_FILE_FORCE=/home/mc_topo_400g.config
 export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
@@ -773,8 +751,6 @@ sglang serve \
 #### D node 0
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -853,8 +829,6 @@ sglang serve \
 说明：`--dist-init-addr` 填写当前分组 node0 的 IP，下面示例使用 `10.16.1.46`。
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1

@@ -38,7 +38,7 @@ export SGLANG_USE_MODELSCOPE=1
 sglang serve --model-path Qwen/Qwen3.5-27B \
     --attention-backend fa3 \
     --mm-attention-backend fa3 \
-    --speculative-algorithm EAGLE \
+    --speculative-algorithm NEXTN \
     --speculative-num-steps 3 \
     --speculative-eagle-topk 1 \
     --speculative-num-draft-tokens 4 \
@@ -47,6 +47,7 @@ sglang serve --model-path Qwen/Qwen3.5-27B \
     --mamba-scheduler-strategy extra_buffer \
     --kv-cache-dtype fp8_e4m3  \
     --trust-remote-code \
+    --reasoning-parser qwen3 \
     --chunked-prefill-size -1
 ```
 ### Qwen3.5-27B IFB K100_AI 2x SGLang 0.5.10
@@ -64,7 +65,6 @@ sglang serve --model-path Qwen/Qwen3.5-27B \
     --page-size 64 \
     --pp-size 1 \
     --mem-fraction-static 0.8 \
-    --kv-cache-dtype fp8_e5m2 \
     --chunked-prefill-size 8192 \
     --cuda-graph-max-bs 256 \
     --max-prefill-tokens 45000 \
@@ -135,8 +135,6 @@ sglang serve --model-path hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
 ### Qwen3.5-397B-A17B-Channel-FP8 IFB BW1100 4x SGLang 0.5.10
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -156,6 +154,7 @@ export SGLANG_USE_FUSED_RMS_ROTARY=1
 export SGLANG_KV_LAYOUT_DCU_FA=1
 export SGLANG_USE_AITER_LINEAR_ATTN=1
 export SGLANG_USE_MODELSCOPE=1
+export GPU_MAX_HW_QUEUES=4
 
 sglang serve \
   --numa-node 0 0 0 0 1 1 1 1 \
@@ -180,7 +179,7 @@ sglang serve \
   --cuda-graph-max-bs 50
 ```
 
-> 图文数据集场景需额外添加：环境变量 `export SGLANG_USE_CUDA_IPC_TRANSPORT=1`，启动命令添加 `--mm-attention-backend fa3`，并移除 `export SGLANG_USE_AITER_LINEAR_ATTN=1`。
+> 图文数据集场景需额外添加：环境变量 `export SGLANG_USE_CUDA_IPC_TRANSPORT=1`，启动命令添加 `--mm-attention-backend fa3`，`--keep-mm-feature-on-device`
 
 ### Qwen3.5-397B-A17B-Channel-FP8 1P1D BW1100 12x SGLang 0.5.10
 
@@ -189,8 +188,6 @@ sglang serve \
 #### P node 0
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -213,6 +210,7 @@ export HIP_VISIBLE_DEVICES=0,1,2,3
 export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
 export MC_TOPO_FILE_FORCE=mc_topo.config
 export MC_IB_GID_INDEX=1
+export GPU_MAX_HW_QUEUES=4
 
 sglang serve \
   --numa-node 0 0 0 0 1 1 1 1 \
@@ -229,7 +227,11 @@ sglang serve \
   --mem-fraction-static 0.90 \
   --disable-radix-cache \
   --chunked-prefill-size -1 \
-  --enable-piecewise-cuda-graph \
+  --disable-cuda-graph \
+  --speculative-algorithm EAGLE \
+  --speculative-num-steps 3 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 4 \
   --disaggregation-mode prefill \
   --load-balance-method round_robin \
   --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
@@ -240,8 +242,6 @@ sglang serve \
 #### D node 0
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -263,6 +263,7 @@ export SGLANG_USE_MODELSCOPE=1
 export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
 export MC_TOPO_FILE_FORCE=mc_topo.config
 export MC_IB_GID_INDEX=1
+export GPU_MAX_HW_QUEUES=4
 
 sglang serve \
   --numa-node 0 0 0 0 1 1 1 1 \
@@ -305,8 +306,6 @@ python3 -m sglang_router.launch_router \
 ### Qwen3.5-397B-A17B-W8A8 IFB BW1000 8x SGLang 0.5.10
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
@@ -326,6 +325,7 @@ export SGLANG_USE_FUSED_RMS_ROTARY=1
 export SGLANG_KV_LAYOUT_DCU_FA=1
 export SGLANG_USE_AITER_LINEAR_ATTN=1
 export SGLANG_USE_MODELSCOPE=1
+export GPU_MAX_HW_QUEUES=4
 
 sglang serve \
   --numa-node 3 1 1 0 7 5 5 4 \

@@ -21,6 +21,8 @@ python -m sglang.launch_server \
     --model-path Qwen/Qwen3-8B \
     --tp-size 1 \
     --trust-remote-code \
+    --attention-backend fa3 \
+    --page-size 64 \
     --mem-fraction-static 0.85
 ```
 
@@ -31,6 +33,8 @@ python -m sglang.launch_server \
     --model-path Qwen/Qwen3-32B \
     --tp-size 2 \
     --trust-remote-code \
+    --attention-backend fa3 \
+    --page-size 64 \
     --mem-fraction-static 0.85
 ```
 
@@ -41,6 +45,8 @@ python -m sglang.launch_server \
     --model-path Qwen/Qwen3-235B-A22B \
     --tp-size 4 \
     --trust-remote-code \
+    --attention-backend fa3 \
+    --page-size 64 \
     --mem-fraction-static 0.90
 ```
 

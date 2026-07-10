@@ -156,6 +156,7 @@ export SGLANG_USE_FUSED_RMS_ROTARY=1
 export SGLANG_KV_LAYOUT_DCU_FA=1
 export SGLANG_USE_AITER_LINEAR_ATTN=1
 export SGLANG_USE_MODELSCOPE=1
+export GPU_MAX_HW_QUEUES=4
 
 sglang serve \
   --numa-node 0 0 0 0 1 1 1 1 \
@@ -180,7 +181,7 @@ sglang serve \
   --cuda-graph-max-bs 50
 ```
 
-> 图文数据集场景需额外添加：环境变量 `export SGLANG_USE_CUDA_IPC_TRANSPORT=1`，启动命令添加 `--mm-attention-backend fa3`，并移除 `export SGLANG_USE_AITER_LINEAR_ATTN=1`。
+> 图文数据集场景需额外添加：环境变量 `export SGLANG_USE_CUDA_IPC_TRANSPORT=1`，启动命令添加 `--mm-attention-backend fa3`，`--keep-mm-feature-on-device`
 
 ### Qwen3.5-397B-A17B-Channel-FP8 1P1D BW1100 12x SGLang 0.5.10
 
@@ -213,6 +214,7 @@ export HIP_VISIBLE_DEVICES=0,1,2,3
 export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
 export MC_TOPO_FILE_FORCE=mc_topo.config
 export MC_IB_GID_INDEX=1
+export GPU_MAX_HW_QUEUES=4
 
 sglang serve \
   --numa-node 0 0 0 0 1 1 1 1 \
@@ -229,7 +231,11 @@ sglang serve \
   --mem-fraction-static 0.90 \
   --disable-radix-cache \
   --chunked-prefill-size -1 \
-  --enable-piecewise-cuda-graph \
+  --disable-cuda-graph \
+  --speculative-algorithm EAGLE \
+  --speculative-num-steps 3 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 4 \
   --disaggregation-mode prefill \
   --load-balance-method round_robin \
   --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
@@ -263,6 +269,7 @@ export SGLANG_USE_MODELSCOPE=1
 export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
 export MC_TOPO_FILE_FORCE=mc_topo.config
 export MC_IB_GID_INDEX=1
+export GPU_MAX_HW_QUEUES=4
 
 sglang serve \
   --numa-node 0 0 0 0 1 1 1 1 \
@@ -326,6 +333,7 @@ export SGLANG_USE_FUSED_RMS_ROTARY=1
 export SGLANG_KV_LAYOUT_DCU_FA=1
 export SGLANG_USE_AITER_LINEAR_ATTN=1
 export SGLANG_USE_MODELSCOPE=1
+export GPU_MAX_HW_QUEUES=4
 
 sglang serve \
   --numa-node 3 1 1 0 7 5 5 4 \

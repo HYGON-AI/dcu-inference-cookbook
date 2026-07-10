@@ -21,8 +21,6 @@ MiniMax-2.x 是 MiniMax 推出的大规模 MoE（混合专家）语言模型系�
 ### MiniMax-M2.5-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.15.1
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 export HSA_FORCE_FINE_GRAIN_PCIE=1
 export NCCL_P2P_LEVEL=SYS
@@ -74,8 +72,6 @@ vllm serve hygon/MiniMax-M2.5-W8A8 \
 ### MiniMax-M2.5-Channel-INT8-w8a8 IFB BW1000 8x vLLM 0.15.1
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 export HSA_FORCE_FINE_GRAIN_PCIE=1
 export NCCL_P2P_LEVEL=SYS
@@ -143,8 +139,6 @@ vllm serve hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
 ### MiniMax-M2.5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.15.1
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 export HSA_FORCE_FINE_GRAIN_PCIE=1
 export NCCL_P2P_LEVEL=SYS
@@ -192,8 +186,6 @@ vllm serve hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
 ### MiniMax-M2.5-bf16 IFB BW1100 8x vLLM 0.15.1
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 export HSA_FORCE_FINE_GRAIN_PCIE=1
 export NCCL_P2P_LEVEL=SYS
@@ -238,8 +230,6 @@ vllm serve hygon/MiniMax-M2.5-bf16 \
 ### MiniMax-M2.5-bf16 IFB BW1000 8x vLLM 0.15.1
 
 ```bash
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
 export HSA_FORCE_FINE_GRAIN_PCIE=1
 export NCCL_P2P_LEVEL=SYS

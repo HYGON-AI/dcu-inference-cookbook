@@ -18,8 +18,6 @@ DeepSeek V3.2 是深度求索公司于 2025 年底发布的大语言模型，基
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7     
 export ALLREDUCE_STREAM_WITH_COMPUTE=1           
-export NCCL_MIN_NCHANNELS=16                      
-export NCCL_MAX_NCHANNELS=16                   
 export Allgather_Base_STREAM_WITH_COMPUTE=1
 export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTENFENCE=1   

@@ -8,7 +8,8 @@ Kimi-K2.5 是月之暗面（Moonshot AI）推出的新一代大语言模型，�
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [moonshotai/Kimi-K2.5](https://www.modelscope.cn/models/moonshotai/Kimi-K2.5) | INT4 W4A16 | 0.18 | BW1100 | 8 | IFB | [**`>_`**](#kimi-k25-ifb-bw1100-8x-vllm-015) |
+| [moonshotai/Kimi-K2.5](https://www.modelscope.cn/models/moonshotai/Kimi-K2.5) | INT4 W4A16 | 0.18 | BW1100 | 8 | IFB | [**`>_`**](#kimi-k25-ifb-bw1100-8x-vllm-018) |
+|  | INT4 W4A16 | 0.18-hotfix | BW1100 | 8 | IFB | [**`>_`**](#kimi-k25-ifb-bw1100-8x-vllm-018-hotfix) |
 | [moonshotai/Kimi-K2.5](https://www.modelscope.cn/models/moonshotai/Kimi-K2.5) | INT4 W4A16 | 0.15 | BW1100 | 8 | IFB | [**`>_`**](#kimi-k25-ifb-bw1100-8x-vllm-015) |
 
 ## 启动命令
@@ -31,6 +32,23 @@ vllm serve moonshotai/Kimi-K2.5 \
     --kv-cache-dtype fp8_e4m3
 ```
 
+### Kimi-K2.5 IFB BW1100 8x vLLM 0.18-hotfix
+
+```bash
+rm -rf ~/.cache
+rm -rf ~/.triton
+
+vllm serve moonshotai/Kimi-K2.5 \
+    -tp 8 \
+    --trust-remote-code   \
+    --dtype bfloat16  \
+    --max-model-len 65536  \
+    --enable-prefix-caching \
+    --gpu-memory-utilization 0.90 \
+    --max-num-batched-tokens 16384 \
+    --kv-cache-dtype fp8_e4m3 \
+    --moe-backend aiter
+```
 ### Kimi-K2.5 IFB BW1100 8x vLLM 0.15
 
 ```bash

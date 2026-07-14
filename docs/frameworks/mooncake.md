@@ -55,20 +55,17 @@ Mooncake 的核心能力包括：
 ## 安装
 
 dcu mooncake 代码仓库：https://developer.sourcefind.cn/codes/OpenDAS/mooncake
+dcu mooncake whl 包（从 DAS PyPI 下载）：
 
 ```bash
-# pip 安装 whl 包
-# 普通网卡版本，不带 hylink 支持
-http://pypi.sourcefind.cn:666/das_nightly/dtk2604-rc4-mooncake/+f/79c/add379d74452d/mooncake_transfer_engine-0.3.10.post1+das.opt1.dtk2604.2605131137.gd34f6f-cp310-cp310-manylinux_2_35_x86_64.whl
-pip install mooncake_transfer_engine*.whl
+# mooncake_transfer_engine：通用版本，普通网卡，不带 hylink 支持
+https://pypi.sourcefind.cn/das_nightly/dtk2604-rc4/+f/2d3/fb98366b63bfc/mooncake_transfer_engine-0.3.10.post1+das.dtk2604.2606261349.g1476ea-cp310-cp310-manylinux_2_35_x86_64.whl#sha256=2d3fb98366b63bfc38bd34f8814b4a25f2e17a56e692cff7bff476c259a3165a
 
-# 普通网卡版本，带 hylink 支持的版本
-http://pypi.sourcefind.cn:666/das_nightly/dtk2604-rc4-mooncake/+f/4aa/b1d2c2d1653e9/mooncake_transfer_engine_rpc-0.3.10.post1+das.opt1.dtk2604.2605131408.gd34f6f-cp310-cp310-manylinux_2_35_x86_64.whl
-pip install mooncake_transfer_engine_rpc*.whl
+# mooncake_transfer_engine_rpc：带 hylink 支持的版本，普通网卡
+https://pypi.sourcefind.cn/das_nightly/dtk26041-rc1/+f/82d/edbff272495c8/mooncake_transfer_engine_rpc-0.3.10.post1+das.dtk26041.2606261403.g1476ea-cp310-cp310-manylinux_2_35_x86_64.whl#sha256=82dedbff272495c84accfd2b4f8c306b38bb2f356fbc914dd3fef2bd06dbf31f
 
-# 天龙网卡版本，不带 hylink 支持
-http://pypi.sourcefind.cn:666/das_nightly/dtk2604-rc4-mooncake/+f/2e2/14988dbb22475/mooncake_transfer_engine_shca-0.3.10.post1+das.opt1.dtk2604.2605131044.gd34f6f-cp310-cp310-manylinux_2_35_x86_64.whl
-pip install mooncake_transfer_engine_shca*.whl
+# mooncake_transfer_engine_shca：支持天龙网卡的版本，不带 hylink 支持（超节点天龙网卡要用正常版本）
+https://pypi.sourcefind.cn/das_nightly/dtk2604-rc4/+f/cde/6179babb6b70b/mooncake_transfer_engine_shca-0.3.10.post1+das.dtk2604.2606261356.g1476ea-cp310-cp310-manylinux_2_35_x86_64.whl#sha256=cde6179babb6b70bbeaf206a0221abe150a11f0754f23e4d65a6b117b451d8ce
 
 #安装前请先卸载旧版本
 pip uninstall mooncake_transfer_engine

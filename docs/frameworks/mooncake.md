@@ -133,7 +133,7 @@ transfer_engine_topology_dump
 自定义拓扑JSON文件路径 MC_CUSTOM_TOPO_JSON
 
 ```json
-#JSON格式如下
+//JSON格式如下
  {
    "<storage_type>": [
      ["preferred_hca..."],
@@ -141,10 +141,10 @@ transfer_engine_topology_dump
    ]
  }
 
-#也就是每个 key 的 value 都是长度为 2 的数组：
-#第一项：优先使用的 RDMA 网卡列表  
-#第二项：可回退使用的网卡列表
-#示例(topo.json)：
+//也就是每个 key 的 value 都是长度为 2 的数组：
+//第一项：优先使用的 RDMA 网卡列表  
+//第二项：可回退使用的网卡列表
+//示例(topo.json)：
 {
    "cpu:0":  [["mlx5_2"], []],
    "cpu:1":  [["mlx5_3"], []],

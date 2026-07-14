@@ -7,11 +7,15 @@
 - [环境变量](#环境变量)
   - [LOG](#log)
   - [RDMA](#rdma)
-  - [P2P](#p2p)
+  - [HIP IPC/RPC](#HIP-IPCRPC)
+  - [Topology](#Topology)
 - [Mooncake bench 测试](#mooncake-bench-测试)
+  -[Transfer engine bench(RDMA)](#Transfer-engine-benchRDMA)
+  -[Transfer engine bench(HIP IPC)](#Transfer-engine-benchHIP-IPC)
+  -[Transfer engine bench(HIP RPC)](#Transfer-engine-benchHIP-RPC)
 - [SGLang PD 分离](#sglang-pd-分离)
-  - [单节点测试](#SGLang-单节点-1P1D-测试)
-  - [双节点测试](#SGLang-双节点-1P1D-测试)
+  - [SGLang 单节点 1P1D 测试](#SGLang-单节点-1P1D-测试)
+  - [SGLang 双节点 1P1D 测试](#SGLang-双节点-1P1D-测试)
 - [vLLM PD 分离](#vllm-pd-分离)
   - [P、D 单实例单节点](#pd-单实例单节点)
   - [P：TP8  D：DP8EP8 (1P1D)](#ptp8--ddp8ep8-1p1d)
@@ -50,6 +54,8 @@ Mooncake 的核心能力包括：
 
 ## 安装
 
+dcu mooncake 代码仓库：https://developer.sourcefind.cn/codes/OpenDAS/mooncake
+
 ```bash
 # pip 安装 whl 包
 # 普通网卡版本，不带 hylink 支持
@@ -63,6 +69,9 @@ pip install mooncake_transfer_engine_rpc*.whl
 # 天龙网卡版本，不带 hylink 支持
 http://pypi.sourcefind.cn:666/das_nightly/dtk2604-rc4-mooncake/+f/2e2/14988dbb22475/mooncake_transfer_engine_shca-0.3.10.post1+das.opt1.dtk2604.2605131044.gd34f6f-cp310-cp310-manylinux_2_35_x86_64.whl
 pip install mooncake_transfer_engine_shca*.whl
+
+#安装前请先卸载旧版本
+pip uninstall mooncake_transfer_engine
 ```
 
 ## 环境变量
@@ -81,14 +90,21 @@ export MC_LOG_LEVEL=TRACE
 export SGLANG_HOST_IP=${HOST_IP}
 export VLLM_HOST_IP=${HOST_IP}
 
-# 存在跨 SM IB NIC transfer 问题时，启用设备亲和性
+# 存在跨 SM IB NIC transfer 问题时，启用设备亲和性。非必要不设置
+# 启用后，Transfer Engine 将优先选择和本地网卡同名的远端网卡进行通信。
+# 默认值为 false。存在跨sm ib nic transfer 问题时，可尝试设置。
+# 双平面需要设置
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 
 # 同一交换机内通信可以尝试切换 GID（默认 3=global，0=link-local）
 export MC_IB_GID_INDEX=0
+
+# 只有某些网卡可见时，可以设置
+export MC_TE_FILTERS=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+# 显式启用MC_IB_PCI_RELAXED_ORDERING时，可能会导致Failed to register memory，此时不支持该特性。
 ```
 
-### P2P
+### HIP IPC/RPC
 
 ```bash
 # 启用 HIP IPC Transport（仅用于节点内通信）
@@ -102,8 +118,57 @@ export MC_USE_HIP_IPC=0
 export MC_HIP_COPY_BLOCKS=xxx
 ```
 
+### Topology 
+
+查看自动发现 Topology，自动发现会将和 CPU 或 GPU 同 NUMA 的 NIC 放 preferred_hca，其余放 avail_hca；对于 GPU，若没有同 NUMA 的 NIC，则会将距离最近（两个 PCI 设备在 Linux PCI 树上的拓扑距离估计，并非NUMA distance）的 NIC 放 preferred_hca。
+有关 topo 的信息请参阅显存与计算拓扑和主机内存与拓扑部分。
+
+```bash
+#查看自动发现 Topology
+transfer_engine_topology_dump
+```
+
+当多个 GPU 都优先使用同一张 NIC 时，可能导致该网卡负载过大，或者需要限定使用的 NIC 时，可以手动设定 Topo。
+自定义拓扑JSON文件路径 MC_CUSTOM_TOPO_JSON
+
+```json
+#JSON格式如下
+ {
+   "<storage_type>": [
+     ["preferred_hca..."],
+     ["avail_hca..."]
+   ]
+ }
+
+#也就是每个 key 的 value 都是长度为 2 的数组：
+#第一项：优先使用的 RDMA 网卡列表  
+#第二项：可回退使用的网卡列表
+#示例(topo.json)：
+{
+   "cpu:0":  [["mlx5_2"], []],
+   "cpu:1":  [["mlx5_3"], []],
+   "cpu:2":  [["mlx5_4"], []],
+   "cpu:3":  [["mlx5_5"], []],
+   "cpu:4":  [["mlx5_6"], []],
+   "cpu:5":  [["mlx5_7"], []],
+   "cpu:6":  [["mlx5_8"], []],
+   "cpu:7":  [["mlx5_9"], []],
+   "hip:0":  [["mlx5_2"], []],
+   "hip:1":  [["mlx5_3"], []],
+   "hip:2":  [["mlx5_4"], []],
+   "hip:3":  [["mlx5_5"], []],
+   "hip:4":  [["mlx5_6"], []],
+   "hip:5":  [["mlx5_7"], []],
+   "hip:6":  [["mlx5_8"], []],
+   "hip:7":  [["mlx5_9"], []]
+ }
+```
+
 ## Mooncake bench 测试
 
+### Transfer engine bench(RDMA)
+
+RDMA 一般用于节点间测试，节点内也支持。
 `transfer_engine_bench` 在 `pip show mooncake-transfer-engine` 显示的安装路径下。
 
 ```bash
@@ -111,14 +176,66 @@ export MC_HIP_COPY_BLOCKS=xxx
 # 请将 `<local_host_ip>` 替换为当前节点 IP
 transfer_engine_bench --mode=target --auto_discovery --protocol=rdma \
     --metadata_server=P2PHANDSHAKE --gpu_id=-1 \
-    --local_server_name=<local_host_ip>
+    --local_server_name=${local_host_ip}
 
 # Node 2（initiator）
 # 请将 `<local_host_ip>` 替换为当前节点 IP，`<remote_host_ip>` 替换为对端节点 IP
-# `<port>` 替换为从 Node 1 日志 `Transfer Engine RPC using XXX, listening on YYY:ZZZ` 中获取的端口
+# port: 从 node1 log 里找到 ZZZ，Transfer Engine RPC using XXX, listening on YYY:ZZZ）
 transfer_engine_bench --mode=initiator --auto_discovery --protocol=rdma \
     --metadata_server=P2PHANDSHAKE --gpu_id=-1 \
-    --local_server_name=<local_host_ip> --segment_id=<remote_host_ip>:<port>
+    --local_server_name=${local_host_ip} --segment_id=${remote_host_ip}:${port}
+
+#测试最大 throughput 推荐参数
+--buffer_size=4294967296 --threads=12 --batch_size=128 --block_size=2097152
+#MC_SLICE_SIZE 可以调整为 131072，甚至可以更大。
+```
+
+### Transfer engine bench(HIP IPC)
+
+HIP IPC 用于节点内测试。
+transfer_engine_bench 路径：“pip show mooncake-transfer-engine” ，transfer_engine_bench 在安装路径下。
+
+```bash
+#node 1
+export MC_FORCE_HIP=1
+transfer_engine_bench --mode=target --protocol=hip \
+    --metadata_server=P2PHANDSHAKE --gpu_id=0 \
+    --local_server_name=127.0.0.1
+
+#node 1
+# port: 从 node1 log 里找到 ZZZ，Transfer Engine RPC using XXX, listening on YYY:ZZZ）
+export MC_FORCE_HIP=1
+transfer_engine_bench --mode=initiator --protocol=hip \
+    --metadata_server=P2PHANDSHAKE --gpu_id=1 \
+    --local_server_name=127.0.0.1 --segment_id=127.0.0.1:${port}
+```
+
+### Transfer engine bench(HIP RPC)
+
+HIP RPC 用于节点间测试。
+transfer_engine_bench 路径：“pip show mooncake-transfer-engine” ，transfer_engine_bench 在安装路径下。
+
+```bash
+#node 1
+export MC_FORCE_HIP=1
+export MC_USE_HIP_IPC=0
+# local_host_ip: node 1 ip
+transfer_engine_bench --mode=target --protocol=hip \
+    --metadata_server=P2PHANDSHAKE --gpu_id=-1 \
+    --duration 20 \
+    --local_server_name=${local_host_ip}
+
+#node 2
+# port: 从 node1 log 里找到 ZZZ，Transfer Engine RPC using XXX, listening on YYY:ZZZ）
+export MC_FORCE_HIP=1
+export MC_USE_HIP_IPC=0
+transfer_engine_bench --mode=initiator --protocol=hip \
+    --metadata_server=P2PHANDSHAKE --gpu_id=-1 \
+    --duration 20 \
+    --local_server_name=${local_host_ip} --segment_id=${remote_host_ip}:${port}
+
+#测试最大 throughput 推荐参数
+--buffer_size=4294967296 --threads=12 --batch_size=2 --block_size=536870912
 ```
 
 ## SGLang PD 分离
@@ -216,20 +333,20 @@ python3 vllm/examples/online_serving/disaggregated_serving/mooncake_connector/mo
 ```bash
 # KV Producer（Prefill）
 vllm serve /models/vllm-w8a8-models/GLM-5-W8A8 \
-  -q slimquant_marlin \
-  --trust-remote-code \
-  --dtype bfloat16 \
-  --max-model-len 65536 \
-  --max-num-batched-tokens 8192 \
-  --enforce-eager \
-  -tp 8 \
-  --port 9348 \
-  --gpu-memory-utilization 0.92 \
-  --max-num-seqs 64 \
-  --enable-prefix-caching \
-  --block-size 64 \
-  --kv-cache-dtype fp8_ds_mla \
-  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_producer"}'
+    -q slimquant_marlin \
+    --trust-remote-code \
+    --dtype bfloat16 \
+    --max-model-len 65536 \
+    --max-num-batched-tokens 8192 \
+    --enforce-eager \
+    -tp 8 \
+    --port 9348 \
+    --gpu-memory-utilization 0.92 \
+    --max-num-seqs 64 \
+    --enable-prefix-caching \
+    --block-size 64 \
+    --kv-cache-dtype fp8_ds_mla \
+    --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_producer"}'
 
 # KV Consumer（Decode）
 export NCCL_NET_GDR_LEVEL=7
@@ -246,30 +363,30 @@ export VLLM_HCU_USE_FLASHMLA=1
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 
 vllm serve /models/vllm-w8a8-models/GLM-5-W8A8  \
-  -q slimquant_marlin \
-  --trust-remote-code \  
-  --dtype bfloat16 \  
-  --max-model-len 65536 \  
-  --max-num-batched-tokens 128 \  
-  -dp 8 \  
-  --port 9349 \  
-  --max-num-seqs 64 \  
-  --gpu-memory-utilization 0.92 \  
-  --block-size 64 \  
-  --kv-cache-dtype fp8_ds_mla \  
-  --enable-expert-parallel \  
-  --all2all-backend deepep_low_latency \  
-  --disable-custom-all-reduce \  
-  --enable-chunked-prefill \  
-  --enable-prefix-caching \  
-  -cc '{"inductor_compile_config":{"combo_kernels": false}}' \  
-  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}'
+    -q slimquant_marlin \
+    --trust-remote-code \  
+    --dtype bfloat16 \  
+    --max-model-len 65536 \  
+    --max-num-batched-tokens 128 \  
+    -dp 8 \  
+    --port 9349 \  
+    --max-num-seqs 64 \  
+    --gpu-memory-utilization 0.92 \  
+    --block-size 64 \  
+    --kv-cache-dtype fp8_ds_mla \  
+    --enable-expert-parallel \  
+    --all2all-backend deepep_low_latency \  
+    --disable-custom-all-reduce \  
+    --enable-chunked-prefill \  
+    --enable-prefix-caching \  
+    -cc '{"inductor_compile_config":{"combo_kernels": false}}' \  
+    --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}'
 
 # Mooncake Connector Proxy
 python3 /workspace/vllm/examples/online_serving/disaggregated_serving/mooncake_connector/mooncake_connector_proxy.py \  
-  --prefill "http://10.16.1.15:9348" "8998" \  
-  --decode "http://10.16.1.16:9349" \  
-  --port 8000
+    --prefill "http://10.16.1.15:9348" "8998" \  
+    --decode "http://10.16.1.16:9349" \  
+    --port 8000
 ```
 
 ### P：PP16  D：TP8 (2P1D)
@@ -290,19 +407,19 @@ export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 ray start --address=10.16.1.15:1255  --num-gpus=8 --num-cpus=32
 10.16.1.15:
 vllm serve /models/v2_6/GLM-w4a8-V2_6_test \
-  --trust-remote-code \
-  -pp 16 \
-  --dtype bfloat16 \  
-  --max-model-len 65536 \  
-  --max-num-batched-tokens 8192 \  
-  --max-num-seqs 64 \  
-  --kv-cache-dtype fp8_ds_mla \  
-  --gpu-memory-utilization 0.9 \  
-  --distributed-executor-backend ray \  
-  --enforce-eager \  
-  -cc '{"inductor_compile_config":{"combo_kernels": false}}' \  
-  --port 9348 \  
-  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_producer"}'
+    --trust-remote-code \
+    -pp 16 \
+    --dtype bfloat16 \  
+    --max-model-len 65536 \  
+    --max-num-batched-tokens 8192 \  
+    --max-num-seqs 64 \  
+    --kv-cache-dtype fp8_ds_mla \  
+    --gpu-memory-utilization 0.9 \  
+    --distributed-executor-backend ray \  
+    --enforce-eager \  
+    -cc '{"inductor_compile_config":{"combo_kernels": false}}' \  
+    --port 9348 \  
+    --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_producer"}'
 
 # KV Consumer（Decode）
 export VLLM_HCU_USE_FLASHMLA=1
@@ -310,23 +427,23 @@ export LMSLIM_USE_GLOBAL_MOE_CACHE=1
 export VLLM_DP_MASTER_IP=10.16.1.15
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 vllm serve /models/v2_6/GLM-w4a8-V2_6_test \
-  --trust-remote-code \  
-  -tp 8 \  
-  --dtype bfloat16 \  
-  --max-model-len 65536 \  
-  --max-num-batched-tokens 8192 \  
-  --max-num-seqs 64 \  
-  --kv-cache-dtype fp8_ds_mla \  
-  --gpu-memory-utilization 0.9 \  
-  -cc '{"inductor_compile_config":{"combo_kernels": false}}' \  
-  --port 9349 \  
-  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}'
+    --trust-remote-code \  
+    -tp 8 \  
+    --dtype bfloat16 \  
+    --max-model-len 65536 \  
+    --max-num-batched-tokens 8192 \  
+    --max-num-seqs 64 \  
+    --kv-cache-dtype fp8_ds_mla \  
+    --gpu-memory-utilization 0.9 \  
+    -cc '{"inductor_compile_config":{"combo_kernels": false}}' \  
+    --port 9349 \  
+    --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}'
 
 # Mooncake Connector Proxy
 python3 /workspace/vllm/examples/online_serving/disaggregated_serving/mooncake_connector/mooncake_connector_proxy.py \
-  --prefill "http://10.16.1.15:9348" "8998" \  
-  --decode "http://10.16.1.18:9349" \  
-  --port 8000
+    --prefill "http://10.16.1.15:9348" "8998" \  
+    --decode "http://10.16.1.18:9349" \  
+    --port 8000
 ```
 
 ### P：SP8  D：DP16EP16 (1P2D)
@@ -343,22 +460,22 @@ export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 LMSLIM_USE_FUSED_RMS_QUANT=1 \
 VLLM_HCU_USE_FUSED_QKV_SPLIT_RMS_ROPE_KVSTORE=0 \
 vllm serve /models/Hy3-CHANNEL-FP8-w8a8-sero-ignore-from-script3 \
-  --speculative-config.method mtp \  
-  --speculative-config.num_speculative_tokens 2 \  
-  --max-model-len 65536 \  
-  --max-num-batched-tokens 8192 \  
-  --max-num-seqs 128 \  
-  --dtype bfloat16 \  
-  --tensor-parallel-size 8 \  
-  --no-enable-prefix-caching \  
-  --tool-call-parser hy_v3 \  
-  --reasoning-parser hy_v3 \  
-  --enable-auto-tool-choice \  
-  --enable-custom-sp \  
-  --enforce-eager \  
-  --kv_cache_dtype fp8_e4m3 \  
-  --port 8010 \  
-  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_producer"}'
+    --speculative-config.method mtp \  
+    --speculative-config.num_speculative_tokens 2 \  
+    --max-model-len 65536 \  
+    --max-num-batched-tokens 8192 \  
+    --max-num-seqs 128 \  
+    --dtype bfloat16 \  
+    --tensor-parallel-size 8 \  
+    --no-enable-prefix-caching \  
+    --tool-call-parser hy_v3 \  
+    --reasoning-parser hy_v3 \  
+    --enable-auto-tool-choice \  
+    --enable-custom-sp \  
+    --enforce-eager \  
+    --kv_cache_dtype fp8_e4m3 \  
+    --port 8010 \  
+    --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_producer"}'
 
 # KV Consumer（Decode）
 export VLLM_HOST_IP=10.16.1.16
@@ -409,28 +526,28 @@ export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export GPU_MAX_HW_QUEUES=4
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 vllm serve /models/Hy3-CHANNEL-FP8-w8a8-sero-ignore-from-script3 \
-  --trust-remote-code \  
-  -dp 16 \  
-  -tp 1 \  
-  --enable-expert-parallel \  
-  --disable-custom-all-reduce \  
-  --dtype bfloat16 \  
-  --enable-chunked-prefill \  
-  --max-model-len 53000 \  
-  --enable-prefix-caching \  
-  --block-size 64 \  
-  --gpu-memory-utilization 0.89 \  
-  --data-parallel-size-local 8 \  
-  --data-parallel-address 10.16.1.16 \  
-  --data-parallel-rpc-port 1127 \  
-  --data-parallel-start-rank 0 \  
-  --kv-cache-dtype fp8_e4m3 \  
-  -q slimquant_marlin \  
-  --max-num-seqs 256 \  
-  --all2all_backend=deepep_low_latency \  
-  --speculative_config '{"method":"mtp","num_speculative_tokens":2, "quantization": "slimquant_marlin"}' \  
-  --port 8020 \  
-  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}'
+    --trust-remote-code \  
+    -dp 16 \  
+    -tp 1 \  
+    --enable-expert-parallel \  
+    --disable-custom-all-reduce \  
+    --dtype bfloat16 \  
+    --enable-chunked-prefill \  
+    --max-model-len 53000 \  
+    --enable-prefix-caching \  
+    --block-size 64 \  
+    --gpu-memory-utilization 0.89 \  
+    --data-parallel-size-local 8 \  
+    --data-parallel-address 10.16.1.16 \  
+    --data-parallel-rpc-port 1127 \  
+    --data-parallel-start-rank 0 \  
+    --kv-cache-dtype fp8_e4m3 \  
+    -q slimquant_marlin \  
+    --max-num-seqs 256 \  
+    --all2all_backend=deepep_low_latency \  
+    --speculative_config '{"method":"mtp","num_speculative_tokens":2, "quantization": "slimquant_marlin"}' \  
+    --port 8020 \  
+    --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}'
 10.16.1.18:
 export VLLM_HOST_IP=10.16.1.18
 export NCCL_SOCKET_IFNAME=ens14f0
@@ -480,34 +597,34 @@ export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export GPU_MAX_HW_QUEUES=4
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 vllm serve /models/Hy3-CHANNEL-FP8-w8a8-sero-ignore-from-script3 \
-  --trust-remote-code \  
-  -dp 16 \  
-  -tp 1 \  
-  --enable-expert-parallel \  
-  --disable-custom-all-reduce \  
-  --dtype bfloat16 \  
-  --enable-chunked-prefill \  
-  --max-model-len 53000 \  
-  --enable-prefix-caching \  
-  --block-size 64 \  
-  --gpu-memory-utilization 0.89 \  
-  --data-parallel-size-local 8 \  
-  --data-parallel-address 10.16.1.16 \  
-  --data-parallel-rpc-port 1127 \  
-  --data-parallel-start-rank 8 \  
-  --kv-cache-dtype fp8_e4m3 \  
-  -q slimquant_marlin \  
-  --max-num-seqs 256 \  
-  --headless \  
-  --all2all_backend=deepep_low_latency \  
-  --speculative_config '{"method":"mtp","num_speculative_tokens":2, "quantization": "slimquant_marlin"}' \  
-  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}'
+    --trust-remote-code \  
+    -dp 16 \  
+    -tp 1 \  
+    --enable-expert-parallel \  
+    --disable-custom-all-reduce \  
+    --dtype bfloat16 \  
+    --enable-chunked-prefill \  
+    --max-model-len 53000 \  
+    --enable-prefix-caching \  
+    --block-size 64 \  
+    --gpu-memory-utilization 0.89 \  
+    --data-parallel-size-local 8 \  
+    --data-parallel-address 10.16.1.16 \  
+    --data-parallel-rpc-port 1127 \  
+    --data-parallel-start-rank 8 \  
+    --kv-cache-dtype fp8_e4m3 \  
+    -q slimquant_marlin \  
+    --max-num-seqs 256 \  
+    --headless \  
+    --all2all_backend=deepep_low_latency \  
+    --speculative_config '{"method":"mtp","num_speculative_tokens":2, "quantization": "slimquant_marlin"}' \  
+    --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}'
 
 # Mooncake Connector Proxy
 python3 /workspace/vllm/examples/online_serving/disaggregated_serving/mooncake_connector/mooncake_connector_proxy.py \
-  --prefill "http://10.16.1.15:8010" "8998" \  
-  --decode "http://10.16.1.16:8020" \  
-  --port 8000
+    --prefill "http://10.16.1.15:8010" "8998" \  
+    --decode "http://10.16.1.16:8020" \  
+    --port 8000
 ```
 
 ## SGLang HiCache with Mooncake Backend

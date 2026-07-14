@@ -515,7 +515,6 @@ export NCCL_NET_GDR_LEVEL=7
 export NCCL_SDMA_COPY_ENABLE=0
 export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
 export ROCSHMEM_HEAP_SIZE=4000000000
-#郑州节点需要设置
 export ROCSHMEM_TOPO_FILE_FORCE=/workspace/topo.config
 export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
 export USE_SPE_MQP=1
@@ -586,7 +585,6 @@ export NCCL_NET_GDR_LEVEL=7
 export NCCL_SDMA_COPY_ENABLE=0
 export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
 export ROCSHMEM_HEAP_SIZE=4000000000
-#郑州节点需要设置
 export ROCSHMEM_TOPO_FILE_FORCE=/workspace/topo.config
 export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
 export USE_SPE_MQP=1

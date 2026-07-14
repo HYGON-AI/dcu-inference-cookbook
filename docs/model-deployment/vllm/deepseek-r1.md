@@ -6,7 +6,7 @@ DeepSeek-R1 是 DeepSeek 推出的推理强化模型，面向复杂推理、数�
 
 ## 模型列表
 
-| 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
+| 模型权重 | 量化方式 | vLLM 版本&镜像 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
 | [hygon/DeepSeek-R1-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-R1-Channel-FP8-w8a8) | FP8 W8A8 | [0.15](../docker_iamges.md) | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
 | [hygon/DeepSeek-R1-W4A8-V2_6](https://www.modelscope.cn/models/hygon/DeepSeek-R1-W4A8-V2_6) | INT4 W4A8 | [0.18](../docker_iamges.md) | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-v2_6-ifb-bw1100-8x-vllm-018) |

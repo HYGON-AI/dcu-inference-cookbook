@@ -334,13 +334,13 @@
     </tr>
     <tr>
       <td rowspan="4" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/680cb7d1233834890a64acee/5w_4aLfF-7MAyaIPOV498.jpeg" height="40"/><br/>Xiaomi MiMo</td>
-      <td rowspan="2">MiMo-V2.5</td>
+      <td rowspan="2">MiMo-V2.5-Pro</td>
       <td>vLLM</td>
       <td align="center">-</td><td align="center">-</td><td align="center">-</td>
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">-</td><td align="center">-</td><td align="center">-</td>
+      <td align="center">-</td><td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/mimo-v2.5-pro.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">MiMo-V2-Flash</td>

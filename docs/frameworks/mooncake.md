@@ -68,6 +68,9 @@ https://pypi.sourcefind.cn/das_nightly/dtk26041-rc1/+f/82d/edbff272495c8/mooncak
 # mooncake_transfer_engine_shca：支持天龙网卡的版本，不带 hylink 支持（超节点天龙网卡要用正常版本）
 https://pypi.sourcefind.cn/das_nightly/dtk2604-rc4/+f/cde/6179babb6b70b/mooncake_transfer_engine_shca-0.3.10.post1+das.dtk2604.2606261356.g1476ea-cp310-cp310-manylinux_2_35_x86_64.whl#sha256=cde6179babb6b70bbeaf206a0221abe150a11f0754f23e4d65a6b117b451d8ce
 
+#安装 mooncake：
+pip install mooncake_transfer_engine*.whl
+
 #安装前请先卸载旧版本
 pip uninstall mooncake_transfer_engine
 ```

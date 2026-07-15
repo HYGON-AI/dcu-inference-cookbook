@@ -173,12 +173,10 @@ python3 -m sglang_router.launch_router --pd-disaggregation --prefill http://<P_n
 export SGLANG_USE_LIGHTOP=1
 export SGLANG_USE_OPT_CAT=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
-#export SGL_CHUNKED_PREFIX_CACHE_THRESHOLD=0
 export SGLANG_CHUNKED_PREFIX_CACHE_THRESHOLD=0
 export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
 export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
 export HIP_GRAPH_ACCUMULATE_DISPATCH=0
-export SGLANG_TORCH_PROFILER_DIR=/workspace/profiling
 export SGLANG_KVALLOC_KERNEL=1
 export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
 export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
@@ -193,16 +191,13 @@ export ALLREDUCE_STREAM_WITH_COMPUTE=1
 export SGLANG_USE_FP8_W8A8_MOE=1
 export SGLANG_ALLOW_OVERWRITE_LONGER_CONTEXT_LEN=1 
 
-python3 -m sglang.launch_server \
-  --model-path /workspace/tlh/Kimi-K2.5-Channel-FP8-w8a8 \
+sglang serve \
+  --model-path hygon/Kimi-K2.5-Channel-FP8-w8a8 \
   --kv-cache-dtype fp8_e4m3 \
   --host $(hostname -I | awk '{print $1}') \
   --port 30000 \
   --trust-remote-code \
   --page-size 64 \
-  --dist-init-addr $(hostname -I | awk '{print $1}'):5001 \
-  --nnodes 1 \
-  --node-rank 0 \
   --dtype bfloat16 \
   --tp-size 8 \
   --pp-size 1 \

@@ -109,6 +109,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-2B-Instruct \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-2B-Instruct IFB BW1000 1x vLLM 0.18
@@ -129,6 +130,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-2B-Instruct \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-2B-Instruct IFB K100_AI 1x vLLM 0.18
@@ -169,6 +171,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-2B-Thinking \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-2B-Thinking IFB BW1000 1x vLLM 0.18
@@ -189,6 +192,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-2B-Thinking \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-2B-Thinking IFB K100_AI 1x vLLM 0.18
@@ -229,6 +233,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-4B-Instruct \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-4B-Instruct IFB BW1000 1x vLLM 0.18
@@ -249,6 +254,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-4B-Instruct \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-4B-Instruct IFB K100_AI 1x vLLM 0.18
@@ -289,6 +295,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-4B-Thinking \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-4B-Thinking IFB BW1000 1x vLLM 0.18
@@ -309,6 +316,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-4B-Thinking \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-4B-Thinking IFB K100_AI 1x vLLM 0.18
@@ -349,6 +357,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-8B-Instruct \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-8B-Instruct IFB BW1000 1x vLLM 0.18
@@ -369,6 +378,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-8B-Instruct \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-8B-Instruct IFB K100_AI 1x vLLM 0.18
@@ -409,6 +419,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-8B-Thinking \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-8B-Thinking IFB BW1000 1x vLLM 0.18
@@ -429,6 +440,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-8B-Thinking \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-8B-Thinking IFB K100_AI 1x vLLM 0.18
@@ -469,6 +481,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-30B-A3B-Instruct \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-30B-A3B-Instruct IFB BW1000 2x vLLM 0.18
@@ -489,6 +502,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-30B-A3B-Instruct \
   -tp 2 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-30B-A3B-Instruct IFB K100_AI 2x vLLM 0.18
@@ -529,6 +543,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-30B-A3B-Thinking IFB BW1000 2x vLLM 0.18
@@ -549,6 +564,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
   -tp 2 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-30B-A3B-Thinking IFB K100_AI 2x vLLM 0.18
@@ -589,6 +605,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-32B-Instruct \
   -tp 1 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-32B-Instruct IFB BW1000 2x vLLM 0.18
@@ -609,6 +626,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-32B-Instruct \
   -tp 2 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-32B-Instruct IFB K100_AI 2x vLLM 0.18
@@ -650,6 +668,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
   -tp 8 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-235B-A22B-Instruct IFB BW1000 16x vLLM 0.18
@@ -672,6 +691,7 @@ vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
   -tp 8 \
   -pp 2 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-235B-A22B-Instruct IFB K100_AI 16x vLLM 0.18
@@ -714,6 +734,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
   -tp 8 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-235B-A22B-Thinking IFB BW1000 16x vLLM 0.18
@@ -736,6 +757,7 @@ vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
   -tp 8 \
   -pp 2 \
   --trust-remote-code \
+  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-235B-A22B-Thinking IFB K100_AI 16x vLLM 0.18

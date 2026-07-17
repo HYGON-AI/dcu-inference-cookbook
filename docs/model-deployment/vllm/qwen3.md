@@ -1011,7 +1011,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8  \
   -tp  2 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
-  --q slimquant_marlin \
   --max-model-len 40960 \
   --gpu-memory-utilization 0.95
 ```
@@ -1025,7 +1024,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8  \
   -tp  2 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
-  --q slimquant_marlin \
   --max-model-len 40960 \
   --gpu-memory-utilization 0.95 \
   --kv-cache-dtype fp8_e4m3 \
@@ -1040,7 +1038,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8 \
   -tp  4 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
-  --q slimquant_marlin \
   --max-model-len 40960 \
   --gpu-memory-utilization 0.95
 ```
@@ -1054,7 +1051,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8 \
   -tp  4 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
-  --q slimquant_marlin \
   --max-model-len 40960 \
   --gpu-memory-utilization 0.95 \
   --kv-cache-dtype fp8_e5m2 \

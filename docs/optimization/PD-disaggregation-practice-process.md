@@ -1,193 +1,144 @@
-# PD 分离测试最佳实践流程（适配大模型 Ling1T 4K 输入 / 1.5K 输出、TTFT 3s、TPOT 100ms）
-
-&#x20;
+# PD 分离 POC 压力测试最佳实践流程（适配大模型 Ling1T 4K 输入 / 1.5K 输出、TTFT 3s、TPOT 100ms）
 
 ## 核心前提
 
-&#x20;
-
-不同业务指标、延迟 SLA、模型规格无统一标准 PD 分离最优方案，需按固定步骤逐阶测试，敲定并行方案、单节点吞吐、PD 节点配比、系统最大吞吐。
-
-&#x20;
+本文面向 PD 分离 POC 压力测试。不同业务指标、延迟 SLA 和模型规格不存在统一的最优方案，需逐步标定 P、D 实例能力并验证组网。本文所称“最佳吞吐”，是指在指定模型、硬件、输入输出长度和缓存条件下，TTFT、TPOT P99 及错误率均满足用户 SLA 时，完整 PD 系统达到的最大稳定完成 QPS。
 
 ## 一、测试背景基准
 
-&#x20;
+- 模型：Ling1T
+- 输入长度：4K tokens
+- 输出长度：1.5K tokens
+- SLA 约束：TTFT P99≤3s、TPOT P99≤100ms
+- 目标：测出满足 SLA 的最大稳定完成 QPS、PD 实例配比和最优并行组网
+- 测试记录：模型与权重版本、SGLang/DCU 版本、精度或量化方式、设备与网络配置、P/D 启动参数、KV Cache 传输后端、缓存及 MTP 配置
 
-模型：Ling1T输入：4k tokens｜输出：1.5k tokensSLA 约束：TTFT≤3s、TPOT P99≤100ms目标：测出系统最大吞吐、PD 节点配比、最优并行组网
-
-&#x20;
-
-***
-
-&#x20;
+---
 
 ## 二、步骤 1：单测 P 节点（Prefill）最大吞吐
 
-&#x20;
-
 ### 1. 各类并行方案特性对比
-
-&#x20;
-
-表格
 
 |        并行方案       |   吞吐特征  |  延迟特征  |  适用场景  |                核心原因               |
 | :---------------: | :-----: | :----: | :----: | :-------------------------------: |
-|      PP 流水线并行     |   高吞吐   | 高 TTFT | 延迟约束宽松 | 卡间通信量小；多请求同时 Prefill，单请求 TTFT 被拉高 |
-|      TP 张量并行      |   低吞吐   | 低 TTFT | 低延迟强诉求 |      卡间通信量大；单请求多卡串行推理，TTFT 更低     |
-| attentionDP+moeEP | 高吞吐、高延迟 | 高 TTFT |  节点间组网 |        逻辑同 PP，多请求并行 Prefill       |
-| attentionDP+moeTP | 高吞吐、高延迟 | 高 TTFT |  节点内组网 |         适配 MoE 模型节点内高吞吐诉求         |
-
-&#x20;
+|      PP 流水线并行     | 并发充足时吞吐潜力较高 | 流水线填充和气泡可能增加 TTFT | 延迟约束相对宽松 | 模型层分布在不同流水线阶段，通过微批提高设备利用率；实际表现取决于微批数量和阶段均衡性 |
+|      TP 张量并行      | 单请求计算并行度较高，吞吐受集合通信影响 | 通常有利于降低单请求计算延迟 | 低延迟或单卡无法容纳模型 | 单层张量计算由多卡并行执行，并通过集合通信汇总；效果取决于卡间带宽、模型规模和 batch |
+| attentionDP+moeEP | 并发吞吐潜力较高 | 延迟取决于负载均衡和专家通信 | MoE 模型及跨节点组网 | Attention 数据并行与 MoE 专家并行组合，不能简单等同于 PP |
+| attentionDP+moeTP | 取决于 Attention 并行与专家层 TP 的组合 | 延迟取决于集合通信和 batch | MoE 模型节点内组网 | 适合高速节点内互联，实际吞吐和延迟需按硬件拓扑实测 |
 
 ### 2. 项目选型
 
-&#x20;
-
-本项目 TTFT 3s 约束宽松，选择 PP 并行：PP4TP2
-
-&#x20;
+本项目在既定硬件、模型和压测配置下，TTFT 3s 约束相对宽松，经候选方案实测后选择 PP4TP2。该选择不代表 PP4TP2 对其他模型或硬件同样最优。
 
 ### 3. Prefill 最大吞吐测试方法
 
-&#x20;
-
-1.  调参约束：通过 `chunk-size`、`max-running-request`、`--pp-max-micro-batch-size` 限制单次 Prefill 推理 Token 数；Token 数越大吞吐越高、延迟越高，做权衡取舍。
-2.  部署要求：必须启用 PD 分离服务（IFB 模式测试吞吐不准）；Decode 并行方案暂随意，不干扰 Prefill 测试。
-3.  压测配置：请求数 = 256、请求率 = 无限大；Decode 输出长度设为 1，彻底消除 Decode 对 Prefill 的资源抢占与吞吐干扰。
-4.  结果取值：压测输出 QPS 即为P 节点单节点最大 Prefill 吞吐。
-
-&#x20;
+1. 调参约束：通过 `--chunked-prefill-size`、`--max-running-requests`、`--pp-max-micro-batch-size` 控制 Prefill 的分块、并发请求和流水线微批。增大单批 Token 数通常有利于提高吞吐，但也可能增加排队和 TTFT，需结合实测权衡。若项目分支使用不同参数名，应记录实际参数及版本。
+2. 部署要求：使用与生产一致的 PD 分离链路单独标定 P 侧能力；同时确保 D 侧容量、KV Cache 传输和路由不会形成反压。IFB 模式可作为对照，但其结果不能直接替代 PD 分离链路结果。
+3. 压测配置：先完成模型、通信和 CUDA Graph 预热，再以请求数 = 256、请求率 = 无限大进行初始饱和测试；若未形成稳定满载阶段，则继续增加请求数。Decode 输出长度设为 1，以尽量降低 Decode 计算开销。该设置仍包含首 Token Decode、KV Cache 传输、路由和网络开销，不能视为完全消除 D 侧影响。
+4. 结果取值：确认 D 侧和传输链路均未成为瓶颈后，在 TTFT P99 满足 SLA 的候选配置中，取稳定完成 QPS 最大值作为该输入长度和缓存条件下单个 P 实例的 Prefill 吞吐。建议候选配置至少重复测试 3 次。
 
 ### 4. 项目实测结果
 
-&#x20;
+Ling1T 单个 P 实例吞吐：3.4 QPS（该实例部署在单节点）
 
-Ling1T P 节点单节点吞吐：3.4 QPS
-
-&#x20;
-
-***
-
-&#x20;
+---
 
 ## 三、步骤 2：计算 D 节点（Decode）最大吞吐
 
-&#x20;
-
 ### 1. Decode 并行方案特性
 
-&#x20;
-
-*   PP 并行：跨节点降低显存占用，显存充足不优先选用
-*   TP 并行：低吞吐、低 TPOT 延迟
-*   attentionDP+moeEP/TP 低延迟模式：吞吐上限高、延迟下限高
-
-&#x20;
+- PP 并行：可将模型层分布到多个设备或节点，降低单设备显存压力，但流水线气泡和跨阶段通信可能影响 Decode 延迟；显存充足时通常不作为低延迟 Decode 的首选。
+- TP 并行：通过多卡并行计算降低单步计算时间，但集合通信可能限制吞吐；实际 TPOT 和吞吐取决于卡间带宽、batch 和模型规模。
+- attentionDP+moeEP/TP 低延迟模式：可提高 MoE 模型的并发能力，但延迟和吞吐取决于专家负载均衡、通信拓扑、EP/TP 规模及 batch，需通过实测选型。
 
 ### 2. 项目选型
 
-&#x20;
-
-TPOT 要求 P99≤100ms，选定 EP16DP16 并行；补充：Ling1T 未启用 MTP，原生延迟偏高；若后续降为 50ms 延迟诉求，可启用 MTP 或加大 EP 分片。
-
-&#x20;
+本项目以 TPOT P99≤100ms 为约束，经候选方案实测后选定 EP16DP16。Ling1T 当前未启用 MTP；若后续目标收紧至 50ms，可将 MTP、调整 EP/TP 规模等作为候选优化手段，但需重新验证接受率、输出质量、吞吐和 TPOT P99，不能预先保证达标。
 
 ### 3. Decode 最大吞吐测试方法
 
-&#x20;
+Decode 最大吞吐可通过以下三种方式标定。三种方式都应使用 SLA 规定的输入、输出长度。Bench Serving 通过逐档提高 `--request-rate` 或 `--max-concurrency` 放大负载，实际 Decode batch 和 `running_request` 从服务日志读取，不应将客户端并发数直接当作 Decode batch。
 
-1.  部署前提：PD 分离部署，利用木桶效应，规避 P 节点成为瓶颈。
-2.  去瓶颈手段：P 节点开启 `radix-cache（prefix-cache）`，使用`generated-shared-prefix`数据集拉高缓存命中率，彻底消除 P 侧瓶颈。
-3.  压测方式：高请求率下发流量，逐步放大 Decode batch，观察服务日志。
-4.  TPOT 达标判定逻辑TPOT 要求 100ms → 单请求每秒生成 Token 数需 ≥ 10 tokens/s随着 batch 增大，单请求均分吞吐下降，需找到满足：`running_request × 10 tokens/s = 服务日志Token吞吐` 的临界 batch-size
-5.  Decode QPS 计算公式$\text{Decode QPS} = \frac{\text{日志Token吞吐} \times \text{DP-size}}{\text{输出序列长度}}$
+#### 方式一：通过服务日志估算 TPOT 和吞吐
 
-&#x20;
+1. 以较高请求率持续下发流量，逐档增大 Decode batch，观察服务日志中的 `running_request`、单个 DP worker Token 吞吐或 D 实例聚合 Token 吞吐。
+2. TPOT 目标为 100ms 时，单请求平均生成速率约需达到 10 tokens/s。可用 `running_request × 10 tokens/s ≈ D 实例聚合输出 Token 吞吐` 估算满足 TPOT 目标的临界 batch。
+3. 若日志值是单个 DP worker 的输出 Token 吞吐，则 Decode QPS = 单 DP worker 输出 Token 吞吐 × DP-size ÷ 平均实际输出序列长度；若日志值已经是整个 D 实例的聚合输出 Token 吞吐，则 Decode QPS = D 实例聚合输出 Token 吞吐 ÷ 平均实际输出序列长度，不得再次乘 DP-size。
+4. 该方法适合快速估算 Decode 容量，但日志中的平均 Token 吞吐不能直接证明 TPOT P99 达标。最终吞吐仍需通过 Bench Serving 的逐请求 TPOT 分布和最大持续 RPS 验证。
+
+#### 方式二：Radix Cache 高命中率测试
+
+1. 使用完整 PD 分离部署，P 节点开启 `radix-cache（prefix-cache）`。
+2. 使用 `generated-shared-prefix` 数据集构造共享前缀，将 Prefix Cache 命中率提高到约 99%，尽量降低 Prefill 对 Decode 的影响。测试过程中仍需监控 P 侧队列、KV Cache 传输和路由，确认它们没有形成反压。
+3. 使用 Bench Serving 按 SLA 规定的输入、输出长度发压，逐档调整并记录实际 Decode batch、请求 RPS、TPOT P99、TTFT P99、完成请求数和错误数。
+4. 对每个负载档位保持足够长的稳定阶段。在队列不持续增长、无超出阈值的错误且 TPOT P99 满足 SLA 的前提下，选择实际完成的最大稳定 QPS 作为该缓存条件下单个 D 实例的请求吞吐。Bench Serving 配置的输入 RPS 仅代表下发速率，不能直接作为完成吞吐。
+5. 该方法包含真实 P/D 链路开销，但 99% Prefix Cache 命中率高于多数真实业务场景，因此结果主要用于评估 D 侧上限，还需使用真实业务数据进行端到端复测。
+
+#### 方式三：fake-prefill 与 MTP 接受长度模拟测试
+
+1. 使用 `fake-prefill` 方式绕过真实 Prefill 计算和 KV Cache 传输，使测试负载集中在 Decode。具体启动参数应以当前使用的 SGLang 版本为准；官方 PD 参数中的 fake transfer backend 可用于此类测试。
+2. 启动服务前设置以下环境变量，模拟 MTP 接受长度：
+
+    ```bash
+    export SGLANG_SIMULATE_ACC_LEN=4
+    export SGLANG_SIMULATE_ACC_METHOD=match-expected
+    ```
+
+3. `SGLANG_SIMULATE_ACC_LEN=4` 表示模拟接受长度为 4；它用于近似目标 MTP 接受率下的 Decode 行为，但不等同于直接设置 100% 接受率。应结合目标模型的实测接受长度或接受率选择该值。
+4. 使用 Bench Serving 按 SLA 规定的输入、输出长度发压，逐档提高 `--request-rate` 或 `--max-concurrency`，并从日志记录实际 Decode batch。记录下发 RPS、完成 QPS、TPOT P99、完成请求数和错误数；在 TPOT P99 满足 SLA 且系统稳定时，选择实际完成的最大稳定 QPS 作为单个 D 实例的模拟请求吞吐。
+5. 该方法适合隔离评估 Decode 和 MTP 性能，不包含真实 Prefill、Prefix Cache 命中波动及 KV Cache 传输开销，不能直接替代完整 PD 链路结果。
+
+#### 结果判定与交叉验证
+
+最终建议同时报告日志估算 QPS、Radix Cache 高命中率场景的最大稳定完成 QPS，以及 fake-prefill 场景的最大稳定完成 QPS。三种结果应相互交叉验证，并以完整 PD 链路下满足 TTFT、TPOT P99 和错误率 SLA 的最大稳定完成 QPS 作为本次 POC 的最终吞吐结果。
 
 ### 4. 项目实测计算
 
-&#x20;
+假设日志中的 280 tokens/s 是单个 DP worker 的输出吞吐，DP-size = 16，平均实际输出长度为 1536 tokens，则：
 
-$\text{QPS} = 280 \times 16 \div 1536 \approx 2.91 \ \text{QPS}$
+QPS = 280 × 16 ÷ 1536 ≈ 2.91 QPS
 
-&#x20;
+若 280 tokens/s 已是整个 D 实例的聚合值，上述计算不成立，需改为 280 ÷ 1536 ≈ 0.18 QPS。因此应在采纳 2.91 QPS 前核对日志指标的聚合范围。
 
-***
-
-&#x20;
+---
 
 ## 四、步骤 3：PD 节点配比计算
 
-&#x20;
-
 ### 1. 配比核心原则
 
-&#x20;
-
-理想均衡：（$\text{P实例数} \times \text{P单节点QPS} \approx \text{D实例数} \times \text{D单节点QPS}$）无需绝对相等，数值接近即可。
-
-&#x20;
+理想均衡：（P 实例数 × 单个 P 实例 QPS ≈ D 实例数 × 单个 D 实例 QPS）。P、D 两侧必须使用一致的实例口径和工作负载定义，包括输入长度、输出长度及缓存命中假设；无需绝对相等，但应为较弱一侧预留容量余量。
 
 ### 2. 本项目配比
 
-&#x20;
+单个 P 实例 QPS = 3.4，单个 D 实例 QPS = 2.91，数值接近；最终组网为 1 个 P 实例（单节点）+ 1 个 D 实例（跨两节点）。此时 D 侧为理论瓶颈，端到端基准 QPS 约为 2.91。
 
-P 节点 QPS=3.4，D 节点 QPS=2.91，数值接近；最终组网：1P（单节点）+ 1D（两节点）
-
-&#x20;
-
-***
-
-&#x20;
+---
 
 ## 五、步骤 4：整机 Bench 压测 & 结果验证
 
-&#x20;
-
 ### 1. 压测基准规则
 
-&#x20;
-
-按木桶原理，系统最大吞吐以 P/D 中 QPS 较小值 为基准请求率，可小幅上浮试探极限。
-
-&#x20;
+按木桶原理，系统最大吞吐以 P、D 两侧聚合 QPS 的较小值为初始基准请求率。围绕理论值设置阶梯负载，例如 80%、90%、95%、100%、105% 和 110%，再在 SLA 临界区间缩小步长。最终容量还可能受 KV Cache 传输、路由、网络和队列调度限制。
 
 ### 2. PD 分离压测三阶段
 
-&#x20;
+1. 初始阶段：Decode batch 逐步爬坡，系统未满载，实际 QPS＜理想值
+2. 平稳阶段：请求持续匀速到达，P、D 稳态工作，batch 和队列长度相对稳定；实测 QPS 应接近而非必然等于理论值
+3. 结束阶段：P 请求发完，Decode batch 逐步回落，再次非满载
 
-1.  初始阶段：Decode batch 逐步爬坡，系统未满载，实际 QPS＜理想值
-2.  平稳阶段：P 持续匀速打请求、D 稳态消费，batch 稳定，系统真正满载，QPS 等于理想理论值
-3.  结束阶段：P 请求发完，Decode batch 逐步回落，再次非满载
-
-&#x20;
-
-> 关键：拉长平稳阶段占比，测试结果才会贴近理论最大吞吐。
-
-&#x20;
+> 稳定阶段判定：P/D batch、`running_request` 和完成 QPS 相对稳定，请求队列不持续增长，错误率不超过 SLA。每个关键负载档位建议保持 3～5 分钟并重复测试 3 次。
 
 ### 3. 调参优化 & 项目结果
 
-&#x20;
+- 优化手段：调高 `num_prompt`（本项目设为 10000），确保测试包含足够长的稳定阶段
+- 最终实测：整机完成 QPS = 2.85，较理论 2.91 QPS 低约 2.1%，结果接近理论容量。TPOT P99 = 100ms，处于 SLA 上限边界；还需补充 TTFT P99、错误率、平均实际输入输出长度和测试持续时间，并通过多轮重复压测验证稳定性后，作为本次 POC 的最终结果。
 
-*   优化手段：调高 `num_prompt`（本项目设为 10000），拉长平稳阶段时长
-*   最终实测：整机 QPS=2.85，趋近理论 2.91 QPS；TPOT P99=100ms，完全满足 SLA，测出系统极限吞吐。
-
-&#x20;
-
-***
-
-&#x20;
+---
 
 ## 六、可复用标准化流程总结
 
-&#x20;
-
-1.  按 TTFT/TPOT 延迟 SLA，选定 P 侧、D 侧并行方案
-2.  PD 分离隔离压测，测出 P 单节点最大 QPS
-3.  P 开前缀缓存去瓶颈，标定 D 侧合规最大 batch，计算 D 单节点 QPS
-4.  按 P、D QPS 做节点数量配比均衡
-5.  大 num\_prompt 跑整机 Bench，以平稳阶段满载 QPS 作为系统最优吞吐
-
+1. 按 TTFT/TPOT 延迟 SLA，选定 P 侧、D 侧并行方案
+2. 使用生产一致的 PD 链路隔离压测，在确认 D 侧和传输链路不形成反压后，测出单个 P 实例的最大 QPS
+3. 通过高前缀缓存命中场景降低 P 侧负载，标定 D 侧合规最大 batch，并按明确的 Token 吞吐聚合口径计算单个 D 实例 QPS
+4. 按 P、D 实例容量做数量配比，并为较弱一侧预留容量余量
+5. 使用足够大的 `num_prompt` 跑整机 Bench，按理论吞吐设置阶梯 RPS；以稳定阶段中满足 TTFT、TPOT P99 和错误率 SLA 的最大稳定完成 QPS 作为本次 POC 的最佳吞吐

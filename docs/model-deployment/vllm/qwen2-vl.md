@@ -44,6 +44,7 @@ vllm serve Qwen/Qwen2-VL-2B \
     --chat-template-content-format openai \
     --chat-template qwen2_vl_openai_chat_template.jinja \
     --allowed-local-media-path /path-to/VL_data/ \
+    --kv-cache-dtype fp8_e4m3 \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen2-VL-2B IFB BW1000 1x vLLM 0.18
@@ -73,6 +74,7 @@ vllm serve Qwen/Qwen2-VL-2B \
     --chat-template-content-format openai \
     --chat-template qwen2_vl_openai_chat_template.jinja \
     --allowed-local-media-path /path-to/VL_data/ \
+    --kv-cache-dtype fp8_e5m2 \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen2-VL-2B IFB K100_AI 1x vLLM 0.18

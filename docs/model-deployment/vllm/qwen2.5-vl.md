@@ -38,6 +38,7 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 2 \
     --trust-remote-code \
     --allowed-local-media-path /path-to/VL_data/ \
+    --kv-cache-dtype fp8_e5m2 \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen2.5-VL-32B-Instruct IFB BW1100 1x vLLM 0.18
@@ -64,6 +65,7 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     --enable-chunked-prefill \
     --max-model-len 32768 \
     --allowed-local-media-path /path-to/VL_data/ \
+    --kv-cache-dtype fp8_e4m3 \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen2.5-VL-32B-Instruct IFB K100_AI 4x vLLM 0.18

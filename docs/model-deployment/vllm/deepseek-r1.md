@@ -10,13 +10,14 @@ DeepSeek-R1 是 DeepSeek 推出的推理强化模型，面向复杂推理、数�
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
 | [hygon/DeepSeek-R1-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-R1-Channel-INT8-w8a8) | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
 |                                                                                                              | INT8 W8A8 | [0.18](../docker_images.md) | BW1000 | 16 | IFB | [**`>_`**](#deepseek-r1-channel-int8-w8a8-ifb-bw1000-16x-vllm-018) |
-|                                                                                                              | INT8 W8A8 | [0.15](../docker_iamges.md) | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-channel-int8-w8a8-ifb-bw1100-8x-vllm-015) |
-|                                                                                                              | INT8 W8A8 | [0.15](../docker_iamges.md) | BW1000 | 16 | IFB | [**`>_`**](#deepseek-r1-channel-int8-w8a8-ifb-bw1000-16x-vllm-015) |
-| [hygon/DeepSeek-R1-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-R1-Channel-FP8-w8a8) | FP8 W8A8 | [0.15](../docker_iamges.md) | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
-| [hygon/DeepSeek-R1-W4A8-V2_6](https://www.modelscope.cn/models/hygon/DeepSeek-R1-W4A8-V2_6) | INT4 W4A8 | [0.18](../docker_iamges.md) | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-v2_6-ifb-bw1100-8x-vllm-018) |
-|                                                                                              | INT4 W4A8 | [0.18](../docker_iamges.md) | BW1000 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-v2_6-ifb-bw1000-8x-vllm-018) |
-| [hygon/DeepSeek-R1-0528-W4A8-V2](https://www.modelscope.cn/models/hygon/DeepSeek-R1-0528-W4A8-V2) | W4A8 | [0.15](../docker_iamges.md) | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-ifb-bw1100-8x-vllm-015) |
-| [hygon/DeepSeek-R1-0528-W4A8-V2](https://www.modelscope.cn/models/hygon/DeepSeek-R1-0528-W4A8-V2) | W4A8 | [0.15](../docker_iamges.md) | BW1000 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-ifb-bw1000-8x-vllm-015) |
+|                                                                                                              | INT8 W8A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-channel-int8-w8a8-ifb-bw1100-8x-vllm-015) |
+|                                                                                                              | INT8 W8A8 | [0.15](../docker_images.md) | BW1000 | 16 | IFB | [**`>_`**](#deepseek-r1-channel-int8-w8a8-ifb-bw1000-16x-vllm-015) |
+| [hygon/DeepSeek-R1-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-R1-Channel-FP8-w8a8) | FP8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-channel-fp8-w8a8-ifb-bw1100-8x-vllm-018) |
+|                                                                                                             | FP8 W8A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
+| [hygon/DeepSeek-R1-W4A8-V2_6](https://www.modelscope.cn/models/hygon/DeepSeek-R1-W4A8-V2_6) | INT4 W4A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-v2_6-ifb-bw1100-8x-vllm-018) |
+|                                                                                              | INT4 W4A8 | [0.18](../docker_images.md) | BW1000 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-v2_6-ifb-bw1000-8x-vllm-018) |
+| [hygon/DeepSeek-R1-0528-W4A8-V2](https://www.modelscope.cn/models/hygon/DeepSeek-R1-0528-W4A8-V2) | W4A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-ifb-bw1100-8x-vllm-015) |
+| [hygon/DeepSeek-R1-0528-W4A8-V2](https://www.modelscope.cn/models/hygon/DeepSeek-R1-0528-W4A8-V2) | W4A8 | [0.15](../docker_images.md) | BW1000 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-ifb-bw1000-8x-vllm-015) |
 
 ## 启动命令
 
@@ -191,6 +192,30 @@ vllm serve hygon/DeepSeek-R1-Channel-INT8-w8a8 \
   --no-enable-prefix-caching \
   --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
   --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 2,"quantization": "slimquant_marlin"}'
+```
+
+### DeepSeek-R1-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18
+
+```bash
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export NCCL_MAX_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export VLLM_USE_OPT_CAT=0
+export VLLM_HCU_USE_CAT_MLA=0
+export VLLM_HCU_USE_FLASHMLA=1
+
+vllm serve hygon/DeepSeek-R1-Channel-FP8-w8a8 \
+  --trust-remote-code \
+  -q slimquant_marlin \
+  -tp 8 \
+  --dtype bfloat16 \
+  --max-model-len 65536 \
+  --gpu-memory-utilization 0.90 \
+  --max-num-batched-tokens 16384 \
+  --compilation-config '{"pass_config": {"fuse_act_quant": false}}' \
+  --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 2,"quantization": "slimquant_marlin"}' \
+  --no-enable-prefix-caching \
+  --kv-cache-dtype fp8_e4m3
 ```
 
 ### DeepSeek-R1-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.15

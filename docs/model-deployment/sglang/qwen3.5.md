@@ -19,9 +19,9 @@ Qwen3.5-397B-A17B 采用 MoE 架构（397B 总参数 / 17B 激活参数）。
 
 | 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
-| [hygon/Qwen3.5-397B-A17B-Channel-FP8](https://www.modelscope.cn/models/hygon/Qwen3.5-397B-A17B-Channel-FP8) | FP8 W8A8 | 0.5.10 | BW1100 |  4 | IFB  | [**`>_`**](#qwen35-397b-a17b-channel-fp8-ifb-bw1100-4x-sglang-0510)   |
+| [hygon/Qwen3.5-397B-A17B-Channel-FP8](https://www.modelscope.cn/models/hygon/Qwen3.5-397B-A17B-Channel-FP8) | FP8 W8A8 | [0.5.10](../docker_images.md) | BW1100 |  4 | IFB  | [**`>_`**](#qwen35-397b-a17b-channel-fp8-ifb-bw1100-4x-sglang-0510)   |
 |                                                                                                            | FP8 W8A8 | 0.5.10 | BW1100 | 12 | 1P1D | [**`>_`**](#qwen35-397b-a17b-channel-fp8-1p1d-bw1100-12x-sglang-0510) |
-| [hygon/Qwen3.5-397B-A17B-W8A8](https://www.modelscope.cn/models/hygon/Qwen3.5-397B-A17B-W8A8)              | INT8 W8A8 | 0.5.10 | BW1000 |  8 | IFB  | [**`>_`**](#qwen35-397b-a17b-w8a8-ifb-bw1000-8x-sglang-0510)          |
+| [hygon/Qwen3.5-397B-A17B-W8A8](https://www.modelscope.cn/models/hygon/Qwen3.5-397B-A17B-W8A8)              | INT8 W8A8 | [0.5.10](../docker_images.md) | BW1000 |  8 | IFB  | [**`>_`**](#qwen35-397b-a17b-w8a8-ifb-bw1000-8x-sglang-0510)          |
 
 ## 启动命令
 

@@ -1,27 +1,26 @@
-# GLM-5.1 on vLLM
+# GLM-5.2 on vLLM
 
 ## 模型简介
 
-GLM-5.1 是智谱 AI 推出的新一代大语言模型，在中文理解、长文本处理、工具调用等方面表现优异。
+GLM-5.2 是智谱 AI 推出的新一代大语言模型，在中文理解、长文本处理、工具调用等方面表现优异。
 
 ## 模型列表
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [hygon/GLM-5.1-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5.1-Channel-INT4-w4a8) | INT4 W4A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int4-w4a8-ifb-bw1100-8x-vllm-018) |
-|  | INT4 W4A8 | [0.18](../docker_images.md) | BW1000 | 16 | PP2+TP8 | [**`>_`**](#glm-51-channel-int4-w4a8-pp2tp8-bw1000-16x-vllm-018) |
-|  | INT4 W4A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int4-w4a8-ifb-bw1100-8x-vllm-015) |
-| [hygon/GLM-5.1-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.1-Channel-FP8-w8a8) | FP8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-fp8-w8a8-ifb-bw1100-8x-vllm-018) |
-|  | FP8 W8A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
-| [hygon/GLM-5.1-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.1-Channel-INT8-w8a8) | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
-|  | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 24 | 1P2D | [**`>_`**](#glm-51-channel-int8-w8a8-1p2d-bw1100-24x-vllm-018) |
-|  | INT8 W8A8 | [0.18](../docker_images.md) | BW1000 | 16 | IFB | [**`>_`**](#glm-51-channel-int8-w8a8-ifb-bw1000-16x-vllm-018) |
-|  | INT8 W8A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int8-w8a8-ifb-bw1100-8x-vllm-015) |
-|  | INT8 W8A8 | [0.15](../docker_images.md) | BW1100 | 24 | 1P2D | [**`>_`**](#glm-51-channel-int8-w8a8-1p2d-bw1100-24x-vllm-015) |
+| [hygon/GLM-5.2-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5.2-Channel-INT4-w4a8) | INT4 W4A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-int4-w4a8-ifb-bw1100-8x-vllm-018) |
+|  | INT4 W4A8 | [0.18](../docker_images.md) | BW1000 | 16 | PP2+TP8 | [**`>_`**](#glm-52-channel-int4-w4a8-pp2tp8-bw1000-16x-vllm-018) |
+|  | INT4 W4A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-int4-w4a8-ifb-bw1100-8x-vllm-015) |
+| [hygon/GLM-5.2-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.2-Channel-FP8-w8a8) | FP8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-fp8-w8a8-ifb-bw1100-8x-vllm-018) |
+|  | FP8 W8A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
+| [hygon/GLM-5.2-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.2-Channel-INT8-w8a8) | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
+|  | INT8 W8A8 | [0.18](../docker_images.md) | BW1000 | 16 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1000-16x-vllm-018) |
+|  | INT8 W8A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1100-8x-vllm-015) |
+|  | INT8 W8A8 | [0.15](../docker_images.md) | BW1100 | 24 | 1P2D | [**`>_`**](#glm-52-channel-int8-w8a8-1p2d-bw1100-24x-vllm-015) |
 
 ## 启动命令
 
-### GLM-5.1-Channel-INT4-w4a8 IFB BW1100 8x vLLM 0.18
+### GLM-5.2-Channel-INT4-w4a8 IFB BW1100 8x vLLM 0.18
 
 以下示例为单节点部署。
 
@@ -31,7 +30,7 @@ export VLLM_ROCM_USE_AITER_MOE=1
 export VLLM_HCU_USE_FLASHMLA=1
 export LMSLIM_USE_GLOBAL_MOE_CACHE=1
 
-vllm serve hygon/GLM-5.1-Channel-INT4-w4a8 \
+vllm serve hygon/GLM-5.2-Channel-INT4-w4a8 \
     --trust-remote-code \
     --dtype bfloat16 \
     --max-model-len 65536 \
@@ -47,7 +46,7 @@ vllm serve hygon/GLM-5.1-Channel-INT4-w4a8 \
     --kv-cache-dtype fp8_ds_mla
 ```
 
-### GLM-5.1-Channel-INT4-w4a8 PP2+TP8 BW1000 16x vLLM 0.18
+### GLM-5.2-Channel-INT4-w4a8 PP2+TP8 BW1000 16x vLLM 0.18
 
 以下示例为双节点PP+MTP部署。
 
@@ -59,7 +58,7 @@ export VLLM_ROCM_USE_AITER_MOE=1
 export VLLM_HCU_USE_FLASHMLA=1
 export LMSLIM_USE_GLOBAL_MOE_CACHE=1
 
-vllm serve hygon/GLM-5.1-Channel-INT4-w4a8 \
+vllm serve hygon/GLM-5.2-Channel-INT4-w4a8 \
     --trust-remote-code \
     --dtype bfloat16 \
     -tp 8 \
@@ -83,7 +82,7 @@ export VLLM_ROCM_USE_AITER_MOE=1
 export VLLM_HCU_USE_FLASHMLA=1
 export LMSLIM_USE_GLOBAL_MOE_CACHE=1
 
-vllm serve hygon/GLM-5.1-Channel-INT4-w4a8 \
+vllm serve hygon/GLM-5.2-Channel-INT4-w4a8 \
     --trust-remote-code \
     --dtype bfloat16 \
     -tp 8 \
@@ -100,7 +99,7 @@ vllm serve hygon/GLM-5.1-Channel-INT4-w4a8 \
     --headless
 ```
 
-### GLM-5.1-Channel-INT4-w4a8 IFB BW1100 8x vLLM 0.15
+### GLM-5.2-Channel-INT4-w4a8 IFB BW1100 8x vLLM 0.15
 
 ```bash
 
@@ -126,7 +125,7 @@ export USE_LIGHTOP_TOPK=1
 export USE_LIGHTOP_PER_TOKEN_GROUP_QUANT_FP8=1
 export USE_LIGHTOP_CONVERT_REQ_INDEX_TO_GLOBAL_INDEX=1
 
-vllm serve hygon/GLM-5.1-Channel-INT4-w4a8 \
+vllm serve hygon/GLM-5.2-Channel-INT4-w4a8 \
   -q slimquant_w4a8_marlin \
   --trust-remote-code \
   --dtype bfloat16 \
@@ -140,7 +139,7 @@ vllm serve hygon/GLM-5.1-Channel-INT4-w4a8 \
   --speculative_config '{"method": "mtp", "num_speculative_tokens": 2, "quantization": "slimquant_w4a8_marlin"}'
 ```
 
-### GLM-5.1-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18
+### GLM-5.2-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18
 
 以下示例为单节点部署。
 
@@ -149,7 +148,7 @@ export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_FLASHMLA=1
 export LMSLIM_USE_GLOBAL_MOE_CACHE=1
 
-vllm serve hygon/GLM-5.1-Channel-FP8-w8a8 \
+vllm serve hygon/GLM-5.2-Channel-FP8-w8a8 \
     -q slimquant_marlin \
     --trust-remote-code \
     --dtype bfloat16 \
@@ -167,7 +166,7 @@ vllm serve hygon/GLM-5.1-Channel-FP8-w8a8 \
     --kv-cache-dtype fp8_ds_mla
 ```
 
-### GLM-5.1-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.15
+### GLM-5.2-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.15
 
 ```bash
 
@@ -179,8 +178,10 @@ export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTENFENCE=1
 export VLLM_RPC_TIMEOUT=1800000
 export VLLM_REJECT_SAMPLE_OPT=0
+
 export USE_FUSED_RMS_QUANT=0
 export USE_FUSED_SILU_MUL_QUANT=0
+
 export VLLM_USE_GLOBAL_CACHE13=1
 export VLLM_FUSED_MOE_CHUNK_SIZE=16384
 export VLLM_USE_FUSED_FILL_RMS_CAT=1
@@ -191,7 +192,7 @@ export USE_LIGHTOP_TOPK=1
 export USE_LIGHTOP_PER_TOKEN_GROUP_QUANT_FP8=1
 export USE_LIGHTOP_CONVERT_REQ_INDEX_TO_GLOBAL_INDEX=1
 
-vllm serve hygon/GLM-5.1-Channel-FP8-w8a8 \
+vllm serve hygon/GLM-5.2-Channel-FP8-w8a8 \
   -q slimquant_marlin \
   --trust-remote-code \
   --dtype bfloat16 \
@@ -205,7 +206,7 @@ vllm serve hygon/GLM-5.1-Channel-FP8-w8a8 \
   --speculative_config '{"method": "mtp", "num_speculative_tokens": 2, "quantization": "slimquant_marlin"}'
 ```
 
-### GLM-5.1-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.18
+### GLM-5.2-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.18
 
 以下示例为单节点部署。
 
@@ -214,7 +215,7 @@ export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_FLASHMLA=1
 export LMSLIM_USE_GLOBAL_MOE_CACHE=1
 
-vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
+vllm serve hygon/GLM-5.2-Channel-INT8-w8a8 \
     -q slimquant_marlin \
     --trust-remote-code \
     --dtype bfloat16 \
@@ -232,145 +233,7 @@ vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
     --kv-cache-dtype fp8_ds_mla
 ```
 
-
-### GLM-5.1-Channel-INT8-w8a8 1P2D BW1100 24x vLLM 0.18
-
-以下示例中 `13.13.3.21` 为 P 节点，`13.13.3.25` 为 D node 0，`13.13.3.28` 为 D node 1，实际部署时请根据实际情况修改。
-
-#### P node
-
-```bash
-export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_FLASHMLA=1
-export LMSLIM_USE_GLOBAL_MOE_CACHE=1
-export MC_ENABLE_DEST_DEVICE_AFFINITY=1
-export VLLM_HOST_IP=13.13.3.21
-export NCCL_IB_HCA=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_8,mlx5_9
-export NCCL_SOCKET_IFNAME=ens61f0np0
-export GLOO_SOCKET_IFNAME=ens61f0np0
-
-vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
-  -q slimquant_marlin \
-  --trust-remote-code \
-  --port 30000 \
-  --enforce-eager \
-  --dtype bfloat16 \
-  --max-num-batched-tokens 16384 \
-  -tp 8 \
-  --gpu-memory-utilization 0.92 \
-  --max-num-seqs 64 \
-  --block-size 64 \
-  --speculative_config '{"method":"deepseek_mtp","num_speculative_tokens":2,"quantization":"slimquant_marlin"}' \
-  --kv-cache-dtype fp8_ds_mla \
-  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_producer"}' \
-  --hf-overrides '{"use_index_cache": true, "index_topk_freq": 4}' \
-  --enable-lightly-cp \
-  --enable-lightly-cplb
-```
-
-#### D node 0
-
-```bash
-export VLLM_HOST_IP=13.13.3.25
-export NCCL_SOCKET_IFNAME=ens61f0np0
-export GLOO_SOCKET_IFNAME=ens61f0np0
-export MC_ENABLE_DEST_DEVICE_AFFINITY=1
-export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-export ALLREDUCE_STREAM_WITH_COMPUTE=1
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
-export ROCSHMEM_IB_GID_INDEX=0
-export NCCL_NET_GDR_LEVEL=7
-export NCCL_SDMA_COPY_ENABLE=0
-export NCCL_IB_HCA=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_8,mlx5_9
-export ROCSHMEM_HEAP_SIZE=4000000000
-export ROCSHMEM_TOPO_FILE_FORCE=./topo.config
-export USE_SPE_MQP=1
-export ROCSHMEM_SQ_SIZE=1024
-export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=256
-export VLLM_MOE_DP_CHUNK_SIZE=128
-export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_FLASHMLA=1
-export LMSLIM_USE_GLOBAL_MOE_CACHE=1
-
-vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
-  --trust-remote-code \
-  -dp 16 \
-  -tp 1 \
-  --port 30000 \
-  --enable-expert-parallel \
-  --disable-custom-all-reduce \
-  --dtype bfloat16 \
-  --enable-chunked-prefill \
-  --enable-prefix-caching \
-  --block-size 64 \
-  --gpu-memory-utilization 0.89 \
-  --data-parallel-size-local 8 \
-  --data-parallel-address 13.13.3.25 \
-  --data-parallel-rpc-port 1127 \
-  --data-parallel-start-rank 0 \
-  --kv-cache-dtype fp8_ds_mla \
-  -q slimquant_marlin \
-  --max-num-seqs 128 \
-  --max-num-batched-tokens 128 \
-  --all2all_backend=deepep_low_latency \
-  --speculative_config '{"method":"mtp","num_speculative_tokens":2,"quantization":"slimquant_marlin"}' \
-  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}' \
-  --hf-overrides '{"use_index_cache": true, "index_topk_freq": 4}'
-```
-
-#### D node 1
-
-```bash
-export VLLM_HOST_IP=13.13.3.28
-export NCCL_SOCKET_IFNAME=ens61f0np0
-export GLOO_SOCKET_IFNAME=ens61f0np0
-export MC_ENABLE_DEST_DEVICE_AFFINITY=1
-export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-export ALLREDUCE_STREAM_WITH_COMPUTE=1
-export NCCL_MIN_NCHANNELS=16
-export NCCL_MAX_NCHANNELS=16
-export ROCSHMEM_IB_GID_INDEX=0
-export NCCL_NET_GDR_LEVEL=7
-export NCCL_SDMA_COPY_ENABLE=0
-export NCCL_IB_HCA=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_8,mlx5_9
-export ROCSHMEM_HEAP_SIZE=4000000000
-export ROCSHMEM_TOPO_FILE_FORCE=./topo.config
-export USE_SPE_MQP=1
-export ROCSHMEM_SQ_SIZE=1024
-export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=256
-export VLLM_MOE_DP_CHUNK_SIZE=128
-export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_FLASHMLA=1
-export LMSLIM_USE_GLOBAL_MOE_CACHE=1
-
-vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
-  --trust-remote-code \
-  -dp 16 \
-  -tp 1 \
-  --port 30000 \
-  --enable-expert-parallel \
-  --disable-custom-all-reduce \
-  --dtype bfloat16 \
-  --enable-chunked-prefill \
-  --enable-prefix-caching \
-  --block-size 64 \
-  --gpu-memory-utilization 0.89 \
-  --data-parallel-size-local 8 \
-  --data-parallel-address 13.13.3.25 \
-  --data-parallel-rpc-port 1127 \
-  --data-parallel-start-rank 8 \
-  --kv-cache-dtype fp8_ds_mla \
-  -q slimquant_marlin \
-  --max-num-seqs 128 \
-  --max-num-batched-tokens 128 \
-  --headless \
-  --all2all_backend=deepep_low_latency \
-  --speculative_config '{"method":"mtp","num_speculative_tokens":2,"quantization":"slimquant_marlin"}' \
-  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}' \
-  --hf-overrides '{"use_index_cache": true, "index_topk_freq": 4}'
-```
-### GLM-5.1-Channel-INT8-w8a8 IFB BW1000 16x vLLM 0.18
+### GLM-5.2-Channel-INT8-w8a8 IFB BW1000 16x vLLM 0.18
 
 以下示例为双节点部署，请根据实际情况修改 `<node1_ip>`。
 
@@ -381,7 +244,7 @@ export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_FLASHMLA=1
 export LMSLIM_USE_GLOBAL_MOE_CACHE=1
 
-vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
+vllm serve hygon/GLM-5.2-Channel-INT8-w8a8 \
     -q slimquant_marlin \
     --trust-remote-code \
     --dtype bfloat16 \
@@ -409,7 +272,7 @@ export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_FLASHMLA=1
 export LMSLIM_USE_GLOBAL_MOE_CACHE=1
 
-vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
+vllm serve hygon/GLM-5.2-Channel-INT8-w8a8 \
     -q slimquant_marlin \
     --trust-remote-code \
     --dtype bfloat16 \
@@ -431,7 +294,7 @@ vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
     --headless
 ```
 
-### GLM-5.1-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.15
+### GLM-5.2-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.15
 
 ```bash
 
@@ -443,8 +306,10 @@ export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTENFENCE=1
 export VLLM_RPC_TIMEOUT=1800000
 export VLLM_REJECT_SAMPLE_OPT=0
+
 export USE_FUSED_RMS_QUANT=1
 export USE_FUSED_SILU_MUL_QUANT=1
+
 export VLLM_USE_GLOBAL_CACHE13=1
 export VLLM_FUSED_MOE_CHUNK_SIZE=16384
 export VLLM_USE_FUSED_FILL_RMS_CAT=1
@@ -455,7 +320,7 @@ export USE_LIGHTOP_TOPK=1
 export USE_LIGHTOP_PER_TOKEN_GROUP_QUANT_FP8=1
 export USE_LIGHTOP_CONVERT_REQ_INDEX_TO_GLOBAL_INDEX=1
 
-vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
+vllm serve hygon/GLM-5.2-Channel-INT8-w8a8 \
   -q slimquant_marlin \
   --trust-remote-code \
   --dtype bfloat16 \
@@ -469,7 +334,7 @@ vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
   --speculative_config '{"method": "mtp", "num_speculative_tokens": 2, "quantization": "slimquant_marlin"}'
 ```
 
-### GLM-5.1-Channel-INT8-w8a8 1P2D BW1100 24x vLLM 0.15
+### GLM-5.2-Channel-INT8-w8a8 1P2D BW1100 24x vLLM 0.15
 
 以下示例中 `10.16.1.36` 为 P 节点，也是代理节点，`10.16.1.42` 是 D node 0 的主节点，实际部署时请根据实际情况修改。
 
@@ -485,8 +350,10 @@ export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTEMFENCE=1
 export VLLM_RPC_TIMEOUT=1800000
 export VLLM_REJECT_SAMPLE_OPT=0
+
 export USE_FUSED_RMS_QUANT=1
 export USE_FUSED_SILU_MUL_QUANT=1
+
 export VLLM_USE_GLOBAL_CACHE13=1
 export VLLM_FUSED_MOE_CHUNK_SIZE=16384
 export VLLM_USE_FUSED_FILL_RMS_CAT=1
@@ -505,7 +372,7 @@ export GLOO_SOCKET_IFNAME=enp33s0f3u1
 export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
 export ROCSHMEM_TOPO_FILE_FORCE=/mnt/glm5_pd/topo_400g.conf
 
-vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
+vllm serve hygon/GLM-5.2-Channel-INT8-w8a8 \
   -q slimquant_marlin \
   --trust-remote-code \
   --dtype bfloat16 \
@@ -534,8 +401,10 @@ export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTEMFENCE=1
 export VLLM_RPC_TIMEOUT=1800000
 export VLLM_REJECT_SAMPLE_OPT=0
+
 export USE_FUSED_RMS_QUANT=0
 export USE_FUSED_SILU_MUL_QUANT=1
+
 export VLLM_USE_GLOBAL_CACHE13=1
 export VLLM_FUSED_MOE_CHUNK_SIZE=16384
 export VLLM_USE_FUSED_FILL_RMS_CAT=1
@@ -551,18 +420,21 @@ export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
 export NCCL_SOCKET_IFNAME=enp33s0f3u1
 export GLOO_SOCKET_IFNAME=enp33s0f3u1
 export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
+
 export NCCL_NET_GDR_LEVEL=7
 export NCCL_SDMA_COPY_ENABLE=0
+
 export ROCSHMEM_HEAP_SIZE=4000000000
 export ROCSHMEM_TOPO_FILE_FORCE=/mnt/glm5_pd/topo.config
 export USE_SPE_MQP=1
 export ROCSHMEM_SQ_SIZE=1024
 export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=256
+
 export VLLM_MOE_DP_CHUNK_SIZE=128
 export VLLM_ALL2ALL_BACKEND=deepep_low_latency
 export VLLM_USE_DP_CONNECTOR=1
 
-vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
+vllm serve hygon/GLM-5.2-Channel-INT8-w8a8 \
   -q slimquant_marlin \
   --trust-remote-code \
   --dtype bfloat16 \
@@ -597,6 +469,7 @@ export SENDRECV_STREAM_WITH_COMPUTE=1
 export HIP_KERNEL_EVENT_SYSTEMFENCE=1
 export VLLM_RPC_TIMEOUT=1800000
 export VLLM_REJECT_SAMPLE_OPT=0
+
 export USE_FUSED_RMS_QUANT=0
 export USE_FUSED_SILU_MUL_QUANT=1
 
@@ -629,7 +502,7 @@ export VLLM_MOE_DP_CHUNK_SIZE=128
 export VLLM_ALL2ALL_BACKEND=deepep_low_latency
 export VLLM_USE_DP_CONNECTOR=1
 
-vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
+vllm serve hygon/GLM-5.2-Channel-INT8-w8a8 \
   -q slimquant_marlin \
   --trust-remote-code \
   --dtype bfloat16 \
@@ -663,7 +536,7 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
-    model="hygon/GLM-5.1-Channel-INT4-w4a8",
+    model="hygon/GLM-5.2-Channel-INT4-w4a8",
     messages=[
         {"role": "system", "content": "你是一个有帮助的 AI 助手。"},
         {"role": "user", "content": "请分析一下当前中国 AI 芯片产业的发展现状"},
@@ -677,7 +550,7 @@ print(response.choices[0].message.content)
 curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-  "model": "hygon/GLM-5.1-Channel-INT4-w4a8",
+  "model": "hygon/GLM-5.2-Channel-INT4-w4a8",
   "messages": [
     {"role": "system", "content": "你是一个有帮助的 AI 助手。"},
     {"role": "user", "content": "中国的首都是哪里？"}
@@ -688,18 +561,18 @@ curl http://localhost:8000/v1/chat/completions \
 
 ### PD 分离
 
-vLLM PD 分离模式下，客户端请求发送到 P 节点服务端口，示例中为 `13.13.3.21:9351`。
+vLLM PD 分离模式下，客户端请求直接发送到 P 节点的代理端口（示例中为 `10.16.1.36:30001`）。
 
 ```python
 from openai import OpenAI
 
-client = OpenAI(base_url="http://13.13.3.21:9351/v1", api_key="not-needed")
+client = OpenAI(base_url="http://10.16.1.36:30001/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
-    model="hygon/GLM-5.1-Channel-INT8-w8a8",
+    model="hygon/GLM-5.2-Channel-INT8-w8a8",
     messages=[
         {"role": "system", "content": "你是一个有帮助的 AI 助手。"},
-        {"role": "user", "content": "请简单介绍 GLM-5.1。"},
+        {"role": "user", "content": "请分析一下当前中国 AI 芯片产业的发展现状"},
     ],
     max_tokens=2048,
 )
@@ -707,13 +580,13 @@ print(response.choices[0].message.content)
 ```
 
 ```bash
-curl http://13.13.3.21:9351/v1/chat/completions \
+curl http://10.16.1.36:30001/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-  "model": "hygon/GLM-5.1-Channel-INT8-w8a8",
+  "model": "hygon/GLM-5.2-Channel-INT8-w8a8",
   "messages": [
     {"role": "system", "content": "你是一个有帮助的 AI 助手。"},
-    {"role": "user", "content": "请简单介绍 GLM-5.1。"}
+    {"role": "user", "content": "中国的首都是哪里？"}
   ],
   "max_tokens": 128
   }'

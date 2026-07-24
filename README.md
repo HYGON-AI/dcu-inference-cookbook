@@ -264,7 +264,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">-</td><td align="center">-</td><td align="center">-</td>
+      <td align="center">-</td><td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/hunyuan-v3.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/641c1e77c3983aa9490f8121/X1yT2rsaIbR9cdYGEVu0X.jpeg" height="40"/><br/>Moonshot AI</td>

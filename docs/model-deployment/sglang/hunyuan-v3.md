@@ -8,7 +8,7 @@ Hunyuan V3（Hy3）是腾讯混元团队开发的混合专家（MoE）大语言�
 
 | 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
-| [Tencent-Hunyuan/Hy3-FP8](https://www.modelscope.cn/models/Tencent-Hunyuan/Hy3-FP8) | FP8 W8A8 | 0.5.12 | BW1100 | 8 | IFB | [**`>_`**](#hy3-fp8-ifb-bw1100-8x-sglang-0510) |
+| [hygon/Hy3-Channel-FP8-w8a8](https://modelscope.cn/models/hygon/Hy3-Channel-FP8-w8a8) | FP8 W8A8 | 0.5.12 | BW1100 | 8 | IFB | [**`>_`**](#hy3-fp8-ifb-bw1100-8x-sglang-0510) |
 
 ## 启动命令
 
@@ -46,7 +46,7 @@ export ROCSHMEM_HEAP_SIZE=3737418240
 export ROCSHMEM_MAX_NUM_CONTEXTS=32
 
 sglang serve \
-  --model-path Tencent-Hunyuan/Hy3-FP8 \
+  --model-path hygon/Hy3-Channel-FP8-w8a8 \
   --dp-size 8 \
   --tp-size 8 \
   --deepep-mode auto \
@@ -81,7 +81,7 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:30000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
-    model="Tencent-Hunyuan/Hy3-FP8",
+    model="hygon/Hy3-Channel-FP8-w8a8",
     messages=[
         {"role": "system", "content": "你是一个专业的编程助手。"},
         {"role": "user", "content": "用 Python 实现一个高效的 LRU Cache。"},
@@ -96,7 +96,7 @@ print(response.choices[0].message.content)
 curl http://localhost:30000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "Tencent-Hunyuan/Hy3-FP8",
+    "model": "hygon/Hy3-Channel-FP8-w8a8",
     "messages": [
       {"role": "user", "content": "你好，请介绍一下你自己。"}
     ],

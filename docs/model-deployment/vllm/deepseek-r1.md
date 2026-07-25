@@ -151,6 +151,7 @@ vllm serve hygon/DeepSeek-R1-Channel-INT8-w8a8 \
 
 ### DeepSeek-R1-Channel-INT8-w8a8 IFB BW1000 16x vLLM 0.15
 ray方式启动，示例如下：
+
 ray start --head --node-ip-address=xx.xx.xx.xx  --port=6570 --num-gpus=8 --num-cpus=16
 ray start --address='xx.xx.xx.xx:6570' --num-gpus=8 --num-cpus=16
 ```bash

@@ -76,7 +76,6 @@ vllm serve Qwen/Qwen3.6-27B \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3.6-27B IFB K100_AI 2x vLLM 0.18
@@ -164,7 +163,6 @@ vllm serve Qwen/Qwen3.6-35B-A3B \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM \
   --moe-backend aiter
 ```

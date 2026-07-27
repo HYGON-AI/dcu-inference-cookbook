@@ -90,8 +90,6 @@ vllm serve Qwen/Qwen3.5-4B \
 ### Qwen3.5-4B IFB BW1100 1x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve Qwen/Qwen3.5-4B \
   -tp 1 \
   --trust-remote-code \
@@ -118,14 +116,12 @@ vllm serve Qwen/Qwen3.5-4B \
 ### Qwen3.5-4B IFB BW1000 1x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3.5-4B \
   -tp 1 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 
@@ -173,8 +169,6 @@ vllm serve Qwen/Qwen3.5-9B \
 ### Qwen3.5-9B IFB BW1100 1x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve Qwen/Qwen3.5-9B \
   -tp 1 \
   --trust-remote-code \
@@ -201,15 +195,12 @@ vllm serve Qwen/Qwen3.5-9B \
 ### Qwen3.5-9B IFB BW1000 1x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve Qwen/Qwen3.5-9B \
   -tp 1 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3.5-9B IFB K100_AI 1x vLLM 0.18
@@ -256,8 +247,6 @@ vllm serve Qwen/Qwen3.5-27B \
 ### Qwen3.5-27B IFB BW1100 1x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve Qwen/Qwen3.5-27B \
   -tp 1 \
   --trust-remote-code \
@@ -284,15 +273,12 @@ vllm serve Qwen/Qwen3.5-27B \
 ### Qwen3.5-27B IFB BW1000 2x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve Qwen/Qwen3.5-27B \
   -tp 2 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3.5-27B IFB K100_AI 2x vLLM 0.18
@@ -341,8 +327,6 @@ vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
 ### Qwen3.5-27B-Channel-INT8-w8a8 IFB BW1100 1x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
@@ -373,8 +357,6 @@ vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
 ### Qwen3.5-27B-Channel-INT8-w8a8 IFB BW1000 1x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
@@ -383,7 +365,6 @@ vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --speculative-config.quantization "slimquant_marlin" \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3.5-27B-Channel-INT8-w8a8 IFB K100_AI 1x vLLM 0.18
@@ -433,7 +414,6 @@ vllm serve Qwen/Qwen3.5-35B-A3B \
 ### Qwen3.5-35B-A3B IFB BW1100 1x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3.5-35B-A3B \
   -tp 1 \
   --trust-remote-code \
@@ -464,14 +444,12 @@ vllm serve Qwen/Qwen3.5-35B-A3B \
 ### Qwen3.5-35B-A3B IFB BW1000 2x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3.5-35B-A3B \
   -tp 2 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM \
   --moe-backend aiter
 ```
@@ -521,8 +499,6 @@ vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
 ### Qwen3.5-35B-A3B-Channel-INT8-w8a8 IFB BW1100 1x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
@@ -553,8 +529,6 @@ vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
 ### Qwen3.5-35B-A3B-Channel-INT8-w8a8 IFB BW1000 1x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
@@ -563,7 +537,6 @@ vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --speculative-config.quantization "slimquant_marlin" \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3.5-35B-A3B-Channel-INT8-w8a8 IFB K100_AI 1x vLLM 0.18
@@ -612,8 +585,6 @@ vllm serve hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
 ### Qwen3.5-35B-A3B-Channel-FP8-w8a8 IFB BW1100 1x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
   -tp 1 \
   --trust-remote-code \
@@ -645,7 +616,6 @@ vllm serve Qwen/Qwen3.5-122B-A10B \
 ### Qwen3.5-122B-A10B IFB BW1100 4x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3.5-122B-A10B \
   -tp 4 \
   --trust-remote-code \
@@ -676,14 +646,12 @@ vllm serve Qwen/Qwen3.5-122B-A10B \
 ### Qwen3.5-122B-A10B IFB BW1000 8x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3.5-122B-A10B \
   -tp 8 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM \
   --moe-backend aiter
 ```
@@ -733,8 +701,6 @@ vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
 ### Qwen3.5-122B-A10B-W8A8-INT8 IFB BW1100 2x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
   -tp 2 \
   --trust-remote-code \
@@ -765,8 +731,6 @@ vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
 ### Qwen3.5-122B-A10B-W8A8-INT8 IFB BW1000 4x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
   -tp 4 \
   --trust-remote-code \
@@ -775,7 +739,6 @@ vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --speculative-config.quantization "slimquant_marlin" \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3.5-122B-A10B-W8A8-INT8 IFB K100_AI 4x vLLM 0.18
@@ -824,8 +787,6 @@ vllm serve hygon/Qwen3.5-122B-A10B-Channel-FP8-w8a8 \
 ### Qwen3.5-122B-A10B-Channel-FP8-w8a8 IFB BW1100 2x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve hygon/Qwen3.5-122B-A10B-Channel-FP8-w8a8 \
   -tp 4 \
   --trust-remote-code \
@@ -856,8 +817,6 @@ vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
 ### Qwen3.5-397B-A17B-W8A8-INT8 IFB BW1100 8x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
   -tp 8 \
   --trust-remote-code \
@@ -888,8 +847,6 @@ vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
 ### Qwen3.5-397B-A17B-W8A8-INT8 IFB BW1000 8x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
   -tp 8 \
   --trust-remote-code \
@@ -898,7 +855,6 @@ vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --speculative-config.quantization "slimquant_marlin" \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3.5-397B-A17B-W8A8-INT8 IFB K100_AI 8x vLLM 0.18
@@ -947,8 +903,6 @@ vllm serve hygon/Qwen3.5-397B-A17B-Channel-FP8 \
 ### Qwen3.5-397B-A17B-Channel-FP8 IFB BW1100 4x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve hygon/Qwen3.5-397B-A17B-Channel-FP8 \
   -tp 4 \
   --trust-remote-code \

@@ -84,7 +84,6 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen2-0.5B-Instruct \
   -tp 1 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen2-0.5B-Instruct IFB K100_AI 1x vLLM 0.18
@@ -153,7 +152,6 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen2-1.5B-Instruct \
   -tp 1 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen2-1.5B-Instruct IFB K100_AI 1x vLLM 0.18
@@ -222,7 +220,6 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen2-7B-Instruct \
   -tp 1 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen2-7B-Instruct IFB K100_AI 1x vLLM 0.18
@@ -291,7 +288,6 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   -tp 4 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen2-57B-A14B-Instruct IFB K100_AI 4x vLLM 0.18
@@ -360,7 +356,6 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen2-72B-Instruct \
   -tp 4 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen2-72B-Instruct IFB K100_AI 4x vLLM 0.18

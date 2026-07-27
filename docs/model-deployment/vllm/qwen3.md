@@ -169,7 +169,6 @@ export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3-0.6B \
   -tp 1 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-0.6B IFB K100_AI 1x vLLM 0.18
@@ -252,7 +251,6 @@ export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3-1.7B \
   -tp 1 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-1.7B IFB K100_AI 1x vLLM 0.18
@@ -329,7 +327,6 @@ export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3-4B \
   -tp 1 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e5m2 \
   --max-num-batched-tokens 10240 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
@@ -406,7 +403,6 @@ vllm serve Qwen/Qwen3-4B-Channel-INT8-w8a8 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --q slimquant_marlin \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-4B-Channel-INT8-w8a8 IFB K100_AI 1x vLLM 0.18
@@ -461,7 +457,6 @@ export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3-8B \
   -tp 1 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e5m2 \
   --max-num-batched-tokens 10240 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
@@ -538,7 +533,6 @@ vllm serve Qwen/Qwen3-8B-Channel-INT8-w8a8 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --q slimquant_marlin \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-8B-Channel-INT8-w8a8 IFB K100_AI 1x vLLM 0.18
@@ -593,7 +587,6 @@ export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3-14B \
   -tp 1 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e5m2 \
   --max-num-batched-tokens 10240 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
@@ -670,7 +663,6 @@ vllm serve Qwen/Qwen3-14B-Channel-INT8-w8a8 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --q slimquant_marlin \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-14B-Channel-INT8-w8a8 IFB K100_AI 1x vLLM 0.18
@@ -725,7 +717,6 @@ export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3-32B \
   -tp 2 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e5m2 \
   --max-num-batched-tokens 10240 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
@@ -804,7 +795,6 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
   -tp 2 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM \
   --moe-backend aiter
 ```
@@ -895,7 +885,6 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507-W8A8 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --q slimquant_marlin \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-30B-A3B-Instruct-2507-W8A8-INT8 IFB K100_AI 1x vLLM 0.18
@@ -955,7 +944,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --gpu-memory-utilization 0.95 \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM \
   --moe-backend aiter
 ```
@@ -1053,7 +1041,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8 \
   --max-num-batched-tokens 10240 \
   --max-model-len 40960 \
   --gpu-memory-utilization 0.95 \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-235B-A22B-Channel-INT8-w8a8 IFB K100_AI 4x vLLM 0.18

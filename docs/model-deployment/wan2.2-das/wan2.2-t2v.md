@@ -1,0 +1,119 @@
+# Wan2.2-T2V on wan2.2-das
+
+## 模型简介
+
+Wan2.2-T2V-A14B 是阿里通义实验室推出的文生视频（Text-to-Video）模型，基于 DiT 架构，可根据文本提示词生成高质量视频。
+
+本文档给出 BW1000/BW1100 8 卡离线推理最佳实践，适用于 1280x720、1280x704、832x480、768x432的 Wan2.2-T2V-A14B 推理场景。
+
+
+
+## 模型列表
+
+| 模型权重                                                     | 量化方式 | 推荐硬件      | 卡数 | 部署方式 | 启动命令                          |
+| ------------------------------------------------------------ | -------- | ------------- | ---- | -------- | --------------------------------- |
+| [Wan-AI/Wan2.2-T2V-A14B](https://www.modelscope.cn/models/Wan-AI/Wan2.2-T2V-A14B) | BF16     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#Wan22-T2V-A14B-BF16) |
+| [Wan-AI/Wan2.2-T2V-A14B-INT8](https://www.modelscope.cn/models/hygon/Wan2.2-T2V-A14B-INT8-w8a8) | INT8     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#Wan22-T2V-A14B-INT8) |
+
+
+
+## 代码获取
+
+```bash
+git clone https://developer.sourcefind.cn/codes/OpenDAS/wan2.2-das.git
+```
+
+
+
+## 启动命令
+
+
+### Wan2.2-T2V-A14B BF16
+
+```bash
+export model_base=./models/Wan2.2-T2V-A14B
+
+export OMP_NUM_THREADS=32
+export HIPBLASLT_ALLOW_TF32=1
+export AllTOAll_STREAM_WITH_COMPUTE=1
+export TORCHINDUCTOR_MAX_AUTOTUNE_POINTWISE=True
+export TORCHINDUCTOR_COORDINATE_DESCENT_TUNING=1
+
+export GLOG_minloglevel=3
+
+torchrun --nproc_per_node=8 generate.py \
+--task t2v-A14B \
+--ckpt_dir ${model_base} \
+--size 1280*720 \
+--frame_num 61 \
+--sample_steps 30 \
+--dit_fsdp \
+--t5_fsdp \
+--cfg_size 1 \
+--ulysses_size 8 \
+--sample_solver unipc \
+--prompt "Two anthropomorphic cats in comfy boxing gear and bright gloves fight intensely on a spotlighted stage." \
+--base_seed 0
+```
+
+
+
+### Wan2.2-T2V-A14B INT8
+
+```bash
+export USE_INT8=1
+export model_base=./models/Wan2.2-T2V-A14B-INT8
+
+export OMP_NUM_THREADS=32
+export HIPBLASLT_ALLOW_TF32=1
+export AllTOAll_STREAM_WITH_COMPUTE=1
+export TORCHINDUCTOR_MAX_AUTOTUNE_POINTWISE=True
+export TORCHINDUCTOR_COORDINATE_DESCENT_TUNING=1
+
+export GLOG_minloglevel=3
+
+torchrun --nproc_per_node=8 generate.py \
+--task t2v-A14B \
+--ckpt_dir ${model_base} \
+--size 1280*720 \
+--frame_num 61 \
+--sample_steps 30 \
+--dit_fsdp \
+--t5_fsdp \
+--cfg_size 1 \
+--ulysses_size 8 \
+--sample_solver unipc \
+--prompt "Two anthropomorphic cats in comfy boxing gear and bright gloves fight intensely on a spotlighted stage." \
+--base_seed 0
+```
+
+
+
+## 性能优化
+
+
+### attn qkv投影矩阵合并、crossattn kv投影矩阵合并优化
+
+
+```
+export APPLY_ATTN_PROJ_FUSION=1
+```
+
+
+
+### 使用SLA稀疏化
+
+
+```
+export USE_SLA=1
+export SPARSE_ATTN_TOPK=0.4 #控制稀疏度
+```
+
+
+
+### 使用SageAttn，仅在BW1100上支持
+
+
+```
+export USE_SAGEATTN=1
+```

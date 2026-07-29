@@ -4,7 +4,6 @@
 
 </div>
 
-# inference-cookbook-das
 
 ## 📖 简介
 

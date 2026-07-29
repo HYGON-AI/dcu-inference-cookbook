@@ -4,6 +4,7 @@
 
 </div>
 
+# inference-cookbook-das
 
 ## 📖 简介
 
@@ -402,6 +403,11 @@
   </tbody>
 </table>
 
+## 📄 许可证与第三方来源
+
+本项目采用 [MIT License](LICENSE)。
+
+仓库不直接内嵌第三方源码。文档中引用的模型、推理框架、工具和服务仍由各自项目的许可证约束，具体说明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
 ## 🤝 贡献
 

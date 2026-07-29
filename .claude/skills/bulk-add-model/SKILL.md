@@ -1,6 +1,6 @@
 ---
 name: bulk-add-model
-description: 为 hcu-inference-cookbook 批量新增模型部署文档。适用于用户要求参照指定已有模型记录，生成多个目标模型记录的场景，例如“参照 A 生成 B/C/D”。
+description: 为 inference-cookbook-das 批量新增模型部署文档。适用于用户要求参照指定已有模型记录，生成多个目标模型记录的场景，例如“参照 A 生成 B/C/D”。
 ---
 
 # 批量新增模型

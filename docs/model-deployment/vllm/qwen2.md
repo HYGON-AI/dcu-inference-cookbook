@@ -2,7 +2,7 @@
 
 ## 模型简介
 
-Qwen2 是阿里通义千问开源大语言模型系列，支持多种参数规模。本页提供 Qwen2-0.5B-Instruct、Qwen2-1.5B-Instruct、Qwen2-7B-Instruct、Qwen2-57B-A14B-Instruct、Qwen2-72B-Instruct 在 DCU 上基于 vLLM 的推理部署方案。
+Qwen2 是阿里通义千问开源大语言模型系列，支持多种参数规模。本页提供 Qwen2-0.5B-Instruct、Qwen2-1.5B-Instruct、Qwen2-7B-Instruct、Qwen2-57B-A14B-Instruct、Qwen2-72B-Instruct 在 HCU 上基于 vLLM 的推理部署方案。
 
 ## 模型列表
 

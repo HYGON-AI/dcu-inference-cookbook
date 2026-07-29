@@ -2,7 +2,7 @@
 
 ## 模型简介
 
-Wan2.2-T2V-A14B 是阿里通义实验室推出的文生视频（Text-to-Video）模型，基于 DiT 架构，可根据文本提示词生成高质量视频。SGLang Diffusion 在 DCU 平台上支持通过序列并行、SLA 注意力后端和 Cache-DiT 对 Wan2.2-T2V 推理进行加速。
+Wan2.2-T2V-A14B 是阿里通义实验室推出的文生视频（Text-to-Video）模型，基于 DiT 架构，可根据文本提示词生成高质量视频。SGLang Diffusion 在 HCU 平台上支持通过序列并行、SLA 注意力后端和 Cache-DiT 对 Wan2.2-T2V 推理进行加速。
 
 本文档给出 BW1100（NMZ）4 卡在线推理最佳实践，适用于 1280x720、81 帧、40 步的 Wan2.2-T2V-A14B-Diffusers 推理场景。若使用 BW1000 或显存较小的节点，建议开启 FSDP 或 text encoder CPU offload 作为显存兜底，但性能会低于本文推荐配置。
 
@@ -88,7 +88,7 @@ curl -sS "http://localhost:30000/v1/videos/<video-id>"
 
 ## 关键参数说明
 
-- SLA 注意力后端：Wan2.2-T2V 在 DCU 上加速的核心开关，对应启动命令中的 attention backend。
+- SLA 注意力后端：Wan2.2-T2V 在 HCU 上加速的核心开关，对应启动命令中的 attention backend。
 - SLA topk 0.25：推荐的质量与性能折中配置；更低 topk 可能继续提速，但需要额外做视频质量验证。
 - Cache-DiT：Wan2.2 双 transformer 会分别启用缓存优化，可降低 denoise 阶段耗时。
 - `--use-fsdp-inference false`：BW1100（NMZ）显存充足时推荐关闭 FSDP，可获得更低延迟。

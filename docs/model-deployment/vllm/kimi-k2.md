@@ -51,7 +51,7 @@ curl http://localhost:8000/v1/chat/completions \
   -d '{"model": "moonshotai/Kimi-K2-Instruct", "messages": [{"role": "user", "content": "中国的首都是什么？"}], "max_tokens": 128}'
 ```
 
-## DCU 适配注意
+## HCU 适配注意
 
 - Kimi-K2-Instruct 原生支持 bf16
 - 超长上下文（>32K）场景 KV Cache 占用大，建议适当降低 `--max-model-len`

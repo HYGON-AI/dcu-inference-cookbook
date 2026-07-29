@@ -2,7 +2,7 @@
 
 ## 模型简介
 
-Hunyuan V3（Hy3）是腾讯混元团队开发的混合专家（MoE）大语言模型。该模型提供 FP8 权重，可在 DCU 平台上通过 SGLang 进行高效推理部署，并兼容 OpenAI API。
+Hunyuan V3（Hy3）是腾讯混元团队开发的混合专家（MoE）大语言模型。该模型提供 FP8 权重，可在 HCU 平台上通过 SGLang 进行高效推理部署，并兼容 OpenAI API。
 
 ## 模型列表
 

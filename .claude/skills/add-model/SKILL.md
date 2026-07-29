@@ -1,6 +1,6 @@
 ---
 name: add-model
-description: Guide for adding a new model deployment doc to dcu-inference-cookbook. Use this when asked to add a new model or create a new model deployment page.
+description: Guide for adding a new model deployment doc to hcu-inference-cookbook. Use this when asked to add a new model or create a new model deployment page.
 ---
 
 # 新增模型部署文档规范
@@ -68,7 +68,7 @@ description: Guide for adding a new model deployment doc to dcu-inference-cookbo
 
   **表格行排序**：同一模型的多条行先按框架版本从新到旧排序（如 vLLM `0.18` 在 `0.15` 前），同一框架版本内再按硬件平台排序，顺序固定为 **BW1100 → BW1000 → K100_AI**；同一硬件下 `IFB` 在前，后面紧跟该硬件对应的 PD 分离记录（如 `1P1D`、`2P2D`）。
 
-- **卡数**：整数，表示所需 DCU 数量。
+- **卡数**：整数，表示所需 HCU 数量。
 
 - **部署方式**：
   - `IFB`：单机批量推理

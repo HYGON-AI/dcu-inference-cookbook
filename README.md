@@ -1,6 +1,6 @@
 <div align="center">
 
-![DCU Inference Cookbook Logo](./assets/logo.svg)
+![HCU Inference Cookbook Logo](./assets/logo.svg)
 
 </div>
 
@@ -8,7 +8,7 @@
 
 ## 📖 简介
 
-本仓库整理了在 DCU 硬件上部署、调优和运行 AI 模型的经验与最佳实践，涵盖：
+本仓库整理了在 HCU 硬件上部署、调优和运行 AI 模型的经验与最佳实践，涵盖：
 
 - **大语言模型 (LLM)** — 文本生成、对话、代码补全等
 - **多模态模型 (VLM)** — 视觉语言模型、图像生成、语音识别等

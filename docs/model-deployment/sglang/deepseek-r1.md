@@ -2,7 +2,7 @@
 
 ## 模型简介
 
-DeepSeek-R1 是 DeepSeek 推出的推理强化模型系列，面向复杂推理、数学与代码场景。SGLang 在 DCU 平台可通过张量并行部署 R1 系列模型，并兼容 OpenAI API 接口。
+DeepSeek-R1 是 DeepSeek 推出的推理强化模型系列，面向复杂推理、数学与代码场景。SGLang 在 HCU 平台可通过张量并行部署 R1 系列模型，并兼容 OpenAI API 接口。
 
 ## 模型列表
 

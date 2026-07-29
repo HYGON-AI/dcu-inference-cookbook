@@ -2,7 +2,7 @@
 
 ## 框架对比
 
-| 框架 | 特点 | 适用场景 | DCU 适配 |
+| 框架 | 特点 | 适用场景 | HCU 适配 |
 |------|------|---------|---------|
 | Diffusers | HuggingFace 生态，代码驱动 | 标准文生图/视频、API 服务 | ✅ 良好 |
 | ComfyUI | 节点式可视化工作流 | 复杂 pipeline、灵活组合 | ✅ 良好 |
@@ -29,7 +29,7 @@
 
 | 工具 | 文档 |
 |------|------|
-| ComfyUI | [comfyui-dcu.md](comfyui-dcu.md) |
+| ComfyUI | [comfyui-hcu.md](comfyui-hcu.md) |
 
 ## 环境准备
 

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026 Hygon Information Technology Co., Ltd.
+# SPDX-License-Identifier: MIT
 """Build a checklist for batch model derivation.
 
 This helper is intentionally read-only. It does not edit deployment docs.

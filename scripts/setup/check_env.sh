@@ -1,4 +1,7 @@
 #!/bin/bash
+# Copyright (c) 2026 Hygon Information Technology Co., Ltd.
+# SPDX-License-Identifier: MIT
+
 # DCU 环境检查脚本
 # 用于验证 DCU 驱动、ROCm、PyTorch 是否正确安装
 

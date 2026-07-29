@@ -1,3 +1,6 @@
+# Copyright (c) 2026 Hygon Information Technology Co., Ltd.
+# SPDX-License-Identifier: MIT
+
 """
 vLLM 推理性能基准测试脚本
 用法: python benchmark.py --model <model_path> --tp-size <n>

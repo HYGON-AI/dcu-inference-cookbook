@@ -1,6 +1,6 @@
 <div align="center">
 
-![HCU Inference Cookbook Logo](./assets/logo.svg)
+![inference-cookbook-das Logo](./assets/logo.svg)
 
 </div>
 

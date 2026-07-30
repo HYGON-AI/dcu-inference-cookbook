@@ -2,7 +2,7 @@
 
 ## 模型简介
 
-DeepSeek-V3.2 是 DeepSeek V3 系列的 MoE 大模型版本，面向高吞吐对话、复杂推理与代码生成场景。基于 SGLang 在 DCU 平台可通过 IFB 或 PD 分离模式部署，并兼容 OpenAI API。
+DeepSeek-V3.2 是 DeepSeek V3 系列的 MoE 大模型版本，面向高吞吐对话、复杂推理与代码生成场景。基于 SGLang 在 HCU 平台可通过 IFB 或 PD 分离模式部署，并兼容 OpenAI API。
 
 ## 模型列表
 

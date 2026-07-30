@@ -1,4 +1,4 @@
-# SD3 / FLUX / SDXL on DCU
+# SD3 / FLUX / SDXL on HCU
 
 ## 模型简介
 
@@ -106,7 +106,7 @@ ComfyUI/models/controlnet/     # ControlNet 模型
 ComfyUI/models/lora/           # LoRA 权重
 ```
 
-详见 → [comfyui-dcu.md](comfyui-dcu.md)
+详见 → [comfyui-hcu.md](comfyui-hcu.md)
 
 ## 性能优化
 
@@ -133,9 +133,9 @@ image = pipe(prompt, num_inference_steps=20)  # 默认 50
 | FLUX.1-dev | 1024x1024 | 24GB | 32GB+ |
 | SDXL + ControlNet | 1024x1024 | 20GB | 32GB+ |
 
-## DCU 适配注意
+## HCU 适配注意
 
-- Diffusers 底层使用 PyTorch，DCU 上通过 ROCm 兼容运行
+- Diffusers 底层使用 PyTorch，HCU 上通过 ROCm 兼容运行
 - 部分自定义 CUDA kernel 可能需要 HIP 适配
-- 建议使用 `torch.float16` 而非 `torch.bfloat16`（部分模型在 DCU 上 fp16 更稳定）
+- 建议使用 `torch.float16` 而非 `torch.bfloat16`（部分模型在 HCU 上 fp16 更稳定）
 - 如果遇到 `NotImplementedError`，检查是否有 CUDA 专属算子未适配

@@ -1,4 +1,4 @@
-# Wan2.1 on DCU
+# Wan2.1 on HCU
 
 ## 模型简介
 
@@ -92,7 +92,7 @@ git clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git
 
 在 ComfyUI 中加载 Wan 模型，通过节点组合实现文生视频/图生视频工作流。
 
-详见 → [comfyui-dcu.md](comfyui-dcu.md)
+详见 → [comfyui-hcu.md](comfyui-hcu.md)
 
 ## 性能优化
 
@@ -108,10 +108,10 @@ pipe.enable_model_cpu_offload()
 pipe.transformer = torch.compile(pipe.transformer, mode="reduce-overhead")
 ```
 
-## DCU 适配注意
+## HCU 适配注意
 
 - Wan2.1 基于 DiT 架构，算子适配相对简单
-- 14B 版本建议 64GB+ DCU
+- 14B 版本建议 64GB+ HCU
 - 1.3B 版本适合显存有限的场景
-- 视频编码/解码使用 CPU（ffmpeg），不影响 DCU 兼容性
+- 视频编码/解码使用 CPU（ffmpeg），不影响 HCU 兼容性
 - 如果遇到 OOM，优先启用 `enable_model_cpu_offload()`

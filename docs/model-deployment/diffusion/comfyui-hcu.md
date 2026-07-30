@@ -1,4 +1,4 @@
-# ComfyUI on DCU
+# ComfyUI on HCU
 
 ComfyUI 是一个基于节点的可视化 AI 图像/视频生成工作流平台，支持 Stable Diffusion、FLUX、Wan 等主流模型。
 
@@ -22,22 +22,22 @@ python main.py
 # 指定监听地址（远程访问）
 python main.py --listen 0.0.0.0 --port 8188
 
-# 指定 DCU 设备
+# 指定 HCU 设备
 python main.py --listen 0.0.0.0 --port 8188
 ```
 
 启动后访问 `http://<server-ip>:8188` 打开 Web 界面。
 
-## DCU 适配
+## HCU 适配
 
-ComfyUI 底层使用 PyTorch，DCU 上通过 ROCm 兼容运行：
+ComfyUI 底层使用 PyTorch，HCU 上通过 ROCm 兼容运行：
 
 ```bash
 # 1. 确认 PyTorch ROCm 版本
 python -c "import torch; print(torch.version.hip)"
 
-# 2. 如果 ComfyUI 未自动识别 DCU，手动设置
-export HIP_VISIBLE_DEVICES=0  # 指定使用的 DCU 卡号
+# 2. 如果 ComfyUI 未自动识别 HCU，手动设置
+export HIP_VISIBLE_DEVICES=0  # 指定使用的 HCU 卡号
 
 # 3. 启动
 python main.py --listen 0.0.0.0 --port 8188
@@ -249,14 +249,14 @@ print(f"Generated: {output_images}")
 # --temp-directory /tmp/comfyui
 ```
 
-## DCU 适配注意
+## HCU 适配注意
 
 - ComfyUI 依赖 PyTorch，确保安装 ROCm 版本的 PyTorch
 - 部分自定义节点中的 CUDA kernel 可能需要 HIP 适配
 - 如果遇到 `CUDA out of memory`，在节点中降低分辨率或 batch size
-- 视频生成节点（Wan）显存需求大，建议 64GB+ DCU
+- 视频生成节点（Wan）显存需求大，建议 64GB+ HCU
 - 使用 ComfyUI Manager 管理节点，方便排查兼容性问题
-- 建议先用简单文生图工作流验证 DCU 兼容性，再逐步添加复杂节点
+- 建议先用简单文生图工作流验证 HCU 兼容性，再逐步添加复杂节点
 
 ## 参考链接
 

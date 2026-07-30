@@ -1,6 +1,6 @@
-# Mooncake on DCU
+# Mooncake on HCU
 
-> 本文档涵盖 Mooncake 在 DCU 环境下的安装、配置、环境变量说明以及各框架（SGLang / vLLM）的 PD 分离部署和 Mooncake Store 集成方案。
+> 本文档涵盖 Mooncake 在 HCU 环境下的安装、配置、环境变量说明以及各框架（SGLang / vLLM）的 PD 分离部署和 Mooncake Store 集成方案。
 
 - [简介](#简介)
 - [安装](#安装)
@@ -39,7 +39,7 @@ Mooncake 是一个面向大语言模型（LLM）推理场景的 KV Cache 传输�
 
 Mooncake 的核心能力包括：
 
-- **多协议传输**：支持 RDMA、TCP 等多种传输协议，在 DCU 环境下还可启用 HIP IPC（节点内）和 HIP RPC（跨节点）传输，灵活适配不同网络硬件
+- **多协议传输**：支持 RDMA、TCP 等多种传输协议，在 HCU 环境下还可启用 HIP IPC（节点内）和 HIP RPC（跨节点）传输，灵活适配不同网络硬件
 - **多级缓存池**：在 GPU 显存（L1）、主机 DRAM（L2）、SSD（L3）上构建分层缓存，平衡推理速度与容量
 - **即插即用**：已深度集成至 SGLang 和 vLLM，通过 `--kv-transfer-config` 或 `--disaggregation-mode` 即可启用 PD 分离
 - **缓存后端**：可作为 LMCache 的远端存储后端（Mooncake Store），支持内存卸载与 SSD 卸载
@@ -243,7 +243,7 @@ python3 vllm/examples/online_serving/disaggregated_serving/mooncake_connector/mo
 # 查看显存容量及状态
 hy-smi --showmeminfo vram
 
-# 查看 DCU 间拓扑连接
+# 查看 HCU 间拓扑连接
 hy-smi --showtopo
 
 # 查看系统内存与共享内存现状

@@ -1,4 +1,4 @@
-# CogVideoX on DCU
+# CogVideoX on HCU
 
 ## 模型简介
 
@@ -65,8 +65,8 @@ pipe.vae.enable_slicing()
 pipe.enable_model_cpu_offload()
 ```
 
-## DCU 适配注意
+## HCU 适配注意
 
 - 3D Attention 算子可能需要 HIP 适配
-- 建议先用 2B 版本验证 DCU 兼容性
+- 建议先用 2B 版本验证 HCU 兼容性
 - 如果遇到 OOM，优先启用 `enable_model_cpu_offload()`

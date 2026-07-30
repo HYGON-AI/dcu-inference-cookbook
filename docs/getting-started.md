@@ -1,12 +1,12 @@
 # 快速开始
 
-> 5 分钟在 DCU 上跑起第一个 AI 模型推理。
+> 5 分钟在 HCU 上跑起第一个 AI 模型推理。
 
 ## 前置条件
 
-- 已安装 DCU 驱动和 DTK（参考 [environment-setup.md](environment-setup.md)）
+- 已安装 HCU 驱动和 DTK（参考 [environment-setup.md](environment-setup.md)）
 - Python 3.10+ 环境
-- 至少一张 DCU（64GB 显存推荐）
+- 至少一张 HCU（64GB 显存推荐）
 
 ## 大语言模型 (LLM)
 

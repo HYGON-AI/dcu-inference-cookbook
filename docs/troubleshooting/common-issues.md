@@ -22,7 +22,7 @@
 **排查步骤：**
 
 ```bash
-# 1. 检查 DCU 设备是否被识别
+# 1. 检查 HCU 设备是否被识别
 hy-smi
 # 或
 hipconfig
@@ -67,7 +67,7 @@ export LD_LIBRARY_PATH=/opt/rocm/lib:$LD_LIBRARY_PATH
 # 1. 确认数据类型
 # 应使用 bf16，而非 fp32
 
-# 2. 检查 DCU 利用率
+# 2. 检查 HCU 利用率
 hy-smi
 
 # 3. 确认 tensor-parallel 配置合理

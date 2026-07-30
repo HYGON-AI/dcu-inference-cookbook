@@ -41,7 +41,7 @@
 - 量化模型使用 ModelScope 上 Hygon 官方量化的 channelwise 模型，例如 `hygon/GLM-5-Channel-INT8-w8a8`
 - 使用框架默认端口，不要自定义 `--port`：vLLM 默认 `8000`，SGLang 默认 `30000`
 - SGLang 使用 `sglang serve` 启动服务，不要使用已废弃的 `python -m sglang.launch_server`
-- 仅针对以下三种 DCU 型号撰写适配文档：`K100_AI`、`BW1000`、`BW1100`，不要添加其他型号
+- 仅针对以下三种 HCU 型号撰写适配文档：`K100_AI`、`BW1000`、`BW1100`，不要添加其他型号
 - 提供 `curl` 调用示例，让读者可以立即验证服务是否正常，例如：
 
   ```bash

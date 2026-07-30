@@ -2,15 +2,15 @@
 
 ## 基础问题
 
-### DCU 和 GPU 有什么区别？
+### HCU 和 GPU 有什么区别？
 
-DCU（Deep Computing Unit）是 HYGON 推出的加速处理器，基于 CDNA 架构。与 NVIDIA GPU 的主要区别：
+HCU 是 HYGON 推出的加速处理器，基于 CDNA 架构。与 NVIDIA GPU 的主要区别：
 
 - **编程模型**: 使用 HIP（Heterogeneous-compute Interface for Portability），兼容 CUDA API
 - **软件栈**: DTK 替代 CUDA Toolkit
 - **生态**: 部分框架需要适配，主流框架（PyTorch、vLLM、Diffusers 等）已支持
 
-### DCU 能直接运行 CUDA 代码吗？
+### HCU 能直接运行 CUDA 代码吗？
 
 大部分 CUDA 代码可以通过 HIP 兼容层运行，但：
 - 部分 CUDA 专属算子需要手动适配
@@ -30,15 +30,15 @@ DCU（Deep Computing Unit）是 HYGON 推出的加速处理器，基于 CDNA 架
 
 ## 性能问题
 
-### DCU 推理性能比 GPU 差多少？
+### HCU 推理性能比 GPU 差多少？
 
 取决于具体场景和模型：
 - **LLM BF16 推理**: 通常为同级别 GPU 的 70-90%
 - **VLM 推理**: 视觉编码器部分差距较小，整体约 70-85%
-- **图像生成**: Diffusers 在 DCU 上运行良好，约 75-90%
+- **图像生成**: Diffusers 在 HCU 上运行良好，约 75-90%
 - **INT8/INT4 量化**: 差距可能更大，部分算子优化仍在进行
 
-### 如何最大化 DCU 利用率？
+### 如何最大化 HCU 利用率？
 
 1. 使用 bf16 / fp16 数据类型
 2. 合理配置 tensor-parallel

@@ -84,7 +84,7 @@ torchrun --nproc_per_node=8 generate.py \
 --sample_solver unipc \
 --prompt "Two anthropomorphic cats in comfy boxing gear and bright gloves fight intensely on a spotlighted stage." \
 --base_seed 0 \
---use_int8 1 \
+--enable_int8 1 \
 ```
 
 
@@ -95,7 +95,7 @@ torchrun --nproc_per_node=8 generate.py \
 
 ```
 export model_base="./models/Wan2.2-T2V-A14B-INT8-w8a8
---use_int8 1
+--enable_int8 1
 ```
 
 
@@ -111,7 +111,7 @@ export model_base="./models/Wan2.2-T2V-A14B-INT8-w8a8
 ### 使用SLA稀疏化
 
 ```
---use_sla 1 \
+--enable_sla 1 \
 --sparse_attn_topk 0.4
 ```
 
@@ -120,5 +120,5 @@ export model_base="./models/Wan2.2-T2V-A14B-INT8-w8a8
 ### 使用SageAttn，仅在BW1100上支持
 
 ```
---use_sageattn 1
+--enable_sageattn 1
 ```

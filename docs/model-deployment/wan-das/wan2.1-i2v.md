@@ -85,7 +85,7 @@ torchrun --nproc_per_node=8 generate.py \
 --image examples/i2v_input.JPG \
 --prompt "Summer beach vacation style, a white cat wearing sunglasses sits on a surfboard. The fluffy-furred feline gazes directly at the camera with a relaxed expression. Blurred beach scenery forms the background featuring crystal-clear waters, distant green hills, and a blue sky dotted with white clouds. The cat assumes a naturally relaxed posture, as if savoring the sea breeze and warm sunlight. A close-up shot highlights the feline's intricate details and the refreshing atmosphere of the seaside." \
 --base_seed 0 \
---use_int8 1 \
+--enable_int8 1 \
 ```
 
 
@@ -96,7 +96,7 @@ torchrun --nproc_per_node=8 generate.py \
 
 ```
 export model_base=./models/Wan2.1-I2V-14B-480P-INT8-w8a8/
---use_int8 1
+--enable_int8 1
 ```
 
 
@@ -112,7 +112,7 @@ export model_base=./models/Wan2.1-I2V-14B-480P-INT8-w8a8/
 ### 使用SLA稀疏化
 
 ```
---use_sla 1 \
+--enable_sla 1 \
 --sparse_attn_topk 0.4
 ```
 
@@ -121,5 +121,5 @@ export model_base=./models/Wan2.1-I2V-14B-480P-INT8-w8a8/
 ### 使用SageAttn，仅在BW1100上支持
 
 ```
---use_sageattn 1
+--enable_sageattn 1
 ```

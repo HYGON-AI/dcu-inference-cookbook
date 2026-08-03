@@ -11,6 +11,8 @@ DeepSeek-V3 是由深度求索推出的基于MoE架构的高性能开源大语�
 | [hygon/DeepSeek-V3-0324-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3-0324-Channel-FP8-w8a8) | FP8 W8A8 | 0.21    | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-0324-channel-fp8-w8a8-ifb-bw1100-8x-vllm-021) |
 |                                                                                    | FP8 W8A8 | 0.18    | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-0324-channel-fp8-w8a8-ifb-bw1100-8x-vllm-018) |
 |                                                                                    | FP8 W8A8 | 0.15    | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-0324-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
+| [hygon/DeepSeek-V3-0528-W4A8-V2](https://www.modelscope.cn/models/hygon/DeepSeek-V3-0528-W4A8-V2)   | W4A8     | 0.21    | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-w4a8-ifb-bw1100-8x-vllm-021)                |
+|                                                                                    | W4A8     | 0.21    | BW1000 | 8 | IFB | [**`>_`**](#deepseek-v3-w4a8-ifb-bw1000-8x-vllm-021)                |
 | [hygon/DeepSeek-V3-0528-W4A8-V2](https://www.modelscope.cn/models/hygon/DeepSeek-V3-0528-W4A8-V2)   | W4A8     | 0.15    | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-w4a8-ifb-bw1100-8x-vllm-015)                |
 |                                                                                    | W4A8     | 0.15    | BW1000 | 8 | IFB | [**`>_`**](#deepseek-v3-w4a8-ifb-bw1000-8x-vllm-015)                |
 
@@ -98,6 +100,46 @@ vllm serve hygon/DeepSeek-V3-0324-Channel-INT8-w8a8  \
       "num_speculative_tokens": 3,
       "quantization": "slimquant_marlin"
   }'
+```
+
+### DeepSeek-V3-W4A8 IFB BW1100 8x vLLM 0.21
+
+```bash
+export LMSLIM_USE_GLOBAL_MOE_CACHE=1
+export VLLM_HCU_USE_CAT_MLA=0
+
+vllm serve hygon/DeepSeek-V3-0528-W4A8-V2 \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --kv-cache-dtype fp8_e4m3 \
+  --max-model-len 65536 \
+  --max-num-batched-tokens 8192 \
+  -tp 8 \
+  --gpu-memory-utilization 0.92 \
+  --max-num-seqs 256 \
+  --speculative_config '{"method":"deepseek_mtp","num_speculative_tokens":2}' \
+  --attention-backend FLASHMLA \
+  --moe-backend aiter
+```
+
+### DeepSeek-V3-W4A8 IFB BW1000 8x vLLM 0.21
+
+```bash
+export LMSLIM_USE_GLOBAL_MOE_CACHE=1
+export VLLM_HCU_USE_CAT_MLA=0
+
+vllm serve hygon/DeepSeek-V3-0528-W4A8-V2 \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --kv-cache-dtype fp8_e5m2 \
+  --max-model-len 65536 \
+  --max-num-batched-tokens 8192 \
+  -tp 8 \
+  --gpu-memory-utilization 0.92 \
+  --max-num-seqs 256 \
+  --speculative_config '{"method":"deepseek_mtp","num_speculative_tokens":2}' \
+  --attention-backend FLASHMLA \
+  --moe-backend aiter
 ```
 
 ### DeepSeek-V3-W4A8 IFB BW1100 8x vLLM 0.15

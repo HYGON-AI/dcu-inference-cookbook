@@ -17,6 +17,7 @@ GLM-5.2 是智谱 AI 推出的新一代大语言模型，在中文理解、长�
 |  | FP8 W8A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
 | [hygon/GLM-5.2-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.2-Channel-INT8-w8a8) | INT8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1100-8x-vllm-021) |
 |  | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
+|  | INT8 W8A8 | 0.21 | BW1000 | 16 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1000-16x-vllm-021) |
 |  | INT8 W8A8 | [0.18](../docker_images.md) | BW1000 | 16 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1000-16x-vllm-018) |
 |  | INT8 W8A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1100-8x-vllm-015) |
 |  | INT8 W8A8 | [0.15](../docker_images.md) | BW1100 | 24 | 1P2D | [**`>_`**](#glm-52-channel-int8-w8a8-1p2d-bw1100-24x-vllm-015) |
@@ -308,6 +309,67 @@ vllm serve hygon/GLM-5.2-Channel-INT8-w8a8 \
         "quantization":"slimquant_marlin"
     }' \
     --kv-cache-dtype fp8_ds_mla
+```
+
+### GLM-5.2-Channel-INT8-w8a8 IFB BW1000 16x vLLM 0.21
+
+以下示例为双节点部署，请根据实际情况修改 `<node1_ip>`。
+
+#### Node 1
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export LMSLIM_USE_GLOBAL_MOE_CACHE=1
+
+vllm serve hygon/GLM-5.2-Channel-INT8-w8a8 \
+    -q slimquant_marlin \
+    --trust-remote-code \
+    --dtype bfloat16 \
+    --max-model-len 65536 \
+    --max-num-batched-tokens 8192 \
+    -tp 16 \
+    --gpu-memory-utilization 0.92 \
+    --max-num-seqs 64 \
+    --block-size 64 \
+    --speculative_config '{
+        "method":"deepseek_mtp",
+        "num_speculative_tokens":2,
+        "quantization":"slimquant_marlin"
+    }' \
+    --kv-cache-dtype fp8_ds_mla \
+    --attention-backend FLASHMLA_SPARSE \
+    --nnodes 2 \
+    --node-rank 0 \
+    --master-addr <node1_ip>
+```
+
+#### Node 2
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export LMSLIM_USE_GLOBAL_MOE_CACHE=1
+
+vllm serve hygon/GLM-5.2-Channel-INT8-w8a8 \
+    -q slimquant_marlin \
+    --trust-remote-code \
+    --dtype bfloat16 \
+    --max-model-len 65536 \
+    --max-num-batched-tokens 8192 \
+    -tp 16 \
+    --gpu-memory-utilization 0.92 \
+    --max-num-seqs 64 \
+    --block-size 64 \
+    --speculative_config '{
+        "method":"deepseek_mtp",
+        "num_speculative_tokens":2,
+        "quantization":"slimquant_marlin"
+    }' \
+    --kv-cache-dtype fp8_ds_mla \
+    --attention-backend FLASHMLA_SPARSE \
+    --nnodes 2 \
+    --node-rank 1 \
+    --master-addr <node1_ip> \
+    --headless
 ```
 
 ### GLM-5.2-Channel-INT8-w8a8 IFB BW1000 16x vLLM 0.18

@@ -12,8 +12,8 @@ Wan2.2-TI2V-5B 是阿里通义实验室推出的图文生视频（Image-Text-to-
 
 | 模型权重                                                     | 量化方式 | 推荐硬件      | 卡数 | 部署方式 | 启动命令                         |
 | ----------------------------------------------------------- | ------- | ------------ | --- | ------- | ------------------------------- |
-| [Wan-AI/Wan2.2-TI2V-5B](https://www.modelscope.cn/models/Wan-AI/Wan2.2-TI2V-5B) | BF16     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#Wan22-TI2V-5B-BF16) |
-| [hygon/Wan2.2-TI2V-5B-INT8](https://www.modelscope.cn/models/hygon/Wan2.2-TI2V-5B-INT8-w8a8) | INT8     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#Wan22-TI2V-5B-INT8) |
+| [Wan-AI/Wan2.2-TI2V-5B](https://www.modelscope.cn/models/Wan-AI/Wan2.2-TI2V-5B) | BF16     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#wan22-ti2v-5b-bf16) |
+| [hygon/Wan2.2-TI2V-5B-INT8](https://www.modelscope.cn/models/hygon/Wan2.2-TI2V-5B-INT8-w8a8) | INT8     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#wan22-ti2v-5b-int8) |
 
 
 

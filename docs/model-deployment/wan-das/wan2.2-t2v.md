@@ -12,8 +12,8 @@ Wan2.2-T2V-A14B 是阿里通义实验室推出的文生视频（Text-to-Video）
 
 | 模型权重                                                     | 量化方式 | 推荐硬件      | 卡数 | 部署方式 | 启动命令                          |
 | ------------------------------------------------------------ | -------- | ------------- | ---- | -------- | --------------------------------- |
-| [Wan-AI/Wan2.2-T2V-A14B](https://www.modelscope.cn/models/Wan-AI/Wan2.2-T2V-A14B) | BF16     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#Wan22-T2V-A14B-BF16) |
-| [hygon/Wan2.2-T2V-A14B-INT8](https://www.modelscope.cn/models/hygon/Wan2.2-T2V-A14B-INT8-w8a8) | INT8     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#Wan22-T2V-A14B-INT8) |
+| [Wan-AI/Wan2.2-T2V-A14B](https://www.modelscope.cn/models/Wan-AI/Wan2.2-T2V-A14B) | BF16     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#wan22-t2v-a14b-bf16) |
+| [hygon/Wan2.2-T2V-A14B-INT8](https://www.modelscope.cn/models/hygon/Wan2.2-T2V-A14B-INT8-w8a8) | INT8     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#wan22-t2v-a14b-int8) |
 
 
 
@@ -94,7 +94,7 @@ torchrun --nproc_per_node=8 generate.py \
 ### GEMM INT8 量化
 
 ```
-export model_base="./models/Wan2.2-T2V-A14B-INT8-w8a8
+export model_base=./models/Wan2.2-T2V-A14B-INT8-w8a8
 --enable_int8 1
 ```
 

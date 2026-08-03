@@ -12,8 +12,8 @@ Wan2.1-I2V-14B-480P 是阿里通义实验室推出的图生视频（Image-to-Vid
 
 | 模型权重                                                     | 量化方式 | 推荐硬件      | 卡数 | 部署方式 | 启动命令                                                     |
 | ------------------------------------------------------------ | -------- | ------------- | ---- | -------- | ------------------------------------------------------------ |
-| [Wan-AI/Wan2.1-I2V-14B-480P](https://www.modelscope.cn/models/Wan-AI/Wan2.1-I2V-14B-480P) | BF16     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#Wan21-I2V-14B-480P-BF16) |
-| [hygon/Wan2.1-I2V-14B-480P-INT8](https://www.modelscope.cn/models/hygon/Wan2.1-I2V-14B-480P-INT8-w8a8) | INT8     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#Wan21-I2V-14B-480P-INT8) |
+| [Wan-AI/Wan2.1-I2V-14B-480P](https://www.modelscope.cn/models/Wan-AI/Wan2.1-I2V-14B-480P) | BF16     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#wan21-i2v-14b-480p-bf16) |
+| [hygon/Wan2.1-I2V-14B-480P-INT8](https://www.modelscope.cn/models/hygon/Wan2.1-I2V-14B-480P-INT8-w8a8) | INT8     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#wan21-i2v-14b-480p-int8) |
 
 
 

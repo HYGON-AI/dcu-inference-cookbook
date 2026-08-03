@@ -12,8 +12,8 @@ Wan2.2-I2V-A14B 是阿里通义实验室推出的图生视频（Image-to-Video�
 
 | 模型权重                                                     | 量化方式 | 推荐硬件      | 卡数 | 部署方式 | 启动命令                                                     |
 | ------------------------------------------------------------ | -------- | ------------- | ---- | -------- | ------------------------------------------------------------ |
-| [Wan-AI/Wan2.2-I2V-A14B](https://www.modelscope.cn/models/Wan-AI/Wan2.2-I2V-A14B) | BF16     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#Wan22-I2V-A14B-BF16) |
-| [hygon/Wan2.2-I2V-A14B-INT8](https://www.modelscope.cn/models/hygon/Wan2.2-I2V-A14B-INT8-w8a8) | INT8     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#Wan22-I2V-A14B-INT8) |
+| [Wan-AI/Wan2.2-I2V-A14B](https://www.modelscope.cn/models/Wan-AI/Wan2.2-I2V-A14B) | BF16     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#wan22-i2v-a14b-bf16) |
+| [hygon/Wan2.2-I2V-A14B-INT8](https://www.modelscope.cn/models/hygon/Wan2.2-I2V-A14B-INT8-w8a8) | INT8     | BW1000/BW1100 | 8x   | Offline  | [启动命令](#wan22-i2v-a14b-int8) |
 
 
 

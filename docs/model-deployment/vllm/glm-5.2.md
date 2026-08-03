@@ -15,7 +15,8 @@ GLM-5.2 是智谱 AI 推出的新一代大语言模型，在中文理解、长�
 | [hygon/GLM-5.2-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.2-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-fp8-w8a8-ifb-bw1100-8x-vllm-021) |
 |  | FP8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-fp8-w8a8-ifb-bw1100-8x-vllm-018) |
 |  | FP8 W8A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
-| [hygon/GLM-5.2-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.2-Channel-INT8-w8a8) | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
+| [hygon/GLM-5.2-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.2-Channel-INT8-w8a8) | INT8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1100-8x-vllm-021) |
+|  | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
 |  | INT8 W8A8 | [0.18](../docker_images.md) | BW1000 | 16 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1000-16x-vllm-018) |
 |  | INT8 W8A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1100-8x-vllm-015) |
 |  | INT8 W8A8 | [0.15](../docker_images.md) | BW1100 | 24 | 1P2D | [**`>_`**](#glm-52-channel-int8-w8a8-1p2d-bw1100-24x-vllm-015) |
@@ -253,6 +254,33 @@ vllm serve hygon/GLM-5.2-Channel-FP8-w8a8 \
   --kv-cache-dtype fp8_ds_mla \
   -cc '{"pass_config": {"fuse_act_quant": false}}' \
   --speculative_config '{"method": "mtp", "num_speculative_tokens": 2, "quantization": "slimquant_marlin"}'
+```
+
+### GLM-5.2-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.21
+
+以下示例为单节点部署。
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export LMSLIM_USE_GLOBAL_MOE_CACHE=1
+
+vllm serve hygon/GLM-5.2-Channel-INT8-w8a8 \
+    -q slimquant_marlin \
+    --trust-remote-code \
+    --dtype bfloat16 \
+    --max-model-len 65536 \
+    --max-num-batched-tokens 8192 \
+    -tp 8 \
+    --gpu-memory-utilization 0.92 \
+    --max-num-seqs 64 \
+    --block-size 64 \
+    --speculative_config '{
+        "method":"deepseek_mtp",
+        "num_speculative_tokens":2,
+        "quantization":"slimquant_marlin"
+    }' \
+    --kv-cache-dtype fp8_ds_mla \
+    --attention-backend FLASHMLA_SPARSE
 ```
 
 ### GLM-5.2-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.18

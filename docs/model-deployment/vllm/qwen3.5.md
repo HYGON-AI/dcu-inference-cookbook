@@ -109,7 +109,7 @@ Qwen3.5 是 Qwen3 系列的增强版本，在推理能力、代码生成、多�
 vllm serve Qwen/Qwen3.5-4B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --kv-cache-dtype fp8_e4m3 \
@@ -148,7 +148,7 @@ vllm serve Qwen/Qwen3.5-4B \
 vllm serve Qwen/Qwen3.5-4B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --attention-backend FLASH_ATTN_CUSTOM \
@@ -190,7 +190,7 @@ export VLLM_HCU_USE_CUSTOM_OPS=0
 vllm serve Qwen/Qwen3.5-4B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --max-num-seqs 32
@@ -228,7 +228,7 @@ vllm serve Qwen/Qwen3.5-4B \
 vllm serve Qwen/Qwen3.5-9B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --kv-cache-dtype fp8_e4m3 \
@@ -267,7 +267,7 @@ vllm serve Qwen/Qwen3.5-9B \
 vllm serve Qwen/Qwen3.5-9B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --attention-backend FLASH_ATTN_CUSTOM \
@@ -307,7 +307,7 @@ export VLLM_HCU_USE_CUSTOM_OPS=0
 vllm serve Qwen/Qwen3.5-9B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --max-num-seqs 32
@@ -345,7 +345,7 @@ vllm serve Qwen/Qwen3.5-9B \
 vllm serve Qwen/Qwen3.5-27B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --kv-cache-dtype fp8_e4m3 \
@@ -384,7 +384,7 @@ vllm serve Qwen/Qwen3.5-27B \
 vllm serve Qwen/Qwen3.5-27B \
   -tp 2 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --attention-backend FLASH_ATTN_CUSTOM \
@@ -424,7 +424,7 @@ export VLLM_HCU_USE_CUSTOM_OPS=0
 vllm serve Qwen/Qwen3.5-27B \
   -tp 2 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --max-num-seqs 32
@@ -462,7 +462,7 @@ vllm serve Qwen/Qwen3.5-27B \
 vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   -q slimquant_marlin \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
@@ -507,7 +507,7 @@ vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
 vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   -q slimquant_marlin \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
@@ -553,7 +553,7 @@ export VLLM_HCU_USE_CUSTOM_OPS=0
 vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --max-num-seqs 32
@@ -591,7 +591,7 @@ vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
 vllm serve Qwen/Qwen3.5-35B-A3B \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --kv-cache-dtype fp8_e4m3 \
@@ -635,7 +635,7 @@ vllm serve Qwen/Qwen3.5-35B-A3B \
 vllm serve Qwen/Qwen3.5-35B-A3B \
   -tp 2 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --attention-backend FLASH_ATTN_CUSTOM \
@@ -680,7 +680,7 @@ export VLLM_HCU_USE_CUSTOM_OPS=0
 vllm serve Qwen/Qwen3.5-35B-A3B \
   -tp 2 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --max-num-seqs 32
@@ -718,7 +718,7 @@ vllm serve Qwen/Qwen3.5-35B-A3B \
 vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   -q slimquant_marlin \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
@@ -763,7 +763,7 @@ vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
 vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   -q slimquant_marlin \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
@@ -809,7 +809,7 @@ export VLLM_HCU_USE_CUSTOM_OPS=0
 vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --max-num-seqs 32
@@ -847,7 +847,7 @@ vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
 vllm serve hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
   -tp 1 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   -q slimquant_marlin \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
@@ -892,7 +892,7 @@ vllm serve hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
 vllm serve Qwen/Qwen3.5-122B-A10B \
   -tp 4 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --kv-cache-dtype fp8_e4m3 \
@@ -936,7 +936,7 @@ vllm serve Qwen/Qwen3.5-122B-A10B \
 vllm serve Qwen/Qwen3.5-122B-A10B \
   -tp 8 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --attention-backend FLASH_ATTN_CUSTOM \
@@ -981,7 +981,7 @@ export VLLM_HCU_USE_CUSTOM_OPS=0
 vllm serve Qwen/Qwen3.5-122B-A10B \
   -tp 8 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --max-num-seqs 32
@@ -1019,7 +1019,7 @@ vllm serve Qwen/Qwen3.5-122B-A10B \
 vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
   -tp 2 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   -q slimquant_marlin \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
@@ -1064,7 +1064,7 @@ vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
 vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
   -tp 4 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   -q slimquant_marlin \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
@@ -1110,7 +1110,7 @@ export VLLM_HCU_USE_CUSTOM_OPS=0
 vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
   -tp 4 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --max-num-seqs 32
@@ -1148,7 +1148,7 @@ vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
 vllm serve hygon/Qwen3.5-122B-A10B-Channel-FP8-w8a8 \
   -tp 4 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   -q slimquant_marlin \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
@@ -1193,7 +1193,7 @@ vllm serve hygon/Qwen3.5-122B-A10B-Channel-FP8-w8a8 \
 vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
   -tp 8 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   -q slimquant_marlin \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
@@ -1238,7 +1238,7 @@ vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
 vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
   -tp 8 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   -q slimquant_marlin \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
@@ -1284,7 +1284,7 @@ export VLLM_HCU_USE_CUSTOM_OPS=0
 vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
   -tp 8 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --max-num-seqs 32
@@ -1322,7 +1322,7 @@ vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
 vllm serve hygon/Qwen3.5-397B-A17B-Channel-FP8 \
   -tp 4 \
   --trust-remote-code \
-  --max-num-batched-tokens 10240 \
+  --max-num-batched-tokens 16384 \
   -q slimquant_marlin \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \

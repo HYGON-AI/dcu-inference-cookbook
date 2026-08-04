@@ -1,0 +1,21 @@
+name: Quality Gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hygon-pr-gate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    name: Checks
+    uses: HYGON-AI/quality-gate/.github/workflows/pr-quality-gate.yml@v2.0.1
+    permissions:
+      contents: read

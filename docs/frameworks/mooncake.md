@@ -22,7 +22,7 @@
   - [P：PP16  D：TP8 (1P1D)](#ppp16--dtp8-1p1d)
   - [P：SP8  D：DP16EP16 (1P1D)](#psp8--ddp16ep16-1p1d)
   - [P：SP8EP8  D：DP16EP16(2P1D)](#PSP8EP8--DDP16EP162P1D)
-  - [环境变量](#环境变量)
+  - [环境变量](#vllm环境变量)
 - [SGLang HiCache with Mooncake Backend](#sglang-hicache-with-mooncake-backend)
   - [内存与拓扑配置](#内存与拓扑配置)
   - [释放页缓存](#释放页缓存)
@@ -752,9 +752,12 @@ vllm serve $MODEL_PATH \
     --port 8000
 ```
 
-### 环境变量
-vllm报传输失败可以尝试增加超时。
+### vllm环境变量
+
 ```bash
+#vllm报传输失败可以尝试增加超时。
+export VLLM_MOONCAKE_ABORT_REQUEST_TIMEOUT=1200
+#增加 worker number
 --kv-transfer-config '{
   "kv_connector": "MooncakeConnector",
   "kv_role": "kv_producer",

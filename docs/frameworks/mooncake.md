@@ -19,8 +19,10 @@
 - [vLLM PD 分离](#vllm-pd-分离)
   - [P、D 单实例单节点](#pd-单实例单节点)
   - [P：TP8  D：DP8EP8 (1P1D)](#ptp8--ddp8ep8-1p1d)
-  - [P：PP16  D：TP8 (2P1D)](#ppp16--dtp8-2p1d)
-  - [P：SP8  D：DP16EP16 (1P2D)](#psp8--ddp16ep16-1p2d)
+  - [P：PP16  D：TP8 (1P1D)](#ppp16--dtp8-1p1d)
+  - [P：SP8  D：DP16EP16 (1P1D)](#psp8--ddp16ep16-1p1d)
+  - [P：SP8EP8  D：DP16EP16(2P1D)](#PSP8EP8--DDP16EP162P1D)
+  - [环境变量](#环境变量)
 - [SGLang HiCache with Mooncake Backend](#sglang-hicache-with-mooncake-backend)
   - [内存与拓扑配置](#内存与拓扑配置)
   - [释放页缓存](#释放页缓存)
@@ -390,7 +392,7 @@ python3 /workspace/vllm/examples/online_serving/disaggregated_serving/mooncake_c
     --port 8000
 ```
 
-### P：PP16  D：TP8 (2P1D)
+### P：PP16  D：TP8 (1P1D)
 
 ```bash
 # KV Producer（Prefill）
@@ -447,7 +449,7 @@ python3 /workspace/vllm/examples/online_serving/disaggregated_serving/mooncake_c
     --port 8000
 ```
 
-### P：SP8  D：DP16EP16 (1P2D)
+### P：SP8  D：DP16EP16 (1P1D)
 
 ```bash
 # KV Producer（Prefill）
@@ -624,6 +626,142 @@ python3 /workspace/vllm/examples/online_serving/disaggregated_serving/mooncake_c
     --prefill "http://10.16.1.15:8010" "8998" \  
     --decode "http://10.16.1.16:8020" \  
     --port 8000
+```
+
+### P：SP8EP8  D：DP16EP16(2P1D)
+
+```bash
+# Prefill 节点 1
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MAX_NCHANNELS=16
+export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export HIPBLASLT_TUNING_OVERRIDE_FILE=/home/hy3/rocblas/hipblaslt.config
+export ROCBLAS_TENSILE_LIBPATH=/home/hy3/rocblas/rocblas_hy3_fp8_zmy
+export GPU_MAX_HW_QUEUES=4
+
+export NCCL_NET_GDR_LEVEL=7
+export NCCL_SDMA_COPY_ENABLE=0
+
+export ROCSHMEM_HEAP_SIZE=4000000000
+export USE_SPE_MQP=1
+export ROCSHMEM_SQ_SIZE=1024
+
+export ROCSHMEM_IB_GID_INDEX=0
+export MC_ENABLE_DEST_DEVICE_AFFINITY=1
+
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export VLLM_MOONCAKE_BOOTSTRAP_PORT=8998
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+
+export LD_LIBRARY_PATH=/usr/local/hyhal/lib:/usr/local/hyhal/lib64:/host-rdma:$LD_LIBRARY_PATH
+
+MODEL_PATH="/home/hy3/Hy3-CHANNEL-FP8-w8a8-sero-ignore-from-script3"
+MODEL_NAME="$(basename "$MODEL_PATH")"
+LOG_TIME="$(date +%Y%m%d_%H%M%S)"
+mkdir -p log
+LOG_FILE="log/tmp-${MODEL_NAME}-sp8ep8-p-${LOG_TIME}.log"
+
+VLLM_HCU_USE_FUSED_QKV_SPLIT_RMS_ROPE_KVSTORE=0 \
+vllm serve $MODEL_PATH \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 2 \
+  --speculative-config.quantization "slimquant_marlin" \
+  -q slimquant_marlin \
+  --max-model-len 65536 \
+  --max-num-batched-tokens 8192 \
+  --max-num-seqs 128 \
+  --dtype bfloat16 \
+  --tensor-parallel-size 8 \
+  --enable-prefix-caching \
+  --tool-call-parser hy_v3 \
+  --reasoning-parser hy_v3 \
+  --enable-auto-tool-choice \
+  --enable-custom-sp \
+  --enforce-eager \
+  --kv_cache_dtype fp8_e4m3 \
+  --port 8010 \
+  --enable-expert-parallel \
+  --all2all_backend deepep_high_throughput \
+  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_producer"}' \
+  2>&1 | tee "$LOG_FILE"
+
+  #Prefill 节点 2
+  export NCCL_MIN_NCHANNELS=16
+export NCCL_MAX_NCHANNELS=16
+export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export HIPBLASLT_TUNING_OVERRIDE_FILE=/home/hy3/rocblas/hipblaslt.config
+export ROCBLAS_TENSILE_LIBPATH=/home/hy3/rocblas/rocblas_hy3_fp8_zmy
+export GPU_MAX_HW_QUEUES=4
+
+export NCCL_NET_GDR_LEVEL=7
+export NCCL_SDMA_COPY_ENABLE=0
+
+export ROCSHMEM_HEAP_SIZE=4000000000
+export USE_SPE_MQP=1
+export ROCSHMEM_SQ_SIZE=1024
+
+export ROCSHMEM_IB_GID_INDEX=0
+export MC_ENABLE_DEST_DEVICE_AFFINITY=1
+
+export HIP_VISIBLE_DEVICES=8,9,10,11,12,13,14,15
+export VLLM_MOONCAKE_BOOTSTRAP_PORT=8999
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+
+export LD_LIBRARY_PATH=/usr/local/hyhal/lib:/usr/local/hyhal/lib64:/host-rdma:$LD_LIBRARY_PATH
+
+MODEL_PATH="/home/hy3/Hy3-CHANNEL-FP8-w8a8-sero-ignore-from-script3"
+MODEL_NAME="$(basename "$MODEL_PATH")"
+LOG_TIME="$(date +%Y%m%d_%H%M%S)"
+mkdir -p log
+LOG_FILE="log/tmp-${MODEL_NAME}-sp8ep8-p-${LOG_TIME}.log"
+
+VLLM_HCU_USE_FUSED_QKV_SPLIT_RMS_ROPE_KVSTORE=0 \
+vllm serve $MODEL_PATH \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 2 \
+  --speculative-config.quantization "slimquant_marlin" \
+  -q slimquant_marlin \
+  --max-model-len 65536 \
+  --max-num-batched-tokens 8192 \
+  --max-num-seqs 128 \
+  --dtype bfloat16 \
+  --tensor-parallel-size 8 \
+  --enable-prefix-caching \
+  --tool-call-parser hy_v3 \
+  --reasoning-parser hy_v3 \
+  --enable-auto-tool-choice \
+  --enable-custom-sp \
+  --enforce-eager \
+  --kv_cache_dtype fp8_e4m3 \
+  --port 8011 \
+  --enable-expert-parallel \
+  --all2all_backend deepep_high_throughput \
+  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_producer"}' \
+  2>&1 | tee "$LOG_FILE"
+
+  #D节点
+  #参考 P：SP8  D：DP16EP16 (1P1D)
+
+  #代理服务器
+  python3 /workspace/vllm/examples/online_serving/disaggregated_serving/mooncake_connector/mooncake_connector_proxy.py \
+    --prefill "http://xxx:8010" "8998" \  
+    --prefill "http://xxx" "8999" \
+    --decode "http://xxx:8020" \  
+    --port 8000
+```
+
+### 环境变量
+vllm报传输失败可以尝试增加超时。
+```bash
+--kv-transfer-config '{
+  "kv_connector": "MooncakeConnector",
+  "kv_role": "kv_producer",
+  "kv_connector_extra_config": {
+    "num_workers": 32
+  }
+}'
 ```
 
 ## SGLang HiCache with Mooncake Backend

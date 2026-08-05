@@ -34,30 +34,43 @@ export SGLANG_USE_LIGHTOP=1
 export VLLM_USE_LIGHTOP_MOE_ALIGN=1
 export LMSLIM_USE_LIGHTOP=1
 export SGLANG_KVALLOC_KERNEL=1
-export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=0
 export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
 export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
 export SGLANG_GET_LAST_LOC=1
 export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
 export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export SGLANG_KV_LAYOUT_HCU_FA=1
+export SGLANG_USE_FUSED_RMS_QUANT=1
+export SGLANG_USE_FP32GEMM_GATE_CUSTOM=1
 
 sglang serve \
   --model-path hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
-  --quantization slimquant_marlin \
+  --model-loader-extra-config '{"enable_multithread_load": "true","num_threads": 8}' \
+  --quantization w8a8_int8 \
+  --moe-runner-backend lightop \
   --kv-cache-dtype fp8_e4m3 \
   --trust-remote-code \
   --page-size 64 \
+  --tokenizer-worker-num 8 \
   --dtype bfloat16 \
   --tp-size 4 --pp-size 1 --dp-size 2 \
   --tool-call-parser minimax-m2 \
   --reasoning-parser minimax-append-think \
   --mem-fraction-static 0.9 \
+  --cuda-graph-max-bs 128 \
   --attention-backend fa3 \
-  --numa-node 0 0 0 0 1 1 1 1 \
+  --numa-node 0 0 1 1 2 2 3 3 \
   --chunked-prefill-size 16384 \
-  --max-running-requests 512 \
+  --max-prefill-tokens 16384 \
+  --max-running-requests 128 \
   --context-length 131072 \
+  --speculative-algorithm EAGLE3 \
+  --speculative-draft-model-path thoughtworks/MiniMax-M2.5-Eagle3 \
+  --speculative-num-steps 3 \
+  --speculative-num-draft-tokens 4 \
+  --speculative-eagle-topk 1 \
   --port 30000
 ```
 
@@ -73,32 +86,45 @@ export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
 export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
 export SGLANG_USE_LIGHTOP=1 
 export SGLANG_KVALLOC_KERNEL=1
-export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=0
 export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
 export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
 export SGLANG_GET_LAST_LOC=1
 export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
 export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export SGLANG_KV_LAYOUT_HCU_FA=1
 export LMSLIM_USE_LIGHTOP=1
 export VLLM_USE_LIGHTOP_MOE_ALIGN=1
+export SGLANG_USE_FUSED_RMS_QUANT=1
+export SGLANG_USE_FP32GEMM_GATE_CUSTOM=1
 
 sglang serve \
   --model-path hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
-  --quantization slimquant_marlin \
+  --model-loader-extra-config '{"enable_multithread_load": "true","num_threads": 4}' \
+  --quantization w8a8_int8 \
+  --moe-runner-backend lightop \
   --kv-cache-dtype bfloat16 \
   --trust-remote-code \
   --page-size 64 \
+  --tokenizer-worker-num 8 \
   --dtype bfloat16 \
   --tp-size 8 --pp-size 1 --dp-size 1 \
   --tool-call-parser minimax-m2 \
   --reasoning-parser minimax-append-think \
   --mem-fraction-static 0.95  \
+  --cuda-graph-max-bs 128 \
   --attention-backend fa3 \
-  --numa-node 0 0 0 0 1 1 1 1 \
+  --numa-node 0 0 1 1 2 2 3 3 \
   --chunked-prefill-size 8192 \
-  --max-running-requests 512 \
+  --max-prefill-tokens 8192 \
+  --max-running-requests 128 \
   --context-length 131072 \
+  --speculative-algorithm EAGLE3 \
+  --speculative-draft-model-path thoughtworks/MiniMax-M2.5-Eagle3 \
+  --speculative-num-steps 3 \
+  --speculative-num-draft-tokens 4 \
+  --speculative-eagle-topk 1 \
   --port 30000
 ```
 
@@ -123,23 +149,37 @@ export SGLANG_GET_LAST_LOC=1
 export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
 export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export SGLANG_KV_LAYOUT_HCU_FA=1
+export SGLANG_USE_FUSED_RMS_QUANT=1
+export SGLANG_USE_FP32GEMM_GATE_CUSTOM=1
+export SGLANG_USE_FP8_W8A8_MOE=1
+export SGLANG_USE_DEEPGEMM_MOE=1
 
 sglang serve \
   --model-path hygon/MiniMax-M2.5-Channel-FP8-w8a8/ \
+  --model-loader-extra-config '{"enable_multithread_load": "true","num_threads": 8}' \
   --kv-cache-dtype fp8_e4m3 \
   --trust-remote-code \
   --quantization w8a8_fp8 \
   --page-size 64 \
+  --tokenizer-worker-num 8 \
   --dtype bfloat16 \
   --tp-size 4 --pp-size 1 --dp-size 2 \
   --tool-call-parser minimax-m2 \
   --reasoning-parser minimax-append-think \
   --mem-fraction-static 0.92 \
+  --cuda-graph-max-bs 128 \
   --attention-backend fa3 \
-  --numa-node 0 0 0 0 1 1 1 1 \
-  --chunked-prefill-size 8192 \
-  --max-running-requests 512 \
+  --numa-node 0 0 1 1 2 2 3 3 \
+  --chunked-prefill-size 16384 \
+  --max-prefill-tokens 16384 \
+  --max-running-requests 128 \
   --context-length 131072 \
+  --speculative-algorithm EAGLE3 \
+  --speculative-draft-model-path thoughtworks/MiniMax-M2.5-Eagle3 \
+  --speculative-num-steps 3 \
+  --speculative-num-draft-tokens 4 \
+  --speculative-eagle-topk 1 \
   --port 30000
 ```
 
@@ -158,7 +198,7 @@ export SGLANG_USE_LIGHTOP=1
 export VLLM_USE_LIGHTOP_MOE_ALIGN=1
 export LMSLIM_USE_LIGHTOP=1
 export SGLANG_KVALLOC_KERNEL=1
-export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=0
 export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
 export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
 export SGLANG_GET_LAST_LOC=1
@@ -166,22 +206,33 @@ export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
 export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
 export MC_GID_INDEX=0
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export SGLANG_KV_LAYOUT_HCU_FA=1
+export SGLANG_ROCM_USE_AITER_MOE=0
+export SGLANG_USE_FUSED_RMS_QUANT=1
+export SGLANG_USE_FP32GEMM_GATE_CUSTOM=1
 
 sglang serve \
   --model-path hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
+  --model-loader-extra-config '{"enable_multithread_load": "true","num_threads": 4}' \
   --quantization slimquant_marlin \
   --kv-cache-dtype fp8_e4m3 \
-  --trust-remote-code \ 
-  --page-size 64 \ 
-  --dtype bfloat16 \ 
-  --tp-size 2 --pp-size 4 --dp-size 1 \
+  --trust-remote-code \
+  --minimax-opt \
+  --page-size 64 \
+  --nnodes 1 --node-rank 0 \
+  --moe-a2a-backend deepep \
+  --deepep-mode normal \
+  --dtype bfloat16 \
+  --tp-size 8 --pp-size 1 --dp-size 1 \
   --tool-call-parser minimax-m2 \
   --reasoning-parser minimax-append-think \
-  --mem-fraction-static 0.9 \ 
+  --mem-fraction-static 0.9 \
+  --cuda-graph-max-bs 128 \
   --attention-backend fa3 \
-  --numa-node 0 0 0 0 1 1 1 1 \ 
-  --chunked-prefill-size 4096 \
-  --max-running-requests 512 \ 
+  --numa-node 0 0 1 1 2 2 3 3 \
+  --chunked-prefill-size 61568 \
+  --max-prefill-tokens 61568 \
+  --max-running-requests 128 \
   --context-length 131072 \
   --disaggregation-mode prefill \
   --load-balance-method round_robin \
@@ -199,7 +250,7 @@ export SGLANG_USE_LIGHTOP=1
 export VLLM_USE_LIGHTOP_MOE_ALIGN=1
 export LMSLIM_USE_LIGHTOP=1
 export SGLANG_KVALLOC_KERNEL=1
-export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=0
 export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
 export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
 export SGLANG_GET_LAST_LOC=1
@@ -207,23 +258,32 @@ export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
 export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
 export MC_GID_INDEX=0
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export SGLANG_KV_LAYOUT_HCU_FA=1
+export SGLANG_USE_FUSED_RMS_QUANT=1
+export SGLANG_USE_FP32GEMM_GATE_CUSTOM=1
  
 sglang serve \
   --model-path hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
-  --quantization slimquant_marlin \
+  --model-loader-extra-config '{"enable_multithread_load": "true","num_threads": 4}' \
+  --quantization w8a8_int8 \
+  --moe-runner-backend lightop \
   --kv-cache-dtype fp8_e4m3 \
-  --trust-remote-code \ 
+  --trust-remote-code \
   --page-size 64 \
-  --dtype bfloat16 \ 
+  --dtype bfloat16 \
   --tp-size 8 --pp-size 1 --dp-size 1 \
   --tool-call-parser minimax-m2 \
-  --reasoning-parser minimax-append-think\
-  --mem-fraction-static 0.9 --attention-backend fa3 \ 
-  --numa-node 0 0 0 0 1 1 1 1 \ 
-  --max-running-requests 512 \
+  --reasoning-parser minimax-append-think \
+  --mem-fraction-static 0.9 \
+  --cuda-graph-max-bs 128 \
+  --attention-backend fa3 \
+  --numa-node 0 0 1 1 2 2 3 3 \
+  --chunked-prefill-size 61568 \
+  --max-prefill-tokens 61568 \
+  --max-running-requests 128 \
   --context-length 131072 \
   --disaggregation-mode decode \
-  --prefill-round-robin-balance \ 
+  --prefill-round-robin-balance \
   --host 10.63.60.113 --port 30001 
 ```
 
@@ -346,7 +406,7 @@ export SGLANG_USE_LIGHTOP=1
 export VLLM_USE_LIGHTOP_MOE_ALIGN=1
 export LMSLIM_USE_LIGHTOP=1
 export SGLANG_KVALLOC_KERNEL=1
-export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=0
 export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
 export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
 export SGLANG_GET_LAST_LOC=1
@@ -354,22 +414,33 @@ export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
 export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
 export MC_GID_INDEX=0
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export SGLANG_KV_LAYOUT_HCU_FA=1
+export SGLANG_USE_FP8_W8A8_MOE=1
+export SGLANG_USE_DEEPGEMM_MOE=1
+export SGLANG_USE_FUSED_RMS_QUANT=1
+export SGLANG_USE_FP32GEMM_GATE_CUSTOM=1
 
 sglang serve \
   --model-path hygon/MiniMax-M2.5-Channel-FP8-w8a8/ \
+  --model-loader-extra-config '{"enable_multithread_load": "true","num_threads": 4}' \
   --quantization w8a8_fp8 \
   --kv-cache-dtype fp8_e4m3 \
-  --trust-remote-code \ 
-  --page-size 64 \ 
-  --dtype bfloat16 \ 
-  --tp-size 2 --pp-size 4 --dp-size 1 \
+  --trust-remote-code \
+  --minimax-opt \
+  --page-size 64 \
+  --moe-a2a-backend deepep \
+  --deepep-mode normal \
+  --dtype bfloat16 \
+  --tp-size 8 --pp-size 1 --dp-size 1 \
   --tool-call-parser minimax-m2 \
   --reasoning-parser minimax-append-think \
-  --mem-fraction-static 0.9 \ 
+  --mem-fraction-static 0.9 \
+  --cuda-graph-max-bs 128 \
   --attention-backend fa3 \
-  --numa-node 0 0 0 0 1 1 1 1 \ 
-  --chunked-prefill-size 4096 \
-  --max-running-requests 512 \ 
+  --numa-node 0 0 1 1 2 2 3 3 \
+  --chunked-prefill-size 61568 \
+  --max-prefill-tokens 61568 \
+  --max-running-requests 128 \
   --context-length 131072 \
   --disaggregation-mode prefill \
   --load-balance-method round_robin \
@@ -387,7 +458,7 @@ export SGLANG_USE_LIGHTOP=1
 export VLLM_USE_LIGHTOP_MOE_ALIGN=1
 export LMSLIM_USE_LIGHTOP=1
 export SGLANG_KVALLOC_KERNEL=1
-export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=0
 export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
 export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
 export SGLANG_GET_LAST_LOC=1
@@ -395,23 +466,32 @@ export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
 export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
 export MC_GID_INDEX=0
 export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export SGLANG_KV_LAYOUT_HCU_FA=1
+export SGLANG_USE_FUSED_RMS_QUANT=1
+export SGLANG_USE_FP32GEMM_GATE_CUSTOM=1
+export SGLANG_USE_FP8_W8A8_MOE=1
  
 sglang serve \
   --model-path hygon/MiniMax-M2.5-Channel-FP8-w8a8/ \
+  --model-loader-extra-config '{"enable_multithread_load": "true","num_threads": 8}' \
   --quantization w8a8_fp8 \
   --kv-cache-dtype fp8_e4m3 \
-  --trust-remote-code \ 
+  --trust-remote-code \
   --page-size 64 \
-  --dtype bfloat16 \ 
+  --dtype bfloat16 \
   --tp-size 8 --pp-size 1 --dp-size 1 \
   --tool-call-parser minimax-m2 \
-  --reasoning-parser minimax-append-think\
-  --mem-fraction-static 0.9 --attention-backend fa3 \ 
-  --numa-node 0 0 0 0 1 1 1 1 \ 
-  --max-running-requests 512 \
+  --reasoning-parser minimax-append-think \
+  --mem-fraction-static 0.9 \
+  --cuda-graph-max-bs 128 \
+  --attention-backend fa3 \
+  --numa-node 0 0 1 1 2 2 3 3 \
+  --chunked-prefill-size 61568 \
+  --max-prefill-tokens 61568 \
+  --max-running-requests 128 \
   --context-length 131072 \
   --disaggregation-mode decode \
-  --prefill-round-robin-balance \ 
+  --prefill-round-robin-balance \
   --host 10.63.60.113 --port 30001 
 ```
 
@@ -489,4 +569,3 @@ curl http://<router_ip>:30002/v1/chat/completions \
     "max_tokens": 128
   }'
 ```
-

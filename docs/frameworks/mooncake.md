@@ -17,7 +17,7 @@
   - [SGLang 单节点 1P1D 测试](#SGLang-单节点-1P1D-测试)
   - [SGLang 双节点 1P1D 测试](#SGLang-双节点-1P1D-测试)
 - [vLLM PD 分离](#vllm-pd-分离)
-  - [P、D 单实例单节点](#pd-单实例单节点)
+  - [P、D 单实例单节点(1P1D)](#pd-单实例单节点1P1D)
   - [P：TP8  D：DP8EP8 (1P1D)](#ptp8--ddp8ep8-1p1d)
   - [P：PP16  D：TP8 (1P1D)](#ppp16--dtp8-1p1d)
   - [P：SP8  D：DP16EP16 (1P1D)](#psp8--ddp16ep16-1p1d)
@@ -89,8 +89,9 @@ export MC_LOG_LEVEL=TRACE
 ### RDMA
 
 ```bash
-# 握手失败时可通过设置 host ip 解决
+# sglang 握手失败时可以通过设置 host ip 解决
 export SGLANG_HOST_IP=${HOST_IP}
+# vllm 握手失败时可以通过设置 host ip 解决
 export VLLM_HOST_IP=${HOST_IP}
 
 # 存在跨 SM IB NIC transfer 问题时，启用设备亲和性。非必要不设置
@@ -99,7 +100,9 @@ export VLLM_HOST_IP=${HOST_IP}
 # 双平面需要设置
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 
-# 同一交换机内通信可以尝试切换 GID（默认 3=global，0=link-local）
+# 同一交换机内通信可以尝试切换 GID
+# 默认为3（global 路由），让 RDMA 通信走带全局路由头 GRH 的 GID 地址，交换机识别后按 GID 跨三层转发
+# 0（link-local），只能在同一交换机/本地子网进行通信，不支持跨交换机、跨子网通信
 export MC_IB_GID_INDEX=0
 
 # 只有某些网卡可见时，可以设置
@@ -311,7 +314,7 @@ python -m sglang_router.launch_router \
 
 ## vLLM PD 分离
 
-### P、D 单实例单节点
+### P、D 单实例单节点(1P1D)
 
 ```bash
 # KV Producer（Prefill）
@@ -325,10 +328,22 @@ HIP_VISIBLE_DEVICES=1 vllm serve Qwen3/Qwen3-8B \
     --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}'
 
 # Mooncake Connector Proxy
+# mooncake_connector_proxy.py 在 vllm 源码中：
+# https://developer.sourcefind.cn/codes/OpenDAS/vllm/-/tree/v0.18.1/examples/online_serving/disaggregated_serving/mooncake_connector
 python3 vllm/examples/online_serving/disaggregated_serving/mooncake_connector/mooncake_connector_proxy.py \
     --prefill "http://0.0.0.0:8010" "8998" \
     --decode "http://0.0.0.0:8020" \
     --port 8000
+
+#测试
+curl http://localhost:8000/v1/completions \  
+    -H "Content-Type: application/json" \  
+    -d '{    
+        "model": "Qwen/Qwen3-8B",    
+        "messages": [      
+            {"role": "user", "content": "Tell me a long story about artificial intelligence."}    
+        ]  
+    }'
 ```
 
 ### P：TP8  D：DP8EP8 (1P1D)

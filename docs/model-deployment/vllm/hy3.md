@@ -9,8 +9,8 @@ Hy3 是由腾讯混元团队开发的一款拥有 2950 亿参数的混合专家�
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
 | [hygon/Hy3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Hy3-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#hy3-channel-fp8-w8a8-ifb-bw1100-8x-vllm-021) |
-| [hygon/Hy3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Hy3-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100 | 16 | IFB | [**`>_`**](#hy3-channel-fp8-w8a8-ifb-bw1100-16x-vllm-021) |
-| [hygon/Hy3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Hy3-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100 | 32 | 2P1D | [**`>_`**](#hy3-channel-fp8-w8a8-2p1d-bw1100-32x-vllm-021) |
+| [hygon/Hy3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Hy3-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100(超节点) | 16 | IFB | [**`>_`**](#hy3-channel-fp8-w8a8-ifb-bw1100-16x-vllm-021) |
+| [hygon/Hy3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Hy3-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100(超节点) | 32 | 2P1D | [**`>_`**](#hy3-channel-fp8-w8a8-2p1d-bw1100-32x-vllm-021) |
 
 ## 启动命令
 
@@ -19,12 +19,8 @@ Hy3 是由腾讯混元团队开发的一款拥有 2950 亿参数的混合专家�
 以下示例为单节点部署。
 
 ```bash
-export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_HCU_USE_FUSE_MOE_GATE=1
-export LMSLIM_USE_LIGHTOP=1
 export GPU_MAX_HW_QUEUES=4
-export ALLREDUCE_STREAM_WITH_COMPUTE=1
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 
 vllm serve hygon/Hy3-Channel-FP8-w8a8 \
@@ -47,18 +43,11 @@ vllm serve hygon/Hy3-Channel-FP8-w8a8 \
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
-export Allgather_Base_STREAM_WITH_COMPUTE=1
-export HIP_KERNEL_EVENT_SYSTENFENCE=1
-export ROCSHMEM_MAX_NUM_CONTEXTS=48
 export ROCSHMEM_HEAP_SIZE=5368709120
 export ROCSHMEM_IPC_MNVL=1
-export HIP_BUFFER_EXTRA_SIZE=0
 export VLLM_DEEPEP_BUFFER_SIZE_MB=0
-export ROCSHMEM_IPC_MNVL=1
 export GPU_MAX_HW_QUEUES=4
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export ROCSHMEM_GDR_DISABLE_XDP=1
-export LD_LIBRARY_PATH=/usr/local/hyhal/lib:/usr/local/hyhal/lib64:/host-rdma:$LD_LIBRARY_PATH
 
 vllm serve hygon/Hy3-Channel-FP8-w8a8 \
   --trust-remote-code \
@@ -90,16 +79,11 @@ P node 0 和 P node 1 分别使用服务端口 `8010` 和 `8011`。
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export GPU_MAX_HW_QUEUES=4
-export ROCSHMEM_HEAP_SIZE=4000000000
-export USE_SPE_MQP=1
-export ROCSHMEM_SQ_SIZE=1024
+export ROCSHMEM_HEAP_SIZE=5368709120
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 export VLLM_MOONCAKE_BOOTSTRAP_PORT=8998
-export MC_TRANSFER_TIMEOUT=3600
-export LD_LIBRARY_PATH=/usr/local/hyhal/lib:/usr/local/hyhal/lib64:/host-rdma:$LD_LIBRARY_PATH
 
 vllm serve hygon/Hy3-Channel-FP8-w8a8 \
   --trust-remote-code \
@@ -129,16 +113,11 @@ vllm serve hygon/Hy3-Channel-FP8-w8a8 \
 
 ```bash
 export HIP_VISIBLE_DEVICES=8,9,10,11,12,13,14,15
-export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export GPU_MAX_HW_QUEUES=4
-export ROCSHMEM_HEAP_SIZE=4000000000
-export USE_SPE_MQP=1
-export ROCSHMEM_SQ_SIZE=1024
+export ROCSHMEM_HEAP_SIZE=5368709120
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 export VLLM_MOONCAKE_BOOTSTRAP_PORT=8998
-export MC_TRANSFER_TIMEOUT=3600
-export LD_LIBRARY_PATH=/usr/local/hyhal/lib:/usr/local/hyhal/lib64:/host-rdma:$LD_LIBRARY_PATH
 
 vllm serve hygon/Hy3-Channel-FP8-w8a8 \
   --trust-remote-code \
@@ -168,21 +147,12 @@ vllm serve hygon/Hy3-Channel-FP8-w8a8 \
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
-export Allgather_Base_STREAM_WITH_COMPUTE=1
-export HIP_KERNEL_EVENT_SYSTENFENCE=1
-export ROCSHMEM_MAX_NUM_CONTEXTS=48
 export ROCSHMEM_HEAP_SIZE=5368709120
 export ROCSHMEM_IPC_MNVL=1
-export HIP_BUFFER_EXTRA_SIZE=0
 export VLLM_DEEPEP_BUFFER_SIZE_MB=0
-export ROCSHMEM_IPC_MNVL=1
 export GPU_MAX_HW_QUEUES=4
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export ROCSHMEM_GDR_DISABLE_XDP=1
-export VLLM_ENGINE_READY_TIMEOUT_S=3600
-export MC_TRANSFER_TIMEOUT=3600
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
-export LD_LIBRARY_PATH=/usr/local/hyhal/lib:/usr/local/hyhal/lib64:/host-rdma:$LD_LIBRARY_PATH
 
 vllm serve hygon/Hy3-Channel-FP8-w8a8 \
   --trust-remote-code \
@@ -209,7 +179,7 @@ vllm serve hygon/Hy3-Channel-FP8-w8a8 \
 
 #### + Static EPLB
 
-详细配置和使用流程请参考：[Static EPLB：离线专家布局的记录与加载](../../optimization/static_eplb.md)。
+详细配置和使用流程请参考：[Static EPLB：离线专家布局的记录与加载](../../optimization/static-eplb-vllm.md)。
 
 ```bash
 #record阶段 参数加:

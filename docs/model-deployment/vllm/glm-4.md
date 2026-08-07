@@ -8,7 +8,7 @@ GLM-4-32B-0414 是智谱 AI 推出的 32B 参数稠密大语言模型，支持�
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [ZhipuAI/GLM-4-32B-0414](https://www.modelscope.cn/models/ZhipuAI/GLM-4-32B-0414) | BF16 | 0.18 | BW1100 | 1x | IFB | [**`>_`**](#glm-4-32b-0414-ifb-bw1100-1x-vllm-018) |
+| [ZhipuAI/GLM-4-32B-0414](https://www.modelscope.cn/models/ZhipuAI/GLM-4-32B-0414) | BF16 | [0.18](../docker_images.md)  | BW1100 | 1x | IFB | [**`>_`**](#glm-4-32b-0414-ifb-bw1100-1x-vllm-018) |
 |                                                                               | BF16 | 0.18 | BW1000 | 2x | IFB | [**`>_`**](#glm-4-32b-0414-ifb-bw1000-2x-vllm-018) |
 |                                                                               | BF16 | 0.18 | K100_AI | 2x | IFB | [**`>_`**](#glm-4-32b-0414-ifb-k100_ai-2x-vllm-018) |
 

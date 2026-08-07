@@ -10,15 +10,15 @@ GLM-5 是智谱 AI 推出的新一代大语言模型，在中文理解、长文�
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
 | [hygon/GLM-5-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT4-w4a8) | INT4 W4A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1100-8x-vllm-021) |
 |  | INT4 W4A8 | 0.21 | BW1000 | 16 | PP2+TP8 | [**`>_`**](#glm-5-channel-int4-w4a8-pp2tp8-bw1000-16x-vllm-021) |
-|  | INT4 W4A8 | 0.18 | BW1100 | 8 | IFB | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1100-8x-vllm-018) |
+|  | INT4 W4A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1100-8x-vllm-018) |
 |  | INT4 W4A8 | 0.18 | BW1000 | 16 | PP2+TP8 | [**`>_`**](#glm-5-channel-int4-w4a8-pp2tp8-bw1000-16x-vllm-018) |
 |  | INT4 W4A8 | 0.15 | BW1100 | 8 | IFB | [**`>_`**](#glm-5-channel-int4-w4a8-ifb-bw1100-8x-vllm-015) |
 | [hygon/GLM-5-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#glm-5-channel-fp8-w8a8-ifb-bw1100-8x-vllm-021) |
-|  | FP8 W8A8 | 0.18 | BW1100 | 8 | IFB | [**`>_`**](#glm-5-channel-fp8-w8a8-ifb-bw1100-8x-vllm-018) |
+|  | FP8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-5-channel-fp8-w8a8-ifb-bw1100-8x-vllm-018) |
 |  | FP8 W8A8 | 0.15 | BW1100 | 8 | IFB | [**`>_`**](#glm-5-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
 | [hygon/GLM-5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5-Channel-INT8-w8a8) | INT8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**``>_``**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x-vllm-021) |
 |  | INT8 W8A8 | 0.21 | BW1000 | 16 | IFB | [**``>_``**](#glm-5-channel-int8-w8a8-ifb-bw1000-16x-vllm-021) |
-|  | INT8 W8A8 | 0.18 | BW1100 | 8 | IFB | [**``>_``**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
+|  | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**``>_``**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
 |  | INT8 W8A8 | 0.18 | BW1000 | 16 | IFB | [**``>_``**](#glm-5-channel-int8-w8a8-ifb-bw1000-16x-vllm-018) |
 |  | INT8 W8A8 | 0.15 | BW1100 | 8 | IFB | [**`>_`**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x-vllm-015) |
 |  | INT8 W8A8 | 0.15 | BW1100 | 24 | 1P2D | [**``>_``**](#glm-5-channel-int8-w8a8-1p2d-bw1100-24x-vllm-015) |

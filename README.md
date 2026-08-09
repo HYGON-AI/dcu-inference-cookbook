@@ -103,7 +103,7 @@
     <tr>
       <td rowspan="2">QwQ</td>
       <td>vLLM</td>
-      <td align="center">🚧</td><td align="center">🚧</td><td align="center">🚧</td>
+      <td align="center"><a href="docs/model-deployment/vllm/qwq.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwq.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwq.md">✅</a></td>
     </tr>
     <tr>
       <td>SGLang</td>

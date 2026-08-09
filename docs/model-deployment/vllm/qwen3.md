@@ -156,6 +156,8 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 |  | FP8 | 0.18 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-fp8-channelwise-ifb-bw1100-4x-vllm-018) |
 |  | FP8 | 0.18-hotfix | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-fp8-channelwise-ifb-bw1100-4x-vllm-018-hotfix) |
 |                                                                               | FP8  | 0.15 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-fp8-channelwise-ifb-bw1100-4x-vllm-015) |
+| Qwen3-Coder-480B-A35B-Instruct-w8a8 | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#qwen3-coder-480b-a35b-instruct-w8a8-ifb-bw1100-8x-vllm-018) |
+| Qwen3-Coder-480B-A35B-Instruct-FP8-Dynamic | FP8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#qwen3-coder-480b-a35b-instruct-fp8-dynamic-ifb-bw1100-8x-vllm-018) |
 
 
 ## 启动命令
@@ -1522,6 +1524,88 @@ vllm serve Qwen/Qwen3-235B-A22B-FP8-Channelwise \
   -q slimquant_marlin \
   --disable-cascade-attn \
   -cc '{"pass_config": {"fuse_act_quant": false}, "custom_ops": ["all"]}'
+```
+
+### Qwen3-Coder-480B-A35B-Instruct-w8a8 IFB BW1100 8x vLLM 0.18
+
+```bash
+export VLLM_NUMA_BIND=1
+export VLLM_RANK0_NUMA=0
+export VLLM_RANK1_NUMA=0
+export VLLM_RANK2_NUMA=1
+export VLLM_RANK3_NUMA=1
+export VLLM_RANK4_NUMA=2
+export VLLM_RANK5_NUMA=2
+export VLLM_RANK6_NUMA=3
+export VLLM_RANK7_NUMA=3
+export HSA_FORCE_FINE_GRAIN_PCIE=1
+export NCCL_MAX_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export NCCL_P2P_LEVEL=SYS
+export NCCL_LAUNCH_MODE=GROUP
+export VLLM_RPC_TIMEOUT=1800000
+
+#export LD_LIBRARY_PATH=/opt/rocblas-install/lib:$LD_LIBRARY_PATH #按照实际
+export VLLM_USE_PIECEWISE=0
+export VLLM_USE_FUSED_FILL_RMS_CAT=0
+export VLLM_USE_FUSED_RMS_ROPE=0
+export VLLM_USE_AITER_MOE_W8A8=0
+
+vllm serve Qwen3-Coder-480B-A35B-Instruct-w8a8 \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --max-model-len 262144 \
+  -tp 8 \
+  --host 0.0.0.0 \
+  --gpu-memory-utilization 0.9 \
+  --max-num-seqs 128 \
+  --block-size 64 \
+  --max-num-batched-tokens 16384 \
+  --no-enable-prefix-caching \
+  --kv-cache-dtype fp8_e4m3 \
+  --enable-chunked-prefill \
+  --compilation-config '{"pass_config": {"fuse_act_quant": false}}'
+```
+
+### Qwen3-Coder-480B-A35B-Instruct-FP8-Dynamic IFB BW1100 8x vLLM 0.18
+
+```bash
+export VLLM_NUMA_BIND=1
+export VLLM_RANK0_NUMA=0
+export VLLM_RANK1_NUMA=0
+export VLLM_RANK2_NUMA=1
+export VLLM_RANK3_NUMA=1
+export VLLM_RANK4_NUMA=2
+export VLLM_RANK5_NUMA=2
+export VLLM_RANK6_NUMA=3
+export VLLM_RANK7_NUMA=3
+export HSA_FORCE_FINE_GRAIN_PCIE=1
+export NCCL_MAX_NCHANNELS=16
+export NCCL_MIN_NCHANNELS=16
+export NCCL_P2P_LEVEL=SYS
+export NCCL_LAUNCH_MODE=GROUP
+export VLLM_RPC_TIMEOUT=1800000
+
+#export LD_LIBRARY_PATH=/opt/rocblas-install/lib:$LD_LIBRARY_PATH #按照实际
+export VLLM_USE_PIECEWISE=0
+export VLLM_USE_FUSED_FILL_RMS_CAT=0
+export VLLM_USE_FUSED_RMS_ROPE=0
+export VLLM_USE_AITER_MOE_W8A8=0
+
+vllm serve Qwen3-Coder-480B-A35B-Instruct-FP8-Dynamic \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --max-model-len 262144 \
+  -tp 8 \
+  --host 0.0.0.0 \
+  --gpu-memory-utilization 0.9 \
+  --max-num-seqs 128 \
+  --block-size 64 \
+  --max-num-batched-tokens 16384 \
+  --no-enable-prefix-caching \
+  --enable-chunked-prefill \
+  --kv-cache-dtype fp8_e4m3 \
+  --compilation-config '{"pass_config": {"fuse_act_quant": false}}'
 ```
 
 

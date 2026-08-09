@@ -94,7 +94,7 @@
     <tr>
       <td rowspan="2">Qwen2.5-VL</td>
       <td>vLLM</td>
-      <td align="center">🚧</td><td align="center"><a href="docs/model-deployment/vllm/qwen2.5-vl.md">✅</a></td><td align="center">🚧</td>
+      <td align="center">🚧</td><td align="center"><a href="docs/model-deployment/vllm/qwen2.5-vl.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwen2.5-vl.md">✅</a></td>
     </tr>
     <tr>
       <td>SGLang</td>
@@ -223,7 +223,7 @@
     <tr>
       <td rowspan="2">GLM-4.7</td>
       <td>vLLM</td>
-      <td align="center">🚧</td><td align="center">🚧</td><td align="center">🚧</td>
+      <td align="center"><a href="docs/model-deployment/vllm/glm4.7.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/glm4.7.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/glm4.7.md">✅</a></td>
     </tr>
     <tr>
       <td>SGLang</td>
@@ -288,7 +288,7 @@
     <tr>
       <td rowspan="2">Kimi-K2.5</td>
       <td>vLLM</td>
-      <td align="center">-</td><td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/kimi-k2.5.md">✅</a></td>
+      <td align="center"><a href="docs/model-deployment/vllm/kimi-k2.5.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/kimi-k2.5.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/kimi-k2.5.md">✅</a></td>
     </tr>
     <tr>
       <td>SGLang</td>

@@ -2,7 +2,7 @@
 
 ## 模型简介
 
-Qwen3-Next 是 Qwen 系列的下一代模型架构。本页提供 Qwen3-Next-80B-A3B-Instruct 在 DCU 平台上的 vLLM 部署最佳实践。
+Qwen3-Next 是 Qwen 系列的下一代模型架构。本页提供 Qwen3-Next-80B-A3B-Instruct 在 HCU 平台上的 vLLM 部署最佳实践。
 
 ## 模型列表
 

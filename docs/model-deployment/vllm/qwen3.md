@@ -54,6 +54,9 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 |                                                                               | INT8 W8A8 | 0.15 | BW1100 | 1 | IFB | [**`>_`**](#qwen3-4b-channel-int8-w8a8-ifb-bw1100-1x-vllm-015) |
 |                                                                               | INT8 W8A8 | 0.15 | BW1000 | 1 | IFB | [**`>_`**](#qwen3-4b-channel-int8-w8a8-ifb-bw1000-1x-vllm-015) |
 |                                                                               | INT8 W8A8 | 0.15 | K100_AI | 1 | IFB | [**`>_`**](#qwen3-4b-channel-int8-w8a8-ifb-k100_ai-1x-vllm-015) |
+| [Qwen/Qwen3-4B-Thinking-2507](https://www.modelscope.cn/models/Qwen/Qwen3-4B-Thinking-2507) | BF16 | [0.18](../docker_images.md) | BW1100 | 1 | IFB | [**`>_`**](#qwen3-4b-thinking-2507-ifb-bw1100-1x-vllm-018) |
+|                                                                                              | BF16 | [0.18](../docker_images.md) | BW1000 | 1 | IFB | [**`>_`**](#qwen3-4b-thinking-2507-ifb-bw1000-1x-vllm-018) |
+|                                                                                              | BF16 | [0.18](../docker_images.md) | K100_AI | 1 | IFB | [**`>_`**](#qwen3-4b-thinking-2507-ifb-k100ai-1x-vllm-018) |
 | [Qwen/Qwen3-8B](https://www.modelscope.cn/models/Qwen/Qwen3-8B)               | BF16 | 0.21 | BW1100 | 1 | IFB | [**`>_`**](#qwen3-8b-ifb-bw1100-1x-vllm-021) |
 |  | BF16 | [0.18](../docker_images.md) | BW1100  | 1 | IFB | [**`>_`**](#qwen3-8b-ifb-bw1100-1x-vllm-018)            |
 |  | BF16 | 0.18-hotfix | BW1100 | 1 | IFB | [**`>_`**](#qwen3-8b-ifb-bw1100-1x-vllm-018-hotfix) |
@@ -566,6 +569,44 @@ vllm serve Qwen/Qwen3-4B-Channel-INT8-w8a8 \
 ### Qwen3-4B-Channel-INT8-w8a8 IFB BW1000 1x vLLM 0.15
 
 ### Qwen3-4B-Channel-INT8-w8a8 IFB K100_AI 1x vLLM 0.15
+
+### Qwen3-4B-Thinking-2507 IFB BW1100 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve Qwen/Qwen3-4B-Thinking-2507 \
+  -tp 1 \
+  --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3 \
+  --max-num-batched-tokens 10240
+```
+
+### Qwen3-4B-Thinking-2507 IFB BW1000 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve Qwen/Qwen3-4B-Thinking-2507 \
+  -tp 1 \
+  --trust-remote-code \
+  --kv-cache-dtype fp8_e5m2 \
+  --max-num-batched-tokens 10240
+```
+
+### Qwen3-4B-Thinking-2507 IFB K100_AI 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+
+vllm serve Qwen/Qwen3-4B-Thinking-2507 \
+  -tp 1 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240
+```
 
 ### Qwen3-8B IFB BW1100 1x vLLM 0.21
 

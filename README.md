@@ -288,7 +288,7 @@
     <tr>
       <td rowspan="2">Kimi-K2.5</td>
       <td>vLLM</td>
-      <td align="center"><a href="docs/model-deployment/vllm/kimi-k2.5.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/kimi-k2.5.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/kimi-k2.5.md">✅</a></td>
+      <td align="center">-</td><td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/kimi-k2.5.md">✅</a></td>
     </tr>
     <tr>
       <td>SGLang</td>

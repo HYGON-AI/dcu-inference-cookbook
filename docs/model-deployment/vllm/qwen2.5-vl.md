@@ -2,7 +2,7 @@
 
 ## 模型简介
 
-Qwen2.5-VL 是阿里通义千问视觉语言模型系列，支持图像、视频与文本等多模态输入。本页提供 Qwen2.5-VL-32B-Instruct 在 HCU 上基于 vLLM 的推理部署方案。
+Qwen2.5-VL 是阿里通义千问视觉语言模型系列，支持图像、视频与文本等多模态输入。本页提供 Qwen2.5-VL-32B-Instruct 和 Qwen2.5-VL-72B-Instruct-quantized.w8a8 在 HCU 上基于 vLLM 的推理部署方案。
 
 ## 模型列表
 
@@ -17,6 +17,8 @@ Qwen2.5-VL 是阿里通义千问视觉语言模型系列，支持图像、视频
 |  | BF16 | 0.21 | K100_AI | 4 | IFB | [**\`>_\`**](#qwen25-vl-32b-instruct-ifb-k100_ai-4x-vllm-021) |
 |                                                                               | BF16 | 0.18 | K100_AI | 4 | IFB | [**\`>_\`**](#qwen25-vl-32b-instruct-ifb-k100_ai-4x-vllm-018) |
 |  | BF16 | 0.18-hotfix | K100_AI | 4 | IFB | [**\`>_\`**](#qwen25-vl-32b-instruct-ifb-k100_ai-4x-vllm-018-hotfix) |
+| hygon/Qwen2.5-VL-72B-Instruct-quantized.w8a8| INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-quantizedw8a8-ifb-bw1100-4x-vllm-018) |
+|  | INT8 W8A8 | [0.18](../docker_images.md) | BW1000 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-quantizedw8a8-ifb-bw1000-4x-vllm-018) |
 
 ## 启动命令
 
@@ -126,6 +128,35 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     --trust-remote-code \
     --allowed-local-media-path /path-to/VL_data/ \
 ```
+
+### Qwen2.5-VL-72B-Instruct-quantized.w8a8 IFB BW1100 4x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve hygon/Qwen2.5-VL-72B-Instruct-quantized.w8a8 \
+  -tp 4 \
+  --trust-remote-code \
+  --enable-chunked-prefill \
+  --max-model-len 40960 \
+  -q slimquant_marlin \
+  --allowed-local-media-path
+```
+
+### Qwen2.5-VL-72B-Instruct-quantized.w8a8 IFB BW1000 4x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve hygon/Qwen2.5-VL-72B-Instruct-quantized.w8a8 \
+  -tp 4 \
+  --trust-remote-code \
+  --enable-chunked-prefill \
+  --max-model-len 40960 \
+  -q slimquant_marlin \
+  --allowed-local-media-path
+```
+
 ## API 调用
 
 ### IFB

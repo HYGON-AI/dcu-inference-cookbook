@@ -10,6 +10,7 @@ Kimi K2.6 是一个开源的原生多模态智能体模型，在长周期编码�
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
 | [moonshotai/Kimi-K2.6](https://www.modelscope.cn/models/moonshotai/Kimi-K2.6) | INT4 W4A16 | 0.5.10 | BW1100 | 8 | IFB | [**`>_`**](#kimi-k26-ifb-bw1100-8x-sglang-0510) |
 |  | INT4 W4A16 | 0.5.10 | BW1100 | 16 | 1P1D | [**`>_`**](#kimi-k26-1p1d-bw1100-16x-sglang-0510) |
+|  | INT4 W4A16 | 0.5.12 | BW1100 | 24 | 1P1D | [**`>_`**](#kimi-k26-1p1d-bw1100-超节点ep16-24x-sglang-0512) |
 
 ## 启动命令
 
@@ -201,7 +202,7 @@ python3 -m sglang.launch_server \
   --port 30000 \
   --trust-remote-code \
   --page-size 64 \
-  --dist-init-addr 172.20.2.155:5001 \
+  --dist-init-addr <P_node0_ip>:5001 \
   --nnodes 2 \
   --node-rank ${NODE_RANK} \
   --dtype bfloat16 \
@@ -265,7 +266,7 @@ python3 -m sglang.launch_server \
   --port 30000 \
   --trust-remote-code \
   --page-size 64 \
-  --dist-init-addr 172.20.2.157:5003 \
+  --dist-init-addr <P_node0_ip>:5003 \
   --nnodes 4 \
   --node-rank ${NODE_RANK} \
   --dtype bfloat16 \
@@ -291,7 +292,7 @@ python3 -m sglang.launch_server \
   --speculative-num-steps 3 \
   --speculative-eagle-topk 1 \
   --speculative-num-draft-tokens 4 \
-  --init-expert-location eplb_trace/expert_distribution_recorder_1785379932.5475526.pt \
+  --init-expert-location <path_to_eplb_trace_pt> \
   --ep-num-redundant-experts 16
 ```
 

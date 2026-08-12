@@ -322,7 +322,6 @@ vllm serve hygon/DeepSeek-R1-Channel-INT8-w8a8 \
   --max-num-batched-tokens 16384 \
   --speculative_config '{"method": "deepseek_mtp", "num_speculative_tokens": 2,"quantization": "slimquant_marlin"}' \
   --no-enable-prefix-caching \
-  --kv-cache-dtype fp8_e5m2 \
   --attention-backend FLASHMLA
 ```
 
@@ -617,7 +616,6 @@ export VLLM_HCU_USE_CAT_MLA=0
 vllm serve hygon/DeepSeek-R1-W4A8-V2_6 \
   --trust-remote-code \
   --dtype bfloat16 \
-  --kv-cache-dtype fp8_e5m2 \
   --max-model-len 65536 \
   --max-num-batched-tokens 8192 \
   -tp 8 \

@@ -53,7 +53,8 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
   --tensor-parallel-size 2 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
-  --max-num-seqs 1024
+  --max-num-seqs 1024 \
+  --attention-backend FLASH_ATTN_CUSTOM
 ```
 
 ### DeepSeek-R1-Distill-Qwen-32B IFB BW1000 4x vLLM 0.21
@@ -64,7 +65,8 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
   --tensor-parallel-size 4 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
-  --max-num-seqs 1024
+  --max-num-seqs 1024 \
+  --attention-backend FLASH_ATTN_CUSTOM
 ```
 
 ### DeepSeek-R1-Distill-Qwen-32B IFB K100_AI 4x vLLM 0.21
@@ -78,8 +80,7 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
   --tensor-parallel-size 4 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
-  --max-num-seqs 1024 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --max-num-seqs 1024
 ```
 
 ### DeepSeek-R1-Distill-Llama-70B IFB BW1100 2x vLLM 0.21
@@ -91,7 +92,8 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --tensor-parallel-size 2 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
-  --max-num-seqs 1024
+  --max-num-seqs 1024 \
+  --attention-backend FLASH_ATTN_CUSTOM
 ```
 
 ### DeepSeek-R1-Distill-Llama-70B IFB BW1000 4x vLLM 0.21
@@ -102,7 +104,8 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --tensor-parallel-size 4 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
-  --max-num-seqs 1024
+  --max-num-seqs 1024 \
+  --attention-backend FLASH_ATTN_CUSTOM
 ```
 
 ### DeepSeek-R1-Distill-Llama-70B IFB K100_AI 8x vLLM 0.21
@@ -116,8 +119,7 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --tensor-parallel-size 8 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
-  --max-num-seqs 1024 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --max-num-seqs 1024
 ```
 
 ### DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 IFB BW1100 2x vLLM 0.21
@@ -129,7 +131,8 @@ vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
   --tensor-parallel-size 2 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
-  --max-num-seqs 1024
+  --max-num-seqs 1024 \
+  --attention-backend FLASH_ATTN_CUSTOM
 ```
 
 ### DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 IFB BW1000 4x vLLM 0.21
@@ -140,7 +143,8 @@ vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
   --tensor-parallel-size 4 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
-  --max-num-seqs 1024
+  --max-num-seqs 1024 \
+  --attention-backend FLASH_ATTN_CUSTOM
 ```
 
 ### DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 IFB K100_AI 8x vLLM 0.21
@@ -154,8 +158,7 @@ vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
   --tensor-parallel-size 8 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
-  --max-num-seqs 1024 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --max-num-seqs 1024
 ```
 
 ### DeepSeek-R1-Distill-Qwen-32B IFB BW1100 2x vLLM 0.18

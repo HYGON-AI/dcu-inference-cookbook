@@ -8,13 +8,22 @@ DeepSeek-R1 是 DeepSeek 推出的推理强化模型，面向复杂推理、数�
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [deepseek-ai/DeepSeek-R1-Distill-Qwen-32B](https://www.modelscope.cn/models/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B) | FP16 | [0.18](../docker_images.md) | BW1100 | 2 | IFB | [**`>_`**](#deepseek-r1-distill-qwen-32b-ifb-bw1100-2x-vllm-018) |
+| [deepseek-ai/DeepSeek-R1-Distill-Qwen-32B](https://www.modelscope.cn/models/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B) | FP16 | 0.21 | BW1100 | 2 | IFB | [**`>_`**](#deepseek-r1-distill-qwen-32b-ifb-bw1100-2x-vllm-021) |
+|                                                                                                                   | FP16 | 0.21 | BW1000 | 4 | IFB | [**`>_`**](#deepseek-r1-distill-qwen-32b-ifb-bw1000-4x-vllm-021) |
+|                                                                                                                   | FP16 | 0.21 | K100_AI | 4 | IFB | [**`>_`**](#deepseek-r1-distill-qwen-32b-ifb-k100_ai-4x-vllm-021) |
+|                                                                                                                   | FP16 | [0.18](../docker_images.md) | BW1100 | 2 | IFB | [**`>_`**](#deepseek-r1-distill-qwen-32b-ifb-bw1100-2x-vllm-018) |
 |                                                                                                                   | FP16 | [0.18](../docker_images.md) | BW1000 | 4 | IFB | [**`>_`**](#deepseek-r1-distill-qwen-32b-ifb-bw1000-4x-vllm-018) |
 |                                                                                                                   | FP16 | [0.18](../docker_images.md) | K100_AI | 4 | IFB | [**`>_`**](#deepseek-r1-distill-qwen-32b-ifb-k100ai-4x-vllm-018) |
-| [deepseek-ai/DeepSeek-R1-Distill-Llama-70B](https://www.modelscope.cn/models/deepseek-ai/DeepSeek-R1-Distill-Llama-70B) | BF16 | [0.18](../docker_images.md) | BW1100 | 2 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-ifb-bw1100-2x-vllm-018) |
+| [deepseek-ai/DeepSeek-R1-Distill-Llama-70B](https://www.modelscope.cn/models/deepseek-ai/DeepSeek-R1-Distill-Llama-70B) | BF16 | 0.21 | BW1100 | 2 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-ifb-bw1100-2x-vllm-021) |
+|                                                                                                                     | BF16 | 0.21 | BW1000 | 4 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-ifb-bw1000-4x-vllm-021) |
+|                                                                                                                     | BF16 | 0.21 | K100_AI | 8 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-ifb-k100_ai-8x-vllm-021) |
+|                                                                                                                     | BF16 | [0.18](../docker_images.md) | BW1100 | 2 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-ifb-bw1100-2x-vllm-018) |
 |                                                                                                                     | BF16 | [0.18](../docker_images.md) | BW1000 | 4 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-ifb-bw1000-4x-vllm-018) |
 |                                                                                                                     | BF16 | [0.18](../docker_images.md) | K100_AI | 8 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-ifb-k100ai-8x-vllm-018) |
-| [hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8) | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 2 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-quantizedw8a8-ifb-bw1100-2x-vllm-018) |
+| [hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8) | INT8 W8A8 | 0.21 | BW1100 | 2 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-quantizedw8a8-ifb-bw1100-2x-vllm-021) |
+|                                                                                                                                             | INT8 W8A8 | 0.21 | BW1000 | 4 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-quantizedw8a8-ifb-bw1000-4x-vllm-021) |
+|                                                                                                                                             | INT8 W8A8 | 0.21 | K100_AI | 8 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-quantizedw8a8-ifb-k100_ai-8x-vllm-021) |
+|                                                                                                                                             | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 2 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-quantizedw8a8-ifb-bw1100-2x-vllm-018) |
 |                                                                                                                                             | INT8 W8A8 | [0.18](../docker_images.md) | BW1000 | 4 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-quantizedw8a8-ifb-bw1000-4x-vllm-018) |
 |                                                                                                                                             | INT8 W8A8 | [0.18](../docker_images.md) | K100_AI | 8 | IFB | [**`>_`**](#deepseek-r1-distill-llama-70b-quantizedw8a8-ifb-k100ai-8x-vllm-018) |
 | [hygon/DeepSeek-R1-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-R1-Channel-INT8-w8a8) | INT8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-r1-channel-int8-w8a8-ifb-bw1100-8x-vllm-021) |
@@ -34,6 +43,117 @@ DeepSeek-R1 是 DeepSeek 推出的推理强化模型，面向复杂推理、数�
 | [hygon/DeepSeek-R1-0528-W4A8-V2](https://www.modelscope.cn/models/hygon/DeepSeek-R1-0528-W4A8-V2) | W4A8 | [0.15] | BW1000 | 8 | IFB | [**`>_`**](#deepseek-r1-w4a8-ifb-bw1000-8x-vllm-015) |
 
 ## 启动命令
+
+### DeepSeek-R1-Distill-Qwen-32B IFB BW1100 2x vLLM 0.21
+
+```bash
+vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
+  --kv-cache-dtype fp8_e4m3 \
+  --dtype float16 \
+  --tensor-parallel-size 2 \
+  --gpu-memory-utilization 0.9 \
+  --trust-remote-code \
+  --max-num-seqs 1024
+```
+
+### DeepSeek-R1-Distill-Qwen-32B IFB BW1000 4x vLLM 0.21
+
+```bash
+vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
+  --dtype float16 \
+  --tensor-parallel-size 4 \
+  --gpu-memory-utilization 0.9 \
+  --trust-remote-code \
+  --max-num-seqs 1024
+```
+
+### DeepSeek-R1-Distill-Qwen-32B IFB K100_AI 4x vLLM 0.21
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+
+vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
+  --dtype float16 \
+  --tensor-parallel-size 4 \
+  --gpu-memory-utilization 0.9 \
+  --trust-remote-code \
+  --max-num-seqs 1024
+```
+
+### DeepSeek-R1-Distill-Llama-70B IFB BW1100 2x vLLM 0.21
+
+```bash
+vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
+  --kv-cache-dtype fp8_e4m3 \
+  --dtype float16 \
+  --tensor-parallel-size 2 \
+  --gpu-memory-utilization 0.9 \
+  --trust-remote-code \
+  --max-num-seqs 1024
+```
+
+### DeepSeek-R1-Distill-Llama-70B IFB BW1000 4x vLLM 0.21
+
+```bash
+vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
+  --dtype float16 \
+  --tensor-parallel-size 4 \
+  --gpu-memory-utilization 0.9 \
+  --trust-remote-code \
+  --max-num-seqs 1024
+```
+
+### DeepSeek-R1-Distill-Llama-70B IFB K100_AI 8x vLLM 0.21
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+
+vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
+  --dtype float16 \
+  --tensor-parallel-size 8 \
+  --gpu-memory-utilization 0.9 \
+  --trust-remote-code \
+  --max-num-seqs 1024
+```
+
+### DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 IFB BW1100 2x vLLM 0.21
+
+```bash
+vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
+  --kv-cache-dtype fp8_e4m3 \
+  --dtype float16 \
+  --tensor-parallel-size 2 \
+  --gpu-memory-utilization 0.9 \
+  --trust-remote-code \
+  --max-num-seqs 1024
+```
+
+### DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 IFB BW1000 4x vLLM 0.21
+
+```bash
+vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
+  --dtype float16 \
+  --tensor-parallel-size 4 \
+  --gpu-memory-utilization 0.9 \
+  --trust-remote-code \
+  --max-num-seqs 1024
+```
+
+### DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 IFB K100_AI 8x vLLM 0.21
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+
+vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
+  --dtype float16 \
+  --tensor-parallel-size 8 \
+  --gpu-memory-utilization 0.9 \
+  --trust-remote-code \
+  --max-num-seqs 1024
+```
 
 ### DeepSeek-R1-Distill-Qwen-32B IFB BW1100 2x vLLM 0.18
 

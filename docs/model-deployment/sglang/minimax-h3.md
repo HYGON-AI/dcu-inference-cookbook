@@ -32,23 +32,7 @@ MiniMax-H3 是 MiniMax 推出的全模态音视频生成模型，能够统一理
 当前使用 MiniMax-H3 定制镜像：
 
 ```bash
-docker run -it \
-  --name minimax-h3 \
-  --shm-size 200g \
-  --network host \
-  --privileged \
-  --device=/dev/kfd \
-  --device=/dev/dri \
-  --device=/dev/mkfd \
-  --group-add video \
-  --cap-add=SYS_PTRACE \
-  --security-opt seccomp=unconfined \
-  -u root \
-  -v /opt/hyhal/:/opt/hyhal/:ro \
-  -v /path/to/models:/path/to/models:ro \
-  -v /path/to/workspace:/path/to/workspace \
-  harbor.sourcefind.cn:5443/dcu/admin/base/custom:sglang-ubuntu22.04-dtk26.04-py3.10-20260731-MiniMax-H3 \
-  bash
+docker pull  harbor.sourcefind.cn:5443/dcu/admin/base/custom:sglang-ubuntu22.04-dtk26.04-py3.10-20260731-MiniMax-H3
 ```
 
 ## 启动命令

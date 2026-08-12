@@ -49,7 +49,7 @@
     <tr>
       <td rowspan="2">Qwen3-VL</td>
       <td>vLLM</td>
-      <td align="center">🚧</td><td align="center"><a href="docs/model-deployment/vllm/qwen3-vl.md">✅</a></td><td align="center">🚧</td>
+      <td align="center"><a href="docs/model-deployment/vllm/qwen3-vl.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwen3-vl.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwen3-vl.md">✅</a></td>
     </tr>
     <tr>
       <td>SGLang</td>
@@ -58,7 +58,7 @@
     <tr>
       <td rowspan="2">Qwen3-Next</td>
       <td>vLLM</td>
-      <td align="center">-</td><td align="center">-</td><td align="center">-</td>
+      <td align="center"><a href="docs/model-deployment/vllm/qwen3-next.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwen3-next.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwen3-next.md">✅</a></td>
     </tr>
     <tr>
       <td>SGLang</td>

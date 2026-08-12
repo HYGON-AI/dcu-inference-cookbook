@@ -39,7 +39,6 @@ DeepSeek-R1 是 DeepSeek 推出的推理强化模型，面向复杂推理、数�
 
 ```bash
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
-  --host $host_ip \
   --kv-cache-dtype fp8_e4m3 \
   --dtype float16 \
   --tensor-parallel-size 2 \
@@ -55,7 +54,6 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
 
 ```bash
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
-  --host $host_ip \
   --kv-cache-dtype fp8_e5m2 \
   --dtype float16 \
   --tensor-parallel-size 4 \
@@ -71,7 +69,6 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
 
 ```bash
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
-  --host $host_ip \
   --dtype float16 \
   --tensor-parallel-size 4 \
   --gpu-memory-utilization 0.9 \
@@ -86,7 +83,6 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
 
 ```bash
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
-  --host $host_ip \
   --kv-cache-dtype fp8_e4m3 \
   --dtype float16 \
   --tensor-parallel-size 2 \
@@ -102,7 +98,6 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
 
 ```bash
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
-  --host $host_ip \
   --kv-cache-dtype fp8_e5m2 \
   --dtype float16 \
   --tensor-parallel-size 4 \
@@ -118,7 +113,6 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
 
 ```bash
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
-  --host $host_ip \
   --dtype float16 \
   --tensor-parallel-size 8 \
   --gpu-memory-utilization 0.9 \
@@ -133,7 +127,6 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
 
 ```bash
 vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
-  --host $host_ip \
   --kv-cache-dtype fp8_e4m3 \
   --dtype float16 \
   --tensor-parallel-size 2 \
@@ -149,7 +142,6 @@ vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
 
 ```bash
 vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
-  --host $host_ip \
   --kv-cache-dtype fp8_e5m2 \
   --dtype float16 \
   --tensor-parallel-size 4 \
@@ -168,7 +160,6 @@ export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 
 vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
-  --host $host_ip \
   --dtype float16 \
   --tensor-parallel-size 8 \
   --gpu-memory-utilization 0.9 \

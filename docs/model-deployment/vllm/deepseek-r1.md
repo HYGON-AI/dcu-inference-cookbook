@@ -38,7 +38,6 @@ DeepSeek-R1 是 DeepSeek 推出的推理强化模型，面向复杂推理、数�
 ### DeepSeek-R1-Distill-Qwen-32B IFB BW1100 2x vLLM 0.18
 
 ```bash
-host_ip=$(hostname -I | awk '{print $1}')
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
   --host $host_ip \
   --kv-cache-dtype fp8_e4m3 \
@@ -55,7 +54,6 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
 ### DeepSeek-R1-Distill-Qwen-32B IFB BW1000 4x vLLM 0.18
 
 ```bash
-host_ip=$(hostname -I | awk '{print $1}')
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
   --host $host_ip \
   --kv-cache-dtype fp8_e5m2 \
@@ -72,7 +70,6 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
 ### DeepSeek-R1-Distill-Qwen-32B IFB K100_AI 4x vLLM 0.18
 
 ```bash
-host_ip=$(hostname -I | awk '{print $1}')
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
   --host $host_ip \
   --dtype float16 \
@@ -88,7 +85,6 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
 ### DeepSeek-R1-Distill-Llama-70B IFB BW1100 2x vLLM 0.18
 
 ```bash
-host_ip=$(hostname -I | awk '{print $1}')
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --host $host_ip \
   --kv-cache-dtype fp8_e4m3 \
@@ -105,7 +101,6 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
 ### DeepSeek-R1-Distill-Llama-70B IFB BW1000 4x vLLM 0.18
 
 ```bash
-host_ip=$(hostname -I | awk '{print $1}')
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --host $host_ip \
   --kv-cache-dtype fp8_e5m2 \
@@ -122,7 +117,6 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
 ### DeepSeek-R1-Distill-Llama-70B IFB K100_AI 8x vLLM 0.18
 
 ```bash
-host_ip=$(hostname -I | awk '{print $1}')
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --host $host_ip \
   --dtype float16 \
@@ -138,7 +132,6 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
 ### DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 IFB BW1100 2x vLLM 0.18
 
 ```bash
-host_ip=$(hostname -I | awk '{print $1}')
 vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
   --host $host_ip \
   --kv-cache-dtype fp8_e4m3 \
@@ -155,7 +148,6 @@ vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
 ### DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 IFB BW1000 4x vLLM 0.18
 
 ```bash
-host_ip=$(hostname -I | awk '{print $1}')
 vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
   --host $host_ip \
   --kv-cache-dtype fp8_e5m2 \
@@ -175,7 +167,6 @@ vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 
-host_ip=$(hostname -I | awk '{print $1}')
 vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
   --host $host_ip \
   --dtype float16 \

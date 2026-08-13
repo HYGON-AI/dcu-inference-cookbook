@@ -13,7 +13,7 @@ DeepSeek-V3 是由深度求索推出的基于MoE架构的高性能开源大语�
 |                                                                                    | FP8 W8A8 | 0.15    | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-0324-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
 | [hygon/DeepSeek-V3-0528-W4A8-V2](https://www.modelscope.cn/models/hygon/DeepSeek-V3-0528-W4A8-V2)   | W4A8     | 0.21    | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-w4a8-ifb-bw1100-8x-vllm-021)                |
 |                                                                                    | W4A8     | 0.21    | BW1000 | 8 | IFB | [**`>_`**](#deepseek-v3-w4a8-ifb-bw1000-8x-vllm-021)                |
-| [hygon/DeepSeek-V3-0528-W4A8-V2](https://www.modelscope.cn/models/hygon/DeepSeek-V3-0528-W4A8-V2)   | W4A8     | 0.15    | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-w4a8-ifb-bw1100-8x-vllm-015)                |
+|                                                                                    | W4A8     | 0.15    | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v3-w4a8-ifb-bw1100-8x-vllm-015)                |
 |                                                                                    | W4A8     | 0.15    | BW1000 | 8 | IFB | [**`>_`**](#deepseek-v3-w4a8-ifb-bw1000-8x-vllm-015)                |
 
 ## 启动命令

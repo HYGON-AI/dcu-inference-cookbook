@@ -8,11 +8,34 @@ DeepSeek V3.2 是深度求索公司于 2025 年底发布的大语言模型，基
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
+| [hygon/DeepSeek-V3.2-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3.2-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v32-channel-fp8-w8a8-ifb-bw1100-8x-vllm-021) |
 | [hygon/DeepSeek-V3.2-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3.2-Channel-INT8-w8a8) | INT8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v32-channel-int8-w8a8-ifb-bw1100-8x-vllm-021) |
 | [hygon/DeepSeek-V3.2-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3.2-Channel-INT8-w8a8) | INT8 W8A8 | 0.18.1 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v32-channel-int8-w8a8-ifb-bw1100-8x-vllm-0181) |
 | [hygon/DeepSeek-V3.2-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V3.2-Channel-INT8-w8a8) | INT8 W8A8 | 0.15.1 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v32-channel-int8-w8a8-ifb-bw1100-8x-vllm-0151) |
 
 ## 启动命令
+
+### DeepSeek-V3.2-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.21
+
+```bash
+vllm serve hygon/DeepSeek-V3.2-Channel-FP8-w8a8 \
+  -q slimquant_marlin \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --max-model-len 65536 \
+  --max-num-batched-tokens 16384 \
+  -tp 8 \
+  --gpu-memory-utilization 0.92 \
+  --max-num-seqs 64 \
+  --block-size 64 \
+  --speculative_config '{
+    "method":"deepseek_mtp",
+    "num_speculative_tokens":2,
+    "quantization":"slimquant_marlin"
+  }' \
+  --kv-cache-dtype fp8_ds_mla \
+  --attention-backend FLASHMLA_SPARSE
+```
 
 ### DeepSeek-V3.2-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.21
 

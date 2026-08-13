@@ -2,16 +2,16 @@
 
 ## 模型简介
 
-Qwen2-VL 是阿里通义千问视觉语言模型系列，支持图像、视频与文本等多模态输入。本页提供 Qwen2-VL-2B 在 HCU 上基于 vLLM 的推理部署方案。
+Qwen2-VL 是阿里通义千问视觉语言模型系列，支持图像、视频与文本等多模态输入。本页提供 Qwen2-VL-2B 和 Qwen2-VL-2B-Instruct 在 HCU 上基于 vLLM 的推理部署方案。
 
 ## 模型列表
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [Qwen/Qwen2-VL-2B](https://www.modelscope.cn/models/Qwen/Qwen2-VL-2B) | BF16 | 0.21 | BW1100 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-bw1100-1x-vllm-021) |
-|  | BF16 | 0.21 | BW1000 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-bw1000-1x-vllm-021) |
-|  | BF16 | 0.21 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-k100_ai-1x-vllm-021) |
-|  | BF16 | 0.18 | BW1100 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-bw1100-1x-vllm-018) |
+| [Qwen/Qwen2-VL-2B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2-VL-2B-Instruct) | BF16 | 0.21 | BW1100 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-instruct-ifb-bw1100-1x-vllm-021) |
+|  | BF16 | 0.21 | BW1000 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-instruct-ifb-bw1000-1x-vllm-021) |
+|  | BF16 | 0.21 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-vl-2b-instruct-ifb-k100_ai-1x-vllm-021) |
+| [Qwen/Qwen2-VL-2B](https://www.modelscope.cn/models/Qwen/Qwen2-VL-2B) | BF16 | 0.18 | BW1100 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-bw1100-1x-vllm-018) |
 |  | BF16 | 0.18 | BW1000 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-bw1000-1x-vllm-018) |
 |  | BF16 | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-k100_ai-1x-vllm-018) |
 |  | BF16 | 0.18-hotfix | BW1100 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-bw1100-1x-vllm-018-hotfix) |
@@ -20,10 +20,10 @@ Qwen2-VL 是阿里通义千问视觉语言模型系列，支持图像、视频�
 
 ## 启动命令
 
-### Qwen2-VL-2B IFB BW1100 1x vLLM 0.21
+### Qwen2-VL-2B-Instruct IFB BW1100 1x vLLM 0.21
 
 ```bash
-vllm serve Qwen/Qwen2-VL-2B \
+vllm serve Qwen/Qwen2-VL-2B-Instruct \
     -tp 1 \
     --trust-remote-code \
     --gpu-memory-utilization 0.95 \
@@ -32,23 +32,23 @@ vllm serve Qwen/Qwen2-VL-2B \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
 
-### Qwen2-VL-2B IFB BW1000 1x vLLM 0.21
+### Qwen2-VL-2B-Instruct IFB BW1000 1x vLLM 0.21
 
 ```bash
-vllm serve Qwen/Qwen2-VL-2B \
+vllm serve Qwen/Qwen2-VL-2B-Instruct \
     -tp 1 \
     --trust-remote-code \
     --gpu-memory-utilization 0.95 \
     --chat-template-content-format openai \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
-### Qwen2-VL-2B IFB K100_AI 1x vLLM 0.21
+### Qwen2-VL-2B-Instruct IFB K100_AI 1x vLLM 0.21
 
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 
-vllm serve Qwen/Qwen2-VL-2B \
+vllm serve Qwen/Qwen2-VL-2B-Instruct \
     -tp 1 \
     --trust-remote-code \
     --gpu-memory-utilization 0.95 \

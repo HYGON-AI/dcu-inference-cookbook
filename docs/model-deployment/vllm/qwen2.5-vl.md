@@ -2,7 +2,7 @@
 
 ## 模型简介
 
-Qwen2.5-VL 是阿里通义千问视觉语言模型系列，支持图像、视频与文本等多模态输入。本页提供 Qwen2.5-VL-32B-Instruct 和 Qwen2.5-VL-72B-Instruct-quantized.w8a8 在 HCU 上基于 vLLM 的推理部署方案。
+Qwen2.5-VL 是阿里通义千问视觉语言模型系列，支持图像、视频与文本等多模态输入。本页提供 Qwen2.5-VL-32B-Instruct、Qwen2.5-VL-72B-Instruct 和 Qwen2.5-VL-72B-Instruct-quantized.w8a8 在 HCU 上基于 vLLM 的推理部署方案。
 
 ## 模型列表
 
@@ -17,6 +17,9 @@ Qwen2.5-VL 是阿里通义千问视觉语言模型系列，支持图像、视频
 |  | BF16 | 0.21 | K100_AI | 4 | IFB | [**\`>_\`**](#qwen25-vl-32b-instruct-ifb-k100_ai-4x-vllm-021) |
 |                                                                               | BF16 | 0.18 | K100_AI | 4 | IFB | [**\`>_\`**](#qwen25-vl-32b-instruct-ifb-k100_ai-4x-vllm-018) |
 |  | BF16 | 0.18-hotfix | K100_AI | 4 | IFB | [**\`>_\`**](#qwen25-vl-32b-instruct-ifb-k100_ai-4x-vllm-018-hotfix) |
+| [Qwen/Qwen2.5-VL-72B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2.5-VL-72B-Instruct) | BF16 | [0.18](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-ifb-bw1100-4x-vllm-018) |
+|  | BF16 | [0.18](../docker_images.md) | BW1000 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-ifb-bw1000-4x-vllm-018) |
+|  | BF16 | [0.18](../docker_images.md) | K100_AI | 8 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-ifb-k100_ai-8x-vllm-018) |
 | hygon/Qwen2.5-VL-72B-Instruct-quantized.w8a8| INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-quantizedw8a8-ifb-bw1100-4x-vllm-018) |
 |  | INT8 W8A8 | [0.18](../docker_images.md) | BW1000 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-quantizedw8a8-ifb-bw1000-4x-vllm-018) |
 
@@ -127,6 +130,52 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 4 \
     --trust-remote-code \
     --allowed-local-media-path /path-to/VL_data/ \
+```
+
+### Qwen2.5-VL-72B-Instruct IFB BW1100 4x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_HCU_USE_CUSTOM_OPS=1
+
+vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
+  -tp 4 \
+  --host 0.0.0.0 \
+  --trust-remote-code \
+  --enable-chunked-prefill \
+  --kv-cache-dtype fp8_e4m3 \
+  --max-model-len 32768
+```
+
+### Qwen2.5-VL-72B-Instruct IFB BW1000 4x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_HCU_USE_CUSTOM_OPS=1
+
+vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
+  -tp 4 \
+  --host 0.0.0.0 \
+  --trust-remote-code \
+  --enable-chunked-prefill \
+  --max-model-len 32768
+```
+
+### Qwen2.5-VL-72B-Instruct IFB K100_AI 8x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+export VLLM_HCU_USE_CUSTOM_OPS=1
+
+vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
+  --host 0.0.0.0 \
+  -tp 8 \
+  --trust-remote-code \
+  --enable-chunked-prefill \
+  --max-model-len 32768
 ```
 
 ### Qwen2.5-VL-72B-Instruct-quantized.w8a8 IFB BW1100 4x vLLM 0.18

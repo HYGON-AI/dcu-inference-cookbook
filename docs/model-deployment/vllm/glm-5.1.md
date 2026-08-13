@@ -163,7 +163,6 @@ vllm serve hygon/GLM-5.1-Channel-FP8-w8a8 \
     "quantization":"slimquant_marlin"
   }' \
   --kv-cache-dtype fp8_ds_mla \
-  --no-async-scheduling \
   --attention-backend FLASHMLA_SPARSE
 ```
 
@@ -253,7 +252,6 @@ vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
     "quantization":"slimquant_marlin"
   }' \
   --kv-cache-dtype fp8_ds_mla \
-  --no-async-scheduling \
   --attention-backend FLASHMLA_SPARSE
 ```
 
@@ -770,3 +768,4 @@ curl http://13.13.3.21:9351/v1/chat/completions \
   "max_tokens": 128
   }'
 ```
+

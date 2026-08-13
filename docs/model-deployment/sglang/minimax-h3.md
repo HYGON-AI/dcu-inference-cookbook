@@ -17,7 +17,7 @@ MiniMax-H3 是 MiniMax 推出的全模态音视频生成模型，能够统一理
 
 | 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | --- | --- | --- | --- | ---: | --- | --- |
-| [MiniMax/MiniMax-H3](https://www.modelscope.cn/models/MiniMax/MiniMax-H3) | BF16 | 0.5.12 | BW1101 | 1 | Online | [启动命令](#启动命令) |
+| [MiniMax/MiniMax-H3](https://www.modelscope.cn/models/MiniMax/MiniMax-H3) | BF16 | 0.5.15 | BW1101 | 1 | Online | [启动命令](#启动命令) |
 
 验证环境：
 
@@ -25,56 +25,48 @@ MiniMax-H3 是 MiniMax 推出的全模态音视频生成模型，能够统一理
 | --- | --- |
 | DTK | 26.04 |
 | Python | 3.10.12 |
-| SGLang | 0.5.12 |
+| SGLang | 0.5.15 |
 | sglang-kernel | 0.4.4 |
-| Transformers | 5.6.0 |
+| Transformers | 5.12.1 |
 
-当前使用 MiniMax-H3 定制镜像：
+进入容器后安装视频处理工具，并将 Transformers 对齐到验证版本：
 
 ```bash
-docker run -it \
-  --name minimax-h3 \
-  --shm-size 200g \
-  --network host \
-  --privileged \
-  --device=/dev/kfd \
-  --device=/dev/dri \
-  --device=/dev/mkfd \
-  --group-add video \
-  --cap-add=SYS_PTRACE \
-  --security-opt seccomp=unconfined \
-  -u root \
-  -v /opt/hyhal/:/opt/hyhal/:ro \
-  -v /path/to/models:/path/to/models:ro \
-  -v /path/to/workspace:/path/to/workspace \
-  harbor.sourcefind.cn:5443/dcu/admin/base/custom:sglang-ubuntu22.04-dtk26.04-py3.10-20260731-MiniMax-H3 \
-  bash
+apt-get update
+apt-get install -y ffmpeg
+python3 -m pip install --no-deps "transformers==5.12.1"
 ```
 
 ## 启动命令
 
 ### MiniMax-H3 Online BW1101 1x
 
-T2VA 和 FL2VA 共用 `FL2VA` 分区；运行 Ref2VA 时需要重启 Server，并把模型路径切换为 `Ref2VA`。
+T2VA 和 FL2VA 共用 `fl2va` 分区；运行 Ref2VA 时需要重启 Server，并把
+`MODEL_VARIANT` 改为 `ref2va`。`MODEL_PATH` 始终指向 MiniMax-H3 模型仓库根目录。
 
 ```bash
 export GPU_ID=0
 export PORT=30010
 
-# T2VA、FL2VA 使用这个模型；替换为实际模型路径。
-export MODEL_PATH=/path/to/models/MiniMax-H3/FL2VA
+# 替换为 MiniMax-H3 模型仓库根目录，目录内包含 FL2VA 和 Ref2VA。
+export MODEL_PATH=/path/to/models/MiniMax-H3
 
-# Ref2VA 使用这个模型；运行 Ref2VA 时注释上一行并启用下一行。
-# export MODEL_PATH=/path/to/models/MiniMax-H3/Ref2VA
+# T2VA、FL2VA 使用 fl2va；Ref2VA 改成 ref2va 后重启 Server。
+export MODEL_VARIANT=fl2va
+# export MODEL_VARIANT=ref2va
 
 mkdir -p /path/to/workspace/outputs
 
 HIP_VISIBLE_DEVICES="$GPU_ID" sglang serve \
   --model-type diffusion \
   --model-path "$MODEL_PATH" \
+  --model-variant "$MODEL_VARIANT" \
+  --attention-backend fa \
   --num-gpus 1 \
+  --tp-size 1 \
   --sp-degree 1 \
   --ulysses-degree 1 \
+  --ring-degree 1 \
   --trust-remote-code \
   --warmup-mode off \
   --host 0.0.0.0 \
@@ -202,8 +194,10 @@ curl -sS -X POST "http://127.0.0.1:${PORT}/v1/videos" \
 
 ## 关键参数说明
 
-- `--model-path`：T2VA/FL2VA 指向 `FL2VA`，Ref2VA 指向 `Ref2VA`。
-- `--num-gpus 1 --sp-degree 1 --ulysses-degree 1`：本文验证的是 BW1101 单卡配置。
+- `--model-path`：指向包含 `FL2VA`、`Ref2VA` 的 MiniMax-H3 模型仓库根目录。
+- `--model-variant`：T2VA/FL2VA 使用 `fl2va`，Ref2VA 使用 `ref2va`；切换分区后需要重启 Server。
+- `--attention-backend fa`：显式选择 HCU FlashAttention-2。HCU 环境默认可能选择 `aiter`，但 MiniMax-H3 的 Qwen3VL 文本编码器当前只支持 `fa` 或 `torch_sdpa`。
+- `--num-gpus 1 --tp-size 1 --sp-degree 1 --ulysses-degree 1 --ring-degree 1`：本文验证的是 BW1101 单卡配置。
 - `--warmup-mode off`：关闭 Server 启动阶段自动 warmup；正式测试仍需由 Client 连续发送 warmup 请求。
 - `target.short_edge=768`：本文模型和性能数据使用的短边尺寸。
 - `target.aspect_ratio`：T2VA 可指定固定比例；FL2VA 通常使用 `auto` 跟随关键帧语义。Ref2VA 的 `auto` 默认回退为 16:9，并不保证跟随参考图比例。

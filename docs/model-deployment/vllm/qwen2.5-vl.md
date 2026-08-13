@@ -141,7 +141,6 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
 ```bash
 vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
   -tp 4 \
-  --host 0.0.0.0 \
   --trust-remote-code \
   --enable-chunked-prefill \
   --kv-cache-dtype fp8_e4m3 \
@@ -154,7 +153,6 @@ vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
 ```bash
 vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
   -tp 4 \
-  --host 0.0.0.0 \
   --trust-remote-code \
   --enable-chunked-prefill \
   --max-model-len 32768 \
@@ -165,7 +163,6 @@ vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
 
 ```bash
 vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
-  --host 0.0.0.0 \
   -tp 8 \
   --trust-remote-code \
   --enable-chunked-prefill \

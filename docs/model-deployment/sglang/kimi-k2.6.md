@@ -10,7 +10,7 @@ Kimi K2.6 是一个开源的原生多模态智能体模型，在长周期编码�
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
 | [moonshotai/Kimi-K2.6](https://www.modelscope.cn/models/moonshotai/Kimi-K2.6) | INT4 W4A16 | 0.5.10 | BW1100 | 8 | IFB | [**`>_`**](#kimi-k26-ifb-bw1100-8x-sglang-0510) |
 |  | INT4 W4A16 | 0.5.10 | BW1100 | 16 | 1P1D | [**`>_`**](#kimi-k26-1p1d-bw1100-16x-sglang-0510) |
-|  | INT4 W4A16 | 0.5.12 | BW1100 | 24 | 1P1D | [**`>_`**](#kimi-k26-1p1d-bw1100-超节点ep16-24x-sglang-0512) |
+|  | INT4 W4A16 | 0.5.12 | ScaleX40 | 24 | 1P1D | [**`>_`**](#kimi-k26-1p1d-bw1100-超节点ep16-24x-sglang-0512) |
 
 ## 启动命令
 
@@ -163,7 +163,6 @@ python3 -m sglang.launch_server \
 #### P node
 
 ```
-#!/bin/bash
 NODE_RANK=${1:-0}
 export SGLANG_USE_LIGHTOP=1
 export SGLANG_USE_OPT_CAT=1
@@ -219,7 +218,6 @@ python3 -m sglang.launch_server \
 #### D node
 
 ```
-#!/bin/bash
 NODE_RANK=${1:-0}
 export SGLANG_USE_LIGHTOP=1
 export SGLANG_USE_OPT_CAT=1

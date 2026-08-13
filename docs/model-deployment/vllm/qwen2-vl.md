@@ -28,7 +28,6 @@ vllm serve Qwen/Qwen2-VL-2B \
     --trust-remote-code \
     --gpu-memory-utilization 0.95 \
     --chat-template-content-format openai \
-    --chat-template qwen2_vl_openai_chat_template.jinja \
     --kv-cache-dtype fp8_e4m3 \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
@@ -41,7 +40,6 @@ vllm serve Qwen/Qwen2-VL-2B \
     --trust-remote-code \
     --gpu-memory-utilization 0.95 \
     --chat-template-content-format openai \
-    --chat-template qwen2_vl_openai_chat_template.jinja \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen2-VL-2B IFB K100_AI 1x vLLM 0.21
@@ -54,8 +52,7 @@ vllm serve Qwen/Qwen2-VL-2B \
     -tp 1 \
     --trust-remote-code \
     --gpu-memory-utilization 0.95 \
-    --chat-template-content-format openai \
-    --chat-template qwen2_vl_openai_chat_template.jinja
+    --chat-template-content-format openai
 ```
 ### Qwen2-VL-2B IFB BW1100 1x vLLM 0.18
 
@@ -203,5 +200,6 @@ curl http://localhost:8000/v1/chat/completions \
 ### PD 分离
 
 暂无。
+
 
 

@@ -10,6 +10,8 @@ MiniMax-2.x 是 MiniMax 推出的大规模 MoE（混合专家）语言模型系�
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
 | [hygon/MiniMax-M2.5-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-Channel-INT8-w8a8) | INT8 W8A8 | 0.21 | BW1100 | 8x | IFB | [**``>_``**](#minimax-m25-channel-int8-w8a8-ifb-bw1100-8x-vllm-021) |
+|  | INT8 W8A8 | 0.21 | BW1000 | 8 | IFB | [**`>_`**](#minimax-m25-channel-int8-w8a8-ifb-bw1000-8x-vllm-021) |
+|  | INT8 W8A8 | 0.21 | K100_AI | 8 | IFB | [**`>_`**](#minimax-m25-channel-int8-w8a8-ifb-k100_ai-8x-vllm-021) |
 |  | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#minimax-m25-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
 |  | INT8 W8A8 | [0.18](../docker_images.md) | BW1000 | 8 | IFB | [**`>_`**](#minimax-m25-channel-int8-w8a8-ifb-bw1000-8x-vllm-018) |
 |  | INT8 W8A8 | [0.18](../docker_images.md) | K100_AI | 8 | IFB | [**`>_`**](#minimax-m25-channel-int8-w8a8-ifb-k100_ai-8x-vllm-018) |
@@ -17,7 +19,9 @@ MiniMax-2.x 是 MiniMax 推出的大规模 MoE（混合专家）语言模型系�
 |  | INT8 W8A8 | 0.15.1 | BW1000 | 8x | IFB | [**``>_``**](#minimax-m25-channel-int8-w8a8-ifb-bw1000-8x-vllm-0151) |
 | [hygon/MiniMax-M2.5-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/MiniMax-M2.5-Channel-FP8-w8a8) | FP8 W8A8 | 0.18.1 | BW1100 | 8x | IFB | [**``>_``**](#minimax-m25-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0181) |
 |  | FP8 W8A8 | 0.15.1 | BW1100 | 8x | IFB | [**``>_``**](#minimax-m25-channel-fp8-w8a8-ifb-bw1100-8x-vllm-0151) |
-| MiniMax-M2.5-bf16 | BF16 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#minimax-m25-bf16-ifb-bw1100-8x-vllm-018) |
+| MiniMax-M2.5-bf16 | BF16 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#minimax-m25-bf16-ifb-bw1100-8x-vllm-021) |
+|  | BF16 | 0.21 | BW1000 | 8 | IFB | [**`>_`**](#minimax-m25-bf16-ifb-bw1000-8x-vllm-021) |
+|  | BF16 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#minimax-m25-bf16-ifb-bw1100-8x-vllm-018) |
 |  | BF16 | [0.18](../docker_images.md) | BW1000 | 8 | IFB | [**`>_`**](#minimax-m25-bf16-ifb-bw1000-8x-vllm-018) |
 |  | BF16 | 0.15.1 | BW1100 | 8x | IFB | [**``>_``**](#minimax-m25-bf16-ifb-bw1100-8x-vllm-0151) |
 |  | BF16 | 0.15.1 | BW1000 | 8x | IFB | [**``>_``**](#minimax-m25-bf16-ifb-bw1000-8x-vllm-0151) |
@@ -41,6 +45,43 @@ vllm serve hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
         "cudagraph_mode": "full",
         "custom_ops": ["all"]}' \
   -q slimquant_marlin
+```
+
+### MiniMax-M2.5-Channel-INT8-w8a8 IFB BW1000 8x vLLM 0.21
+
+```bash
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
+  -tp 8 \
+  --trust-remote-code \
+  --max-model-len 73216 \
+  --max-num-batched-tokens 16384 \
+  --enable-prefix-caching \
+  --gpu-memory-utilization 0.92 \
+  -cc '{"pass_config": {"fuse_act_quant": false},
+        "cudagraph_mode": "full",
+        "custom_ops": ["all"]}' \
+  -q slimquant_marlin
+```
+
+### MiniMax-M2.5-Channel-INT8-w8a8 IFB K100_AI 8x vLLM 0.21
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
+  -tp 8 \
+  --trust-remote-code \
+  --max-model-len 73216 \
+  --max-num-batched-tokens 16384 \
+  --enable-prefix-caching \
+  --gpu-memory-utilization 0.92 \
+  -cc '{"pass_config": {"fuse_act_quant": false},
+        "cudagraph_mode": "full",
+        "custom_ops": ["all"]}'
 ```
 
 ### MiniMax-M2.5-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.18
@@ -347,6 +388,40 @@ vllm serve hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
 
 ```
 
+### MiniMax-M2.5-bf16 IFB BW1100 8x vLLM 0.21
+
+```bash
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve MiniMax-M2.5-bf16 \
+  -tp 8 \
+  --trust-remote-code \
+  --max-model-len 73216 \
+  --max-num-batched-tokens 16384 \
+  --enable-prefix-caching \
+  --gpu-memory-utilization 0.92 \
+  -cc '{"pass_config": {"fuse_act_quant": false},
+        "cudagraph_mode": "full",
+        "custom_ops": ["all"]}'
+```
+
+### MiniMax-M2.5-bf16 IFB BW1000 8x vLLM 0.21
+
+```bash
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve MiniMax-M2.5-bf16 \
+  -tp 8 \
+  --trust-remote-code \
+  --max-model-len 73216 \
+  --max-num-batched-tokens 16384 \
+  --enable-prefix-caching \
+  --gpu-memory-utilization 0.92 \
+  -cc '{"pass_config": {"fuse_act_quant": false},
+        "cudagraph_mode": "full",
+        "custom_ops": ["all"]}'
+```
+
 ### MiniMax-M2.5-bf16 IFB BW1100 8x vLLM 0.18
 
 ```bash
@@ -551,3 +626,5 @@ curl -X POST http://localhost:8000/v1/chat/completions \
 }'
 
 ```
+
+

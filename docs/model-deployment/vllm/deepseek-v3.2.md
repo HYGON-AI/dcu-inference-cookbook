@@ -137,7 +137,6 @@ vllm serve --model hygon/DeepSeek-V3.2-Channel-INT8 \
 ### DeepSeek-V3.2-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18
 
 ```bash
-export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_FLASHMLA=1
 export LMSLIM_USE_GLOBAL_MOE_CACHE=1

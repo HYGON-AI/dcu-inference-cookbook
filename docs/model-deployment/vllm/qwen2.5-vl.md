@@ -28,8 +28,6 @@ Qwen2.5-VL 是阿里通义千问视觉语言模型系列，支持图像、视频
 ### Qwen2.5-VL-32B-Instruct IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 1 \
     --trust-remote-code \
@@ -42,8 +40,6 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
 ### Qwen2.5-VL-32B-Instruct IFB BW1000 2x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 2 \
     --trust-remote-code \

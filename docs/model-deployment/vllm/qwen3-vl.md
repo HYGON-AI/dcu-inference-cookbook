@@ -753,7 +753,8 @@ vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
   -tp 1 \
   --trust-remote-code \
   --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend aiter
 ```
 ### Qwen3-VL-30B-A3B-Thinking IFB BW1000 2x vLLM 0.21
 
@@ -763,7 +764,8 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
   -tp 2 \
   --trust-remote-code \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend aiter
 ```
 ### Qwen3-VL-30B-A3B-Thinking IFB K100_AI 2x vLLM 0.21
 

@@ -711,8 +711,8 @@ vllm serve Qwen/Qwen3-VL-30B-A3B-Instruct \
 ### Qwen3-VL-30B-A3B-Instruct IFB BW1000 2x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
+
 vllm serve Qwen/Qwen3-VL-30B-A3B-Instruct \
   -tp 2 \
   --trust-remote-code \

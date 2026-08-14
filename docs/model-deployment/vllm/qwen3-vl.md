@@ -987,14 +987,37 @@ vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
 ```
 ### Qwen3-VL-235B-A22B-Instruct IFB BW1000 16x vLLM 0.21
 
+主节点
+
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
   -tp 8 \
   -pp 2 \
   --trust-remote-code \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --nnodes 2 \
+  --node-rank 0 \
+  --master-addr <主节点ip> \
+  --hf-overrides '{"architectures": ["Qwen3VLMoeForConditionalGeneration"], "text_config": {"architectures": ["Qwen3VLMoeForConditionalGeneration"]}}'
+```
+
+从节点
+
+```bash
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
+  -tp 8 \
+  -pp 2 \
+  --trust-remote-code \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --nnodes 2 \
+  --node-rank 1 \
+  --master-addr <主节点ip> \
+  --headless \
+  --hf-overrides '{"architectures": ["Qwen3VLMoeForConditionalGeneration"], "text_config": {"architectures": ["Qwen3VLMoeForConditionalGeneration"]}}'
 ```
 ### Qwen3-VL-235B-A22B-Instruct IFB BW1000 16x vLLM 0.18
 ```bash
@@ -1085,14 +1108,37 @@ vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
 ```
 ### Qwen3-VL-235B-A22B-Thinking IFB BW1000 16x vLLM 0.21
 
+主节点
+
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
   -tp 8 \
   -pp 2 \
   --trust-remote-code \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --nnodes 2 \
+  --node-rank 0 \
+  --master-addr <主节点ip> \
+  --hf-overrides '{"architectures": ["Qwen3VLMoeForConditionalGeneration"], "text_config": {"architectures": ["Qwen3VLMoeForConditionalGeneration"]}}'
+```
+
+从节点
+
+```bash
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
+  -tp 8 \
+  -pp 2 \
+  --trust-remote-code \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --nnodes 2 \
+  --node-rank 1 \
+  --master-addr <主节点ip> \
+  --headless \
+  --hf-overrides '{"architectures": ["Qwen3VLMoeForConditionalGeneration"], "text_config": {"architectures": ["Qwen3VLMoeForConditionalGeneration"]}}'
 ```
 ### Qwen3-VL-235B-A22B-Thinking IFB BW1000 16x vLLM 0.18
 ```bash

@@ -140,6 +140,7 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 |  | INT8 W8A8 | 0.15 | K100_AI | 1 | IFB | [**`>_`**](#qwen3-30b-a3b-instruct-2507-w8a8-int8-ifb-k100_ai-1x-vllm-015) |
 | [Qwen/Qwen3-235B-A22B-Instruct-2507](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B-Instruct-2507) | BF16 | 0.21 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-021) |
 |  | BF16 | 0.21 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-021) |
+|  | BF16 | [0.18](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-018) |
 |  | BF16 | 0.18 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-018) |
 |  | BF16 | 0.18 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-018) |
 |  | BF16 | 0.18-hotfix | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-018-hotfix) |
@@ -147,7 +148,6 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 |  | BF16 | 0.15 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-015) |
 |  | BF16 | 0.15 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-015) |
 |  | BF16 | 0.15 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-015) |
-|  | BF16 | [0.18](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-018) |
 | [Qwen/Qwen3-235B-A22B](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B) | BF16 | [0.18](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-ifb-bw1100-4x-vllm-018) |
 |  | BF16 | [0.18](../docker_images.md) | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-ifb-bw1000-8x-vllm-018) |
 |  | BF16 | [0.18](../docker_images.md) | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-ifb-k100_ai-8x-vllm-018) |

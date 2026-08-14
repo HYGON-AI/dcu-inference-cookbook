@@ -135,7 +135,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">🚧</td><td align="center">🚧</td><td align="center">🚧</td>
+      <td align="center">🚧</td><td align="center">🚧</td><td align="center"><a href="docs/model-deployment/sglang/deepseek-v4.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">DeepSeek-V3.2</td>

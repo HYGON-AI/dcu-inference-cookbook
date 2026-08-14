@@ -8,8 +8,8 @@ DeepSeek-V4 是 DeepSeek 系列的混合专家模型。本页汇总 DeepSeek-V4 
 
 | 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
-| [hygon/DeepSeek-V4-Flash-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V4-Flash-Channel-INT8-w8a8) | INT8 W8A8 | 0.5.12 | BW1100 | 8 | IFB(CP8EP8) | [**`>_`**](#deepseek-v4-flash-channel-int8-w8a8-ifb-bw1100-8x-sglang-0512) |
-|  | INT8 W8A8 | 0.5.12 | BW1100 | 8 | IFB(DP8EP8) | [**`>_`**](#deepseek-v4-flash-channel-int8-w8a8-ifb-bw1100-64x-sglang-0512) |
+| [hygon/DeepSeek-V4-Flash-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V4-Flash-Channel-FP8-w8a8) | FP8 W8A8 | 0.5.12 | BW1100 | 8 | IFB(CP8EP8) | [**`>_`**](#deepseek-v4-flash-channel-fp8-w8a8-ifb-bw1100-8x-sglang-0512) |
+|  | FP8 W8A8 | 0.5.12 | BW1100 | 8 | IFB(DP8EP8) | [**`>_`**](#deepseek-v4-flash-channel-fp8-w8a8-ifb-bw1100-64x-sglang-0512) |
 | [hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8) | FP8 W8A8 | 0.5.12 | BW1100 | 16 | IFB(CP8EP8PP2) | [**`>_`**](#deepseek-v4-pro-channel-fp8-w8a8-ifb-p-bw1100-16x-sglang-0512) |
 |  | FP8 W8A8 | 0.5.12 | BW1100 | 16 | IFB(EP16DP16) | [**`>_`**](#deepseek-v4-pro-channel-fp8-w8a8-ifb-d-bw1100-16x-sglang-0512) |
 
@@ -38,7 +38,7 @@ DeepSeek-V4 是 DeepSeek 系列的混合专家模型。本页汇总 DeepSeek-V4 
 ## EPLB配置参考：[EPLB](../../optimization/static-eplb-sglang.md)。
 ## 启动命令
 
-### DeepSeek-V4-Flash-Channel-INT8-w8a8 IFB BW1100 8x SGLang 0.5.12
+### DeepSeek-V4-Flash-Channel-FP8-w8a8 IFB BW1100 8x SGLang 0.5.12
 
 ```bash
 export SGLANG_HEALTH_CHECK_TIMEOUT=360
@@ -86,7 +86,7 @@ export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1800
 export SGLANG_DISAGGREGATION_WAITING_TIMEOUT=1800
 
 sglang serve \
-  --model-path hygon/DeepSeek-V4-Flash-Channel-INT8-w8a8 \
+  --model-path hygon/DeepSeek-V4-Flash-Channel-FP8-w8a8 \
   --trust-remote-code \
   --tp-size 8 \
   --dist-timeout 10000 \
@@ -110,7 +110,7 @@ sglang serve \
   --host <host_ip>
 ```
 
-### DeepSeek-V4-Flash-Channel-INT8-w8a8 IFB BW1100 8x SGLang 0.5.12
+### DeepSeek-V4-Flash-Channel-FP8-w8a8 IFB BW1100 8x SGLang 0.5.12
 
 ```bash
 export SGLANG_HEALTH_CHECK_TIMEOUT=180
@@ -166,7 +166,7 @@ export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1800
 export SGLANG_DISAGGREGATION_WAITING_TIMEOUT=1800
 
 sglang serve \
-  --model-path hygon/DeepSeek-V4-Flash-Channel-INT8-w8a8 \
+  --model-path hygon/DeepSeek-V4-Flash-Channel-FP8-w8a8 \
   --trust-remote-code \
   --tp-size 8 \
   --dp-size 8 \
@@ -477,7 +477,7 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:30000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
-    model="hygon/DeepSeek-V4-Flash-Channel-INT8-w8a8",
+    model="hygon/DeepSeek-V4-Flash-Channel-FP8-w8a8",
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "你好，请介绍一下你自己。"},
@@ -491,5 +491,5 @@ print(response.choices[0].message.content)
 ```bash
 curl http://localhost:30000/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -d '{"model": "hygon/DeepSeek-V4-Flash-Channel-INT8-w8a8", "messages": [{"role": "user", "content": "你好"}], "max_tokens": 128}'
+  -d '{"model": "hygon/DeepSeek-V4-Flash-Channel-FP8-w8a8", "messages": [{"role": "user", "content": "你好"}], "max_tokens": 128}'
 ```

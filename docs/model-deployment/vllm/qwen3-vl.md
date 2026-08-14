@@ -126,7 +126,6 @@ Qwen3-VL 是阿里云推出的新一代多模态视觉语言模型（Vision-Lang
 ### Qwen3-VL-2B-Instruct IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-2B-Instruct \
   -tp 1 \
@@ -137,7 +136,6 @@ vllm serve Qwen/Qwen3-VL-2B-Instruct \
 ### Qwen3-VL-2B-Instruct IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-2B-Instruct \
   -tp 1 \
@@ -215,7 +213,6 @@ vllm serve Qwen/Qwen3-VL-2B-Instruct \
 ### Qwen3-VL-2B-Thinking IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-2B-Thinking \
   -tp 1 \
@@ -226,7 +223,6 @@ vllm serve Qwen/Qwen3-VL-2B-Thinking \
 ### Qwen3-VL-2B-Thinking IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-2B-Thinking \
   -tp 1 \
@@ -304,7 +300,6 @@ vllm serve Qwen/Qwen3-VL-2B-Thinking \
 ### Qwen3-VL-4B-Instruct IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-4B-Instruct \
   -tp 1 \
@@ -315,7 +310,6 @@ vllm serve Qwen/Qwen3-VL-4B-Instruct \
 ### Qwen3-VL-4B-Instruct IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-4B-Instruct \
   -tp 1 \
@@ -393,7 +387,6 @@ vllm serve Qwen/Qwen3-VL-4B-Instruct \
 ### Qwen3-VL-4B-Thinking IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-4B-Thinking \
   -tp 1 \
@@ -404,7 +397,6 @@ vllm serve Qwen/Qwen3-VL-4B-Thinking \
 ### Qwen3-VL-4B-Thinking IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-4B-Thinking \
   -tp 1 \
@@ -482,7 +474,6 @@ vllm serve Qwen/Qwen3-VL-4B-Thinking \
 ### Qwen3-VL-8B-Instruct IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-8B-Instruct \
   -tp 1 \
@@ -493,7 +484,6 @@ vllm serve Qwen/Qwen3-VL-8B-Instruct \
 ### Qwen3-VL-8B-Instruct IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-8B-Instruct \
   -tp 1 \
@@ -571,7 +561,6 @@ vllm serve Qwen/Qwen3-VL-8B-Instruct \
 ### Qwen3-VL-8B-Thinking IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-8B-Thinking \
   -tp 1 \
@@ -582,7 +571,6 @@ vllm serve Qwen/Qwen3-VL-8B-Thinking \
 ### Qwen3-VL-8B-Thinking IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-8B-Thinking \
   -tp 1 \
@@ -747,23 +735,23 @@ vllm serve Qwen/Qwen3-VL-30B-A3B-Instruct \
 ### Qwen3-VL-30B-A3B-Thinking IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
   -tp 1 \
   --trust-remote-code \
   --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend aiter
 ```
 ### Qwen3-VL-30B-A3B-Thinking IFB BW1000 2x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
   -tp 2 \
   --trust-remote-code \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend aiter
 ```
 ### Qwen3-VL-30B-A3B-Thinking IFB K100_AI 2x vLLM 0.21
 
@@ -836,7 +824,6 @@ vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
 ### Qwen3-VL-32B-Instruct IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-32B-Instruct \
   -tp 1 \
@@ -847,7 +834,6 @@ vllm serve Qwen/Qwen3-VL-32B-Instruct \
 ### Qwen3-VL-32B-Instruct IFB BW1000 2x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-32B-Instruct \
   -tp 2 \
@@ -925,7 +911,6 @@ vllm serve Qwen/Qwen3-VL-32B-Instruct \
 ### Qwen3-VL-235B-A22B-Instruct IFB BW1100 8x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
   -tp 8 \
@@ -1044,7 +1029,6 @@ vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
 ### Qwen3-VL-235B-A22B-Thinking IFB BW1100 8x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
   -tp 8 \

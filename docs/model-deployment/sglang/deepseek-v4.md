@@ -2,7 +2,7 @@
 
 ## 模型简介
 
-DeepSeek-V4 是 DeepSeek 系列的混合专家模型。本页汇总 DeepSeek-V4 系列模型在 HCU 平台上使用 SGLang 的部署方式，并兼容 OpenAI API。当前提供 DeepSeek-V4-Flash Channel INT8 W8A8 权重在 BW1100 上的两种 IFB 并行配置。
+DeepSeek-V4 是 DeepSeek 系列的混合专家模型。本页汇总 DeepSeek-V4 系列模型在 HCU 平台上使用 SGLang 的部署方式.
 
 ## 模型列表
 
@@ -319,7 +319,7 @@ python -m sglang.launch_server \
 
  [`ep16.config`](./configs/deepseek-v4/ep16.config) 部署时请下载该文件，将其放到主节点和从节点均可访问的位置，并把 `HIPBLASLT_TUNING_OVERRIDE_FILE=/XXX/ep16.config` 中的 `/XXX/ep16.config` 替换为文件的实际绝对路径。
 
-该配置基于 **64 CU** 环境生成，其他 CU 配置不建议直接使用，需要根据实际硬件环境重新调优并生成对应配置。
+该配置基于 **64 CU** 环境生成，其他 CU 配置不建议直接使用，可需要根据实际生成对应配置。
 
 主节点：`NODE_RANK="${NODE_RANK:-0}"`
 
@@ -369,8 +369,8 @@ export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,ml
 export ROCSHMEM_TOPO_FILE_FORCE=/XXX/topo.config
 export MC_IB_GID_INDEX=0
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
-export NCCL_SOCKET_IFNAME=ens61f1np1
-export GLOO_SOCKET_IFNAME=ens61f1np1
+export NCCL_SOCKET_IFNAME=ens61f1np1 #按照实际
+export GLOO_SOCKET_IFNAME=ens61f1np1 #按照实际
 export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 #按照实际
 export ROCSHMEM_IB_GID_INDEX=0
 export SGLANG_DEEPEP_NUM_MAX_DISPATCH_TOKENS_PER_RANK=128

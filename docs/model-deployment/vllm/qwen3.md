@@ -1354,7 +1354,6 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507-W8A8 \
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 4x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   -tp 4 \
   --trust-remote-code \
@@ -1366,7 +1365,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   -tp 8 \
   --trust-remote-code \

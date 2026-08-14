@@ -139,15 +139,15 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 |                                                                               | INT8 W8A8 | 0.15 | BW1000 | 1 | IFB | [**`>_`**](#qwen3-30b-a3b-instruct-2507-w8a8-int8-ifb-bw1000-1x-vllm-015) |
 |                                                                               | INT8 W8A8 | 0.15 | K100_AI | 1 | IFB | [**`>_`**](#qwen3-30b-a3b-instruct-2507-w8a8-int8-ifb-k100_ai-1x-vllm-015) |
 | [Qwen/Qwen3-235B-A22B-Instruct-2507](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B-Instruct-2507) | BF16 | 0.21 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-021) |
-|  | BF16 | [0.18](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-018-hotfix) |
 |  | BF16 | 0.21 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-021) |
-|                                                                               | BF16 | 0.18 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-018) |
+|  | BF16 | [0.18](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-018) |
+|  | BF16 | 0.18 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-018) |
+|  | BF16 | 0.18 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-018) |
+|  | BF16 | 0.18-hotfix | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-018-hotfix) |
 |  | BF16 | 0.18-hotfix | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-018-hotfix) |
-|                                                                               | BF16 | 0.18 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-018) |
-|                                                                               | BF16 | 0.15 | BW1100  | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-015) |
-|                                                                               | BF16 | 0.15 | BW1000  | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-015) |
-|                                                                               | BF16 | 0.15 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-015) |
+|  | BF16 | 0.15 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-015) |
+|  | BF16 | 0.15 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-015) |
+|  | BF16 | 0.15 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-015) |
 | [Qwen/Qwen3-235B-A22B](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B) | BF16 | [0.18](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-ifb-bw1100-4x-vllm-018) |
 |  | BF16 | [0.18](../docker_images.md) | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-ifb-bw1000-8x-vllm-018) |
 |  | BF16 | [0.18](../docker_images.md) | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-ifb-k100_ai-8x-vllm-018) |
@@ -1354,14 +1354,28 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507-W8A8 \
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 4x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   -tp 4 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM \
-  --moe-backend aiter
+  --attention-backend FLASH_ATTN_CUSTOM
+```
+### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x vLLM 0.21
+
+```bash
+export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
+  -tp 8 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240 \
+  --gpu-memory-utilization 0.95 \
+  --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 4x vLLM 0.18
 ```bash
@@ -1374,31 +1388,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   -tp 4 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 
-```
-
-### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 4x vLLM 0.18-hotfix
-
-```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
-  -tp 4 \
-  --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM \
-  --moe-backend aiter
-```
-### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x vLLM 0.21
-
-```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
-  -tp 8 \
-  --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --gpu-memory-utilization 0.95 \
-  --attention-backend FLASH_ATTN_CUSTOM \
-  --moe-backend aiter
 ```
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x vLLM 0.18
 
@@ -1414,7 +1403,21 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --max-num-batched-tokens 10240 \
   --gpu-memory-utilization 0.95
 ```
+### Qwen3-235B-A22B-Instruct-2507 IFB K100_AI 8x vLLM 0.18
 
+<!-- TODO: 启动命令待补充 -->
+### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 4x vLLM 0.18-hotfix
+
+```bash
+export VLLM_HCU_USE_PD_SPLIT=1
+vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
+  -tp 4 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240 \
+  --kv-cache-dtype fp8_e4m3 \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend aiter
+```
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x vLLM 0.18-hotfix
 
 ```bash
@@ -1427,10 +1430,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --attention-backend FLASH_ATTN_CUSTOM \
   --moe-backend aiter
 ```
-### Qwen3-235B-A22B-Instruct-2507 IFB K100_AI 8x vLLM 0.18
-
-<!-- TODO: 启动命令待补充 -->
-
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 4x vLLM 0.15
 
 ```bash
@@ -1441,7 +1440,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   -tp 4 \
   --disable-cascade-attn 
 ```
-
 ### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x vLLM 0.15
 
 ```bash
@@ -1454,7 +1452,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --max-model-len 40960 \
   --disable-cascade-attn
 ```
-
 ### Qwen3-235B-A22B-Instruct-2507 IFB K100_AI 8x vLLM 0.15
 
 ```bash
@@ -1468,9 +1465,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --max-model-len 40960 \
   --disable-cascade-attn
 ```
-
-
-
 ### Qwen3-235B-A22B IFB BW1100 4x vLLM 0.18
 
 ```bash
@@ -1760,3 +1754,4 @@ response = client.chat.completions.create(
 )
 print(response.choices[0].message.tool_calls)
 ```
+

@@ -171,7 +171,6 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 ### Qwen3-0.6B IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-0.6B \
   -tp 1 \
@@ -183,7 +182,6 @@ vllm serve Qwen/Qwen3-0.6B \
 ### Qwen3-0.6B IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-0.6B \
   -tp 1 \
@@ -290,7 +288,6 @@ vllm serve Qwen/Qwen3-0.6B \
 ### Qwen3-1.7B IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-1.7B \
   -tp 1 \
@@ -302,7 +299,6 @@ vllm serve Qwen/Qwen3-1.7B \
 ### Qwen3-1.7B IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-1.7B \
   -tp 1 \
@@ -401,7 +397,6 @@ vllm serve Qwen/Qwen3-1.7B \
 ### Qwen3-4B IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-4B \
   -tp 1 \
@@ -414,7 +409,6 @@ vllm serve Qwen/Qwen3-4B \
 ### Qwen3-4B IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-4B \
   -tp 1 \
@@ -516,7 +510,6 @@ vllm serve Qwen/Qwen3-4B \
 ### Qwen3-4B-Channel-INT8-w8a8 IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-4B-Channel-INT8-w8a8 \
   -tp  1 \
@@ -530,7 +523,6 @@ vllm serve Qwen/Qwen3-4B-Channel-INT8-w8a8 \
 ### Qwen3-4B-Channel-INT8-w8a8 IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-4B-Channel-INT8-w8a8 \
   -tp  1 \
@@ -638,7 +630,6 @@ vllm serve Qwen/Qwen3-4B-Thinking-2507 \
 ### Qwen3-8B IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-8B \
   -tp 1 \
@@ -651,7 +642,6 @@ vllm serve Qwen/Qwen3-8B \
 ### Qwen3-8B IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-8B \
   -tp 1 \
@@ -753,7 +743,6 @@ vllm serve Qwen/Qwen3-8B \
 ### Qwen3-8B-Channel-INT8-w8a8 IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-8B-Channel-INT8-w8a8 \
   -tp  1 \
@@ -767,7 +756,6 @@ vllm serve Qwen/Qwen3-8B-Channel-INT8-w8a8 \
 ### Qwen3-8B-Channel-INT8-w8a8 IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-8B-Channel-INT8-w8a8 \
   -tp  1 \
@@ -837,7 +825,6 @@ vllm serve Qwen/Qwen3-8B-Channel-INT8-w8a8 \
 ### Qwen3-14B IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-14B \
   -tp 1 \
@@ -850,7 +837,6 @@ vllm serve Qwen/Qwen3-14B \
 ### Qwen3-14B IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-14B \
   -tp 1 \
@@ -952,7 +938,6 @@ vllm serve Qwen/Qwen3-14B \
 ### Qwen3-14B-Channel-INT8-w8a8 IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-14B-Channel-INT8-w8a8 \
   -tp  1 \
@@ -966,7 +951,6 @@ vllm serve Qwen/Qwen3-14B-Channel-INT8-w8a8 \
 ### Qwen3-14B-Channel-INT8-w8a8 IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-14B-Channel-INT8-w8a8 \
   -tp  1 \
@@ -1036,7 +1020,6 @@ vllm serve Qwen/Qwen3-14B-Channel-INT8-w8a8 \
 ### Qwen3-32B IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-32B \
   -tp 1 \
@@ -1049,7 +1032,6 @@ vllm serve Qwen/Qwen3-32B \
 ### Qwen3-32B IFB BW1000 2x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-32B \
   -tp 2 \
@@ -1196,7 +1178,6 @@ vllm serve Qwen3-32B.w8a8 \
 ### Qwen3-30B-A3B-Instruct-2507 IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
   -tp 1 \
   --trust-remote-code \
@@ -1209,7 +1190,6 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
 ### Qwen3-30B-A3B-Instruct-2507 IFB BW1000 2x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
   -tp 2 \
   --trust-remote-code \
@@ -1324,7 +1304,6 @@ vllm serve Qwen/Qwen3-30B-A3B \
 ### Qwen3-30B-A3B-Instruct-2507-W8A8-INT8 IFB BW1100 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507-W8A8 \
   -tp  1 \
@@ -1338,7 +1317,6 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507-W8A8 \
 ### Qwen3-30B-A3B-Instruct-2507-W8A8-INT8 IFB BW1000 1x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507-W8A8 \
   -tp 1 \
@@ -1581,7 +1559,6 @@ vllm serve Qwen/Qwen3-235B-A22B \
 ### Qwen3-235B-A22B-Channel-INT8-w8a8 IFB BW1100 2x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8  \
   -tp  2 \
@@ -1597,7 +1574,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8  \
 ### Qwen3-235B-A22B-Channel-INT8-w8a8 IFB BW1000 4x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8 \
   -tp  4 \
@@ -1684,7 +1660,6 @@ vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8 \
 ### Qwen3-235B-A22B-FP8-Channelwise IFB BW1100 4x vLLM 0.21
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen3-235B-A22B-FP8-Channelwise \
   -tp 4 \

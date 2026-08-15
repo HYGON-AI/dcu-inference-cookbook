@@ -19,9 +19,9 @@ Hy3 是由腾讯混元团队开发的一款拥有 2950 亿参数的混合专家�
 以下示例为单节点部署。
 
 ```bash
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export GPU_MAX_HW_QUEUES=4
-export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 
 vllm serve hygon/Hy3-Channel-FP8-w8a8 \
   -q slimquant_marlin \
@@ -43,9 +43,6 @@ vllm serve hygon/Hy3-Channel-FP8-w8a8 \
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
-export ROCSHMEM_HEAP_SIZE=5368709120
-export ROCSHMEM_IPC_MNVL=1
-export VLLM_DEEPEP_BUFFER_SIZE_MB=0
 export GPU_MAX_HW_QUEUES=4
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 
@@ -81,8 +78,6 @@ P node 0 和 P node 1 分别使用服务端口 `8010` 和 `8011`。
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export GPU_MAX_HW_QUEUES=4
-export ROCSHMEM_HEAP_SIZE=5368709120
-export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 export VLLM_MOONCAKE_BOOTSTRAP_PORT=8998
 
 vllm serve hygon/Hy3-Channel-FP8-w8a8 \
@@ -115,8 +110,6 @@ vllm serve hygon/Hy3-Channel-FP8-w8a8 \
 export HIP_VISIBLE_DEVICES=8,9,10,11,12,13,14,15
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export GPU_MAX_HW_QUEUES=4
-export ROCSHMEM_HEAP_SIZE=5368709120
-export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 export VLLM_MOONCAKE_BOOTSTRAP_PORT=8998
 
 vllm serve hygon/Hy3-Channel-FP8-w8a8 \
@@ -147,12 +140,8 @@ vllm serve hygon/Hy3-Channel-FP8-w8a8 \
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
-export ROCSHMEM_HEAP_SIZE=5368709120
-export ROCSHMEM_IPC_MNVL=1
-export VLLM_DEEPEP_BUFFER_SIZE_MB=0
 export GPU_MAX_HW_QUEUES=4
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 
 vllm serve hygon/Hy3-Channel-FP8-w8a8 \
   --trust-remote-code \

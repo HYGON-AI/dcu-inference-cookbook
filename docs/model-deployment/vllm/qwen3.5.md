@@ -132,8 +132,8 @@ vllm serve Qwen/Qwen3.5-4B \
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_ROCM_USE_AITER=0
 
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3.5-4B \
   -tp 1 \
   --trust-remote-code \
@@ -256,8 +256,8 @@ vllm serve Qwen/Qwen3.5-9B \
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_ROCM_USE_AITER=0
 
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3.5-9B \
   -tp 1 \
   --trust-remote-code \
@@ -380,8 +380,8 @@ vllm serve Qwen/Qwen3.5-27B \
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_ROCM_USE_AITER=0
 
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3.5-27B \
   -tp 2 \
   --trust-remote-code \
@@ -508,8 +508,8 @@ vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_ROCM_USE_AITER=0
 
+export VLLM_ROCM_USE_AITER=0
 vllm serve hygon/Qwen3.5-27B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
@@ -642,8 +642,8 @@ vllm serve Qwen/Qwen3.5-35B-A3B \
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_ROCM_USE_AITER=0
 
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3.5-35B-A3B \
   -tp 2 \
   --trust-remote-code \
@@ -778,8 +778,8 @@ vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_ROCM_USE_AITER=0
 
+export VLLM_ROCM_USE_AITER=0
 vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
   -tp 1 \
   --trust-remote-code \
@@ -959,8 +959,8 @@ vllm serve Qwen/Qwen3.5-122B-A10B \
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_ROCM_USE_AITER=0
 
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3.5-122B-A10B \
   -tp 8 \
   --trust-remote-code \
@@ -1095,8 +1095,8 @@ vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_ROCM_USE_AITER=0
 
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
   -tp 4 \
   --trust-remote-code \
@@ -1278,8 +1278,8 @@ vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_ROCM_USE_AITER=0
 
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
   -tp 8 \
   --trust-remote-code \

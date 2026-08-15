@@ -145,9 +145,10 @@ vllm serve Qwen/Qwen3-VL-2B-Instruct \
 ### Qwen3-VL-2B-Instruct IFB K100_AI 1x vLLM 0.21
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-2B-Instruct \
   -tp 1 \
   --trust-remote-code 
@@ -232,9 +233,10 @@ vllm serve Qwen/Qwen3-VL-2B-Thinking \
 ### Qwen3-VL-2B-Thinking IFB K100_AI 1x vLLM 0.21
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-2B-Thinking \
   -tp 1 \
   --trust-remote-code 
@@ -319,9 +321,10 @@ vllm serve Qwen/Qwen3-VL-4B-Instruct \
 ### Qwen3-VL-4B-Instruct IFB K100_AI 1x vLLM 0.21
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-4B-Instruct \
   -tp 1 \
   --trust-remote-code 
@@ -406,9 +409,10 @@ vllm serve Qwen/Qwen3-VL-4B-Thinking \
 ### Qwen3-VL-4B-Thinking IFB K100_AI 1x vLLM 0.21
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-4B-Thinking \
   -tp 1 \
   --trust-remote-code 
@@ -493,9 +497,10 @@ vllm serve Qwen/Qwen3-VL-8B-Instruct \
 ### Qwen3-VL-8B-Instruct IFB K100_AI 1x vLLM 0.21
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-8B-Instruct \
   -tp 1 \
   --trust-remote-code 
@@ -580,9 +585,10 @@ vllm serve Qwen/Qwen3-VL-8B-Thinking \
 ### Qwen3-VL-8B-Thinking IFB K100_AI 1x vLLM 0.21
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-8B-Thinking \
   -tp 1 \
   --trust-remote-code 
@@ -667,9 +673,10 @@ vllm serve Qwen/Qwen3-VL-30B-A3B-Instruct \
 ### Qwen3-VL-30B-A3B-Instruct IFB K100_AI 2x vLLM 0.21
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-30B-A3B-Instruct \
   -tp 2 \
   --trust-remote-code 
@@ -756,9 +763,10 @@ vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
 ### Qwen3-VL-30B-A3B-Thinking IFB K100_AI 2x vLLM 0.21
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
   -tp 2 \
   --trust-remote-code 
@@ -843,9 +851,10 @@ vllm serve Qwen/Qwen3-VL-32B-Instruct \
 ### Qwen3-VL-32B-Instruct IFB K100_AI 2x vLLM 0.21
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-32B-Instruct \
   -tp 2 \
   --trust-remote-code 
@@ -955,9 +964,10 @@ vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
 ### Qwen3-VL-235B-A22B-Instruct IFB K100_AI 16x vLLM 0.21
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
   -tp 8 \
   -pp 2 \
@@ -1073,9 +1083,10 @@ vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
 ### Qwen3-VL-235B-A22B-Thinking IFB K100_AI 16x vLLM 0.21
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
   -tp 8 \
   -pp 2 \

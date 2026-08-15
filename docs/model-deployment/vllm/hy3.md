@@ -10,6 +10,7 @@ Hy3 是由腾讯混元团队开发的一款拥有 2950 亿参数的混合专家�
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
 | [hygon/Hy3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Hy3-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#hy3-channel-fp8-w8a8-ifb-bw1100-8x-vllm-021) |
 | [hygon/Hy3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Hy3-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100(超节点) | 16 | IFB | [**`>_`**](#hy3-channel-fp8-w8a8-ifb-bw1100-16x-vllm-021) |
+| [hygon/Hy3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Hy3-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100(风冷) | 24 | 1P2D | [**`>_`**](#hy3-channel-fp8-w8a8-1p2d-bw1100-24x-vllm-021) |
 | [hygon/Hy3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Hy3-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100(超节点) | 32 | 2P1D | [**`>_`**](#hy3-channel-fp8-w8a8-2p1d-bw1100-32x-vllm-021) |
 
 ## 启动命令
@@ -66,6 +67,110 @@ vllm serve hygon/Hy3-Channel-FP8-w8a8 \
   --data-parallel-rpc-port 1127 \
   --kv-cache-dtype fp8_e4m3 \
   --speculative_config '{"method":"mtp","num_speculative_tokens":2, "quantization": "slimquant_marlin"}'
+```
+
+### Hy3-Channel-FP8-w8a8 1P2D BW1100 24x vLLM 0.21
+
+P node 使用服务端口 `8010`，D node 0 和 D node 1 使用服务端口 `8011`。Proxy 使用服务端口 `8518`。
+
+#### P node
+
+```bash
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_HCU_USE_FUSED_QKV_SPLIT_RMS_ROPE_KVSTORE=0
+export GPU_MAX_HW_QUEUES=4
+
+vllm serve hygon/Hy3-Channel-FP8-w8a8 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 2 \
+  --speculative-config.quantization "slimquant_marlin" \
+  -q slimquant_marlin \
+  --max-model-len 262144 \
+  --max-num-batched-tokens 8192 \
+  --max-num-seqs 128 \
+  --dtype bfloat16 \
+  --tensor-parallel-size 8 \
+  --no-enable-prefix-caching \
+  --tool-call-parser hy_v3 \
+  --reasoning-parser hy_v3 \
+  --enable-auto-tool-choice \
+  --enable-custom-sp \
+  --enforce-eager \
+  --kv_cache_dtype fp8_e4m3 \
+  --port 8010 \
+  --enable-expert-parallel \
+  --all2all_backend deepep_high_throughput \
+  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_producer"}'
+```
+
+#### D node 0
+
+```bash
+export GPU_MAX_HW_QUEUES=4
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve hygon/Hy3-Channel-FP8-w8a8 \
+  --trust-remote-code \
+  -dp 16 \
+  -tp 1 \
+  -q slimquant_marlin \
+  --enable-expert-parallel \
+  --all2all_backend=deepep_low_latency \
+  --dtype bfloat16 \
+  --enable-chunked-prefill \
+  --max-num-seqs 256 \
+  --enable-prefix-caching \
+  --block-size 64 \
+  --gpu-memory-utilization 0.89 \
+  --data-parallel-size-local 8 \
+  --data-parallel-address <D端主节点ip> \
+  --data-parallel-rpc-port 1127 \
+  --data-parallel-start-rank 0 \
+  --kv-cache-dtype fp8_e4m3 \
+  --port 8011 \
+  --api-server-count 1 \
+  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}' \
+  --speculative_config '{"method":"mtp","num_speculative_tokens":2, "quantization": "slimquant_marlin"}'
+```
+
+#### D node 1
+
+```bash
+export GPU_MAX_HW_QUEUES=4
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve hygon/Hy3-Channel-FP8-w8a8 \
+  --trust-remote-code \
+  -dp 16 \
+  -tp 1 \
+  -q slimquant_marlin \
+  --enable-expert-parallel \
+  --all2all_backend=deepep_low_latency \
+  --dtype bfloat16 \
+  --enable-chunked-prefill \
+  --max-num-seqs 256 \
+  --enable-prefix-caching \
+  --block-size 64 \
+  --gpu-memory-utilization 0.89 \
+  --data-parallel-size-local 8 \
+  --data-parallel-address <D端主节点ip> \
+  --data-parallel-rpc-port 1127 \
+  --data-parallel-start-rank 8 \
+  --kv-cache-dtype fp8_e4m3 \
+  --port 8011 \
+  --api-server-count 1 \
+  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}' \
+  --speculative_config '{"method":"mtp","num_speculative_tokens":2, "quantization": "slimquant_marlin"}' \
+  --headless
+```
+
+#### Proxy
+
+```bash
+python3 mooncake_connector_proxy.py \
+  --prefill <P端IP>:8010 \
+  --decode <D端IP>:8011 \
+  --port 8518
 ```
 
 ### Hy3-Channel-FP8-w8a8 2P1D BW1100 32x vLLM 0.21
@@ -246,3 +351,4 @@ curl http://<P_node0_ip>:8010/v1/chat/completions \
   "temperature": 0.0
   }'
 ```
+

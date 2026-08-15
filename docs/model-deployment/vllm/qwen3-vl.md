@@ -148,6 +148,7 @@ vllm serve Qwen/Qwen3-VL-2B-Instruct \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-2B-Instruct \
   -tp 1 \
   --trust-remote-code 
@@ -235,6 +236,7 @@ vllm serve Qwen/Qwen3-VL-2B-Thinking \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-2B-Thinking \
   -tp 1 \
   --trust-remote-code 
@@ -322,6 +324,7 @@ vllm serve Qwen/Qwen3-VL-4B-Instruct \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-4B-Instruct \
   -tp 1 \
   --trust-remote-code 
@@ -409,6 +412,7 @@ vllm serve Qwen/Qwen3-VL-4B-Thinking \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-4B-Thinking \
   -tp 1 \
   --trust-remote-code 
@@ -496,6 +500,7 @@ vllm serve Qwen/Qwen3-VL-8B-Instruct \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-8B-Instruct \
   -tp 1 \
   --trust-remote-code 
@@ -583,6 +588,7 @@ vllm serve Qwen/Qwen3-VL-8B-Thinking \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-8B-Thinking \
   -tp 1 \
   --trust-remote-code 
@@ -670,6 +676,7 @@ vllm serve Qwen/Qwen3-VL-30B-A3B-Instruct \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-30B-A3B-Instruct \
   -tp 2 \
   --trust-remote-code 
@@ -759,6 +766,7 @@ vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-30B-A3B-Thinking \
   -tp 2 \
   --trust-remote-code 
@@ -846,6 +854,7 @@ vllm serve Qwen/Qwen3-VL-32B-Instruct \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-32B-Instruct \
   -tp 2 \
   --trust-remote-code 
@@ -958,6 +967,7 @@ vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
   -tp 8 \
   -pp 2 \
@@ -1076,6 +1086,7 @@ vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
   -tp 8 \
   -pp 2 \

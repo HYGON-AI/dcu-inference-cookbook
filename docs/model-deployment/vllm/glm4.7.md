@@ -61,6 +61,7 @@ vllm serve hygon/GLM-4.7-Channel-INT8-w8a8 \
 export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_ROCM_USE_AITER=0
 
 vllm serve hygon/GLM-4.7-Channel-INT8-w8a8 \
   -tp 8 \

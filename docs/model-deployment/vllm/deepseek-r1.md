@@ -78,6 +78,7 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_ROCM_USE_AITER=0
 
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
   --dtype float16 \
@@ -117,6 +118,7 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_ROCM_USE_AITER=0
 
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --dtype float16 \
@@ -156,6 +158,7 @@ vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
 ```bash
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_ROCM_USE_AITER=0
 
 vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
   --dtype float16 \

@@ -85,6 +85,7 @@ vllm serve Qwen/Qwen2-0.5B-Instruct \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 
 vllm serve Qwen/Qwen2-0.5B-Instruct \
   -tp 1 \
@@ -191,6 +192,7 @@ vllm serve Qwen/Qwen2-1.5B-Instruct \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 
 vllm serve Qwen/Qwen2-1.5B-Instruct \
   -tp 1 \
@@ -297,6 +299,7 @@ vllm serve Qwen/Qwen2-7B-Instruct \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 
 vllm serve Qwen/Qwen2-7B-Instruct \
   -tp 1 \
@@ -403,6 +406,7 @@ vllm serve Qwen/Qwen2-57B-A14B-Instruct \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 
 vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   -tp 4 \
@@ -509,6 +513,7 @@ vllm serve Qwen/Qwen2-72B-Instruct \
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_USE_MODELSCOPE=1
+export VLLM_ROCM_USE_AITER=0
 
 vllm serve Qwen/Qwen2-72B-Instruct \
   -tp 4 \

@@ -142,7 +142,9 @@ python3 mooncake_connector_proxy.py \
   --prefill <P端IP>:8010 \
   --decode <D端IP>:8011 \
   --port 8518
-```### Hy3-Channel-FP8-w8a8 IFB BW1100 16x vLLM 0.21
+```
+
+### Hy3-Channel-FP8-w8a8 IFB BW1100 16x vLLM 0.21
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15

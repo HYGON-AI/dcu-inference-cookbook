@@ -43,7 +43,6 @@ vllm serve hygon/Hy3-Channel-FP8-w8a8 \
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
-export VLLM_DEEPEP_BUFFER_SIZE_MB=0
 export GPU_MAX_HW_QUEUES=4
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 
@@ -141,7 +140,6 @@ vllm serve hygon/Hy3-Channel-FP8-w8a8 \
 
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
-export VLLM_DEEPEP_BUFFER_SIZE_MB=0
 export GPU_MAX_HW_QUEUES=4
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 

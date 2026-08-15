@@ -1394,6 +1394,7 @@ export VLLM_ROCM_USE_AITER_MOE=0
 vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   -tp 4 \
   --trust-remote-code \
+  --max-model-len 32768 \
   --max-num-batched-tokens 10240 \
   --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
@@ -1408,6 +1409,7 @@ export VLLM_ROCM_USE_AITER_MOE=0
 vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   -tp 8 \
   --trust-remote-code \
+  --max-model-len 32768 \
   --max-num-batched-tokens 10240 \
   --gpu-memory-utilization 0.95 \
   --attention-backend FLASH_ATTN_CUSTOM

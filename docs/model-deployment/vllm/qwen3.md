@@ -157,6 +157,7 @@ vllm serve Qwen/Qwen3-0.6B \
 
 ```bash
 
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-0.6B \
@@ -271,9 +272,9 @@ vllm serve Qwen/Qwen3-1.7B \
 ### Qwen3-1.7B IFB K100_AI 1x vLLM 0.21
 
 ```bash
+
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-
 export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-1.7B \
   -tp 1 \
@@ -373,9 +374,9 @@ vllm serve Qwen/Qwen3-4B \
 ### Qwen3-4B IFB K100_AI 1x vLLM 0.21
 
 ```bash
+
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-
 export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-4B \
   -tp 1 \
@@ -558,9 +559,9 @@ vllm serve Qwen/Qwen3-4B-Thinking-2507 \
 ### Qwen3-4B-Thinking-2507 IFB K100_AI 1x vLLM 0.21
 
 ```bash
+
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-
 export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-4B-Thinking-2507 \
   -tp 1 \
@@ -606,9 +607,9 @@ vllm serve Qwen/Qwen3-8B \
 ### Qwen3-8B IFB K100_AI 1x vLLM 0.21
 
 ```bash
+
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-
 export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-8B \
   -tp 1 \
@@ -788,9 +789,9 @@ vllm serve Qwen/Qwen3-14B \
 ### Qwen3-14B IFB K100_AI 1x vLLM 0.21
 
 ```bash
+
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-
 export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-14B \
   -tp 1 \
@@ -970,9 +971,9 @@ vllm serve Qwen/Qwen3-32B \
 ### Qwen3-32B IFB K100_AI 2x vLLM 0.21
 
 ```bash
+
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-
 export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-32B \
   -tp 2 \
@@ -1085,9 +1086,9 @@ vllm serve Qwen3-32B.w8a8 \
 
 ```bash
 
+
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-
 export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen3-32B.w8a8 \
   -tp 4 \
@@ -1137,9 +1138,9 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
 ### Qwen3-30B-A3B-Instruct-2507 IFB K100_AI 2x vLLM 0.21
 
 ```bash
+
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-
 export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
   -tp 2 \
@@ -1534,9 +1535,9 @@ vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8 \
 ### Qwen3-235B-A22B-Channel-INT8-w8a8 IFB K100_AI 4x vLLM 0.21
 
 ```bash
+
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-
 export VLLM_ROCM_USE_AITER=0
 vllm serve hygon/Qwen3-235B-A22B-Channel-INT8-w8a8 \
   -tp 4 \

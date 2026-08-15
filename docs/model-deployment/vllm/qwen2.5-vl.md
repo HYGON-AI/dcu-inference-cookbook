@@ -163,6 +163,7 @@ vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
 ### Qwen2.5-VL-72B-Instruct IFB K100_AI 8x vLLM 0.21
 
 ```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen2.5-VL-72B-Instruct \

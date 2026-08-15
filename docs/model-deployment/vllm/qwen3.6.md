@@ -59,9 +59,9 @@ vllm serve Qwen/Qwen3.6-27B \
 ### Qwen3.6-27B IFB K100_AI 2x vLLM 0.21
 
 ```bash
+
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-
 export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3.6-27B \
   -tp 2 \
@@ -186,9 +186,9 @@ vllm serve Qwen/Qwen3.6-35B-A3B \
 ### Qwen3.6-35B-A3B IFB K100_AI 2x vLLM 0.21
 
 ```bash
+
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
-
 export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen3.6-35B-A3B \
   -tp 2 \

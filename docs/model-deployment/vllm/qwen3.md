@@ -114,6 +114,9 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 |  | BF16 | 0.15 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-4x-vllm-015) |
 |  | BF16 | 0.15 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-vllm-015) |
 |  | BF16 | 0.15 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-vllm-015) |
+| [Qwen/Qwen3-Next-80B-A3B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-Next-80B-A3B-Instruct) | FP16 | 0.21 | BW1100 | 4 | IFB | [**`>_`**](#qwen3-next-80b-a3b-instruct-ifb-bw1100-4x-vllm-021) |
+|  | FP16 | 0.21 | BW1000 | 4 | IFB | [**`>_`**](#qwen3-next-80b-a3b-instruct-ifb-bw1000-4x-vllm-021) |
+| [Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8-Dynamic](https://www.modelscope.cn/models/Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8-Dynamic) | FP8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#qwen3-coder-480b-a35b-instruct-fp8-dynamic-ifb-bw1100-8x-vllm-021) |
 | [Qwen/Qwen3-235B-A22B](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B) | BF16 | [0.18](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen3-235b-a22b-ifb-bw1100-4x-vllm-018) |
 |  | BF16 | [0.18](../docker_images.md) | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-ifb-bw1000-8x-vllm-018) |
 |  | BF16 | [0.18](../docker_images.md) | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-ifb-k100_ai-8x-vllm-018) |
@@ -1432,6 +1435,53 @@ vllm serve Qwen/Qwen3-235B-A22B-Instruct-2507 \
   --gpu-memory-utilization 0.95 \
   --max-model-len 40960 \
   --disable-cascade-attn
+```
+
+### Qwen3-Next-80B-A3B-Instruct IFB BW1100 4x vLLM 0.21
+
+```bash
+vllm serve Qwen/Qwen3-Next-80B-A3B-Instruct \
+  --dtype float16 \
+  --tensor-parallel-size 4 \
+  --gpu-memory-utilization 0.9 \
+  --max-num-seqs 128 \
+  --trust-remote-code \
+  --moe-backend triton \
+  --compilation-config \
+    '{"mode":"NONE","cudagraph_mode":"FULL_DECODE_ONLY"}'
+```
+
+### Qwen3-Next-80B-A3B-Instruct IFB BW1000 4x vLLM 0.21
+
+```bash
+vllm serve Qwen/Qwen3-Next-80B-A3B-Instruct \
+  --dtype float16 \
+  --tensor-parallel-size 4 \
+  --gpu-memory-utilization 0.9 \
+  --max-num-seqs 128 \
+  --trust-remote-code \
+  --moe-backend triton \
+  --compilation-config \
+    '{"mode":"NONE","cudagraph_mode":"FULL_DECODE_ONLY"}'
+```
+
+### Qwen3-Coder-480B-A35B-Instruct-FP8-Dynamic IFB BW1100 8x vLLM 0.21
+
+```bash
+vllm serve /models/Qwen3-Coder-480B-A35B-Instruct-FP8-Dynamic \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --max-model-len 262144 \
+  -tp 8 \
+  --gpu-memory-utilization 0.9 \
+  --max-num-seqs 128 \
+  --block-size 64 \
+  --max-num-batched-tokens 16384 \
+  --no-enable-prefix-caching \
+  --enable-chunked-prefill \
+  --kv-cache-dtype fp8_e4m3 \
+  --moe-backend triton \
+  --compilation-config '{"pass_config": {"fuse_act_quant": false}}'
 ```
 
 ### Qwen3-235B-A22B IFB BW1100 4x vLLM 0.18

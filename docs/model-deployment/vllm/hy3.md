@@ -172,7 +172,6 @@ python3 mooncake_connector_proxy.py \
   --decode <D端IP>:8011 \
   --port 8518
 ```
-
 ### Hy3-Channel-FP8-w8a8 2P1D BW1100 32x vLLM 0.21
 
 P node 0 和 P node 1 分别使用服务端口 `8010` 和 `8011`。
@@ -351,4 +350,3 @@ curl http://<P_node0_ip>:8010/v1/chat/completions \
   "temperature": 0.0
   }'
 ```
-

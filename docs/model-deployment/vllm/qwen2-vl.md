@@ -53,7 +53,8 @@ vllm serve Qwen/Qwen2-VL-2B-Instruct \
     -tp 1 \
     --trust-remote-code \
     --gpu-memory-utilization 0.95 \
-    --chat-template-content-format openai
+    --chat-template-content-format openai \
+    --attention-backend TRITON_ATTN
 ```
 ### Qwen2-VL-2B IFB BW1100 1x vLLM 0.18
 

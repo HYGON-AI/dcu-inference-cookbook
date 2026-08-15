@@ -68,7 +68,9 @@ vllm serve Qwen/Qwen3.6-27B \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
-  --speculative-config.num_speculative_tokens 3
+  --speculative-config.num_speculative_tokens 3 \
+  --speculative-config.attention_backend TRITON_ATTN \
+  --attention-backend TRITON_ATTN
 ```
 
 ### Qwen3.6-27B IFB BW1100 1x vLLM 0.18
@@ -195,7 +197,9 @@ vllm serve Qwen/Qwen3.6-35B-A3B \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
-  --speculative-config.num_speculative_tokens 3
+  --speculative-config.num_speculative_tokens 3 \
+  --speculative-config.attention_backend TRITON_ATTN \
+  --attention-backend TRITON_ATTN
 ```
 
 ### Qwen3.6-35B-A3B IFB BW1100 1x vLLM 0.18

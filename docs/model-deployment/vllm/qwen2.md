@@ -89,7 +89,8 @@ export VLLM_ROCM_USE_AITER=0
 
 vllm serve Qwen/Qwen2-0.5B-Instruct \
   -tp 1 \
-  --trust-remote-code
+  --trust-remote-code \
+  --attention-backend TRITON_ATTN
 ```
 
 ### Qwen2-0.5B-Instruct IFB BW1100 1x vLLM 0.18
@@ -196,7 +197,8 @@ export VLLM_ROCM_USE_AITER=0
 
 vllm serve Qwen/Qwen2-1.5B-Instruct \
   -tp 1 \
-  --trust-remote-code
+  --trust-remote-code \
+  --attention-backend TRITON_ATTN
 ```
 
 ### Qwen2-1.5B-Instruct IFB BW1100 1x vLLM 0.18
@@ -303,7 +305,8 @@ export VLLM_ROCM_USE_AITER=0
 
 vllm serve Qwen/Qwen2-7B-Instruct \
   -tp 1 \
-  --trust-remote-code
+  --trust-remote-code \
+  --attention-backend TRITON_ATTN
 ```
 
 ### Qwen2-7B-Instruct IFB BW1100 1x vLLM 0.18
@@ -410,7 +413,8 @@ export VLLM_ROCM_USE_AITER=0
 
 vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   -tp 4 \
-  --trust-remote-code
+  --trust-remote-code \
+  --attention-backend TRITON_ATTN
 ```
 
 ### Qwen2-57B-A14B-Instruct IFB BW1100 2x vLLM 0.18
@@ -517,7 +521,8 @@ export VLLM_ROCM_USE_AITER=0
 
 vllm serve Qwen/Qwen2-72B-Instruct \
   -tp 4 \
-  --trust-remote-code
+  --trust-remote-code \
+  --attention-backend TRITON_ATTN
 ```
 
 ### Qwen2-72B-Instruct IFB BW1100 2x vLLM 0.18

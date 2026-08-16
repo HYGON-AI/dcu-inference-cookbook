@@ -63,6 +63,7 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     --trust-remote-code \
     --max-model-len 32768 \
     --allowed-local-media-path /path-to/VL_data/ \
+    --attention-backend TRITON_ATTN
 ```
 ### Qwen2.5-VL-32B-Instruct IFB BW1100 1x vLLM 0.18
 
@@ -171,7 +172,7 @@ vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
   --trust-remote-code \
   --enable-chunked-prefill \
   --max-model-len 32768 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend TRITON_ATTN
 ```
 
 ### Qwen2.5-VL-72B-Instruct IFB BW1100 4x vLLM 0.18

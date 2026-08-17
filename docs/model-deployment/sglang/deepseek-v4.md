@@ -280,7 +280,7 @@ echo "devices: ${HIP_VISIBLE_DEVICES}"
 echo "port: ${PORT}"
 echo "log: ${SERVE_LOG}"
 
-python -m sglang.launch_server \
+sglang serve \
   --trust-remote-code \
   --model-path "${MODEL_PATH}" \
   --tokenizer-path "${TOKENIZER_PATH}" \
@@ -435,7 +435,7 @@ mkdir -p "$(dirname "${SERVE_LOG}")"
 exec > >(tee -a "${SERVE_LOG}") 2>&1
 
 
-python -m sglang.launch_server \
+sglang serve \
   --model-path "${MODEL_PATH}" \
   --tokenizer-path "${TOKENIZER_PATH}" \
   --tp-size "${TP}" \

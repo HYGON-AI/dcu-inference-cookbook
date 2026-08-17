@@ -168,8 +168,8 @@ export SGLANG_DISAGGREGATION_WAITING_TIMEOUT=1800
 sglang serve \
   --model-path hygon/DeepSeek-V4-Flash-Channel-FP8-w8a8 \
   --trust-remote-code \
-  --tp-size 8 \
-  --dp-size 8 \
+  --tp 8 \
+  --dp 8 \
   --enable-dp-attention \
   --enable-dp-lm-head \
   --moe-dense-tp-size=1 \

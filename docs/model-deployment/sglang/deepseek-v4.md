@@ -423,7 +423,7 @@ export SGLANG_USE_LIGHTOP_EP_MOE_ALIGN=false
 export TP="${TP:-16}"
 export PP="${PP:-1}"
 export EP_SIZE="${EP_SIZE:-16}"
-export DP_SIZE="${DP:-16}"
+export DP_SIZE="${DP_SIZE:-16}"
 export MOE_DENSE_TP_SIZE="${MOE_DENSE_TP_SIZE:-1}"
 export NNODES="${NNODES:-2}"
 export DIST_INIT_ADDR="${DIST_INIT_ADDR:-13.13.4.20:21000}" #按照实际
@@ -576,7 +576,7 @@ sglang serve  ${option} \
   --watchdog-timeout 3600 \
   --mem-fraction-static "${MEM_FRACTION_STATIC}" \
   --trust-remote-code \
-  --chunked-prefill-size 16384 \
+  --chunked-prefill-size "${CHUNKED_PREFILL_SIZE}" \
   --max-running-requests "${MAX_RUNNING_REQUESTS}" \
   --disable-flashinfer-autotune \
   --enable-nsa-prefill-context-parallel \
@@ -688,7 +688,7 @@ sglang serve  ${option} \
   --watchdog-timeout 3600 \
   --mem-fraction-static "${MEM_FRACTION_STATIC}" \
   --trust-remote-code \
-  --chunked-prefill-size 16384 \
+  --chunked-prefill-size "${CHUNKED_PREFILL_SIZE}" \
   --max-running-requests "${MAX_RUNNING_REQUESTS}" \
   --disable-flashinfer-autotune \
   --enable-nsa-prefill-context-parallel \
@@ -791,7 +791,7 @@ export SGLANG_ENABLE_HEALTH_ENDPOINT_GENERATION=0
 export TP="${TP:-16}"
 export PP="${PP:-1}"
 export EP_SIZE="${EP_SIZE:-16}"
-export DP_SIZE="${DP:-16}"
+export DP_SIZE="${DP_SIZE:-16}"
 export MOE_DENSE_TP_SIZE="${MOE_DENSE_TP_SIZE:-1}"
 export NNODES="${NNODES:-2}"
 export DIST_INIT_ADDR="${DIST_INIT_ADDR:-<D_node0_ip>:<D_dist_port>}" # 主从节点保持一致，均指向 D node 0
@@ -924,7 +924,7 @@ export SGLANG_ENABLE_HEALTH_ENDPOINT_GENERATION=0
 export TP="${TP:-16}"
 export PP="${PP:-1}"
 export EP_SIZE="${EP_SIZE:-16}"
-export DP_SIZE="${DP:-16}"
+export DP_SIZE="${DP_SIZE:-16}"
 export MOE_DENSE_TP_SIZE="${MOE_DENSE_TP_SIZE:-1}"
 export NNODES="${NNODES:-2}"
 export DIST_INIT_ADDR="${DIST_INIT_ADDR:-<D_node0_ip>:<D_dist_port>}" # 主从节点保持一致，均指向 D node 0
@@ -972,6 +972,8 @@ sglang serve \
 ```
 
 #### Router
+
+Router 只需填写 P node 0 和 D node 0（即 P/D rank 0）的服务地址，多节点中的其他节点无需填写。
 
 ```bash
 python3 -m sglang_router.launch_router \

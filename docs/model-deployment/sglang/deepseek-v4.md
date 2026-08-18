@@ -46,7 +46,7 @@ DeepSeek-V4 是 DeepSeek 系列的混合专家模型。本页汇总 DeepSeek-V4 
 
 ## ROCSHMEM 拓扑配置
 
-[`topo.config`](./configs/deepseek-v4/topo.config) 是 ROCSHMEM 拓扑映射参考。部署时请下载该文件，将其放到主节点和从节点均可访问的位置，并将 `ROCSHMEM_TOPO_FILE_FORCE=/XXXXX/topo.config` 中的路径替换为文件的实际绝对路径。文件中的 PCI 设备地址、IB 网卡名称和映射编号仅适用于生成该配置的环境，使用前必须按照实际硬件拓扑修改。
+[`topo.config`](./configs/deepseek-v4/topo.config) 是拓扑映射参考。部署时请下载该文件，将其放到主节点和从节点均可访问的位置，并将 `ROCSHMEM_TOPO_FILE_FORCE=/XXXXX/topo.config` 中的路径替换为文件的实际绝对路径。文件中的 PCI 设备地址、IB 网卡名称和映射编号仅适用于生成该配置的环境，使用前必须按照实际硬件拓扑修改。
 
 ## 启动命令
 

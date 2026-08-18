@@ -12,6 +12,7 @@ DeepSeek-V4 是 DeepSeek 系列的混合专家模型。本页汇总 DeepSeek-V4 
 |  | FP8 W8A8 | 0.5.12 | BW1100 | 8 | IFB(DP8EP8) | [**`>_`**](#deepseek-v4-flash-channel-fp8-w8a8-ifb-bw1100-8x-sglang-0512) |
 | [hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8) | FP8 W8A8 | 0.5.12 | BW1100 | 16 | IFB(CP8EP8PP2) | [**`>_`**](#deepseek-v4-pro-channel-fp8-w8a8-ifb-p-bw1100-16x-sglang-0512) |
 |  | FP8 W8A8 | 0.5.12 | BW1100 | 16 | IFB(EP16DP16) | [**`>_`**](#deepseek-v4-pro-channel-fp8-w8a8-ifb-d-bw1100-16x-sglang-0512) |
+|  | FP8 W8A8 | 0.5.12 | BW1100 | 32 | 2P2D | [**`>_`**](#deepseek-v4-pro-channel-fp8-w8a8-2p2d-bw1100-32x-sglang-0512) |
 
 ## DeepEP 配置
 
@@ -467,6 +468,419 @@ sglang serve \
   "$@"
 ```
 
+### DeepSeek-V4-Pro-Channel-FP8-w8a8 2P2D BW1100 32x SGLang 0.5.12
+
+网卡配置参考：[IB 网卡](../../troubleshooting/common-issues.md#ib网卡)。
+
+以下示例中 P/D 集群均由 2 个节点组成，每个节点使用 8 张卡。请将节点 IP、网卡名称、DeepEP 配置和 EPLB 文件路径替换为实际值。
+
+#### P node 0
+
+```bash
+export SGLANG_HEALTH_CHECK_TIMEOUT=10000
+export SGLANG_LIGHTOP_KVALLOC_KERNEL=1
+export SGLANG_DSV4_REQUEST_SCOPED_C128_STATE=true
+export SGLANG_OPT_USE_ONLINE_COMPRESS=false
+export SGLANG_DSV4_PD_PREFILL_USE_FULL_TOKEN_POOL=true
+export SGLANG_DISAGGREGATION_WAITING_TIMEOUT=1800
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1800
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export ROCSHMEM_MAX_NUM_CONTEXTS=60
+export ROCSHMEM_DISABLE_HDP_FLUSH=1
+export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=288
+export USE_DCU_CUSTOM_ALLREDUCE=0
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_LINEAR_BF16_FP32_USE_BLASLT=1
+export SGLANG_ROCM_USE_AITER_TILELANG_MHC=1
+export SGLANG_USE_DPSKV4_LIGHTOP_RMSNORM=1
+export SGLANG_USE_FP8_W8A8_MOE=1
+export SGLANG_USE_DEEPGEMM_MOE=1
+export SGLANG_ROCM_USE_AITER_MOE=1
+export SGLANG_OPT_USE_FUSED_STORE_CACHE="${SGLANG_OPT_USE_FUSED_STORE_CACHE:-false}"
+export SGLANG_OPT_USE_FUSED_HASH_TOPK="${SGLANG_OPT_USE_FUSED_HASH_TOPK:-true}"
+export SGLANG_OPT_SWIGLU_CLAMP_FUSION="${SGLANG_OPT_SWIGLU_CLAMP_FUSION:-false}"
+export SGLANG_TOPK_TRANSFORM_512_TORCH="${SGLANG_TOPK_TRANSFORM_512_TORCH:-false}"
+export SGLANG_OPT_USE_JIT_KERNEL_FUSED_TOPK="${SGLANG_OPT_USE_JIT_KERNEL_FUSED_TOPK:-false}"
+export SGLANG_JIT_DEEPGEMM_PRECOMPILE="${SGLANG_JIT_DEEPGEMM_PRECOMPILE:-0}"
+export SGLANG_ROCM_USE_AITER_MOE="${SGLANG_ROCM_USE_AITER_MOE:-false}"
+export SGLANG_DSV4_SPLIT_PREFILL_DECODE_MLA="${SGLANG_DSV4_SPLIT_PREFILL_DECODE_MLA:-0}"
+export SGLANG_DSV4_SPLIT_HCA_NONSPARSE_MLA="${SGLANG_DSV4_SPLIT_HCA_NONSPARSE_MLA:-false}"
+export SGLANG_DSV4_SPARSE_PREFILL_SINGLE_CALL="${SGLANG_DSV4_SPARSE_PREFILL_SINGLE_CALL:-false}"
+export SGLANG_DSV4_SPARSE_PREFILL_TRITON_GATHER="${SGLANG_DSV4_SPARSE_PREFILL_TRITON_GATHER:-false}"
+export SGLANG_DISABLED_MODEL_ARCHS="${SGLANG_DISABLED_MODEL_ARCHS:-midashenglm}"
+export SGLANG_DEBUG_DSV4_LOAD="${SGLANG_DEBUG_DSV4_LOAD:-0}"
+export SGLANG_APPLY_CONFIG_BACKUP="${SGLANG_APPLY_CONFIG_BACKUP:-none}"
+export GPU_MAX_HW_QUEUES=2
+export SGLANG_USE_LIGHTOP_EP_SCATTER=false
+export SGLANG_USE_LIGHTOP_EP_GATHER=false
+export SGLANG_USE_LIGHTOP_EP_MOE_ALIGN=false
+export SGLANG_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export HIP_KERNEL_BATCH_CEILING=100
+export HSA_KERNARG_POOL_SIZE=8388608
+export ROC_AQL_QUEUE_SIZE=131072
+export ROCSHMEM_IB_GID_INDEX=0
+export MC_ENABLE_DEST_DEVICE_AFFINITY=1
+export MC_IB_GID_INDEX=0
+export SGLANG_ENABLE_HEALTH_ENDPOINT_GENERATION=0
+export NCCL_SOCKET_IFNAME=ens61f1np1
+export GLOO_SOCKET_IFNAME=ens61f1np1
+export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
+
+sglang serve \
+  --model-path hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8 \
+  --tokenizer-path hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8 \
+  --served-model-name hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8 \
+  --trust-remote-code \
+  --tp-size 8 \
+  --pp-size 2 \
+  --ep-size 8 \
+  --nnodes 2 \
+  --node-rank 0 \
+  --dist-init-addr "<P_node0_ip>:5000" \
+  --dist-timeout 10000 \
+  --watchdog-timeout 3600 \
+  --mem-fraction-static 0.93 \
+  --chunked-prefill-size 16384 \
+  --max-running-requests 512 \
+  --disable-flashinfer-autotune \
+  --enable-nsa-prefill-context-parallel \
+  --nsa-prefill-cp-mode round-robin-split \
+  --deepep-config /public/home/mass/lijing/0711/deepep_config.json \
+  --moe-a2a-backend deepep \
+  --deepep-mode normal \
+  --init-expert-location /public/home/mass/lijing/0711/expert_distribution_recorder_1782542259.408945.pt \
+  --ep-dispatch-algorithm static \
+  --ep-num-redundant-experts 8 \
+  --eplb-algorithm deepseek \
+  --disaggregation-mode prefill \
+  --disable-cuda-graph \
+  --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 \
+  --skip-server-warmup \
+  --host "$(ip route get 1.1.1.1 | awk '/src/{print $7}')" \
+  --port 30000
+```
+
+#### P node 1
+
+```bash
+export SGLANG_HEALTH_CHECK_TIMEOUT=10000
+export SGLANG_LIGHTOP_KVALLOC_KERNEL=1
+export SGLANG_DSV4_REQUEST_SCOPED_C128_STATE=true
+export SGLANG_OPT_USE_ONLINE_COMPRESS=false
+export SGLANG_DSV4_PD_PREFILL_USE_FULL_TOKEN_POOL=true
+export SGLANG_DISAGGREGATION_WAITING_TIMEOUT=1800
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1800
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export ROCSHMEM_MAX_NUM_CONTEXTS=60
+export ROCSHMEM_DISABLE_HDP_FLUSH=1
+export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=288
+export USE_DCU_CUSTOM_ALLREDUCE=0
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_LINEAR_BF16_FP32_USE_BLASLT=1
+export SGLANG_ROCM_USE_AITER_TILELANG_MHC=1
+export SGLANG_USE_DPSKV4_LIGHTOP_RMSNORM=1
+export SGLANG_USE_FP8_W8A8_MOE=1
+export SGLANG_USE_DEEPGEMM_MOE=1
+export SGLANG_ROCM_USE_AITER_MOE=1
+export SGLANG_OPT_USE_FUSED_STORE_CACHE="${SGLANG_OPT_USE_FUSED_STORE_CACHE:-false}"
+export SGLANG_OPT_USE_FUSED_HASH_TOPK="${SGLANG_OPT_USE_FUSED_HASH_TOPK:-true}"
+export SGLANG_OPT_SWIGLU_CLAMP_FUSION="${SGLANG_OPT_SWIGLU_CLAMP_FUSION:-false}"
+export SGLANG_TOPK_TRANSFORM_512_TORCH="${SGLANG_TOPK_TRANSFORM_512_TORCH:-false}"
+export SGLANG_OPT_USE_JIT_KERNEL_FUSED_TOPK="${SGLANG_OPT_USE_JIT_KERNEL_FUSED_TOPK:-false}"
+export SGLANG_JIT_DEEPGEMM_PRECOMPILE="${SGLANG_JIT_DEEPGEMM_PRECOMPILE:-0}"
+export SGLANG_ROCM_USE_AITER_MOE="${SGLANG_ROCM_USE_AITER_MOE:-false}"
+export SGLANG_DSV4_SPLIT_PREFILL_DECODE_MLA="${SGLANG_DSV4_SPLIT_PREFILL_DECODE_MLA:-0}"
+export SGLANG_DSV4_SPLIT_HCA_NONSPARSE_MLA="${SGLANG_DSV4_SPLIT_HCA_NONSPARSE_MLA:-false}"
+export SGLANG_DSV4_SPARSE_PREFILL_SINGLE_CALL="${SGLANG_DSV4_SPARSE_PREFILL_SINGLE_CALL:-false}"
+export SGLANG_DSV4_SPARSE_PREFILL_TRITON_GATHER="${SGLANG_DSV4_SPARSE_PREFILL_TRITON_GATHER:-false}"
+export SGLANG_DISABLED_MODEL_ARCHS="${SGLANG_DISABLED_MODEL_ARCHS:-midashenglm}"
+export SGLANG_DEBUG_DSV4_LOAD="${SGLANG_DEBUG_DSV4_LOAD:-0}"
+export SGLANG_APPLY_CONFIG_BACKUP="${SGLANG_APPLY_CONFIG_BACKUP:-none}"
+export GPU_MAX_HW_QUEUES=2
+export SGLANG_USE_LIGHTOP_EP_SCATTER=false
+export SGLANG_USE_LIGHTOP_EP_GATHER=false
+export SGLANG_USE_LIGHTOP_EP_MOE_ALIGN=false
+export SGLANG_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export HIP_KERNEL_BATCH_CEILING=100
+export HSA_KERNARG_POOL_SIZE=8388608
+export ROC_AQL_QUEUE_SIZE=131072
+export ROCSHMEM_IB_GID_INDEX=0
+export MC_ENABLE_DEST_DEVICE_AFFINITY=1
+export MC_IB_GID_INDEX=0
+export SGLANG_ENABLE_HEALTH_ENDPOINT_GENERATION=0
+export NCCL_SOCKET_IFNAME=ens61f1np1
+export GLOO_SOCKET_IFNAME=ens61f1np1
+export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
+
+sglang serve \
+  --model-path hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8 \
+  --tokenizer-path hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8 \
+  --served-model-name hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8 \
+  --trust-remote-code \
+  --tp-size 8 \
+  --pp-size 2 \
+  --ep-size 8 \
+  --nnodes 2 \
+  --node-rank 1 \
+  --dist-init-addr "<P_node0_ip>:5000" \
+  --dist-timeout 10000 \
+  --watchdog-timeout 3600 \
+  --mem-fraction-static 0.93 \
+  --chunked-prefill-size 16384 \
+  --max-running-requests 512 \
+  --disable-flashinfer-autotune \
+  --enable-nsa-prefill-context-parallel \
+  --nsa-prefill-cp-mode round-robin-split \
+  --deepep-config /public/home/mass/lijing/0711/deepep_config.json \
+  --moe-a2a-backend deepep \
+  --deepep-mode normal \
+  --init-expert-location /public/home/mass/lijing/0711/expert_distribution_recorder_1782542259.408945.pt \
+  --ep-dispatch-algorithm static \
+  --ep-num-redundant-experts 8 \
+  --eplb-algorithm deepseek \
+  --disaggregation-mode prefill \
+  --disable-cuda-graph \
+  --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 \
+  --skip-server-warmup \
+  --host "$(ip route get 1.1.1.1 | awk '/src/{print $7}')" \
+  --port 30000
+```
+
+#### D node 0
+
+```bash
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+export PYTORCH_ALLOC_CONF=expandable_segments:True
+export SGLANG_LIGHTOP_KVALLOC_KERNEL=1
+export HIP_GRAPH_ACCUMULATE_DISPATCH=0
+export SGLANG_LIGHTOP_TOPK=true
+export SGLANG_OPT_USE_MULTI_STREAM_OVERLAP=false
+export SGLANG_DSV4_REQUEST_SCOPED_C128_STATE=true
+export SGLANG_OPT_USE_ONLINE_COMPRESS=false
+export SGLANG_DSV4_PD_PREFILL_USE_FULL_TOKEN_POOL=true
+export SGLANG_DISAGGREGATION_WAITING_TIMEOUT=1800
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1800
+export HIPBLASLT_TUNING_OVERRIDE_FILE=/public/home/mass/lijing/0711/ep16.config
+export SGLANG_NCCL_ALL_GATHER_IN_OVERLAP_SCHEDULER_SYNC_BATCH=1
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export SGLANG_HEALTH_CHECK_TIMEOUT=10000
+export HSA_ENABLE_COREDUMP=1
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
+export ROCSHMEM_MAX_NUM_CONTEXTS=60
+export ROCSHMEM_HEAP_SIZE=3173741824
+export ROCSHMEM_DISABLE_HDP_FLUSH=1
+export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=288
+export MC_IB_GID_INDEX=0
+export MC_ENABLE_DEST_DEVICE_AFFINITY=1
+export NCCL_SOCKET_IFNAME=ens61f1np1
+export GLOO_SOCKET_IFNAME=ens61f1np1
+export ROCSHMEM_TOPO_FILE_FORCE=/public/home/mass/lijing/0711/topo.config
+export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
+export ROCSHMEM_IB_GID_INDEX=0
+export SGLANG_DEEPEP_NUM_MAX_DISPATCH_TOKENS_PER_RANK=64
+export SGLANG_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export HIP_KERNEL_BATCH_CEILING=100
+export GPU_FORCE_BLIT_COPY_SIZE=16
+export HSA_KERNARG_POOL_SIZE=8388608
+export ROC_AQL_QUEUE_SIZE=131072
+export USE_DCU_CUSTOM_ALLREDUCE=0
+export SGLANG_ENABLE_SPEC_V2=1
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_OPT_CAT=1
+export SGLANG_USE_FUSED_MLA_CAT=1
+export SGLANG_USE_LIGHTOP_GROUP_FP8_QUANT=1
+export SGLANG_USE_LINEAR_BF16_FP32_USE_BLASLT=1
+export SGLANG_ROCM_USE_AITER_TILELANG_MHC=1
+export SGLANG_USE_DPSKV4_LIGHTOP_QUANT_K_CACHE=1
+export SGLANG_USE_DPSKV4_LIGHTOP_RMSNORM=1
+export SGLANG_USE_FP8_W8A8_MOE=1
+export SGLANG_USE_DEEPGEMM_MOE=1
+export SGLANG_ROCM_USE_AITER_MOE=1
+export SGLANG_OPT_USE_FUSED_STORE_CACHE="${SGLANG_OPT_USE_FUSED_STORE_CACHE:-false}"
+export SGLANG_OPT_USE_FUSED_HASH_TOPK="${SGLANG_OPT_USE_FUSED_HASH_TOPK:-true}"
+export SGLANG_OPT_SWIGLU_CLAMP_FUSION="${SGLANG_OPT_SWIGLU_CLAMP_FUSION:-false}"
+export SGLANG_TOPK_TRANSFORM_512_TORCH="${SGLANG_TOPK_TRANSFORM_512_TORCH:-false}"
+export SGLANG_OPT_USE_JIT_KERNEL_FUSED_TOPK="${SGLANG_OPT_USE_JIT_KERNEL_FUSED_TOPK:-false}"
+export SGLANG_JIT_DEEPGEMM_PRECOMPILE="${SGLANG_JIT_DEEPGEMM_PRECOMPILE:-0}"
+export SGLANG_ROCM_USE_AITER_MOE="${SGLANG_ROCM_USE_AITER_MOE:-false}"
+export SGLANG_DSV4_SPLIT_PREFILL_DECODE_MLA="${SGLANG_DSV4_SPLIT_PREFILL_DECODE_MLA:-0}"
+export SGLANG_DSV4_SPLIT_HCA_NONSPARSE_MLA="${SGLANG_DSV4_SPLIT_HCA_NONSPARSE_MLA:-false}"
+export SGLANG_DSV4_SPARSE_PREFILL_SINGLE_CALL="${SGLANG_DSV4_SPARSE_PREFILL_SINGLE_CALL:-false}"
+export SGLANG_DSV4_SPARSE_PREFILL_TRITON_GATHER="${SGLANG_DSV4_SPARSE_PREFILL_TRITON_GATHER:-false}"
+export SGLANG_JIT_DEEPGEMM_PRECOMPILE="${SGLANG_JIT_DEEPGEMM_PRECOMPILE:-0}"
+export SGLANG_DISABLED_MODEL_ARCHS="${SGLANG_DISABLED_MODEL_ARCHS:-midashenglm}"
+export SGLANG_DEBUG_DSV4_LOAD="${SGLANG_DEBUG_DSV4_LOAD:-0}"
+export SGLANG_APPLY_CONFIG_BACKUP="${SGLANG_APPLY_CONFIG_BACKUP:-none}"
+export SGLANG_USE_LIGHTOP_EP_SCATTER=false
+export SGLANG_USE_LIGHTOP_EP_GATHER=false
+export SGLANG_USE_LIGHTOP_EP_MOE_ALIGN=false
+export SGLANG_ENABLE_HEALTH_ENDPOINT_GENERATION=0
+
+sglang serve \
+  --model-path hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8 \
+  --tokenizer-path hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8 \
+  --served-model-name hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8 \
+  --trust-remote-code \
+  --tp-size 16 \
+  --ep-size 16 \
+  --dp-size 16 \
+  --moe-dense-tp-size 1 \
+  --enable-dp-attention \
+  --enable-dp-lm-head \
+  --nnodes 2 \
+  --node-rank 0 \
+  --dist-init-addr "<D_node0_ip>:5000" \
+  --dist-timeout 10000 \
+  --watchdog-timeout 3600 \
+  --mem-fraction-static 0.91 \
+  --chunked-prefill-size 16384 \
+  --speculative-algo EAGLE \
+  --speculative-num-steps 3 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 4 \
+  --disable-flashinfer-autotune \
+  --cuda-graph-max-bs 16 \
+  --max-running-requests 256 \
+  --context-length 1048576 \
+  --moe-a2a-backend deepep \
+  --deepep-mode low_latency \
+  --disaggregation-mode decode \
+  --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 \
+  --skip-server-warmup \
+  --host "$(ip route get 1.1.1.1 | awk '/src/{print $7}')" \
+  --port 30000
+```
+
+#### D node 1
+
+```bash
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+export PYTORCH_ALLOC_CONF=expandable_segments:True
+export SGLANG_LIGHTOP_KVALLOC_KERNEL=1
+export HIP_GRAPH_ACCUMULATE_DISPATCH=0
+export SGLANG_LIGHTOP_TOPK=true
+export SGLANG_OPT_USE_MULTI_STREAM_OVERLAP=false
+export SGLANG_DSV4_REQUEST_SCOPED_C128_STATE=true
+export SGLANG_OPT_USE_ONLINE_COMPRESS=false
+export SGLANG_DSV4_PD_PREFILL_USE_FULL_TOKEN_POOL=true
+export SGLANG_DISAGGREGATION_WAITING_TIMEOUT=1800
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1800
+export HIPBLASLT_TUNING_OVERRIDE_FILE=/public/home/mass/lijing/0711/ep16.config
+export SGLANG_NCCL_ALL_GATHER_IN_OVERLAP_SCHEDULER_SYNC_BATCH=1
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export SGLANG_HEALTH_CHECK_TIMEOUT=10000
+export HSA_ENABLE_COREDUMP=1
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
+export ROCSHMEM_MAX_NUM_CONTEXTS=60
+export ROCSHMEM_HEAP_SIZE=3173741824
+export ROCSHMEM_DISABLE_HDP_FLUSH=1
+export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=288
+export MC_IB_GID_INDEX=0
+export MC_ENABLE_DEST_DEVICE_AFFINITY=1
+export NCCL_SOCKET_IFNAME=ens61f1np1
+export GLOO_SOCKET_IFNAME=ens61f1np1
+export ROCSHMEM_TOPO_FILE_FORCE=/public/home/mass/lijing/0711/topo.config
+export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
+export ROCSHMEM_IB_GID_INDEX=0
+export SGLANG_DEEPEP_NUM_MAX_DISPATCH_TOKENS_PER_RANK=64
+export SGLANG_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export HIP_KERNEL_BATCH_CEILING=100
+export GPU_FORCE_BLIT_COPY_SIZE=16
+export HSA_KERNARG_POOL_SIZE=8388608
+export ROC_AQL_QUEUE_SIZE=131072
+export USE_DCU_CUSTOM_ALLREDUCE=0
+export SGLANG_ENABLE_SPEC_V2=1
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_OPT_CAT=1
+export SGLANG_USE_FUSED_MLA_CAT=1
+export SGLANG_USE_LIGHTOP_GROUP_FP8_QUANT=1
+export SGLANG_USE_LINEAR_BF16_FP32_USE_BLASLT=1
+export SGLANG_ROCM_USE_AITER_TILELANG_MHC=1
+export SGLANG_USE_DPSKV4_LIGHTOP_QUANT_K_CACHE=1
+export SGLANG_USE_DPSKV4_LIGHTOP_RMSNORM=1
+export SGLANG_USE_FP8_W8A8_MOE=1
+export SGLANG_USE_DEEPGEMM_MOE=1
+export SGLANG_ROCM_USE_AITER_MOE=1
+export SGLANG_OPT_USE_FUSED_STORE_CACHE="${SGLANG_OPT_USE_FUSED_STORE_CACHE:-false}"
+export SGLANG_OPT_USE_FUSED_HASH_TOPK="${SGLANG_OPT_USE_FUSED_HASH_TOPK:-true}"
+export SGLANG_OPT_SWIGLU_CLAMP_FUSION="${SGLANG_OPT_SWIGLU_CLAMP_FUSION:-false}"
+export SGLANG_TOPK_TRANSFORM_512_TORCH="${SGLANG_TOPK_TRANSFORM_512_TORCH:-false}"
+export SGLANG_OPT_USE_JIT_KERNEL_FUSED_TOPK="${SGLANG_OPT_USE_JIT_KERNEL_FUSED_TOPK:-false}"
+export SGLANG_JIT_DEEPGEMM_PRECOMPILE="${SGLANG_JIT_DEEPGEMM_PRECOMPILE:-0}"
+export SGLANG_ROCM_USE_AITER_MOE="${SGLANG_ROCM_USE_AITER_MOE:-false}"
+export SGLANG_DSV4_SPLIT_PREFILL_DECODE_MLA="${SGLANG_DSV4_SPLIT_PREFILL_DECODE_MLA:-0}"
+export SGLANG_DSV4_SPLIT_HCA_NONSPARSE_MLA="${SGLANG_DSV4_SPLIT_HCA_NONSPARSE_MLA:-false}"
+export SGLANG_DSV4_SPARSE_PREFILL_SINGLE_CALL="${SGLANG_DSV4_SPARSE_PREFILL_SINGLE_CALL:-false}"
+export SGLANG_DSV4_SPARSE_PREFILL_TRITON_GATHER="${SGLANG_DSV4_SPARSE_PREFILL_TRITON_GATHER:-false}"
+export SGLANG_JIT_DEEPGEMM_PRECOMPILE="${SGLANG_JIT_DEEPGEMM_PRECOMPILE:-0}"
+export SGLANG_DISABLED_MODEL_ARCHS="${SGLANG_DISABLED_MODEL_ARCHS:-midashenglm}"
+export SGLANG_DEBUG_DSV4_LOAD="${SGLANG_DEBUG_DSV4_LOAD:-0}"
+export SGLANG_APPLY_CONFIG_BACKUP="${SGLANG_APPLY_CONFIG_BACKUP:-none}"
+export SGLANG_USE_LIGHTOP_EP_SCATTER=false
+export SGLANG_USE_LIGHTOP_EP_GATHER=false
+export SGLANG_USE_LIGHTOP_EP_MOE_ALIGN=false
+export SGLANG_ENABLE_HEALTH_ENDPOINT_GENERATION=0
+
+sglang serve \
+  --model-path hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8 \
+  --tokenizer-path hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8 \
+  --served-model-name hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8 \
+  --trust-remote-code \
+  --tp-size 16 \
+  --ep-size 16 \
+  --dp-size 16 \
+  --moe-dense-tp-size 1 \
+  --enable-dp-attention \
+  --enable-dp-lm-head \
+  --nnodes 2 \
+  --node-rank 1 \
+  --dist-init-addr "<D_node0_ip>:5000" \
+  --dist-timeout 10000 \
+  --watchdog-timeout 3600 \
+  --mem-fraction-static 0.91 \
+  --chunked-prefill-size 16384 \
+  --speculative-algo EAGLE \
+  --speculative-num-steps 3 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 4 \
+  --disable-flashinfer-autotune \
+  --cuda-graph-max-bs 16 \
+  --max-running-requests 256 \
+  --context-length 1048576 \
+  --moe-a2a-backend deepep \
+  --deepep-mode low_latency \
+  --disaggregation-mode decode \
+  --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 \
+  --skip-server-warmup \
+  --host "$(ip route get 1.1.1.1 | awk '/src/{print $7}')" \
+  --port 30000
+```
+
+#### Router
+
+```bash
+python3 -m sglang_router.launch_router \
+  --pd-disaggregation \
+  --prefill "http://<P_node0_ip>:30000" \
+  --decode "http://<D_node0_ip>:30000" \
+  --policy cache_aware \
+  --port 30001
+```
+
 ## API 调用
 
 ### IFB
@@ -492,4 +906,30 @@ print(response.choices[0].message.content)
 curl http://localhost:30000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{"model": "hygon/DeepSeek-V4-Flash-Channel-FP8-w8a8", "messages": [{"role": "user", "content": "你好"}], "max_tokens": 128}'
+```
+
+### PD 分离
+
+PD 分离模式下，客户端请求发送到 SGLang Router，而非直接发送到 P/D 节点。示例中 Router 端口为 `30001`。
+
+```python
+from openai import OpenAI
+
+client = OpenAI(base_url="http://<router_ip>:30001/v1", api_key="not-needed")
+
+response = client.chat.completions.create(
+    model="hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8",
+    messages=[
+        {"role": "user", "content": "你好"},
+    ],
+    max_tokens=2048,
+)
+
+print(response.choices[0].message.content)
+```
+
+```bash
+curl "http://<router_ip>:30001/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -d '{"model": "hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8", "messages": [{"role": "user", "content": "你好"}], "max_tokens": 128}'
 ```

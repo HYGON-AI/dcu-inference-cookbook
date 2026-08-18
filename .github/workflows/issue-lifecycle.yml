@@ -1,0 +1,93 @@
+name: Issue lifecycle
+
+on:
+  issue_comment:
+    types: [created]
+
+  schedule:
+    # 每天北京时间 09:17 执行一次（GitHub cron 使用 UTC）
+    - cron: "17 1 * * *"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+jobs:
+  clear-awaiting-user:
+    name: Clear awaiting-user after author reply
+    if: >-
+      github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request == null &&
+      github.event.comment.user.login == github.event.issue.user.login &&
+      contains(
+        github.event.issue.labels.*.name,
+        'status:awaiting-user'
+      )
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Remove waiting labels
+        uses: actions/github-script@373c709c69115d41ff229c7e5df9f8788daa9553 # v9
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const labels = issue.labels.map(label =>
+              typeof label === "string" ? label : label.name
+            );
+
+            for (const name of [
+              "status:awaiting-user",
+              "status:auto-close"
+            ]) {
+              if (!labels.includes(name)) {
+                continue;
+              }
+
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                name
+              });
+            }
+
+  close-unanswered:
+    name: Close unanswered issues
+    if: github.event_name != 'issue_comment'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Close issues inactive for 60 days
+        uses: actions/stale@4391f3da665fdf50b6810c1a66712fb9ba21aa93 # v11
+        with:
+          repo-token: ${{ github.token }}
+
+          # 只处理等待 Issue 作者回复的问题
+          only-issue-labels: "status:awaiting-user"
+
+          # 以下标签永不自动关闭
+          exempt-issue-labels: "security,status:keep-open"
+
+          # 60 天无活动后标记并关闭
+          days-before-issue-stale: 60
+          days-before-issue-close: 0
+          stale-issue-label: "status:auto-close"
+          close-issue-label: "status:auto-close"
+          close-issue-reason: "not_planned"
+
+          stale-issue-message: >-
+            此 Issue 已等待作者补充信息超过 60 天，即将自动关闭。
+          close-issue-message: >-
+            由于等待作者补充信息超过 60 天且没有新的活动，
+            此 Issue 已自动关闭。如后续能够提供所需信息，可以重新打开
+            Issue 或创建新的 Issue。
+
+          # 完全不处理 Pull Request
+          days-before-pr-stale: -1
+          days-before-pr-close: -1
+
+          # 足够覆盖当前仓库的 Issue 数量
+          operations-per-run: 100

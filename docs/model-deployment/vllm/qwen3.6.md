@@ -118,8 +118,6 @@ vllm serve Qwen/Qwen3.6-27B \
 ### Qwen3.6-27B IFB BW1100 1x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve Qwen/Qwen3.6-27B \
   -tp 1 \
   --trust-remote-code \
@@ -133,8 +131,6 @@ vllm serve Qwen/Qwen3.6-27B \
 ### Qwen3.6-27B IFB BW1000 2x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
 vllm serve Qwen/Qwen3.6-27B \
   -tp 2 \
   --trust-remote-code \
@@ -253,7 +249,6 @@ vllm serve Qwen/Qwen3.6-35B-A3B \
 ### Qwen3.6-35B-A3B IFB BW1100 1x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3.6-35B-A3B \
   -tp 1 \
   --trust-remote-code \
@@ -268,7 +263,6 @@ vllm serve Qwen/Qwen3.6-35B-A3B \
 ### Qwen3.6-35B-A3B IFB BW1000 2x vLLM 0.18-hotfix
 
 ```bash
-export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen3.6-35B-A3B \
   -tp 2 \
   --trust-remote-code \

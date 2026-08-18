@@ -492,8 +492,6 @@ set -euo pipefail
 export SGLANG_HEALTH_CHECK_TIMEOUT=10000
 export SGLANG_LIGHTOP_KVALLOC_KERNEL=1
 
-RUN_TS="${RUN_TS:-$(date +%Y%m%d_%H%M%S)}"
-
 NODE_RANK="${1:-${NODE_RANK:-0}}"
 if [[ $# -gt 0 ]]; then
   shift
@@ -559,12 +557,6 @@ export PORT="${PORT:-<P_service_port>}" # 服务监听端口
 export CHUNKED_PREFILL_SIZE="${CHUNKED_PREFILL_SIZE:-16384}"
 export MEM_FRACTION_STATIC="${MEM_FRACTION_STATIC:-0.93}"
 export MAX_RUNNING_REQUESTS="${MAX_RUNNING_REQUESTS:-512}"
-export SERVE_LOG="${SERVE_LOG:-./hygon_tmp/p/pro_multinode_rank${NODE_RANK}_${RUN_TS}.log}"
-
-mkdir -p "$(dirname "${SERVE_LOG}")"
-: > "${SERVE_LOG}"
-exec > >(tee -a "${SERVE_LOG}") 2>&1
-
 option+=" --disaggregation-mode prefill "
 option+=" --disable-cuda-graph "
 # option+=" --disable-radix-cache " #按照实际
@@ -611,8 +603,6 @@ set -euo pipefail
 
 export SGLANG_HEALTH_CHECK_TIMEOUT=10000
 export SGLANG_LIGHTOP_KVALLOC_KERNEL=1
-
-RUN_TS="${RUN_TS:-$(date +%Y%m%d_%H%M%S)}"
 
 NODE_RANK="${1:-${NODE_RANK:-1}}"
 if [[ $# -gt 0 ]]; then
@@ -679,12 +669,6 @@ export PORT="${PORT:-<P_service_port>}" # 服务监听端口
 export CHUNKED_PREFILL_SIZE="${CHUNKED_PREFILL_SIZE:-16384}"
 export MEM_FRACTION_STATIC="${MEM_FRACTION_STATIC:-0.93}"
 export MAX_RUNNING_REQUESTS="${MAX_RUNNING_REQUESTS:-512}"
-export SERVE_LOG="${SERVE_LOG:-./hygon_tmp/p/pro_multinode_rank${NODE_RANK}_${RUN_TS}.log}"
-
-mkdir -p "$(dirname "${SERVE_LOG}")"
-: > "${SERVE_LOG}"
-exec > >(tee -a "${SERVE_LOG}") 2>&1
-
 option+=" --disaggregation-mode prefill "
 option+=" --disable-cuda-graph "
 # option+=" --disable-radix-cache " #按照实际
@@ -736,8 +720,6 @@ export HIP_GRAPH_ACCUMULATE_DISPATCH=0
 export SGLANG_LIGHTOP_TOPK=true
 export SGLANG_OPT_USE_MULTI_STREAM_OVERLAP=false
 
-RUN_TS="${RUN_TS:-$(date +%Y%m%d_%H%M%S)}"
-
 NODE_RANK="${1:-${NODE_RANK:-0}}"
 if [[ $# -gt 0 ]]; then
   shift
@@ -821,12 +803,6 @@ export SPEC_EAGLE_TOPK="${SPEC_EAGLE_TOPK:-1}"
 export SPEC_NUM_DRAFT_TOKENS="${SPEC_NUM_DRAFT_TOKENS:-4}"
 export CHUNKED_PREFILL_SIZE="${CHUNKED_PREFILL_SIZE:-16384}"
 export MEM_FRACTION_STATIC="${MEM_FRACTION_STATIC:-0.91}"
-export SERVE_LOG="${SERVE_LOG:-./hygon_tmp/d/pro_multinode_rank${NODE_RANK}_${RUN_TS}.log}"
-
-mkdir -p "$(dirname "${SERVE_LOG}")"
-: > "${SERVE_LOG}"
-exec > >(tee -a "${SERVE_LOG}") 2>&1
-
 sglang serve \
   --model-path "${MODEL_PATH}" \
   --tokenizer-path "${TOKENIZER_PATH}" \
@@ -876,8 +852,6 @@ export SGLANG_LIGHTOP_KVALLOC_KERNEL=1
 export HIP_GRAPH_ACCUMULATE_DISPATCH=0
 export SGLANG_LIGHTOP_TOPK=true
 export SGLANG_OPT_USE_MULTI_STREAM_OVERLAP=false
-
-RUN_TS="${RUN_TS:-$(date +%Y%m%d_%H%M%S)}"
 
 NODE_RANK="${1:-${NODE_RANK:-1}}"
 if [[ $# -gt 0 ]]; then
@@ -962,12 +936,6 @@ export SPEC_EAGLE_TOPK="${SPEC_EAGLE_TOPK:-1}"
 export SPEC_NUM_DRAFT_TOKENS="${SPEC_NUM_DRAFT_TOKENS:-4}"
 export CHUNKED_PREFILL_SIZE="${CHUNKED_PREFILL_SIZE:-16384}"
 export MEM_FRACTION_STATIC="${MEM_FRACTION_STATIC:-0.91}"
-export SERVE_LOG="${SERVE_LOG:-./hygon_tmp/d/pro_multinode_rank${NODE_RANK}_${RUN_TS}.log}"
-
-mkdir -p "$(dirname "${SERVE_LOG}")"
-: > "${SERVE_LOG}"
-exec > >(tee -a "${SERVE_LOG}") 2>&1
-
 sglang serve \
   --model-path "${MODEL_PATH}" \
   --tokenizer-path "${TOKENIZER_PATH}" \

@@ -21,7 +21,7 @@ GLM-5 是智谱 AI 推出的新一代大语言模型，在中文理解、长文�
 |  | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**``>_``**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
 |  | INT8 W8A8 | 0.18 | BW1000 | 16 | IFB | [**``>_``**](#glm-5-channel-int8-w8a8-ifb-bw1000-16x-vllm-018) |
 |  | INT8 W8A8 | 0.15 | BW1100 | 8 | IFB | [**`>_`**](#glm-5-channel-int8-w8a8-ifb-bw1100-8x-vllm-015) |
-|  | INT8 W8A8 | 0.15 | BW1100 | 24 | 1P2D | [**``>_``**](#glm-5-channel-int8-w8a8-1p2d-bw1100-24x-vllm-015) |
+|  | INT8 W8A8 | 0.15 | BW1100 | 24 | 1P1D | [**``>_``**](#glm-5-channel-int8-w8a8-1p1d-bw1100-24x-vllm-015) |
 
 ## 启动命令
 
@@ -536,7 +536,7 @@ vllm serve hygon/GLM-5-Channel-INT8-w8a8 \
   --speculative_config '{"method": "mtp", "num_speculative_tokens": 2, "quantization": "slimquant_marlin"}'
 ```
 
-### GLM-5-Channel-INT8-w8a8 1P2D BW1100 24x vLLM 0.15
+### GLM-5-Channel-INT8-w8a8 1P1D BW1100 24x vLLM 0.15
 
 以下示例中 `10.16.1.36` 为 P 节点，也是代理节点，`10.16.1.42` 是 D node 0 的主节点，实际部署时请根据实际情况修改。
 

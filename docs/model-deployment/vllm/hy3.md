@@ -9,7 +9,7 @@ Hy3 是由腾讯混元团队开发的一款拥有 2950 亿参数的混合专家�
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
 | [hygon/Hy3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Hy3-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#hy3-channel-fp8-w8a8-ifb-bw1100-8x-vllm-021) |
-|  | FP8 W8A8 | 0.21 | BW1100(风冷) | 24 | 1P2D | [**`>_`**](#hy3-channel-fp8-w8a8-1p2d-bw1100-24x-vllm-021) |
+|  | FP8 W8A8 | 0.21 | BW1100(风冷) | 24 | 1P1D | [**`>_`**](#hy3-channel-fp8-w8a8-1p1d-bw1100-24x-vllm-021) |
 |  | FP8 W8A8 | 0.21 | BW1100(超节点) | 16 | IFB | [**`>_`**](#hy3-channel-fp8-w8a8-ifb-bw1100-16x-vllm-021) |
 |  | FP8 W8A8 | 0.21 | BW1100(超节点) | 32 | 2P1D | [**`>_`**](#hy3-channel-fp8-w8a8-2p1d-bw1100-32x-vllm-021) |
 
@@ -40,7 +40,7 @@ vllm serve hygon/Hy3-Channel-FP8-w8a8 \
   --served-model-name hy3-fp8
 ```
 
-### Hy3-Channel-FP8-w8a8 1P2D BW1100 24x vLLM 0.21
+### Hy3-Channel-FP8-w8a8 1P1D BW1100 24x vLLM 0.21
 
 P node 使用服务端口 `8010`，D node 0 和 D node 1 使用服务端口 `8011`。Proxy 使用服务端口 `8518`。
 

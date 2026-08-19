@@ -123,7 +123,7 @@ export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 2 \
     --trust-remote-code \
-    --allowed-local-media-path /path-to/VL_data/ \
+    --max-model-len 20480 \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
 

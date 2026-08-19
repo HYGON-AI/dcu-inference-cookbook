@@ -397,8 +397,8 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-4B-Thinking \
   -tp 1 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --reasoning-parser qwen3
 ```
 ### Qwen3-VL-4B-Thinking IFB BW1000 1x vLLM 0.21
 
@@ -407,7 +407,8 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-4B-Thinking \
   -tp 1 \
   --trust-remote-code \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --reasoning-parser qwen3
 ```
 ### Qwen3-VL-4B-Thinking IFB K100_AI 1x vLLM 0.21
 
@@ -575,8 +576,8 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-8B-Thinking \
   -tp 1 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --reasoning-parser qwen3
 ```
 ### Qwen3-VL-8B-Thinking IFB BW1000 1x vLLM 0.21
 
@@ -585,7 +586,8 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-8B-Thinking \
   -tp 1 \
   --trust-remote-code \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --reasoning-parser qwen3
 ```
 ### Qwen3-VL-8B-Thinking IFB K100_AI 1x vLLM 0.21
 

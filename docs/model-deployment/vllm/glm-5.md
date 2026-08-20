@@ -44,7 +44,7 @@ vllm serve hygon/GLM-5-Channel-INT4-w4a8 \
     --block-size 64 \
     --speculative_config '{
         "method":"deepseek_mtp",
-        "num_speculative_tokens":2,
+        "num_speculative_tokens":2
     }' \
     --kv-cache-dtype fp8_ds_mla \
     --moe-backend aiter \
@@ -125,7 +125,7 @@ vllm serve hygon/GLM-5-Channel-INT4-w4a8 \
     --block-size 64 \
     --speculative_config '{
         "method":"deepseek_mtp",
-        "num_speculative_tokens":2,
+        "num_speculative_tokens":2
     }' \
     --kv-cache-dtype fp8_ds_mla
 ```

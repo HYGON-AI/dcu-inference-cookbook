@@ -142,7 +142,6 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 vllm serve Qwen/Qwen3-0.6B \
   -tp 1 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 

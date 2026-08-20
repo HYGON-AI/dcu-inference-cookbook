@@ -56,22 +56,20 @@ export SGLANG_ENABLE_SPEC_V2=1
 
 sglang serve --model-path hygon/Qwen3.8-27B-Channel-INT8-w8a8 \
     --mm-attention-backend fa3 \
-    --speculative-algorithm NEXTN \
     --enable-piecewise-cuda-graph \
-    --max-running-requests 96 \
     --chunked-prefill-size -1 \
-    --speculative-num-steps 3 \
-    --speculative-eagle-topk 1 \
-    --speculative-num-draft-tokens 4 \
     --tp-size 1 --pp-size 1 \
     --attention-backend fa3 \
     --page-size 64 \
-    --mem-fraction-static 0.85 \
+    --mem-fraction-static 0.9 \
+    --cuda-graph-max-bs 256 \
     --trust-remote-code \
     --tool-call-parser qwen3_coder \
     --reasoning-parser qwen3 \
     --mamba-scheduler-strategy extra_buffer \
-    --kv-cache-dtype fp8_e5m2
+    --kv-cache-dtype fp8_e5m2 \
+    --max-running-requests 96 \
+    --context-length 262144
 ```
 
 ### Qwen3.8-27B-Channel-INT8-w8a8 IFB BW1000 2x SGLang 0.5.12 262K

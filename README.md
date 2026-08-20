@@ -317,7 +317,7 @@
     <tr>
       <td rowspan="3">Wan2.2-T2V</td>
       <td>vLLM-Omni</td>
-      <td align="center">-</td><td align="center">-</td><td align="center">-</td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/wan2.2-t2v.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/wan2.2-t2v.md">✅</a></td>
     </tr>
     <tr>
       <td>SGLang Diffusion</td>

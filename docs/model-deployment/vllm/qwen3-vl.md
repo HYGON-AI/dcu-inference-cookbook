@@ -935,8 +935,8 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-235B-A22B-Instruct \
   -tp 8 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend aiter
 ```
 ### Qwen3-VL-235B-A22B-Instruct IFB BW1000 16x vLLM 0.21
 
@@ -1055,8 +1055,9 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-235B-A22B-Thinking \
   -tp 8 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend aiter \
+  --reasoning-parser qwen3
 ```
 ### Qwen3-VL-235B-A22B-Thinking IFB BW1000 16x vLLM 0.21
 

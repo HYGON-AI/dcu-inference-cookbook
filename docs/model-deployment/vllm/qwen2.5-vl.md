@@ -14,9 +14,9 @@ Qwen2.5-VL 是阿里通义千问视觉语言模型系列，支持图像、视频
 |  | BF16 | 0.18 | BW1100 | 1 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-bw1100-1x-vllm-018) |
 |  | BF16 | 0.18 | BW1000 | 2 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-bw1000-2x-vllm-018) |
 |  | BF16 | 0.18 | K100_AI | 4 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-k100_ai-4x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1100 | 1 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-bw1100-1x-vllm-018-hotfix) |
-|  | BF16 | 0.18-hotfix | BW1000 | 2 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-bw1000-2x-vllm-018-hotfix) |
-|  | BF16 | 0.18-hotfix | K100_AI | 4 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-k100_ai-4x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1100 | 1 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-bw1100-1x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1000 | 2 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-bw1000-2x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | K100_AI | 4 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-k100_ai-4x-vllm-018-hotfix) |
 | [Qwen/Qwen2.5-VL-72B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2.5-VL-72B-Instruct) | BF16 | 0.21 | BW1100 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-ifb-bw1100-4x-vllm-021) |
 |  | BF16 | 0.21 | BW1000 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-ifb-bw1000-4x-vllm-021) |
 |  | BF16 | 0.21 | K100_AI | 8 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-ifb-k100_ai-8x-vllm-021) |

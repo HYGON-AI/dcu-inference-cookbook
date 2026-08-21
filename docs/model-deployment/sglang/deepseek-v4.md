@@ -260,7 +260,7 @@ sglang serve \
   --tp-size 8 \
   --numa-node 0 0 0 0 1 1 1 1 \
   --disaggregation-mode prefill \
-  --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_1,mlx5_8,mlx5_9 \
+  --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_1,mlx5_8,mlx5_9 \ #按照实际
   --dist-timeout 10000 \
   --watchdog-timeout 3600 \
   --host "<P_node_ip>" \
@@ -279,7 +279,7 @@ sglang serve \
   --disable-custom-all-reduce \
   --deepep-config /xxxx/ep_config.json \
   --mem-fraction-static 0.88 \
-  --init-expert-location /xxx/expert_distribution.pt \
+  --init-expert-location /xxx/expert_distribution.pt  \ #见上述EPLB配置参考
   --ep-dispatch-algorithm static \
   --ep-num-redundant-experts 64 \
   --eplb-algorithm deepseek_vec \

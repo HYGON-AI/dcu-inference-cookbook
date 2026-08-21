@@ -230,7 +230,8 @@ vllm serve hygon/Qwen2.5-VL-72B-Instruct-quantized.w8a8 \
   --enable-chunked-prefill \
   --max-model-len 40960 \
   -q slimquant_marlin \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --allowed-local-media-path "${VL_DATA}"
 ```
 
 ### Qwen2.5-VL-72B-Instruct-quantized.w8a8 IFB BW1000 4x vLLM 0.21

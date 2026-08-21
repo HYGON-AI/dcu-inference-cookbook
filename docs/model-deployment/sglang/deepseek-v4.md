@@ -217,8 +217,8 @@ export SGLANG_HEALTH_CHECK_TIMEOUT=360
 export NCCL_SOCKET_IFNAME=xxxxx
 export GLOO_SOCKET_IFNAME=xxxxx
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
-export UCX_NET_DEVICES=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1 #按照实际
-export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1 #按照实际
+export UCX_NET_DEVICES=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
+export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export ROCSHMEM_DISABLE_HDP_FLUSH=1
 export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=288
@@ -260,7 +260,7 @@ sglang serve \
   --tp-size 8 \
   --numa-node 0 0 0 0 1 1 1 1 \
   --disaggregation-mode prefill \
-  --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_1,mlx5_8,mlx5_9 \ #按照实际
+  --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_1,mlx5_8,mlx5_9 \
   --dist-timeout 10000 \
   --watchdog-timeout 3600 \
   --host "<P_node_ip>" \
@@ -294,8 +294,8 @@ export SGLANG_HEALTH_CHECK_TIMEOUT=180
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 export NCCL_SOCKET_IFNAME=xxxxx
 export GLOO_SOCKET_IFNAME=xxxxx
-export UCX_NET_DEVICES=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1 #按照实际
-export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1 #按照实际
+export UCX_NET_DEVICES=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
+export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
 export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
 export GPU_MAX_HW_QUEUES=3

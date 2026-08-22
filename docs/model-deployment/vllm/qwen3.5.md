@@ -793,15 +793,15 @@ vllm serve hygon/Qwen3.5-35B-A3B-Channel-FP8-w8a8 \
 ### Qwen3.5-122B-A10B IFB BW1100 4x vLLM 0.21
 
 ```bash
-vllm serve Qwen/Qwen3.5-122B-A10B \
+vllm serve /llm-models/qwen3.5/Qwen3.5-122B-A10B \
   -tp 4 \
   --trust-remote-code \
   --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
-  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM \
   --moe-backend aiter \
+  --kv-cache-dtype fp8_e4m3 \
   --max-num-seqs 128
 ```
 

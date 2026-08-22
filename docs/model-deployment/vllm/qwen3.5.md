@@ -933,13 +933,12 @@ vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
   -tp 2 \
   --trust-remote-code \
   --max-num-batched-tokens 16384 \
-  -q slimquant_marlin \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
-  --speculative-config.quantization "slimquant_marlin" \
   --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM \
-  --max-num-seqs 128
+  --max-num-seqs 128 \
+  --moe-backend triton
 ```
 
 ### Qwen3.5-122B-A10B-W8A8-INT8 IFB BW1000 4x vLLM 0.21

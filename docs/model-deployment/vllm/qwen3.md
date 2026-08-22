@@ -1651,13 +1651,13 @@ vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8 \
 ### Qwen3-235B-A22B-FP8-Channelwise IFB BW1100 4x vLLM 0.21
 
 ```bash
-
 vllm serve Qwen/Qwen3-235B-A22B-FP8-Channelwise \
   -tp 4 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend triton
 ```
 
 ### Qwen3-235B-A22B-FP8-Channelwise IFB BW1100 4x vLLM 0.18

@@ -675,10 +675,6 @@ set -euo pipefail
 export SGLANG_HEALTH_CHECK_TIMEOUT=10000
 export SGLANG_LIGHTOP_KVALLOC_KERNEL=1
 
-NODE_RANK="${1:-${NODE_RANK:-0}}"
-if [[ $# -gt 0 ]]; then
-  shift
-fi
 export SGLANG_DSV4_REQUEST_SCOPED_C128_STATE=true
 export SGLANG_OPT_USE_ONLINE_COMPRESS=false
 export SGLANG_DSV4_PD_PREFILL_USE_FULL_TOKEN_POOL=true
@@ -753,7 +749,7 @@ sglang serve  ${option} \
   --pp-size "${PP}" \
   --ep-size "${EP_SIZE}" \
   --nnodes "${NNODES}" \
-  --node-rank "${NODE_RANK}" \
+  --node-rank 0 \
   --dist-init-addr "${DIST_INIT_ADDR}" \
   --dist-timeout 10000 \
   --watchdog-timeout 3600 \
@@ -787,10 +783,6 @@ set -euo pipefail
 export SGLANG_HEALTH_CHECK_TIMEOUT=10000
 export SGLANG_LIGHTOP_KVALLOC_KERNEL=1
 
-NODE_RANK="${1:-${NODE_RANK:-1}}"
-if [[ $# -gt 0 ]]; then
-  shift
-fi
 export SGLANG_DSV4_REQUEST_SCOPED_C128_STATE=true
 export SGLANG_OPT_USE_ONLINE_COMPRESS=false
 export SGLANG_DSV4_PD_PREFILL_USE_FULL_TOKEN_POOL=true
@@ -865,7 +857,7 @@ sglang serve  ${option} \
   --pp-size "${PP}" \
   --ep-size "${EP_SIZE}" \
   --nnodes "${NNODES}" \
-  --node-rank "${NODE_RANK}" \
+  --node-rank 1 \
   --dist-init-addr "${DIST_INIT_ADDR}" \
   --dist-timeout 10000 \
   --watchdog-timeout 3600 \

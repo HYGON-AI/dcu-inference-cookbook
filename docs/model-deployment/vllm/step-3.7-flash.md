@@ -20,7 +20,8 @@ export GPU_MAX_HW_QUEUES=4
 vllm serve hygon/Step-3.7-Flash-FP8-Channel \
   --tensor-parallel-size 8 \
   --limit-mm-per-prompt '{"image": 0}' \
-  --trust-remote-code -q slimquant_marlin \
+  --trust-remote-code \
+  -q slimquant_marlin \
   --no-enable-prefix-caching \
   --enable-chunked-prefill \
   --max-num-batched-tokens 65536 \

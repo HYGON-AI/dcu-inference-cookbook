@@ -58,7 +58,6 @@ sglang serve \
   --attention-backend fa3 \
   --mm-attention-backend fa3 \
   --mem-fraction-static 0.9 \
-  --host xxxxx \
   --page-size 64 \
   --tp-size 2 \
   --pp-size 1 \
@@ -119,7 +118,6 @@ sglang serve \
   --attention-backend fa3 \
   --mm-attention-backend fa3 \
   --mem-fraction-static 0.9 \
-  --host xxxxx \
   --page-size 64 \
   --tp-size 2 \
   --pp-size 1 \

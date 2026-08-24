@@ -93,7 +93,6 @@ sglang serve \
   --dtype bfloat16 \
   --attention-backend fa3 \
   --mm-attention-backend fa3 \
-  --host xxxxx \
   --mem-fraction-static 0.9 \
   --page-size 64 \
   --tp-size 2 \
@@ -156,7 +155,6 @@ sglang serve \
   --dtype bfloat16 \
   --attention-backend fa3 \
   --mm-attention-backend fa3 \
-  --host xxxxx \
   --mem-fraction-static 0.9 \
   --page-size 64 \
   --tp-size 2 \

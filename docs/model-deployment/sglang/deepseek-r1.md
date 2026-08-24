@@ -105,6 +105,7 @@ sglang serve \
 ### DeepSeek-R1-Distill-Llama-70B-Channel-INT8-w8a8 IFB BW1100 2x SGLang 0.5.12
 
 ```bash
+export SGLANG_ENABLE_SPEC_V2=1
 export HSA_ENABLE_COREDUMP=1
 export USE_DCU_CUSTOM_ALLREDUCE=1
 export ALLREDUCE_STREAM_WITH_COMPUTE=1

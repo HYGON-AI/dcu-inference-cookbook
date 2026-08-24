@@ -13,6 +13,7 @@ GLM-5.2 是智谱 AI 推出的新一代大语言模型，在中文理解、长�
 |  | INT4 W4A8 | [0.18](../docker_images.md) | BW1000 | 16 | PP2+TP8 | [**`>_`**](#glm-52-channel-int4-w4a8-pp2tp8-bw1000-16x-vllm-018) |
 |  | INT4 W4A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-int4-w4a8-ifb-bw1100-8x-vllm-015) |
 | [hygon/GLM-5.2-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.2-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-fp8-w8a8-ifb-bw1100-8x-vllm-021) |
+|  | FP8 W8A8 | 0.21 | BW1100 | 16 | 1P1D | [**`>_`**](#glm-52-channel-fp8-w8a8-1p1d-bw1100-16x-vllm-021) |
 |  | FP8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-fp8-w8a8-ifb-bw1100-8x-vllm-018) |
 |  | FP8 W8A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
 | [hygon/GLM-5.2-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.2-Channel-INT8-w8a8) | INT8 W8A8 | 0.25.1 | BW1100 | 8 | IFB | [**`>_`**](#glm-52-channel-int8-w8a8-ifb-bw1100-8x-vllm-0251) |
@@ -189,6 +190,89 @@ vllm serve hygon/GLM-5.2-Channel-FP8-w8a8 \
     }' \
     --kv-cache-dtype fp8_ds_mla \
     --attention-backend FLASHMLA_SPARSE
+```
+
+### GLM-5.2-Channel-FP8-w8a8 1P1D BW1100 16x vLLM 0.21
+
+#### P node
+
+```bash
+export LMSLIM_USE_GLOBAL_MOE_CACHE=1
+export GPU_MAX_HW_QUEUES=4
+
+vllm serve hygon/GLM-5.2-Channel-FP8-w8a8 \
+  -q slimquant_marlin \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --max-model-len 65536 \
+  --max-num-batched-tokens 8192 \
+  -tp 8 \
+  --gpu-memory-utilization 0.92 \
+  --max-num-seqs 64 \
+  --block-size 64 \
+  --speculative_config '{
+    "method":"deepseek_mtp",
+    "num_speculative_tokens":2,
+    "quantization":"slimquant_marlin"
+  }' \
+  --kv-cache-dtype fp8_ds_mla \
+  --enable-lightly-cp \
+  --enable-lightly-cplb \
+  --attention-backend FLASHMLA_SPARSE \
+  --enforce-eager \
+  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_producer"}'
+```
+
+#### D node
+
+```bash
+export GPU_MAX_HW_QUEUES=4
+
+vllm serve hygon/GLM-5.2-Channel-FP8-w8a8 \
+  --trust-remote-code \
+  -dp 8 \
+  -tp 1 \
+  -q slimquant_marlin \
+  --enable-expert-parallel \
+  --all2all_backend=deepep_low_latency \
+  --disable-custom-all-reduce \
+  --dtype bfloat16 \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --enable-chunked-prefill \
+  --max-model-len 16384 \
+  --max-num-seqs 32 \
+  --max-num-batched-tokens 128 \
+  --no-enable-prefix-caching \
+  --block-size 64 \
+  --gpu-memory-utilization 0.90 \
+  --kv-cache-dtype fp8_ds_mla \
+  --speculative_config '{"method":"mtp","num_speculative_tokens":2,"quantization":"slimquant_marlin"}' \
+  --kv-transfer-config '{"kv_connector":"MooncakeConnector","kv_role":"kv_consumer"}'
+```
+
+#### Mooncake Connector Proxy
+
+P、D 服务就绪后启动代理：
+
+```bash
+python3 "<vllm_source_dir>/examples/disaggregated/mooncake_connector/mooncake_connector_proxy.py" \
+  --host 0.0.0.0 \
+  --prefill "http://<p_node_ip>:8000" \
+  --decode "http://<d_node_ip>:8000"
+```
+
+通过代理端口发送请求：
+
+```bash
+curl "http://<proxy_ip>:8000/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "hygon/GLM-5.2-Channel-FP8-w8a8",
+    "messages": [
+      {"role": "user", "content": "中国的首都是哪里？"}
+    ],
+    "max_tokens": 128
+  }'
 ```
 
 ### GLM-5.2-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18

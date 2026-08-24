@@ -37,7 +37,7 @@
 
 **✅ 应该这样做：**
 
-- 模型部署文档相关的 Git 提交信息使用小写框架前缀，例如：`vllm/qwen3.5-35b-a3b: ` 或 `sglang/qwen3.5-35b-a3b: `
+- 模型部署文档相关的 Git 提交信息使用小写框架前缀，格式：`vllm/<model>: <summary>` 或 `sglang/<model>: <summary>`，例如：`vllm/qwen3.5-35b-a3b: add deployment doc` 或 `sglang/qwen3.5-35b-a3b: add deployment doc`
 - 使用官方模型名称，例如 `meta-llama/Llama-3-8B-Instruct`，因为每个人的本地模型路径各不相同
 - 量化模型使用 ModelScope 上 Hygon 官方量化的 channelwise 模型，例如 `hygon/GLM-5-Channel-INT8-w8a8`
 - 使用框架默认端口，不要自定义 `--port`：vLLM 默认 `8000`，SGLang 默认 `30000`

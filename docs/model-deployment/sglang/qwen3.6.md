@@ -69,7 +69,6 @@ sglang serve \
   --speculative-num-draft-tokens 4 \
   --mamba-scheduler-strategy extra_buffer \
   --chunked-prefill-size -1 \
-  --kv-cache-dtype fp8_e5m2 \
   --tool-call-parser qwen3_coder \
   --reasoning-parser qwen3
 ```
@@ -131,7 +130,6 @@ sglang serve \
   --chunked-prefill-size -1 \
   --quantization w8a8_int8 \
   --moe-runner-backend lightop \
-  --kv-cache-dtype fp8_e5m2 \
   --tool-call-parser qwen3_coder \
   --reasoning-parser qwen3
 ```

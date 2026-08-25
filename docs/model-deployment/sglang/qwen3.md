@@ -8,11 +8,27 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 
 | 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
+| [Qwen/Qwen3-4B-Thinking-2507](https://www.modelscope.cn/models/Qwen/Qwen3-4B-Thinking-2507) | BF16 | 0.5.12 | BW1100 | 1 | IFB | [**`>_`**](#qwen3-4b-thinking-2507-ifb-bw1100-1x-sglang-0512) |
 | [Qwen/Qwen3-8B](https://www.modelscope.cn/models/Qwen/Qwen3-8B) | BF16 | 0.5.10 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-8b-ifb-bw1000-1x-sglang-0510) |
 | [Qwen/Qwen3-32B](https://www.modelscope.cn/models/Qwen/Qwen3-32B) | BF16 | 0.5.10 | BW1100 | 2x | IFB | [**\`>_\`**](#qwen3-32b-ifb-bw1100-2x-sglang-0510) |
 | [Qwen/Qwen3-235B-A22B](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B) | BF16 | 0.5.10 | BW1100 | 4x | IFB | [**\`>_\`**](#qwen3-235b-a22b-ifb-bw1100-4x-sglang-0510) |
+| [Qwen/Qwen3-235B-A22B-Instruct-2507](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B-Instruct-2507) | BF16 | 0.5.12 | BW1100 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1100-8x-sglang-0512) |
+|  | BF16 | 0.5.12 | BW1000 | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-bw1000-8x-sglang-0512) |
+|  | BF16 | 0.5.12 | K100_AI | 8 | IFB | [**`>_`**](#qwen3-235b-a22b-instruct-2507-ifb-k100_ai-8x-sglang-0512) |
 
 ## 启动命令
+
+### Qwen3-4B-Thinking-2507 IFB BW1100 1x SGLang 0.5.12
+
+```bash
+sglang serve \
+  --model-path Qwen/Qwen3-4B-Thinking-2507 \
+  --tp-size 1 \
+  --trust-remote-code \
+  --mem-fraction-static 0.85 \
+  --attention-backend fa3 \
+  --page-size 64
+```
 
 ### Qwen3-8B IFB BW1000 1x SGLang 0.5.10
 
@@ -48,6 +64,50 @@ python -m sglang.launch_server \
     --attention-backend fa3 \
     --page-size 64 \
     --mem-fraction-static 0.90
+```
+
+### Qwen3-235B-A22B-Instruct-2507 IFB BW1100 8x SGLang 0.5.12
+
+```bash
+sglang serve \
+  --model-path Qwen/Qwen3-235B-A22B-Instruct-2507 \
+  --tp-size 8 \
+  --trust-remote-code \
+  --mem-fraction-static 0.85 \
+  --attention-backend fa3 \
+  --page-size 64 \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
+```
+
+### Qwen3-235B-A22B-Instruct-2507 IFB BW1000 8x SGLang 0.5.12
+
+```bash
+sglang serve \
+  --model-path Qwen/Qwen3-235B-A22B-Instruct-2507 \
+  --tp-size 8 \
+  --trust-remote-code \
+  --mem-fraction-static 0.95 \
+  --attention-backend fa3 \
+  --page-size 64 \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3 \
+  --context-length 32768
+```
+
+### Qwen3-235B-A22B-Instruct-2507 IFB K100_AI 8x SGLang 0.5.12
+
+```bash
+sglang serve \
+  --model-path Qwen/Qwen3-235B-A22B-Instruct-2507 \
+  --tp-size 8 \
+  --trust-remote-code \
+  --mem-fraction-static 0.90 \
+  --attention-backend fa3 \
+  --page-size 64 \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3 \
+  --disable-custom-all-reduce
 ```
 
 ## API 调用

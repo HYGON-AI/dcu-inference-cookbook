@@ -44,7 +44,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">🚧</td><td align="center"><a href="docs/model-deployment/sglang/qwen3.6.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/qwen3.6.md">✅</a></td>
+      <td align="center"><a href="docs/model-deployment/sglang/qwen3.6.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/qwen3.6.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/qwen3.6.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">Qwen3.5</td>
@@ -53,7 +53,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/qwen3.5.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/qwen3.5.md">✅</a></td>
+      <td align="center"><a href="docs/model-deployment/sglang/qwen3.5.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/qwen3.5.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/qwen3.5.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">Qwen3-VL</td>
@@ -80,7 +80,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/qwen3.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/qwen3.md">✅</a></td>
+      <td align="center"><a href="docs/model-deployment/sglang/qwen3.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/qwen3.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/qwen3.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">Qwen2.5-VL</td>
@@ -126,7 +126,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">🚧</td><td align="center">🚧</td><td align="center"><a href="docs/model-deployment/sglang/deepseek-v4.md">✅</a></td>
+      <td align="center">🚧</td><td align="center"><a href="docs/model-deployment/sglang/deepseek-v4.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/deepseek-v4.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">DeepSeek-V3.2</td>
@@ -162,7 +162,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">-</td><td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/deepseek-r1.md">✅</a></td>
+      <td align="center"><a href="docs/model-deployment/sglang/deepseek-r1.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/deepseek-r1.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/deepseek-r1.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="8" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/62dc173789b4cf157d36ebee/i_pxzM2ZDo3Ub-BEgIkE9.png" height="40"/><br/>Z.ai</td>

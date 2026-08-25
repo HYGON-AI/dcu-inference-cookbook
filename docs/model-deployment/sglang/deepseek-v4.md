@@ -14,6 +14,7 @@ DeepSeek-V4 是 DeepSeek 系列的混合专家模型。本页汇总 DeepSeek-V4 
 | [hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V4-Pro-Channel-FP8-w8a8) | FP8 W8A8 | 0.5.12 | BW1100 | 16 | IFB(CP8EP8PP2) | [**`>_`**](#deepseek-v4-pro-channel-fp8-w8a8-ifb-p-bw1100-16x-sglang-0512) |
 |  | FP8 W8A8 | 0.5.12 | BW1100 | 16 | IFB(EP16DP16) | [**`>_`**](#deepseek-v4-pro-channel-fp8-w8a8-ifb-d-bw1100-16x-sglang-0512) |
 |  | FP8 W8A8 | 0.5.12 | BW1100 | 32 | PD | [**`>_`**](#deepseek-v4-pro-channel-fp8-w8a8-pd-bw1100-32x-sglang-0512) |
+| [hygon/DeepSeek-V4-Pro-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V4-Pro-Channel-INT8-w8a8) | INT8 W8A8 | 0.5.12 | BW1000 | 32 | IFB | [**`>_`**](#deepseek-v4-pro-channel-int8-w8a8-ifb-bw1000-32x-sglang-0512) |
 
 ## DeepEP 配置
 
@@ -1163,6 +1164,57 @@ python3 -m sglang_router.launch_router \
   --decode "http://<D_node0_ip>:<D_service_port>" \
   --policy cache_aware \
   --port 30001
+```
+
+### DeepSeek-V4-Pro-Channel-INT8-w8a8 IFB BW1000 32x SGLang 0.5.12
+
+主节点：`NODE_RANK=0`
+
+其余节点依次设置：`NODE_RANK=1`、`NODE_RANK=2`、`NODE_RANK=3`
+
+```bash
+export NODE_RANK=0
+export GLOO_SOCKET_IFNAME=ens66f1np1
+export NCCL_SOCKET_IFNAME=ens66f1np1
+export GLOO_SOCKET_TIMEOUT=600000
+export TORCH_DIST_INIT_TIMEOUT=60000
+export GPU_MAX_HW_QUEUES=2
+export SGLANG_ENABLE_SPEC_V2=1
+export SGLANG_USE_AITER=0
+export SGLANG_ROCM_USE_AITER_MOE=0
+export SGLANG_ROCM_USE_AITER_TILELANG_MHC=1
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_LIGHTOP_TOPK_IDS_POSTPROCESS=1
+export SGLANG_USE_DPSKV4_LIGHTOP_RMSNORM=1
+export SGLANG_USE_DPSKV4_LIGHTOP_QUANT_K_CACHE=1
+export SGLANG_USE_FUSED_DPSKV4_QNORM_ROPE_KV_ROPE_QUANT=0
+export SGLANG_USE_OPT_CAT=1
+export SGLANG_USE_FUSED_MLA_CAT=1
+export SGLANG_USE_LINEAR_BF16_FP32_USE_BLASLT=1
+export SGLANG_DSV4_SPLIT_PREFILL_DECODE_MLA=0
+export SGLANG_OPT_FLASHMLA_SPARSE_PREFILL=0
+export SGLANG_OPT_USE_FUSED_STORE_CACHE=false
+export SGLANG_OPT_SWIGLU_CLAMP_FUSION=false
+export SGLANG_JIT_DEEPGEMM_PRECOMPILE=0
+
+sglang serve \
+  --trust-remote-code \
+  --model-path hygon/DeepSeek-V4-Pro-Channel-INT8-w8a8 \
+  --nnodes 4 \
+  --node-rank "${NODE_RANK}" \
+  --dist-init-addr 13.13.4.1:20000 \
+  --tp 8 \
+  --pp-size 4 \
+  --attention-backend flashmla \
+  --kv-cache-dtype auto \
+  --mem-fraction-static 0.90 \
+  --chunked-prefill-size 3072 \
+  --quantization compressed-tensors \
+  --moe-runner-backend triton \
+  --cuda-graph-max-bs 128 \
+  --tool-call-parser deepseekv4 \
+  --reasoning-parser deepseek-v4 \
+  --model-loader-extra-config '{"enable_multithread_load": true, "num_threads": 16}'
 ```
 
 ## API 调用

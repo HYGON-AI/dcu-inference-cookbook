@@ -93,8 +93,7 @@ sglang serve \
   --mamba-scheduler-strategy extra_buffer \
   --disable-custom-all-reduce \
   --tool-call-parser qwen3_coder \
-  --reasoning-parser qwen3 \
-  --trust-remote-code
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.6-27B IFB BW1100 2x SGLang 0.5.10
@@ -191,8 +190,7 @@ sglang serve \
   --mamba-scheduler-strategy extra_buffer \
   --disable-custom-all-reduce \
   --tool-call-parser qwen3_coder \
-  --reasoning-parser qwen3 \
-  --trust-remote-code
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.6-35B-A3B IFB BW1000 2x SGLang 0.5.12

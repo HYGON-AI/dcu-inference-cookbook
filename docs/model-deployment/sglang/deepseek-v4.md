@@ -8,8 +8,8 @@ DeepSeek-V4 是 DeepSeek 系列的混合专家模型。本页汇总 DeepSeek-V4 
 
 | 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
-| [hygon/DeepSeek-V4-Flash-0731-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V4-Flash-0731-Channel-FP8-w8a8) | FP8 W8A8 | 0.5.15 | BW1100 | 8 | IFB(TP8)| [**`>_`**](#deepseek-v4-flash-0731-channel-fp8-w8a8-ifb-tp8-bw1100-8x-sglang-0515) |
-|  | FP8 W8A8 | 0.5.15 | BW1100 | 8 | IFB(DP8) | [**`>_`**](#deepseek-v4-flash-0731-channel-fp8-w8a8-ifb-dp8-bw1100-8x-sglang-0515) |
+| [hygon/DeepSeek-V4-Flash-0731-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V4-Flash-0731-Channel-FP8-w8a8) | FP8 W8A8 | - | BW1100 | 8 | IFB(TP8)| [**`>_`**](#deepseek-v4-flash-0731-channel-fp8-w8a8-ifb-tp8-bw1100-8x-sglang) |
+|  | FP8 W8A8 | - | BW1100 | 8 | IFB(DP8) | [**`>_`**](#deepseek-v4-flash-0731-channel-fp8-w8a8-ifb-dp8-bw1100-8x-sglang) |
 | [hygon/DeepSeek-V4-Flash-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V4-Flash-Channel-FP8-w8a8) | FP8 W8A8 | 0.5.12 | BW1100 | 8 | IFB(CP8EP8) | [**`>_`**](#deepseek-v4-flash-channel-fp8-w8a8-ifb-bw1100-8x-sglang-0512) |
 |  | FP8 W8A8 | 0.5.12 | BW1100 | 8 | IFB(DP8EP8) | [**`>_`**](#deepseek-v4-flash-channel-fp8-w8a8-ifb-bw1100-8x-sglang-0512) |
 |  | FP8 W8A8 | 0.5.12 | BW1100 | 16 | 1P1D | [**`>_`**](#deepseek-v4-flash-channel-fp8-w8a8-1p1d-bw1100-16x-sglang-0512) |
@@ -53,7 +53,7 @@ DeepSeek-V4 是 DeepSeek 系列的混合专家模型。本页汇总 DeepSeek-V4 
 
 ## 启动命令
 
-### DeepSeek-V4-Flash-0731-Channel-FP8-w8a8 IFB TP8 BW1100 8x SGLang 0.5.15
+### DeepSeek-V4-Flash-0731-Channel-FP8-w8a8 IFB TP8 BW1100 8x SGLang
 
 ```bash
 export NCCL_SOCKET_IFNAME=ens14f0
@@ -119,7 +119,7 @@ sglang serve \
   --enable-metrics
 ```
 
-### DeepSeek-V4-Flash-0731-Channel-FP8-w8a8 IFB DP8 BW1100 8x SGLang 0.5.15
+### DeepSeek-V4-Flash-0731-Channel-FP8-w8a8 IFB DP8 BW1100 8x SGLang
 
 ```bash
 export NCCL_SOCKET_IFNAME=ens14f0

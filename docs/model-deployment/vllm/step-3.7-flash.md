@@ -18,16 +18,18 @@ Step-3.7-Flash 是 Step 系列大语言模型，本文档提供其在 vLLM 上�
 export GPU_MAX_HW_QUEUES=4
 
 vllm serve hygon/Step-3.7-Flash-FP8-Channel \
-    --tensor-parallel-size 8 \
-    --trust-remote-code \
-    -q slimquant_marlin \
-    --no-enable-prefix-caching \
-    --enable-chunked-prefill \
-    --max-num-batched-tokens 65536 \
-    --kv-cache-dtype fp8_e4m3 \
-    --speculative-config '{"method":"mtp","num_speculative_tokens":3,"enable_multi_layers_mtp":true,"quantization":"slimquant_marlin"}' \
-    --gpu-memory-utilization 0.9 \
-    --attention-backend FLASH_ATTN_CUTLASS
+  --tensor-parallel-size 8 \
+  --limit-mm-per-prompt '{"image": 0}' \
+  --trust-remote-code \
+  -q slimquant_marlin \
+  --no-enable-prefix-caching \
+  --enable-chunked-prefill \
+  --max-num-batched-tokens 65536 \
+  --kv-cache-dtype fp8_e4m3 \
+  --speculative-config '{"method":"mtp","num_speculative_tokens":3,"enable_multi_layers_mtp":true,"quantization":"slimquant_marlin"}' \
+  --gpu-memory-utilization 0.9 \
+  --attention-backend FLASH_ATTN_CUTLASS \
+  --reasoning-parser step3p5
 ```
 
 ## API 调用

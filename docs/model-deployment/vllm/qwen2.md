@@ -382,12 +382,13 @@ vllm serve Qwen/Qwen2-7B-Instruct \
 
 ```bash
 export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_CUSTOM_OPS=0
 
 vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   -tp 2 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend triton
 ```
 
 ### Qwen2-57B-A14B-Instruct IFB BW1000 4x vLLM 0.21

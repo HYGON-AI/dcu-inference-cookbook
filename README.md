@@ -181,7 +181,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">🚧</td><td align="center">🚧</td><td align="center">🚧</td>
+      <td align="center">🚧</td><td align="center"><a href="docs/model-deployment/sglang/glm-5.1.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/glm-5.1.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">GLM-5</td>

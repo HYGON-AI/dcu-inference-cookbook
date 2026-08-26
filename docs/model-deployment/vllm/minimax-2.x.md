@@ -45,7 +45,10 @@ vllm serve hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
   -cc '{"pass_config": {"fuse_act_quant": false},
         "cudagraph_mode": "full",
         "custom_ops": ["all"]}' \
-  -q slimquant_marlin
+  -q slimquant_marlin \
+  --enable-auto-tool-choice \
+  --tool-call-parser minimax_m2 \
+  --reasoning-parser minimax_m2
 ```
 
 ### MiniMax-M2.5-Channel-INT8-w8a8 IFB BW1000 8x vLLM 0.21
@@ -63,7 +66,10 @@ vllm serve hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
   -cc '{"pass_config": {"fuse_act_quant": false},
         "cudagraph_mode": "full",
         "custom_ops": ["all"]}' \
-  -q slimquant_marlin
+  -q slimquant_marlin \
+  --enable-auto-tool-choice \
+  --tool-call-parser minimax_m2 \
+  --reasoning-parser minimax_m2
 ```
 
 ### MiniMax-M2.5-Channel-INT8-w8a8 IFB K100_AI 8x vLLM 0.21
@@ -86,7 +92,10 @@ vllm serve hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
   --gpu-memory-utilization 0.92 \
   -cc '{"pass_config": {"fuse_act_quant": false},
         "cudagraph_mode": "full",
-        "custom_ops": ["all"]}'
+        "custom_ops": ["all"]}' \
+    --enable-auto-tool-choice \
+    --tool-call-parser minimax_m2 \
+    --reasoning-parser minimax_m2
 ```
 
 ### MiniMax-M2.5-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.18
@@ -342,7 +351,10 @@ vllm serve hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
   -cc '{"pass_config": {"fuse_act_quant": false},
         "cudagraph_mode": "full",
         "custom_ops": ["all"]}' \
-  -q slimquant_marlin
+  -q slimquant_marlin \
+  --enable-auto-tool-choice \
+  --tool-call-parser minimax_m2 \
+  --reasoning-parser minimax_m2
 ```
 ### MiniMax-M2.5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18.1
 
@@ -425,7 +437,10 @@ vllm serve MiniMax-M2.5-bf16 \
   --gpu-memory-utilization 0.92 \
   -cc '{"pass_config": {"fuse_act_quant": false},
         "cudagraph_mode": "full",
-        "custom_ops": ["all"]}'
+        "custom_ops": ["all"]}' \
+    --enable-auto-tool-choice \
+    --tool-call-parser minimax_m2 \
+    --reasoning-parser minimax_m2
 ```
 
 ### MiniMax-M2.5-bf16 IFB BW1000 8x vLLM 0.21
@@ -442,7 +457,10 @@ vllm serve MiniMax-M2.5-bf16 \
   --gpu-memory-utilization 0.92 \
   -cc '{"pass_config": {"fuse_act_quant": false},
         "cudagraph_mode": "full",
-        "custom_ops": ["all"]}'
+        "custom_ops": ["all"]}' \
+    --enable-auto-tool-choice \
+    --tool-call-parser minimax_m2 \
+    --reasoning-parser minimax_m2
 ```
 
 ### MiniMax-M2.5-bf16 IFB BW1100 8x vLLM 0.18

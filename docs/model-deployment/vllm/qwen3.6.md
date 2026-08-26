@@ -43,6 +43,24 @@ vllm serve Qwen/Qwen3.6-27B \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 
+### Qwen3.6-27B IFB BW1000 2x vLLM 0.25
+
+```bash
+export VLLM_USE_V2_MODEL_RUNNER=1
+export VLLM_KV_CACHE_LAYOUT=NHD
+
+vllm serve \
+  --model Qwen/Qwen3.6-27B \
+  --attention-backend FLASH_ATTN_VARLEN \
+  --trust-remote-code \
+  --tensor-parallel-size 2 \
+  --max-model-len 32768 \
+  --default-chat-template-kwargs '{"enable_thinking":false}' \
+  --reasoning-parser qwen3 \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder
+```
+
 ### Qwen3.6-27B IFB BW1000 2x vLLM 0.21
 
 ```bash

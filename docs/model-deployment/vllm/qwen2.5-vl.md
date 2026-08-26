@@ -38,7 +38,6 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     --trust-remote-code \
     --enable-chunked-prefill \
     --max-model-len 32768 \
-    --allowed-local-media-path "${VL_DATA}" \
     --kv-cache-dtype fp8_e4m3 \
     --attention-backend FLASH_ATTN_CUSTOM
 ```

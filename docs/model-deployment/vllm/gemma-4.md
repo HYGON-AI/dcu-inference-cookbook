@@ -16,7 +16,7 @@ Gemma-4-31B-it 是 Gemma 系列指令模型，本文档提供其在 vLLM 上的�
 
 ```bash
 export VLLM_USE_V2_MODEL_RUNNER=1
-export VLLM_KV_CACHE_LAYOUT=NHD
+export VLLM_KV_CACHE_LAYOUT=HND
 
 vllm serve \
   --model google/gemma-4-31B-it \

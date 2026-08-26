@@ -502,7 +502,7 @@ vllm serve Qwen/Qwen3-VL-8B-Instruct \
 
 ```bash
 export VLLM_USE_V2_MODEL_RUNNER=1
-export VLLM_KV_CACHE_LAYOUT=NHD
+export VLLM_KV_CACHE_LAYOUT=HND
 
 vllm serve \
   --model Qwen/Qwen3-VL-8B-Instruct \

@@ -76,15 +76,18 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
 ### DeepSeek-R1-Distill-Qwen-32B IFB K100_AI 4x vLLM 0.21
 
 ```bash
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Qwen-32B \
   --dtype float16 \
   --tensor-parallel-size 4 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
+  --attention-backend TRITON_ATTN \
   --max-num-seqs 1024
 ```
 
@@ -116,15 +119,18 @@ vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
 ### DeepSeek-R1-Distill-Llama-70B IFB K100_AI 8x vLLM 0.21
 
 ```bash
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve deepseek-ai/DeepSeek-R1-Distill-Llama-70B \
   --dtype float16 \
   --tensor-parallel-size 8 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
+  --attention-backend TRITON_ATTN \
   --max-num-seqs 1024
 ```
 
@@ -156,15 +162,18 @@ vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
 ### DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 IFB K100_AI 8x vLLM 0.21
 
 ```bash
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve hygon/DeepSeek-R1-Distill-Llama-70B-quantized.w8a8 \
   --dtype float16 \
   --tensor-parallel-size 8 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
+  --attention-backend TRITON_ATTN \
   --max-num-seqs 1024
 ```
 

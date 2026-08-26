@@ -45,10 +45,12 @@ vllm serve Qwen/Qwen2-VL-2B-Instruct \
 ### Qwen2-VL-2B-Instruct IFB K100_AI 1x vLLM 0.21
 
 ```bash
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen2-VL-2B-Instruct \
     -tp 1 \
     --trust-remote-code \

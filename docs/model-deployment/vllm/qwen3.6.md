@@ -195,7 +195,8 @@ vllm serve Qwen/Qwen3.6-35B-A3B \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --speculative-config.attention_backend TRITON_ATTN \
-  --attention-backend TRITON_ATTN
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton
 ```
 
 ### Qwen3.6-35B-A3B IFB BW1100 1x vLLM 0.18

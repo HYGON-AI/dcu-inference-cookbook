@@ -513,7 +513,8 @@ vllm serve Qwen/Qwen3.5-35B-A3B \
   --speculative-config.num_speculative_tokens 3 \
   --speculative-config.attention_backend TRITON_ATTN \
   --max-num-seqs 128 \
-  --attention-backend TRITON_ATTN
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton
 ```
 
 ### Qwen3.5-35B-A3B IFB BW1100 1x vLLM 0.18
@@ -651,7 +652,8 @@ vllm serve hygon/Qwen3.5-35B-A3B-Channel-INT8-w8a8 \
   --speculative-config.num_speculative_tokens 3 \
   --speculative-config.attention_backend TRITON_ATTN \
   --max-num-seqs 128 \
-  --attention-backend TRITON_ATTN
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton
 ```
 
 ### Qwen3.5-35B-A3B-Channel-INT8-w8a8 IFB BW1100 1x vLLM 0.18
@@ -834,7 +836,8 @@ vllm serve Qwen/Qwen3.5-122B-A10B \
   --speculative-config.num_speculative_tokens 3 \
   --speculative-config.attention_backend TRITON_ATTN \
   --max-num-seqs 128 \
-  --attention-backend TRITON_ATTN
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton
 ```
 
 ### Qwen3.5-122B-A10B IFB BW1100 4x vLLM 0.18
@@ -971,7 +974,8 @@ vllm serve Qwen/Qwen3.5-122B-A10B-W8A8-INT8 \
   --speculative-config.num_speculative_tokens 3 \
   --speculative-config.attention_backend TRITON_ATTN \
   --max-num-seqs 128 \
-  --attention-backend TRITON_ATTN
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton
 ```
 
 ### Qwen3.5-122B-A10B-W8A8-INT8 IFB BW1100 2x vLLM 0.18
@@ -1156,7 +1160,8 @@ vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
   --speculative-config.num_speculative_tokens 3 \
   --speculative-config.attention_backend TRITON_ATTN \
   --max-num-seqs 128 \
-  --attention-backend TRITON_ATTN
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton
 ```
 
 ### Qwen3.5-397B-A17B-W8A8-INT8 IFB BW1100 8x vLLM 0.18

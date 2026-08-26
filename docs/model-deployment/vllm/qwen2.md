@@ -413,7 +413,8 @@ export VLLM_ROCM_USE_AITER=0
 vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   -tp 4 \
   --trust-remote-code \
-  --attention-backend TRITON_ATTN
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton
 ```
 
 ### Qwen2-57B-A14B-Instruct IFB BW1100 2x vLLM 0.18

@@ -1155,7 +1155,8 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
   -tp 2 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
-  --attention-backend TRITON_ATTN
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton
 ```
 
 ### Qwen3-30B-A3B-Instruct-2507 IFB BW1100 1x vLLM 0.18
@@ -1578,7 +1579,8 @@ vllm serve hygon/Qwen3-235B-A22B-Channel-INT8-w8a8 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
-  --attention-backend TRITON_ATTN
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton
 ```
 
 ### Qwen3-235B-A22B-Channel-INT8-w8a8 IFB BW1100 2x vLLM 0.18

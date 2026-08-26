@@ -77,6 +77,7 @@ export VLLM_ROCM_USE_AITER=0
 vllm serve hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
   -tp 8 \
   --trust-remote-code \
+  --moe-backend triton \
   --max-model-len 73216 \
   --max-num-batched-tokens 16384 \
   --enable-prefix-caching \

@@ -147,11 +147,11 @@ export AMDGCN_USE_BUFFER_OPS=0
 export ROCSHMEM_IB_GID_INDEX=0
 export MC_IB_GID_INDEX=0
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
-export SGLANG_HOST_IP=$(hostname -I 2>/dev/null | awk '{print $1}')
 export SGLANG_NCCL_ALL_GATHER_IN_OVERLAP_SCHEDULER_SYNC_BATCH=1
 export USE_DCU_CUSTOM_ALLREDUCE=0
 export SGLANG_USE_AITER_AR=0
 export SGLANG_USE_DEEPGEMM_MOE=1
+export SGLANG_USE_FP8_W8A8_MOE=1
 
 sglang serve \
   --model-path hygon/GLM-5.1-Channel-FP8-w8a8 \

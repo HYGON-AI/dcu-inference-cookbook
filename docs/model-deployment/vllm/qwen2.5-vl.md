@@ -48,7 +48,6 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 2 \
     --trust-remote-code \
     --max-model-len 32768 \
-    --allowed-local-media-path "${VL_DATA}" \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen2.5-VL-32B-Instruct IFB K100_AI 4x vLLM 0.21
@@ -61,7 +60,6 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 4 \
     --trust-remote-code \
     --max-model-len 32768 \
-    --allowed-local-media-path "${VL_DATA}" \
     --attention-backend TRITON_ATTN
 ```
 ### Qwen2.5-VL-32B-Instruct IFB BW1100 1x vLLM 0.18

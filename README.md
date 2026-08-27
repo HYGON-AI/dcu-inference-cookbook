@@ -28,7 +28,7 @@
   </tr>
   <tbody>
     <tr>
-      <td rowspan="20" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/620760a26e3b7210c2ff1943/-s1gyJfvbE1RgO5iBeNOi.png" height="40"/><br/>Qwen</td>
+      <td rowspan="21" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/620760a26e3b7210c2ff1943/-s1gyJfvbE1RgO5iBeNOi.png" height="40"/><br/>Qwen</td>
       <td rowspan="2">Qwen3.8</td>
       <td>vLLM</td>
       <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/qwen3.8.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwen3.8.md">✅</a></td>
@@ -117,6 +117,11 @@
     <tr>
       <td>SGLang</td>
       <td align="center">-</td><td align="center">-</td><td align="center">-</td>
+    </tr>
+    <tr>
+      <td>Qwen3-TTS</td>
+      <td>vLLM-Omni</td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/qwen3-tts.md">✅</a></td><td align="center"><a href="docs/model-deployment/vllm/qwen3-tts.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="10" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6538815d1bdb3c40db94fbfa/xMBly9PUMphrFVMxLX4kq.png" height="40"/><br/>DeepSeek</td>

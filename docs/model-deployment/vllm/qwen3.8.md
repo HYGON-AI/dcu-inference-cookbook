@@ -29,7 +29,10 @@ vllm serve Qwen/Qwen3.8-27B \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
-  --compilation-config '{"cudagraph_mode":"FULL","max_cudagraph_capture_size":2048}' 
+  --compilation-config '{"cudagraph_mode":"FULL","max_cudagraph_capture_size":2048}' \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.8-27B IFB BW1000 2x vLLM 0.25
@@ -59,7 +62,10 @@ vllm serve Qwen/Qwen3.8-27B \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
-  --compilation-config '{"cudagraph_mode":"FULL","max_cudagraph_capture_size":2048}'
+  --compilation-config '{"cudagraph_mode":"FULL","max_cudagraph_capture_size":2048}' \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.8-27B IFB BW1000 2x vLLM 0.18-hotfix
@@ -89,7 +95,10 @@ vllm serve hygon/Qwen3.8-27B-Channel-INT8-w8a8 \
   --speculative-config.num_speculative_tokens 3 \
   -q slimquant_marlin \
   --compilation-config '{"cudagraph_mode":"FULL","max_cudagraph_capture_size":2048}' \
-  --speculative-config.quantization "slimquant_marlin"
+  --speculative-config.quantization "slimquant_marlin" \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.8-27B-Channel-INT8-w8a8 IFB BW1000 1x vLLM 0.21
@@ -104,7 +113,10 @@ vllm serve hygon/Qwen3.8-27B-Channel-INT8-w8a8 \
   --speculative-config.num_speculative_tokens 3 \
   -q slimquant_marlin \
   --compilation-config '{"cudagraph_mode":"FULL","max_cudagraph_capture_size":2048}' \
-  --speculative-config.quantization "slimquant_marlin"
+  --speculative-config.quantization "slimquant_marlin" \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.8-27B-Channel-INT8-w8a8 IFB BW1000 2x vLLM 0.21
@@ -119,7 +131,10 @@ vllm serve hygon/Qwen3.8-27B-Channel-INT8-w8a8 \
   --speculative-config.num_speculative_tokens 3 \
   -q slimquant_marlin \
   --compilation-config '{"cudagraph_mode":"FULL","max_cudagraph_capture_size":2048}' \
-  --speculative-config.quantization "slimquant_marlin"
+  --speculative-config.quantization "slimquant_marlin" \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.8-27B-Channel-INT8-w8a8 IFB BW1000 1x vLLM 0.18-hotfix

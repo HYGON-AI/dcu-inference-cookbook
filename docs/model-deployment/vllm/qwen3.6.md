@@ -40,7 +40,10 @@ vllm serve Qwen/Qwen3.6-27B \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.6-27B IFB BW1000 2x vLLM 0.25
@@ -70,7 +73,10 @@ vllm serve Qwen/Qwen3.6-27B \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.6-27B IFB K100_AI 2x vLLM 0.21
@@ -89,7 +95,10 @@ vllm serve Qwen/Qwen3.6-27B \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --speculative-config.attention_backend TRITON_ATTN \
-  --attention-backend TRITON_ATTN
+  --attention-backend TRITON_ATTN \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.6-27B IFB BW1100 1x vLLM 0.18
@@ -184,7 +193,10 @@ vllm serve Qwen/Qwen3.6-35B-A3B \
   --speculative-config.num_speculative_tokens 3 \
   --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM \
-  --moe-backend aiter
+  --moe-backend aiter \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.6-35B-A3B IFB BW1000 2x vLLM 0.21
@@ -197,7 +209,10 @@ vllm serve Qwen/Qwen3.6-35B-A3B \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3 \
   --attention-backend FLASH_ATTN_CUSTOM \
-  --moe-backend aiter
+  --moe-backend aiter \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.6-35B-A3B IFB K100_AI 2x vLLM 0.21
@@ -217,7 +232,10 @@ vllm serve Qwen/Qwen3.6-35B-A3B \
   --speculative-config.num_speculative_tokens 3 \
   --speculative-config.attention_backend TRITON_ATTN \
   --attention-backend TRITON_ATTN \
-  --moe-backend triton
+  --moe-backend triton \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.6-35B-A3B IFB BW1100 1x vLLM 0.18

@@ -891,6 +891,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-32B-Instruct \
   -tp 2 \
   --trust-remote-code \
+  --max-model-len 32768 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-32B-Instruct IFB K100_AI 2x vLLM 0.21

@@ -158,10 +158,12 @@ vllm serve Qwen/Qwen3-0.6B \
 ### Qwen3-0.6B IFB K100_AI 1x vLLM 0.21
 
 ```bash
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen3-0.6B \
   -tp 1 \
   --trust-remote-code \
@@ -274,10 +276,12 @@ vllm serve Qwen/Qwen3-1.7B \
 ### Qwen3-1.7B IFB K100_AI 1x vLLM 0.21
 
 ```bash
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen3-1.7B \
   -tp 1 \
   --trust-remote-code \
@@ -377,10 +381,12 @@ vllm serve Qwen/Qwen3-4B \
 ### Qwen3-4B IFB K100_AI 1x vLLM 0.21
 
 ```bash
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen3-4B \
   -tp 1 \
   --trust-remote-code \
@@ -537,10 +543,12 @@ vllm serve Qwen/Qwen3-4B-Channel-INT8-w8a8 \
 ### Qwen3-4B-Thinking-2507 IFB K100_AI 1x vLLM 0.21
 
 ```bash
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen3-4B-Thinking-2507 \
   -tp 1 \
   --trust-remote-code \
@@ -612,10 +620,12 @@ vllm serve Qwen/Qwen3-8B \
 ### Qwen3-8B IFB K100_AI 1x vLLM 0.21
 
 ```bash
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen3-8B \
   -tp 1 \
   --trust-remote-code \
@@ -795,10 +805,12 @@ vllm serve Qwen/Qwen3-14B \
 ### Qwen3-14B IFB K100_AI 1x vLLM 0.21
 
 ```bash
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen3-14B \
   -tp 1 \
   --trust-remote-code \
@@ -978,10 +990,12 @@ vllm serve Qwen/Qwen3-32B \
 ### Qwen3-32B IFB K100_AI 2x vLLM 0.21
 
 ```bash
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen3-32B \
   -tp 2 \
   --trust-remote-code \
@@ -1065,11 +1079,12 @@ vllm serve Qwen/Qwen3-32B \
 ### Qwen3-32B.w8a8 IFB K100_AI 4x vLLM 0.21
 
 ```bash
-
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen3-32B.w8a8 \
   -tp 4 \
   --trust-remote-code \
@@ -1147,15 +1162,18 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
 ### Qwen3-30B-A3B-Instruct-2507 IFB K100_AI 2x vLLM 0.21
 
 ```bash
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507 \
   -tp 2 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
-  --attention-backend TRITON_ATTN
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton
 ```
 
 ### Qwen3-30B-A3B-Instruct-2507 IFB BW1100 1x vLLM 0.18
@@ -1569,16 +1587,19 @@ vllm serve Qwen/Qwen3-235B-A22B-Channel-INT8-w8a8 \
 ### Qwen3-235B-A22B-Channel-INT8-w8a8 IFB K100_AI 4x vLLM 0.21
 
 ```bash
-
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve hygon/Qwen3-235B-A22B-Channel-INT8-w8a8 \
   -tp 4 \
   --gpu-memory-utilization 0.9 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
-  --attention-backend TRITON_ATTN
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton
 ```
 
 ### Qwen3-235B-A22B-Channel-INT8-w8a8 IFB BW1100 2x vLLM 0.18

@@ -69,14 +69,17 @@ vllm serve hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
 ### MiniMax-M2.5-Channel-INT8-w8a8 IFB K100_AI 8x vLLM 0.21
 
 ```bash
-export VLLM_ROCM_USE_AITER_MOE=0
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
 
 vllm serve hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
   -tp 8 \
   --trust-remote-code \
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton \
   --max-model-len 73216 \
   --max-num-batched-tokens 16384 \
   --enable-prefix-caching \

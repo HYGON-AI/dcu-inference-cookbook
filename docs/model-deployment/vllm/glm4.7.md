@@ -33,7 +33,10 @@ vllm serve hygon/GLM-4.7-Channel-INT8-w8a8 \
   --speculative-config.num_speculative_tokens 2 \
   --speculative-config.quantization slimquant_marlin \
   --compilation-config.cudagraph_mode PIECEWISE \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --enable-auto-tool-choice \
+  --tool-call-parser glm47 \
+  --reasoning-parser glm47
 ```
 
 ### GLM-4.7-Channel-INT8-w8a8 IFB BW1000 8x vLLM 0.21
@@ -52,7 +55,10 @@ vllm serve hygon/GLM-4.7-Channel-INT8-w8a8 \
   --speculative-config.num_speculative_tokens 2 \
   --speculative-config.quantization slimquant_marlin \
   --compilation-config.cudagraph_mode PIECEWISE \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --enable-auto-tool-choice \
+  --tool-call-parser glm47 \
+  --reasoning-parser glm47
 ```
 
 ### GLM-4.7-Channel-INT8-w8a8 IFB K100_AI 8x vLLM 0.21
@@ -62,18 +68,23 @@ export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
 
 vllm serve hygon/GLM-4.7-Channel-INT8-w8a8 \
   -tp 8 \
   -q slimquant_marlin \
   --trust-remote-code \
+  --attention-backend TRITON_ATTN \
   --dtype bfloat16 \
   --disable-cascade-attn \
   --max-model-len 74000 \
   --max-num-batched-tokens 8192 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 2 \
-  --compilation-config.cudagraph_mode PIECEWISE
+  --compilation-config.cudagraph_mode PIECEWISE \
+  --enable-auto-tool-choice \
+  --tool-call-parser glm47 \
+  --reasoning-parser glm47
 ```
 
 ### GLM-4.7-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.18

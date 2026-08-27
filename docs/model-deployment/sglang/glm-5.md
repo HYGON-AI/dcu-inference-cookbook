@@ -71,7 +71,7 @@ sglang serve \
   --speculative-num-steps 3 \
   --speculative-eagle-topk 1 \
   --speculative-num-draft-tokens 4 \
-  --custom-all-reduce-backen aiter
+  --custom-all-reduce-backend aiter
 ```
 
 ### GLM-5-Channel-INT4-w4a8 IFB BW1000 8x SGLang 0.5.12
@@ -554,7 +554,7 @@ sglang serve \
   --speculative-num-steps 3 \
   --speculative-eagle-topk 1 \
   --speculative-num-draft-tokens 4 \
-  --custom-all-reduce-backen aiter
+  --custom-all-reduce-backend aiter
 ```
 
 ### GLM-5-Channel-INT8-w8a8 IFB BW1100 8x SGLang 0.5.10
@@ -877,7 +877,7 @@ sglang serve \
   --speculative-num-steps 3 \
   --speculative-eagle-topk 1 \
   --speculative-num-draft-tokens 4 \
-  --custom-all-reduce-backen aiter
+  --custom-all-reduce-backend aiter
 ~~~
 
 ### GLM-5-Channel-FP8-w8a8 IFB BW1100 8x SGLang 0.5.12 (tp8ep8cp8)

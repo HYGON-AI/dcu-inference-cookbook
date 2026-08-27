@@ -172,7 +172,6 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen2-1.5B-Instruct \
   -tp 1 \
   --trust-remote-code \
-  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 

@@ -28,7 +28,6 @@ vllm serve Qwen/Qwen2-VL-2B-Instruct \
     --trust-remote-code \
     --gpu-memory-utilization 0.95 \
     --chat-template-content-format openai \
-    --kv-cache-dtype fp8_e4m3 \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
 

@@ -24,7 +24,6 @@ vllm serve \
   --max-model-len 32768 \
   --attention-backend TRITON_ATTN \
   --hf-overrides '{"text_config":{"allow_global_per_layer_attribute_access":true,"global_head_dim":512,"num_global_key_value_heads":4,"use_bidirectional_attention":null}}' \
-  --language-model-only \
   --enable-auto-tool-choice \
   --tool-call-parser gemma4 \
   --reasoning-parser gemma4

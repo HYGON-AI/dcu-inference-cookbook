@@ -103,7 +103,7 @@ Ref2VA 需要重启 Server，并改用 `ref2va` 分区：
 export MODEL_VARIANT=ref2va
 ```
 
-启动命令：
+启动命令。MiniMax-H3 建议显式指定组件级 attention backend：`transformer=fa` 给 DiT 主干，`text_encoder=torch_sdpa` 给文本/视觉编码器，避免不同组件都继承同一个默认 backend。
 
 ```bash
 HIP_VISIBLE_DEVICES="$GPU_IDS" sglang serve \
@@ -117,6 +117,7 @@ HIP_VISIBLE_DEVICES="$GPU_IDS" sglang serve \
   --ring-degree 1 \
   --encoder-parallel auto \
   --attention-backend fa \
+  --component-attention-backends text_encoder=torch_sdpa,transformer=fa \
   --performance-mode manual \
   --dit-cpu-offload "$DIT_OFFLOAD" \
   --dit-layerwise-offload "$DIT_LAYERWISE_OFFLOAD" \
@@ -342,5 +343,7 @@ Pipeline instantiated
 Output saved to ...mp4
 Pixel data generated successfully in ... seconds
 ```
+
+同时确认启动参数中包含 `--component-attention-backends text_encoder=torch_sdpa,transformer=fa`：文本/视觉编码器保持 torch SDPA 路径，DiT transformer 使用 FA 路径。
 
 开启 CacheDiT 后还要确认命中数大于 0，并确认 `residual_diffs` 没有 `NaN`。

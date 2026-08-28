@@ -498,6 +498,23 @@ vllm serve Qwen/Qwen3-VL-8B-Instruct \
   --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
+### Qwen3-VL-8B-Instruct IFB BW1000 1x vLLM 0.25
+
+```bash
+export VLLM_USE_V2_MODEL_RUNNER=1
+export VLLM_KV_CACHE_LAYOUT=HND
+
+vllm serve \
+  --model Qwen/Qwen3-VL-8B-Instruct \
+  --attention-backend FLASH_ATTN_VARLEN \
+  --trust-remote-code \
+  --tensor-parallel-size 1 \
+  --max-model-len 8192 \
+  --reasoning-parser qwen3 \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder
+```
+
 ### Qwen3-VL-8B-Instruct IFB BW1000 1x vLLM 0.21
 
 ```bash
@@ -874,6 +891,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-32B-Instruct \
   -tp 2 \
   --trust-remote-code \
+  --max-model-len 32768 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-32B-Instruct IFB K100_AI 2x vLLM 0.21

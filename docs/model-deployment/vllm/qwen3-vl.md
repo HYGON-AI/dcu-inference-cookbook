@@ -509,7 +509,7 @@ vllm serve \
   --attention-backend FLASH_ATTN_VARLEN \
   --trust-remote-code \
   --tensor-parallel-size 1 \
-  --max-model-len 8192 \
+  --max-model-len 32768 \
   --reasoning-parser qwen3 \
   --enable-auto-tool-choice \
   --tool-call-parser qwen3_coder

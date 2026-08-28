@@ -906,6 +906,7 @@ export VLLM_ROCM_USE_AITER_MOE=0
 vllm serve Qwen/Qwen3-VL-32B-Instruct \
   -tp 2 \
   --trust-remote-code \
+  --max-model-len 32768 \
   --attention-backend TRITON_ATTN
 ```
 ### Qwen3-VL-32B-Instruct IFB BW1100 1x vLLM 0.18

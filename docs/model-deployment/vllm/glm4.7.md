@@ -33,10 +33,7 @@ vllm serve hygon/GLM-4.7-Channel-INT8-w8a8 \
   --speculative-config.num_speculative_tokens 2 \
   --speculative-config.quantization slimquant_marlin \
   --compilation-config.cudagraph_mode PIECEWISE \
-  --attention-backend FLASH_ATTN_CUSTOM \
-  --enable-auto-tool-choice \
-  --tool-call-parser glm47 \
-  --reasoning-parser glm47
+  --attention-backend FLASH_ATTN_CUSTOM
 ```
 
 ### GLM-4.7-Channel-INT8-w8a8 IFB BW1000 8x vLLM 0.21
@@ -55,10 +52,7 @@ vllm serve hygon/GLM-4.7-Channel-INT8-w8a8 \
   --speculative-config.num_speculative_tokens 2 \
   --speculative-config.quantization slimquant_marlin \
   --compilation-config.cudagraph_mode PIECEWISE \
-  --attention-backend FLASH_ATTN_CUSTOM \
-  --enable-auto-tool-choice \
-  --tool-call-parser glm47 \
-  --reasoning-parser glm47
+  --attention-backend FLASH_ATTN_CUSTOM
 ```
 
 ### GLM-4.7-Channel-INT8-w8a8 IFB K100_AI 8x vLLM 0.21
@@ -81,10 +75,7 @@ vllm serve hygon/GLM-4.7-Channel-INT8-w8a8 \
   --max-num-batched-tokens 8192 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 2 \
-  --compilation-config.cudagraph_mode PIECEWISE \
-  --enable-auto-tool-choice \
-  --tool-call-parser glm47 \
-  --reasoning-parser glm47
+  --compilation-config.cudagraph_mode PIECEWISE
 ```
 
 ### GLM-4.7-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.18

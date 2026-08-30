@@ -16,7 +16,10 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 |  | INT8 W8A8 | [0.5.12](../docker_images.md) | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-30b-a3b-channel-int8-w8a8-ifb-bw1000-1x-sglang-0512) |
 |  | INT8 W8A8 | [0.5.12](../docker_images.md) | K100_AI | 1x | IFB | [**\`>_\`**](#qwen3-30b-a3b-channel-int8-w8a8-ifb-k100_ai-1x-sglang-0512) |
 | [Qwen/Qwen3-32B](https://www.modelscope.cn/models/Qwen/Qwen3-32B) | BF16 | 0.5.10 | BW1100 | 2x | IFB | [**\`>_\`**](#qwen3-32b-ifb-bw1100-2x-sglang-0510) |
-| [Qwen/Qwen3-235B-A22B](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B) | BF16 | 0.5.10 | BW1100 | 4x | IFB | [**\`>_\`**](#qwen3-235b-a22b-ifb-bw1100-4x-sglang-0510) |
+| [Qwen/Qwen3-235B-A22B](https://www.modelscope.cn/models/Qwen/Qwen3-235B-A22B) | BF16 | [0.5.12](../docker_images.md) | BW1100 | 8 | IFB | [**\`>_\`**](#qwen3-235b-a22b-ifb-bw1100-8x-sglang-0512) |
+|  | BF16 | [0.5.12](../docker_images.md) | BW1000 | 8 | IFB | [**\`>_\`**](#qwen3-235b-a22b-ifb-bw1000-8x-sglang-0512) |
+|  | BF16 | [0.5.12](../docker_images.md) | K100_AI | 8 | IFB | [**\`>_\`**](#qwen3-235b-a22b-ifb-k100_ai-8x-sglang-0512) |
+|  | BF16 | 0.5.10 | BW1100 | 4x | IFB | [**\`>_\`**](#qwen3-235b-a22b-ifb-bw1100-4x-sglang-0510) |
 
 ## 启动命令
 
@@ -333,6 +336,49 @@ python -m sglang.launch_server \
     --mem-fraction-static 0.85
 ```
 
+### Qwen3-235B-A22B IFB BW1100 8x SGLang 0.5.12
+
+```bash
+sglang serve \
+  --model-path Qwen/Qwen3-235B-A22B \
+  --tp-size 8 \
+  --attention-backend fa3 \
+  --page-size 64 \
+  --trust-remote-code \
+  --mem-fraction-static 0.85 \
+  --reasoning-parser qwen3 \
+  --tool-call-parser qwen3_coder
+```
+
+### Qwen3-235B-A22B IFB BW1000 8x SGLang 0.5.12
+
+```bash
+sglang serve \
+  --model-path Qwen/Qwen3-235B-A22B \
+  --tp-size 8 \
+  --attention-backend fa3 \
+  --page-size 64 \
+  --trust-remote-code \
+  --mem-fraction-static 0.95 \
+  --reasoning-parser qwen3 \
+  --tool-call-parser qwen3_coder
+```
+
+### Qwen3-235B-A22B IFB K100_AI 8x SGLang 0.5.12
+
+```bash
+sglang serve \
+  --model-path Qwen/Qwen3-235B-A22B \
+  --tp-size 8 \
+  --attention-backend fa3 \
+  --page-size 64 \
+  --trust-remote-code \
+  --reasoning-parser qwen3 \
+  --tool-call-parser qwen3_coder \
+  --mem-fraction-static 0.95 \
+  --disable-custom-all-reduce
+```
+
 ### Qwen3-235B-A22B IFB BW1100 4x SGLang 0.5.10
 
 ```bash
@@ -360,4 +406,24 @@ response = client.chat.completions.create(
     max_tokens=1024,
 )
 print(response.choices[0].message.content)
+```
+
+#### Qwen3-235B-A22B
+
+```python
+from openai import OpenAI
+
+client = OpenAI(base_url="http://localhost:30000/v1", api_key="not-needed")
+
+response = client.chat.completions.create(
+    model="Qwen/Qwen3-235B-A22B",
+    messages=[...],
+    max_tokens=2048,
+)
+```
+
+```bash
+curl http://localhost:30000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{"model": "Qwen/Qwen3-235B-A22B", "messages": [...], "max_tokens": 128}'
 ```

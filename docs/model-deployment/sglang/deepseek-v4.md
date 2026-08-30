@@ -10,6 +10,8 @@ DeepSeek-V4 是 DeepSeek 系列的混合专家模型。本页汇总 DeepSeek-V4 
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
 | [hygon/DeepSeek-V4-Flash-0731-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V4-Flash-0731-Channel-FP8-w8a8) | FP8 W8A8 | - | BW1100 | 8 | IFB(TP8)| [**`>_`**](#deepseek-v4-flash-0731-channel-fp8-w8a8-ifb-tp8-bw1100-8x-sglang) |
 |  | FP8 W8A8 | - | BW1100 | 8 | IFB(DP8) | [**`>_`**](#deepseek-v4-flash-0731-channel-fp8-w8a8-ifb-dp8-bw1100-8x-sglang) |
+| [hygon/DeepSeek-V4-Flash-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V4-Flash-Channel-INT8-w8a8) | INT8 W8A8 | 0.5.12 | BW1100 | 8 | IFB | [**`>_`**](#deepseek-v4-flash-channel-int8-w8a8-ifb-bw1100-8x-sglang-0512) |
+|  | INT8 W8A8 | 0.5.12 | BW1000 | 8 | IFB | [**`>_`**](#deepseek-v4-flash-channel-int8-w8a8-ifb-bw1000-8x-sglang-0512) |
 | [hygon/DeepSeek-V4-Flash-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/DeepSeek-V4-Flash-Channel-FP8-w8a8) | FP8 W8A8 | 0.5.12 | BW1100 | 8 | IFB(CP8EP8) | [**`>_`**](#deepseek-v4-flash-channel-fp8-w8a8-ifb-bw1100-8x-sglang-0512) |
 |  | FP8 W8A8 | 0.5.12 | BW1100 | 8 | IFB(DP8EP8) | [**`>_`**](#deepseek-v4-flash-channel-fp8-w8a8-ifb-bw1100-8x-sglang-0512) |
 |  | FP8 W8A8 | 0.5.12 | BW1100 | 16 | 1P1D | [**`>_`**](#deepseek-v4-flash-channel-fp8-w8a8-1p1d-bw1100-16x-sglang-0512) |
@@ -187,6 +189,140 @@ sglang serve \
   --max-running-requests 64 \
   --context-length 81920 \
   --enable-metrics
+```
+
+### DeepSeek-V4-Flash-Channel-INT8-w8a8 IFB BW1100 8x SGLang 0.5.12
+
+节点 IP、网卡等请按实际环境填写。
+
+```bash
+ulimit -l unlimited
+export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=288
+export ROCSHMEM_MAX_NUM_CONTEXTS=48
+export ROCSHMEM_HEAP_SIZE=3737418240
+export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
+export NCCL_SOCKET_IFNAME=ens47f0np0
+export GLOO_SOCKET_IFNAME=ens47f0np0
+export SGL_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export SGLANG_SET_CPU_AFFINITY=1
+export HIP_KERNEL_BATCH_CEILING=100
+export GPU_MAX_HW_QUEUES=3
+export HIP_H2D_DISABLE_COPY_BUFFER=0
+export HIP_D2H_DISABLE_COPY_BUFFER=0
+export HIP_H2D_DIRECT_COPY_THRESHOLD=32768
+export HIP_H2D_HSAAPI_COPY_THRESHOLD=32768
+export HIP_D2H_DIRECT_COPY_THRESHOLD=512
+export HIP_D2H_HSAAPI_COPY_THRESHOLD=512
+export USE_DCU_CUSTOM_ALLREDUCE=0
+export SGLANG_OPT_DEEPGEMM_HC_PRENORM=0
+export HIP_KERNEL_EVENT_SYSTENFENCE=1
+export SGLANG_USE_FP8_W8A8_MOE=0
+unset SGLANG_DEEPEP_BF16_DISPATCH
+export SGLANG_GROUPGEMM=true
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_OPT_USE_FUSED_HASH_TOPK=true
+export SGLANG_OPT_SWIGLU_CLAMP_FUSION=false
+export SGLANG_OPT_USE_JIT_KERNEL_FUSED_TOPK=true
+export SGLANG_NSA_FUSE_TOPK=false
+export SGLANG_JIT_DEEPGEMM_PRECOMPILE=0
+export SGLANG_APPLY_CONFIG_BACKUP=none
+export SGLANG_DEEPEP_NUM_MAX_DISPATCH_TOKENS_PER_RANK=256
+export SGLANG_DSV4_MODE=2604
+export SGLANG_DSV4_DEEPEP_TP_SHARD_QUANT=0
+export SGLANG_ROCM_USE_AITER_MOE=1
+export SGLANG_ROCM_USE_AITER_TILELANG_MHC=1
+export SGLANG_TOPK_TRANSFORM_512_TORCH="${SGLANG_TOPK_TRANSFORM_512_TORCH:-false}"
+export SGLANG_USE_FUSED_DPSKV4_QNORM_ROPE_KV_ROPE_QUANT=1
+export PYTORCH_HIP_ALLOC_CONF=expandable_segments:True
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+sglang serve \
+  --trust-remote-code \
+  --model-path hygon/DeepSeek-V4-Flash-Channel-INT8-w8a8 \
+  --tp 8 \
+  --dp 8 \
+  --host <node_ip> \
+  --enable-dp-attention \
+  --moe-a2a-backend deepep \
+  --deepep-mode auto \
+  --chunked-prefill-size 32768 \
+  --deepep-config /xxxx/ep_config.json \
+  --speculative-num-steps 3 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 4 \
+  --mem-fraction-static 0.84 \
+  --quantization slimquant_marlin \
+  --disable-flashinfer-autotune \
+  --cuda-graph-max-bs 64
+```
+
+### DeepSeek-V4-Flash-Channel-INT8-w8a8 IFB BW1000 8x SGLang 0.5.12
+
+节点 IP、网卡等请按实际环境填写。
+
+```bash
+ulimit -l unlimited
+export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=288
+export ROCSHMEM_MAX_NUM_CONTEXTS=48
+export ROCSHMEM_HEAP_SIZE=3737418240
+export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
+export NCCL_SOCKET_IFNAME=ens47f0np0
+export GLOO_SOCKET_IFNAME=ens47f0np0
+export SGL_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export SGLANG_SET_CPU_AFFINITY=1
+export HIP_KERNEL_BATCH_CEILING=100
+export GPU_MAX_HW_QUEUES=3
+export HIP_H2D_DISABLE_COPY_BUFFER=0
+export HIP_D2H_DISABLE_COPY_BUFFER=0
+export HIP_H2D_DIRECT_COPY_THRESHOLD=32768
+export HIP_H2D_HSAAPI_COPY_THRESHOLD=32768
+export HIP_D2H_DIRECT_COPY_THRESHOLD=512
+export HIP_D2H_HSAAPI_COPY_THRESHOLD=512
+export USE_DCU_CUSTOM_ALLREDUCE=0
+export SGLANG_OPT_DEEPGEMM_HC_PRENORM=0
+export HIP_KERNEL_EVENT_SYSTENFENCE=1
+export SGLANG_USE_FP8_W8A8_MOE=0
+unset SGLANG_DEEPEP_BF16_DISPATCH
+export SGLANG_GROUPGEMM=true
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_OPT_USE_FUSED_HASH_TOPK=true
+export SGLANG_OPT_SWIGLU_CLAMP_FUSION=false
+export SGLANG_OPT_USE_JIT_KERNEL_FUSED_TOPK=true
+export SGLANG_NSA_FUSE_TOPK=false
+export SGLANG_JIT_DEEPGEMM_PRECOMPILE=0
+export SGLANG_APPLY_CONFIG_BACKUP=none
+export SGLANG_DEEPEP_NUM_MAX_DISPATCH_TOKENS_PER_RANK=256
+export SGLANG_DSV4_MODE=2604
+export SGLANG_DSV4_DEEPEP_TP_SHARD_QUANT=0
+export SGLANG_ROCM_USE_AITER_MOE=1
+export SGLANG_ROCM_USE_AITER_TILELANG_MHC=1
+export SGLANG_TOPK_TRANSFORM_512_TORCH="${SGLANG_TOPK_TRANSFORM_512_TORCH:-false}"
+export SGLANG_USE_FUSED_DPSKV4_QNORM_ROPE_KV_ROPE_QUANT=1
+export PYTORCH_HIP_ALLOC_CONF=expandable_segments:True
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+sglang serve \
+  --trust-remote-code \
+  --model-path hygon/DeepSeek-V4-Flash-Channel-INT8-w8a8 \
+  --tp 8 \
+  --dp 8 \
+  --host <node_ip> \
+  --enable-dp-attention \
+  --moe-a2a-backend deepep \
+  --deepep-mode auto \
+  --chunked-prefill-size 32768 \
+  --deepep-config /xxxx/ep_config.json \
+  --speculative-num-steps 3 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 4 \
+  --mem-fraction-static 0.84 \
+  --quantization slimquant_marlin \
+  --disable-flashinfer-autotune \
+  --cuda-graph-max-bs 64
 ```
 
 ### DeepSeek-V4-Flash-Channel-FP8-w8a8 IFB BW1100 8x SGLang 0.5.12

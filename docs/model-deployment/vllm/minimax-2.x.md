@@ -45,7 +45,10 @@ vllm serve hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
   -cc '{"pass_config": {"fuse_act_quant": false},
         "cudagraph_mode": "full",
         "custom_ops": ["all"]}' \
-  -q slimquant_marlin
+  -q slimquant_marlin \
+  --enable-auto-tool-choice \
+  --tool-call-parser minimax_m2 \
+  --reasoning-parser minimax_m2
 ```
 
 ### MiniMax-M2.5-Channel-INT8-w8a8 IFB BW1000 8x vLLM 0.21
@@ -63,27 +66,36 @@ vllm serve hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
   -cc '{"pass_config": {"fuse_act_quant": false},
         "cudagraph_mode": "full",
         "custom_ops": ["all"]}' \
-  -q slimquant_marlin
+  -q slimquant_marlin \
+  --enable-auto-tool-choice \
+  --tool-call-parser minimax_m2 \
+  --reasoning-parser minimax_m2
 ```
 
 ### MiniMax-M2.5-Channel-INT8-w8a8 IFB K100_AI 8x vLLM 0.21
 
 ```bash
-export VLLM_ROCM_USE_AITER_MOE=0
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
 
 vllm serve hygon/MiniMax-M2.5-Channel-INT8-w8a8 \
   -tp 8 \
   --trust-remote-code \
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton \
   --max-model-len 73216 \
   --max-num-batched-tokens 16384 \
   --enable-prefix-caching \
   --gpu-memory-utilization 0.92 \
   -cc '{"pass_config": {"fuse_act_quant": false},
         "cudagraph_mode": "full",
-        "custom_ops": ["all"]}'
+        "custom_ops": ["all"]}' \
+    --enable-auto-tool-choice \
+    --tool-call-parser minimax_m2 \
+    --reasoning-parser minimax_m2
 ```
 
 ### MiniMax-M2.5-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.18
@@ -339,7 +351,10 @@ vllm serve hygon/MiniMax-M2.5-Channel-FP8-w8a8 \
   -cc '{"pass_config": {"fuse_act_quant": false},
         "cudagraph_mode": "full",
         "custom_ops": ["all"]}' \
-  -q slimquant_marlin
+  -q slimquant_marlin \
+  --enable-auto-tool-choice \
+  --tool-call-parser minimax_m2 \
+  --reasoning-parser minimax_m2
 ```
 ### MiniMax-M2.5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18.1
 
@@ -416,13 +431,16 @@ export VLLM_ROCM_USE_AITER_MOE=0
 vllm serve MiniMax-M2.5-bf16 \
   -tp 8 \
   --trust-remote-code \
-  --max-model-len 73216 \
+  --max-model-len 32768 \
   --max-num-batched-tokens 16384 \
   --enable-prefix-caching \
   --gpu-memory-utilization 0.92 \
   -cc '{"pass_config": {"fuse_act_quant": false},
         "cudagraph_mode": "full",
-        "custom_ops": ["all"]}'
+        "custom_ops": ["all"]}' \
+    --enable-auto-tool-choice \
+    --tool-call-parser minimax_m2 \
+    --reasoning-parser minimax_m2
 ```
 
 ### MiniMax-M2.5-bf16 IFB BW1000 8x vLLM 0.21
@@ -433,13 +451,16 @@ export VLLM_ROCM_USE_AITER_MOE=0
 vllm serve MiniMax-M2.5-bf16 \
   -tp 8 \
   --trust-remote-code \
-  --max-model-len 73216 \
+  --max-model-len 32768 \
   --max-num-batched-tokens 16384 \
   --enable-prefix-caching \
   --gpu-memory-utilization 0.92 \
   -cc '{"pass_config": {"fuse_act_quant": false},
         "cudagraph_mode": "full",
-        "custom_ops": ["all"]}'
+        "custom_ops": ["all"]}' \
+    --enable-auto-tool-choice \
+    --tool-call-parser minimax_m2 \
+    --reasoning-parser minimax_m2
 ```
 
 ### MiniMax-M2.5-bf16 IFB BW1100 8x vLLM 0.18

@@ -291,15 +291,12 @@ export SGLANG_CACHE_DIT_WARMUP=4
 export SGLANG_CACHE_DIT_RDT=0.24
 export SGLANG_CACHE_DIT_MC=3
 
-# 验证阶段建议开启，方便在日志里检查 cache hit 和 residual_diffs。
-export SGLANG_MINIMAX_H3_CACHE_DIT_STATS=true
-```
+
 
 如果明确要关掉 CacheDiT，启动 Server 前执行：
 
 ```bash
 export SGLANG_CACHE_DIT_ENABLED=false
-unset SGLANG_MINIMAX_H3_CACHE_DIT_STATS
 ```
 
 ## 可选：生成并启用 AdaLN cache

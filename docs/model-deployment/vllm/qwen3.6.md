@@ -8,7 +8,8 @@ Qwen3.6 模型相较于 Qwen3.5 模型，**在智能体编程能力、推理速�
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [Qwen/Qwen3.6-27B](https://www.modelscope.cn/models/Qwen/Qwen3.6-27B) | BF16 | 0.21 | BW1100 | 1 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1100-1x-vllm-021) |
+| [Qwen/Qwen3.6-27B](https://www.modelscope.cn/models/Qwen/Qwen3.6-27B) | BF16 | 0.25 | BW1000 | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1000-2x-vllm-025) |
+|  | BF16 | 0.21 | BW1100 | 1 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1100-1x-vllm-021) |
 |  | BF16 | 0.21 | BW1000 | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1000-2x-vllm-021) |
 |  | BF16 | 0.21 | K100_AI | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-k100_ai-2x-vllm-021) |
 |  | BF16 | 0.18 | BW1100 | 1 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1100-1x-vllm-018) |
@@ -29,23 +30,6 @@ Qwen3.6 模型相较于 Qwen3.5 模型，**在智能体编程能力、推理速�
 
 ## 启动命令
 
-### Qwen3.6-27B IFB BW1100 1x vLLM 0.21
-
-```bash
-
-vllm serve Qwen/Qwen3.6-27B \
-  -tp 1 \
-  --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --speculative-config.method mtp \
-  --speculative-config.num_speculative_tokens 3 \
-  --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM \
-  --enable-auto-tool-choice \
-  --tool-call-parser qwen3_coder \
-  --reasoning-parser qwen3
-```
-
 ### Qwen3.6-27B IFB BW1000 2x vLLM 0.25
 
 ```bash
@@ -61,6 +45,23 @@ vllm serve \
   --reasoning-parser qwen3 \
   --enable-auto-tool-choice \
   --tool-call-parser qwen3_coder
+```
+
+### Qwen3.6-27B IFB BW1100 1x vLLM 0.21
+
+```bash
+
+vllm serve Qwen/Qwen3.6-27B \
+  -tp 1 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --kv-cache-dtype fp8_e4m3 \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
 ```
 
 ### Qwen3.6-27B IFB BW1000 2x vLLM 0.21

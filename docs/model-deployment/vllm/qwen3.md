@@ -1272,7 +1272,6 @@ vllm serve Qwen/Qwen3-30B-A3B-Instruct-2507-W8A8 \
   --trust-remote-code \
   --max-num-batched-tokens 10240 \
   --q slimquant_marlin \
-  --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 

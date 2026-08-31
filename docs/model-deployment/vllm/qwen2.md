@@ -401,7 +401,8 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   -tp 4 \
   --trust-remote-code \
-  --attention-backend FLASH_ATTN_CUSTOM
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend triton
 ```
 
 ### Qwen2-57B-A14B-Instruct IFB K100_AI 4x vLLM 0.21

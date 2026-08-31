@@ -44,11 +44,14 @@ vllm serve hygon/GLM-5-Channel-INT4-w4a8 \
     --block-size 64 \
     --speculative_config '{
         "method":"deepseek_mtp",
-        "num_speculative_tokens":2,
+        "num_speculative_tokens":2
     }' \
     --kv-cache-dtype fp8_ds_mla \
     --moe-backend aiter \
-    --attention-backend FLASHMLA_SPARSE
+    --attention-backend FLASHMLA_SPARSE \
+    --enable-auto-tool-choice \
+    --tool-call-parser glm47 \
+    --reasoning-parser glm45
 ```
 
 ### GLM-5-Channel-INT4-w4a8 PP2+TP8 BW1000 16x vLLM 0.21
@@ -76,7 +79,10 @@ vllm serve hygon/GLM-5-Channel-INT4-w4a8 \
     --attention-backend FLASHMLA_SPARSE \
     --nnodes 2 \
     --node-rank 0 \
-    --master-addr <node1_ip>
+    --master-addr <node1_ip> \
+    --enable-auto-tool-choice \
+    --tool-call-parser glm47 \
+    --reasoning-parser glm45
 ```
 
 #### Node 2
@@ -101,7 +107,10 @@ vllm serve hygon/GLM-5-Channel-INT4-w4a8 \
     --nnodes 2 \
     --node-rank 1 \
     --master-addr <node1_ip> \
-    --headless
+    --headless \
+    --enable-auto-tool-choice \
+    --tool-call-parser glm47 \
+    --reasoning-parser glm45
 ```
 
 ### GLM-5-Channel-INT4-w4a8 IFB BW1100 8x vLLM 0.18
@@ -125,7 +134,7 @@ vllm serve hygon/GLM-5-Channel-INT4-w4a8 \
     --block-size 64 \
     --speculative_config '{
         "method":"deepseek_mtp",
-        "num_speculative_tokens":2,
+        "num_speculative_tokens":2
     }' \
     --kv-cache-dtype fp8_ds_mla
 ```
@@ -248,7 +257,10 @@ vllm serve hygon/GLM-5-Channel-FP8-w8a8 \
         "quantization":"slimquant_marlin"
     }' \
     --kv-cache-dtype fp8_ds_mla \
-    --attention-backend FLASHMLA_SPARSE
+    --attention-backend FLASHMLA_SPARSE \
+    --enable-auto-tool-choice \
+    --tool-call-parser glm47 \
+    --reasoning-parser glm45
 ```
 
 ### GLM-5-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18
@@ -343,7 +355,10 @@ vllm serve hygon/GLM-5-Channel-INT8-w8a8 \
         "quantization":"slimquant_marlin"
     }' \
     --kv-cache-dtype fp8_ds_mla \
-    --attention-backend FLASHMLA_SPARSE
+    --attention-backend FLASHMLA_SPARSE \
+    --enable-auto-tool-choice \
+    --tool-call-parser glm47 \
+    --reasoning-parser glm45
 ```
 
 ### GLM-5-Channel-INT8-w8a8 IFB BW1000 16x vLLM 0.21
@@ -375,7 +390,10 @@ vllm serve hygon/GLM-5-Channel-INT8-w8a8 \
     --attention-backend FLASHMLA_SPARSE \
     --nnodes 2 \
     --node-rank 0 \
-    --master-addr <node1_ip>
+    --master-addr <node1_ip> \
+    --enable-auto-tool-choice \
+    --tool-call-parser glm47 \
+    --reasoning-parser glm45
 ```
 
 #### Node 2
@@ -404,7 +422,10 @@ vllm serve hygon/GLM-5-Channel-INT8-w8a8 \
     --nnodes 2 \
     --node-rank 1 \
     --master-addr <node1_ip> \
-    --headless
+    --headless \
+    --enable-auto-tool-choice \
+    --tool-call-parser glm47 \
+    --reasoning-parser glm45
 ```
 
 ### GLM-5-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.18

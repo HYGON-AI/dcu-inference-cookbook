@@ -14,16 +14,16 @@ Qwen2.5-VL 是阿里通义千问视觉语言模型系列，支持图像、视频
 |  | BF16 | 0.18 | BW1100 | 1 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-bw1100-1x-vllm-018) |
 |  | BF16 | 0.18 | BW1000 | 2 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-bw1000-2x-vllm-018) |
 |  | BF16 | 0.18 | K100_AI | 4 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-k100_ai-4x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1100 | 1 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-bw1100-1x-vllm-018-hotfix) |
-|  | BF16 | 0.18-hotfix | BW1000 | 2 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-bw1000-2x-vllm-018-hotfix) |
-|  | BF16 | 0.18-hotfix | K100_AI | 4 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-k100_ai-4x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1100 | 1 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-bw1100-1x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1000 | 2 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-bw1000-2x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | K100_AI | 4 | IFB | [**`>_`**](#qwen25-vl-32b-instruct-ifb-k100_ai-4x-vllm-018-hotfix) |
 | [Qwen/Qwen2.5-VL-72B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2.5-VL-72B-Instruct) | BF16 | 0.21 | BW1100 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-ifb-bw1100-4x-vllm-021) |
 |  | BF16 | 0.21 | BW1000 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-ifb-bw1000-4x-vllm-021) |
 |  | BF16 | 0.21 | K100_AI | 8 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-ifb-k100_ai-8x-vllm-021) |
 |  | BF16 | [0.18](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-ifb-bw1100-4x-vllm-018) |
 |  | BF16 | [0.18](../docker_images.md) | BW1000 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-ifb-bw1000-4x-vllm-018) |
 |  | BF16 | [0.18](../docker_images.md) | K100_AI | 8 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-ifb-k100_ai-8x-vllm-018) |
-| hygon/Qwen2.5-VL-72B-Instruct-quantized.w8a8| INT8 W8A8 | 0.21 | BW1100 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-quantizedw8a8-ifb-bw1100-4x-vllm-021) |
+| hygon/Qwen2.5-VL-72B-Instruct-quantized.w8a8| INT8 W8A8 | 0.21 | BW1100 | 1 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-quantizedw8a8-ifb-bw1100-1x-vllm-021) |
 |  | INT8 W8A8 | 0.21 | BW1000 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-quantizedw8a8-ifb-bw1000-4x-vllm-021) |
 |  | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-quantizedw8a8-ifb-bw1100-4x-vllm-018) |
 |  | INT8 W8A8 | [0.18](../docker_images.md) | BW1000 | 4 | IFB | [**`>_`**](#qwen25-vl-72b-instruct-quantizedw8a8-ifb-bw1000-4x-vllm-018) |
@@ -38,7 +38,6 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     --trust-remote-code \
     --enable-chunked-prefill \
     --max-model-len 32768 \
-    --allowed-local-media-path /path-to/VL_data/ \
     --kv-cache-dtype fp8_e4m3 \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
@@ -49,20 +48,21 @@ vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 2 \
     --trust-remote-code \
     --max-model-len 32768 \
-    --allowed-local-media-path /path-to/VL_data/ \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen2.5-VL-32B-Instruct IFB K100_AI 4x vLLM 0.21
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 4 \
     --trust-remote-code \
     --max-model-len 32768 \
-    --allowed-local-media-path /path-to/VL_data/ \
     --attention-backend TRITON_ATTN
 ```
 ### Qwen2.5-VL-32B-Instruct IFB BW1100 1x vLLM 0.18
@@ -123,7 +123,7 @@ export VLLM_HCU_USE_PD_SPLIT=1
 vllm serve Qwen/Qwen2.5-VL-32B-Instruct \
     -tp 2 \
     --trust-remote-code \
-    --allowed-local-media-path /path-to/VL_data/ \
+    --max-model-len 32768 \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
 
@@ -164,9 +164,12 @@ vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
 ### Qwen2.5-VL-72B-Instruct IFB K100_AI 8x vLLM 0.21
 
 ```bash
+export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
 export VLLM_HCU_USE_CUSTOM_OPS=0
 export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
 vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
   -tp 8 \
   --trust-remote-code \
@@ -221,17 +224,16 @@ vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
   --max-model-len 32768
 ```
 
-### Qwen2.5-VL-72B-Instruct-quantized.w8a8 IFB BW1100 4x vLLM 0.21
+### Qwen2.5-VL-72B-Instruct-quantized.w8a8 IFB BW1100 1x vLLM 0.21
 
 ```bash
 vllm serve hygon/Qwen2.5-VL-72B-Instruct-quantized.w8a8 \
-  -tp 4 \
+  -tp 1 \
   --trust-remote-code \
   --enable-chunked-prefill \
   --max-model-len 40960 \
   -q slimquant_marlin \
-  --attention-backend FLASH_ATTN_CUSTOM \
-  --allowed-local-media-path
+  --attention-backend FLASH_ATTN_CUSTOM
 ```
 
 ### Qwen2.5-VL-72B-Instruct-quantized.w8a8 IFB BW1000 4x vLLM 0.21
@@ -244,7 +246,7 @@ vllm serve hygon/Qwen2.5-VL-72B-Instruct-quantized.w8a8 \
   --max-model-len 40960 \
   -q slimquant_marlin \
   --attention-backend FLASH_ATTN_CUSTOM \
-  --allowed-local-media-path
+
 ```
 
 ### Qwen2.5-VL-72B-Instruct-quantized.w8a8 IFB BW1100 4x vLLM 0.18

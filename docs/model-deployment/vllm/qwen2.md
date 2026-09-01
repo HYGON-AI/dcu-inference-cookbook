@@ -387,7 +387,6 @@ vllm serve Qwen/Qwen2-7B-Instruct \
 ```bash
 export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=0
 
 vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   -tp 2 \
@@ -400,7 +399,6 @@ vllm serve Qwen/Qwen2-57B-A14B-Instruct \
 
 ```bash
 export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=0
 
 vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   -tp 4 \
@@ -413,7 +411,7 @@ vllm serve Qwen/Qwen2-57B-A14B-Instruct \
 
 ```bash
 export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=0
 
 vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   -tp 2 \
@@ -426,6 +424,7 @@ vllm serve Qwen/Qwen2-57B-A14B-Instruct \
 
 ```bash
 export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=0
 
 vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   -tp 4 \

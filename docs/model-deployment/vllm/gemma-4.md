@@ -36,6 +36,7 @@ vllm serve \
 export VLLM_HCU_USE_CUSTOM_OPS=0
 
 vllm serve hygon/gemma-4-31B-it \
+    -tp 2 \
     --enable-auto-tool-choice \
     --tool-call-parser gemma4 \
     --reasoning-parser gemma4 \

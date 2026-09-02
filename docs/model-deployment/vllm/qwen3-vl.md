@@ -497,7 +497,7 @@ export VLLM_KV_CACHE_LAYOUT=NHD
 
 vllm serve \
   --model Qwen/Qwen3-VL-8B-Instruct \
-  --attention-backend FLASH_ATTN_VARLEN \
+  --attention-backend FLASH_ATTN \
   --trust-remote-code \
   --tensor-parallel-size 1 \
   --max-model-len 32768

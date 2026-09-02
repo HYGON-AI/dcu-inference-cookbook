@@ -56,7 +56,8 @@ Qwen3-VL 是阿里云推出的新一代多模态视觉语言模型（Vision-Lang
 |  | BF16 | [0.18-hotfix](../docker_images.md) | BW1100 | 1x | IFB | [**`>_`**](#qwen3-vl-4b-thinking-ifb-bw1100-1x-vllm-018-hotfix) |
 |  | BF16 | [0.18-hotfix](../docker_images.md) | BW1000 | 1x | IFB | [**`>_`**](#qwen3-vl-4b-thinking-ifb-bw1000-1x-vllm-018-hotfix) |
 |  | BF16 | [0.18-hotfix](../docker_images.md) | K100_AI | 1x | IFB | [**`>_`**](#qwen3-vl-4b-thinking-ifb-k100_ai-1x-vllm-018-hotfix) |
-| [Qwen/Qwen3-VL-8B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Instruct) | BF16 | 0.21 | BW1100 | 1x | IFB | [**`>_`**](#qwen3-vl-8b-instruct-ifb-bw1100-1x-vllm-021) |
+| [Qwen/Qwen3-VL-8B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Instruct) | BF16 | 0.25 | BW1000 | 1x | IFB | [**`>_`**](#qwen3-vl-8b-instruct-ifb-bw1000-1x-vllm-025) |
+|  | BF16 | 0.21 | BW1100 | 1x | IFB | [**`>_`**](#qwen3-vl-8b-instruct-ifb-bw1100-1x-vllm-021) |
 |  | BF16 | 0.21 | BW1000 | 1x | IFB | [**`>_`**](#qwen3-vl-8b-instruct-ifb-bw1000-1x-vllm-021) |
 |  | BF16 | 0.21 | K100_AI | 1x | IFB | [**`>_`**](#qwen3-vl-8b-instruct-ifb-k100_ai-1x-vllm-021) |
 |  | BF16 | 0.18 | BW1100 | 1x | IFB | [**`>_`**](#qwen3-vl-8b-instruct-ifb-bw1100-1x-vllm-018) |
@@ -488,6 +489,20 @@ vllm serve Qwen/Qwen3-VL-4B-Thinking \
   -tp 1 \
   --trust-remote-code 
 ```
+### Qwen3-VL-8B-Instruct IFB BW1000 1x vLLM 0.25
+
+```bash
+export VLLM_USE_V2_MODEL_RUNNER=1
+export VLLM_KV_CACHE_LAYOUT=NHD
+
+vllm serve \
+  --model Qwen/Qwen3-VL-8B-Instruct \
+  --attention-backend FLASH_ATTN \
+  --trust-remote-code \
+  --tensor-parallel-size 1 \
+  --max-model-len 32768
+```
+
 ### Qwen3-VL-8B-Instruct IFB BW1100 1x vLLM 0.21
 
 ```bash
@@ -497,22 +512,6 @@ vllm serve Qwen/Qwen3-VL-8B-Instruct \
   --trust-remote-code \
   --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
-```
-### Qwen3-VL-8B-Instruct IFB BW1000 1x vLLM 0.25
-
-```bash
-export VLLM_USE_V2_MODEL_RUNNER=1
-export VLLM_KV_CACHE_LAYOUT=HND
-
-vllm serve \
-  --model Qwen/Qwen3-VL-8B-Instruct \
-  --attention-backend FLASH_ATTN_VARLEN \
-  --trust-remote-code \
-  --tensor-parallel-size 1 \
-  --max-model-len 8192 \
-  --reasoning-parser qwen3 \
-  --enable-auto-tool-choice \
-  --tool-call-parser qwen3_coder
 ```
 
 ### Qwen3-VL-8B-Instruct IFB BW1000 1x vLLM 0.21
@@ -891,6 +890,7 @@ export VLLM_USE_MODELSCOPE=1
 vllm serve Qwen/Qwen3-VL-32B-Instruct \
   -tp 2 \
   --trust-remote-code \
+  --max-model-len 32768 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
 ### Qwen3-VL-32B-Instruct IFB K100_AI 2x vLLM 0.21
@@ -905,6 +905,7 @@ export VLLM_ROCM_USE_AITER_MOE=0
 vllm serve Qwen/Qwen3-VL-32B-Instruct \
   -tp 2 \
   --trust-remote-code \
+  --max-model-len 32768 \
   --attention-backend TRITON_ATTN
 ```
 ### Qwen3-VL-32B-Instruct IFB BW1100 1x vLLM 0.18

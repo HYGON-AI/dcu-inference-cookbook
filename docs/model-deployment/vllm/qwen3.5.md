@@ -1245,6 +1245,7 @@ export VLLM_ROCM_USE_AITER_MOE=0
 
 vllm serve Qwen/Qwen3.5-397B-A17B-W8A8-INT8 \
   -tp 8 \
+  --gpu-memory-utilization 0.92 \
   --trust-remote-code \
   --max-num-batched-tokens 16384 \
   --speculative-config.method mtp \

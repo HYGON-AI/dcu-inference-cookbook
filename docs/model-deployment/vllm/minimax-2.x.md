@@ -431,7 +431,7 @@ export VLLM_ROCM_USE_AITER_MOE=0
 vllm serve MiniMax-M2.5-bf16 \
   -tp 8 \
   --trust-remote-code \
-  --max-model-len 73216 \
+  --max-model-len 32768 \
   --max-num-batched-tokens 16384 \
   --enable-prefix-caching \
   --gpu-memory-utilization 0.92 \
@@ -451,7 +451,7 @@ export VLLM_ROCM_USE_AITER_MOE=0
 vllm serve MiniMax-M2.5-bf16 \
   -tp 8 \
   --trust-remote-code \
-  --max-model-len 73216 \
+  --max-model-len 32768 \
   --max-num-batched-tokens 16384 \
   --enable-prefix-caching \
   --gpu-memory-utilization 0.92 \

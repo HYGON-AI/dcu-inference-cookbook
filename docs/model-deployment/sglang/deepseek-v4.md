@@ -742,7 +742,7 @@ export SGLANG_USE_LIGHTOP_EP_MOE_ALIGN=false
 export TP="${TP:-16}"
 export PP="${PP:-1}"
 export EP_SIZE="${EP_SIZE:-16}"
-export DP_SIZE="${DP:-16}"
+export DP_SIZE="${DP_SIZE:-16}"
 export MOE_DENSE_TP_SIZE="${MOE_DENSE_TP_SIZE:-1}"
 export NNODES="${NNODES:-2}"
 export DIST_INIT_ADDR="${DIST_INIT_ADDR:-13.13.4.20:21000}" #按照实际
@@ -811,10 +811,6 @@ set -euo pipefail
 export SGLANG_HEALTH_CHECK_TIMEOUT=10000
 export SGLANG_LIGHTOP_KVALLOC_KERNEL=1
 
-NODE_RANK="${1:-${NODE_RANK:-0}}"
-if [[ $# -gt 0 ]]; then
-  shift
-fi
 export SGLANG_DSV4_REQUEST_SCOPED_C128_STATE=true
 export SGLANG_OPT_USE_ONLINE_COMPRESS=false
 export SGLANG_DSV4_PD_PREFILL_USE_FULL_TOKEN_POOL=true
@@ -861,24 +857,24 @@ export ROCSHMEM_IB_GID_INDEX=0
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 export MC_IB_GID_INDEX=0
 export SGLANG_ENABLE_HEALTH_ENDPOINT_GENERATION=0
-export NCCL_SOCKET_IFNAME=XXXX #按照实际
-export GLOO_SOCKET_IFNAME=XXXX #按照实际
-export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9  #根据实际
-export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 #根据实际
-export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1 #根据实际
+export NCCL_SOCKET_IFNAME=XXXX
+export GLOO_SOCKET_IFNAME=XXXX
+export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
 export TP="${TP:-8}"
 export PP="${PP:-2}"
 export EP_SIZE="${EP_SIZE:-8}"
 export NNODES="${NNODES:-2}"
-export DIST_INIT_ADDR="${DIST_INIT_ADDR:-<P_node0_ip>:<P_dist_port>}" # 主从节点保持一致，均指向 P node 0
-export HOST="${HOST:-<current_node_ip>}" # 按照实际修改
-export PORT="${PORT:-<P_service_port>}" # 服务监听端口
+export DIST_INIT_ADDR="${DIST_INIT_ADDR:-<P_node0_ip>:<P_dist_port>}"
+export HOST="${HOST:-<current_node_ip>}"
+export PORT="${PORT:-<P_service_port>}"
 export CHUNKED_PREFILL_SIZE="${CHUNKED_PREFILL_SIZE:-16384}"
 export MEM_FRACTION_STATIC="${MEM_FRACTION_STATIC:-0.93}"
 export MAX_RUNNING_REQUESTS="${MAX_RUNNING_REQUESTS:-512}"
 option+=" --disaggregation-mode prefill "
 option+=" --disable-cuda-graph "
-# option+=" --disable-radix-cache " #按照实际
+# option+=" --disable-radix-cache "
 option+=" --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 "
 option+=" --skip-server-warmup "
 
@@ -889,13 +885,13 @@ sglang serve  ${option} \
   --pp-size "${PP}" \
   --ep-size "${EP_SIZE}" \
   --nnodes "${NNODES}" \
-  --node-rank "${NODE_RANK}" \
+  --node-rank 0 \
   --dist-init-addr "${DIST_INIT_ADDR}" \
   --dist-timeout 10000 \
   --watchdog-timeout 3600 \
   --mem-fraction-static "${MEM_FRACTION_STATIC}" \
   --trust-remote-code \
-  --chunked-prefill-size 16384 \
+  --chunked-prefill-size "${CHUNKED_PREFILL_SIZE}" \
   --max-running-requests "${MAX_RUNNING_REQUESTS}" \
   --disable-flashinfer-autotune \
   --enable-nsa-prefill-context-parallel \
@@ -923,10 +919,6 @@ set -euo pipefail
 export SGLANG_HEALTH_CHECK_TIMEOUT=10000
 export SGLANG_LIGHTOP_KVALLOC_KERNEL=1
 
-NODE_RANK="${1:-${NODE_RANK:-1}}"
-if [[ $# -gt 0 ]]; then
-  shift
-fi
 export SGLANG_DSV4_REQUEST_SCOPED_C128_STATE=true
 export SGLANG_OPT_USE_ONLINE_COMPRESS=false
 export SGLANG_DSV4_PD_PREFILL_USE_FULL_TOKEN_POOL=true
@@ -973,24 +965,24 @@ export ROCSHMEM_IB_GID_INDEX=0
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
 export MC_IB_GID_INDEX=0
 export SGLANG_ENABLE_HEALTH_ENDPOINT_GENERATION=0
-export NCCL_SOCKET_IFNAME=XXXX #按照实际
-export GLOO_SOCKET_IFNAME=XXXX #按照实际
-export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9  #根据实际
-export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 #根据实际
-export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1 #根据实际
+export NCCL_SOCKET_IFNAME=XXXX
+export GLOO_SOCKET_IFNAME=XXXX
+export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
 export TP="${TP:-8}"
 export PP="${PP:-2}"
 export EP_SIZE="${EP_SIZE:-8}"
 export NNODES="${NNODES:-2}"
-export DIST_INIT_ADDR="${DIST_INIT_ADDR:-<P_node0_ip>:<P_dist_port>}" # 主从节点保持一致，均指向 P node 0
-export HOST="${HOST:-<current_node_ip>}" # 按照实际修改
-export PORT="${PORT:-<P_service_port>}" # 服务监听端口
+export DIST_INIT_ADDR="${DIST_INIT_ADDR:-<P_node0_ip>:<P_dist_port>}"
+export HOST="${HOST:-<current_node_ip>}"
+export PORT="${PORT:-<P_service_port>}"
 export CHUNKED_PREFILL_SIZE="${CHUNKED_PREFILL_SIZE:-16384}"
 export MEM_FRACTION_STATIC="${MEM_FRACTION_STATIC:-0.93}"
 export MAX_RUNNING_REQUESTS="${MAX_RUNNING_REQUESTS:-512}"
 option+=" --disaggregation-mode prefill "
 option+=" --disable-cuda-graph "
-# option+=" --disable-radix-cache " #按照实际
+# option+=" --disable-radix-cache "
 option+=" --disaggregation-ib-device mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 "
 option+=" --skip-server-warmup "
 
@@ -1001,13 +993,13 @@ sglang serve  ${option} \
   --pp-size "${PP}" \
   --ep-size "${EP_SIZE}" \
   --nnodes "${NNODES}" \
-  --node-rank "${NODE_RANK}" \
+  --node-rank 1 \
   --dist-init-addr "${DIST_INIT_ADDR}" \
   --dist-timeout 10000 \
   --watchdog-timeout 3600 \
   --mem-fraction-static "${MEM_FRACTION_STATIC}" \
   --trust-remote-code \
-  --chunked-prefill-size 16384 \
+  --chunked-prefill-size "${CHUNKED_PREFILL_SIZE}" \
   --max-running-requests "${MAX_RUNNING_REQUESTS}" \
   --disable-flashinfer-autotune \
   --enable-nsa-prefill-context-parallel \
@@ -1062,12 +1054,12 @@ export ROCSHMEM_DISABLE_HDP_FLUSH=1
 export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=288
 export MC_IB_GID_INDEX=0
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
-export NCCL_SOCKET_IFNAME=XXXXX #按照实际
-export GLOO_SOCKET_IFNAME=XXXXX #按照实际
+export NCCL_SOCKET_IFNAME=XXXXX
+export GLOO_SOCKET_IFNAME=XXXXX
 export ROCSHMEM_TOPO_FILE_FORCE=/XXXXX/topo.config
-export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 #按照实际
-export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 #按照实际
-export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1 #按照实际
+export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
 export ROCSHMEM_IB_GID_INDEX=0
 export SGLANG_DEEPEP_NUM_MAX_DISPATCH_TOKENS_PER_RANK=64
 export SGLANG_CHUNKED_PREFIX_CACHE_THRESHOLD=0
@@ -1110,12 +1102,12 @@ export SGLANG_ENABLE_HEALTH_ENDPOINT_GENERATION=0
 export TP="${TP:-16}"
 export PP="${PP:-1}"
 export EP_SIZE="${EP_SIZE:-16}"
-export DP_SIZE="${DP:-16}"
+export DP_SIZE="${DP_SIZE:-16}"
 export MOE_DENSE_TP_SIZE="${MOE_DENSE_TP_SIZE:-1}"
 export NNODES="${NNODES:-2}"
-export DIST_INIT_ADDR="${DIST_INIT_ADDR:-<D_node0_ip>:<D_dist_port>}" # 主从节点保持一致，均指向 D node 0
-export HOST="${HOST:-<current_node_ip>}" # 按照实际修改
-export PORT="${PORT:-<D_service_port>}" # 服务监听端口
+export DIST_INIT_ADDR="${DIST_INIT_ADDR:-<D_node0_ip>:<D_dist_port>}"
+export HOST="${HOST:-<current_node_ip>}"
+export PORT="${PORT:-<D_service_port>}"
 export SPEC_ALGO="${SPEC_ALGO:-EAGLE}"
 export SPEC_NUM_STEPS="${SPEC_NUM_STEPS:-3}"
 export SPEC_EAGLE_TOPK="${SPEC_EAGLE_TOPK:-1}"
@@ -1195,12 +1187,12 @@ export ROCSHMEM_DISABLE_HDP_FLUSH=1
 export ROCSHMEM_GDA_NUM_QPS_DEFAULT_CTX=288
 export MC_IB_GID_INDEX=0
 export MC_ENABLE_DEST_DEVICE_AFFINITY=1
-export NCCL_SOCKET_IFNAME=XXXXX #按照实际
-export GLOO_SOCKET_IFNAME=XXXXX #按照实际
+export NCCL_SOCKET_IFNAME=XXXXX
+export GLOO_SOCKET_IFNAME=XXXXX
 export ROCSHMEM_TOPO_FILE_FORCE=/XXXXX/topo.config
-export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 #按照实际
-export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9 #按照实际
-export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1 #按照实际
+export ROCSHMEM_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export MC_ALLOWED_IBV_DEVICES=mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7,mlx5_8,mlx5_9
+export NCCL_IB_HCA=mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_6:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
 export ROCSHMEM_IB_GID_INDEX=0
 export SGLANG_DEEPEP_NUM_MAX_DISPATCH_TOKENS_PER_RANK=64
 export SGLANG_CHUNKED_PREFIX_CACHE_THRESHOLD=0
@@ -1243,12 +1235,12 @@ export SGLANG_ENABLE_HEALTH_ENDPOINT_GENERATION=0
 export TP="${TP:-16}"
 export PP="${PP:-1}"
 export EP_SIZE="${EP_SIZE:-16}"
-export DP_SIZE="${DP:-16}"
+export DP_SIZE="${DP_SIZE:-16}"
 export MOE_DENSE_TP_SIZE="${MOE_DENSE_TP_SIZE:-1}"
 export NNODES="${NNODES:-2}"
-export DIST_INIT_ADDR="${DIST_INIT_ADDR:-<D_node0_ip>:<D_dist_port>}" # 主从节点保持一致，均指向 D node 0
-export HOST="${HOST:-<current_node_ip>}" # 按照实际修改
-export PORT="${PORT:-<D_service_port>}" # 服务监听端口
+export DIST_INIT_ADDR="${DIST_INIT_ADDR:-<D_node0_ip>:<D_dist_port>}"
+export HOST="${HOST:-<current_node_ip>}"
+export PORT="${PORT:-<D_service_port>}"
 export SPEC_ALGO="${SPEC_ALGO:-EAGLE}"
 export SPEC_NUM_STEPS="${SPEC_NUM_STEPS:-3}"
 export SPEC_EAGLE_TOPK="${SPEC_EAGLE_TOPK:-1}"
@@ -1291,6 +1283,8 @@ sglang serve \
 ```
 
 #### Router
+
+Router 只需填写 P node 0 和 D node 0（即 P/D rank 0）的服务地址，多节点中的其他节点无需填写。
 
 ```bash
 python3 -m sglang_router.launch_router \

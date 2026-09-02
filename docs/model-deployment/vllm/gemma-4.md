@@ -40,7 +40,7 @@ vllm serve hygon/gemma-4-31B-it \
     --tool-call-parser gemma4 \
     --reasoning-parser gemma4 \
     --chat-template tool_chat_template_gemma4.jinja \
-    --attention-backend FLASH_ATTN_CUTLASS
+    --attention-backend TRITON_ATTN
 ```
 
 ## API 调用

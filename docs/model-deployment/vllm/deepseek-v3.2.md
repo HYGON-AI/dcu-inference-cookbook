@@ -35,7 +35,10 @@ vllm serve hygon/DeepSeek-V3.2-Channel-FP8-w8a8 \
     "quantization":"slimquant_marlin"
   }' \
   --kv-cache-dtype fp8_ds_mla \
-  --attention-backend FLASHMLA_SPARSE
+  --attention-backend FLASHMLA_SPARSE \
+  --enable-auto-tool-choice \
+  --tool-call-parser deepseek_v32 \
+  --reasoning-parser deepseek_v3
 ```
 
 ### DeepSeek-V3.2-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.21
@@ -57,7 +60,10 @@ vllm serve hygon/DeepSeek-V3.2-Channel-INT8 \
         "quantization":"slimquant_marlin"
     }' \
     --kv-cache-dtype fp8_ds_mla \
-    --attention-backend FLASHMLA_SPARSE
+    --attention-backend FLASHMLA_SPARSE \
+    --enable-auto-tool-choice \
+    --tool-call-parser deepseek_v32 \
+    --reasoning-parser deepseek_v3
 ```
 
 ## 启动命令

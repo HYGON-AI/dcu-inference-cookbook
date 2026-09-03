@@ -9,7 +9,7 @@
 |                                                                                                 | INT8 W8A8 | [0.5.12](../docker_images.md) | BW1000 | 8 | IFB(tp8) | [**`>_`**](#hy3-channel-int8-w8a8-ifb-bw1000-8x-sglang-0512-tp8) |
 |                                                                                                 | INT8 W8A8 | [0.5.12](../docker_images.md) | BW1000 | 8 | IFB(tp8dp8) | [**`>_`**](#hy3-channel-int8-w8a8-ifb-bw1000-8x-sglang-0512-tp8dp8) |
 | [hygon/Hy3-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Hy3-Channel-FP8-w8a8) | FP8 W8A8 | [0.5.12](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#hy3-channel-fp8-w8a8-ifb-bw1100-8x-sglang-0512-tp8) |
-|                                                                                      | FP8 W8A8 | [0.5.12](../docker_images.md) | BW1100 | 24 | 1P2D | [**`>_`**](#hy3-fp8-1p2d-bw1100-24x-sglang-0512) |
+|                                                                                      | FP8 W8A8 | [0.5.12](../docker_images.md) | BW1100 | 24 | 1P1D | [**`>_`**](#hy3-fp8-1p2d-bw1100-24x-sglang-0512) |
 
 ## 启动命令
 

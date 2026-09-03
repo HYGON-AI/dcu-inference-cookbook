@@ -88,7 +88,7 @@ export ALLREDUCE_STREAM_WITH_COMPUTE=1
 
 sglang serve \
   --model-path hygon/DeepSeek-V3-0324-Channel-INT8-w8a8 \
-  --numa-node 0 0 0 0 1 1 1 1 \ #按照实际
+  --numa-node 0 0 0 0 1 1 1 1
   --disable-radix-cache \
   --chunked-prefill-size -1 \
   --max-running-requests 32 \
@@ -140,7 +140,7 @@ export ALLREDUCE_STREAM_WITH_COMPUTE=1
 
 sglang serve \
   --model-path hygon/DeepSeek-V3-0324-Channel-INT8-w8a8 \
-  --numa-node 0 0 0 0 1 1 1 1 \ #按照实际
+  --numa-node 0 0 0 0 1 1 1 1
   --disable-radix-cache \
   --chunked-prefill-size -1 \
   --max-running-requests 32 \

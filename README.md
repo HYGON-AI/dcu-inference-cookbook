@@ -153,7 +153,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">-</td><td align="center">-</td><td align="center">-</td>
+      <td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/deepseek-v3.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/deepseek-v3.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">DeepSeek-R1</td>

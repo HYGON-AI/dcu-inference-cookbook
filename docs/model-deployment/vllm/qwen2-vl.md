@@ -2,26 +2,94 @@
 
 ## 模型简介
 
-Qwen2-VL 是阿里通义千问视觉语言模型系列，支持图像、视频与文本等多模态输入。本页提供 Qwen2-VL-2B 在 HCU 上基于 vLLM 的推理部署方案。
+Qwen2-VL 是阿里通义千问视觉语言模型系列，支持图像、视频与文本等多模态输入。本页提供 Qwen2-VL-2B 和 Qwen2-VL-2B-Instruct 在 HCU 上基于 vLLM 的推理部署方案。
 
 ## 模型列表
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
+| [Qwen/Qwen2-VL-2B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2-VL-2B-Instruct) | BF16 | 0.21 | BW1100 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-instruct-ifb-bw1100-1x-vllm-021) |
+|  | BF16 | 0.21 | BW1000 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-instruct-ifb-bw1000-1x-vllm-021) |
+|  | BF16 | 0.21 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-vl-2b-instruct-ifb-k100_ai-1x-vllm-021) |
 | [Qwen/Qwen2-VL-2B](https://www.modelscope.cn/models/Qwen/Qwen2-VL-2B) | BF16 | 0.18 | BW1100 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-bw1100-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1100 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-bw1100-1x-vllm-018-hotfix) |
-|                                                                               | BF16 | 0.18 | BW1000 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-bw1000-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1000 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-bw1000-1x-vllm-018-hotfix) |
-|                                                                               | BF16 | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-k100_ai-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | K100_AI | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-k100_ai-1x-vllm-018-hotfix) |
+|  | BF16 | 0.18 | BW1000 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-bw1000-1x-vllm-018) |
+|  | BF16 | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-k100_ai-1x-vllm-018) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1100 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-bw1100-1x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1000 | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-bw1000-1x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | K100_AI | 1 | IFB | [**`>_`**](#qwen2-vl-2b-ifb-k100_ai-1x-vllm-018-hotfix) |
 
 ## 启动命令
 
+### Qwen2-VL-2B-Instruct IFB BW1100 1x vLLM 0.21
+
+```bash
+vllm serve Qwen/Qwen2-VL-2B-Instruct \
+    -tp 1 \
+    --trust-remote-code \
+    --gpu-memory-utilization 0.95 \
+    --chat-template-content-format openai \
+    --attention-backend FLASH_ATTN_CUSTOM
+```
+
+### Qwen2-VL-2B-Instruct IFB BW1000 1x vLLM 0.21
+
+```bash
+vllm serve Qwen/Qwen2-VL-2B-Instruct \
+    -tp 1 \
+    --trust-remote-code \
+    --gpu-memory-utilization 0.95 \
+    --chat-template-content-format openai \
+    --attention-backend FLASH_ATTN_CUSTOM
+```
+### Qwen2-VL-2B-Instruct IFB K100_AI 1x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve Qwen/Qwen2-VL-2B-Instruct \
+    -tp 1 \
+    --trust-remote-code \
+    --gpu-memory-utilization 0.95 \
+    --chat-template-content-format openai \
+    --attention-backend TRITON_ATTN
+```
 ### Qwen2-VL-2B IFB BW1100 1x vLLM 0.18
 
 ```bash
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+
+vllm serve Qwen/Qwen2-VL-2B \
+    -tp 1 \
+    --trust-remote-code \
+    --gpu-memory-utilization 0.95 \
+    --chat-template-content-format openai \
+    --chat-template qwen2_vl_openai_chat_template.jinja \
+    --allowed-local-media-path /path-to/VL_data/
+```
+### Qwen2-VL-2B IFB BW1000 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
+
+vllm serve Qwen/Qwen2-VL-2B \
+    -tp 1 \
+    --trust-remote-code \
+    --gpu-memory-utilization 0.95 \
+    --chat-template-content-format openai \
+    --chat-template qwen2_vl_openai_chat_template.jinja \
+    --allowed-local-media-path /path-to/VL_data/
+```
+### Qwen2-VL-2B IFB K100_AI 1x vLLM 0.18
+
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
 
 vllm serve Qwen/Qwen2-VL-2B \
     -tp 1 \
@@ -47,21 +115,6 @@ vllm serve Qwen/Qwen2-VL-2B \
     --kv-cache-dtype fp8_e4m3 \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
-### Qwen2-VL-2B IFB BW1000 1x vLLM 0.18
-
-```bash
-export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-export VLLM_HCU_USE_CUSTOM_TOPK_TOPP_SAMPLER=1
-
-vllm serve Qwen/Qwen2-VL-2B \
-    -tp 1 \
-    --trust-remote-code \
-    --gpu-memory-utilization 0.95 \
-    --chat-template-content-format openai \
-    --chat-template qwen2_vl_openai_chat_template.jinja \
-    --allowed-local-media-path /path-to/VL_data/
-```
-
 ### Qwen2-VL-2B IFB BW1000 1x vLLM 0.18-hotfix
 
 ```bash
@@ -76,21 +129,6 @@ vllm serve Qwen/Qwen2-VL-2B \
     --allowed-local-media-path /path-to/VL_data/ \
     --attention-backend FLASH_ATTN_CUSTOM
 ```
-### Qwen2-VL-2B IFB K100_AI 1x vLLM 0.18
-
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-
-vllm serve Qwen/Qwen2-VL-2B \
-    -tp 1 \
-    --trust-remote-code \
-    --gpu-memory-utilization 0.95 \
-    --chat-template-content-format openai \
-    --chat-template qwen2_vl_openai_chat_template.jinja \
-    --allowed-local-media-path /path-to/VL_data/
-```
-
 ### Qwen2-VL-2B IFB K100_AI 1x vLLM 0.18-hotfix
 
 ```bash
@@ -165,3 +203,6 @@ curl http://localhost:8000/v1/chat/completions \
 ### PD 分离
 
 暂无。
+
+
+

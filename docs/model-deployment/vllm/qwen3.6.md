@@ -8,20 +8,99 @@ Qwen3.6 模型相较于 Qwen3.5 模型，**在智能体编程能力、推理速�
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [Qwen/Qwen3.6-27B](https://www.modelscope.cn/models/Qwen/Qwen3.6-27B) | BF16 | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1100-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1100 | 1 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1100-1x-vllm-018-hotfix) |
-|                                                                  | BF16 | 0.18 | BW1000  | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1000-2x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1000 | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1000-2x-vllm-018-hotfix) |
-|                                                                  | BF16 | 0.18 | K100_AI | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-k100_ai-2x-vllm-018) |
-|  | BF16 | 0.18-hotfix | K100_AI | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-k100_ai-2x-vllm-018-hotfix) |
-| [Qwen/Qwen3.6-35B-A3B](https://www.modelscope.cn/models/Qwen/Qwen3.6-35B-A3B) | BF16 | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-bw1100-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1100 | 1 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-bw1100-1x-vllm-018-hotfix) |
-|                                                                         | BF16 | 0.18 | BW1000  | 2 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-bw1000-2x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1000 | 2 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-bw1000-2x-vllm-018-hotfix) |
-|                                                                         | BF16 | 0.18 | K100_AI | 2 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-k100_ai-2x-vllm-018) |
-|  | BF16 | 0.18-hotfix | K100_AI | 2 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-k100_ai-2x-vllm-018-hotfix) |
+| [Qwen/Qwen3.6-27B](https://www.modelscope.cn/models/Qwen/Qwen3.6-27B) | BF16 | 0.25 | BW1000 | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1000-2x-vllm-025) |
+|  | BF16 | 0.21 | BW1100 | 1 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1100-1x-vllm-021) |
+|  | BF16 | 0.21 | BW1000 | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1000-2x-vllm-021) |
+|  | BF16 | 0.21 | K100_AI | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-k100_ai-2x-vllm-021) |
+|  | BF16 | 0.18 | BW1100 | 1 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1100-1x-vllm-018) |
+|  | BF16 | 0.18 | BW1000 | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1000-2x-vllm-018) |
+|  | BF16 | 0.18 | K100_AI | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-k100_ai-2x-vllm-018) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1100 | 1 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1100-1x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1000 | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-bw1000-2x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | K100_AI | 2 | IFB | [**`>_`**](#qwen36-27b-ifb-k100_ai-2x-vllm-018-hotfix) |
+| [Qwen/Qwen3.6-35B-A3B](https://www.modelscope.cn/models/Qwen/Qwen3.6-35B-A3B) | BF16 | 0.21 | BW1100 | 1 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-bw1100-1x-vllm-021) |
+|  | BF16 | 0.21 | BW1000 | 2 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-bw1000-2x-vllm-021) |
+|  | BF16 | 0.21 | K100_AI | 2 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-k100_ai-2x-vllm-021) |
+|  | BF16 | 0.18 | BW1100 | 1 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-bw1100-1x-vllm-018) |
+|  | BF16 | 0.18 | BW1000 | 2 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-bw1000-2x-vllm-018) |
+|  | BF16 | 0.18 | K100_AI | 2 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-k100_ai-2x-vllm-018) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1100 | 1 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-bw1100-1x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1000 | 2 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-bw1000-2x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | K100_AI | 2 | IFB | [**`>_`**](#qwen36-35b-a3b-ifb-k100_ai-2x-vllm-018-hotfix) |
 
 ## 启动命令
+
+### Qwen3.6-27B IFB BW1000 2x vLLM 0.25
+
+```bash
+export VLLM_USE_V2_MODEL_RUNNER=1
+export VLLM_KV_CACHE_LAYOUT=HND
+
+vllm serve \
+  --model Qwen/Qwen3.6-27B \
+  --attention-backend FLASH_ATTN \
+  --trust-remote-code \
+  --tensor-parallel-size 2 \
+  --max-model-len 32768 \
+  --reasoning-parser qwen3 \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder
+```
+
+### Qwen3.6-27B IFB BW1100 1x vLLM 0.21
+
+```bash
+
+vllm serve Qwen/Qwen3.6-27B \
+  -tp 1 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --kv-cache-dtype fp8_e4m3 \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
+```
+
+### Qwen3.6-27B IFB BW1000 2x vLLM 0.21
+
+```bash
+
+vllm serve Qwen/Qwen3.6-27B \
+  -tp 2 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
+```
+
+### Qwen3.6-27B IFB K100_AI 2x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve Qwen/Qwen3.6-27B \
+  -tp 2 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --speculative-config.attention_backend TRITON_ATTN \
+  --attention-backend TRITON_ATTN \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
+```
 
 ### Qwen3.6-27B IFB BW1100 1x vLLM 0.18
 
@@ -37,20 +116,6 @@ vllm serve Qwen/Qwen3.6-27B \
   --speculative-config.num_speculative_tokens 3
 ```
 
-### Qwen3.6-27B IFB BW1100 1x vLLM 0.18-hotfix
-
-```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
-vllm serve Qwen/Qwen3.6-27B \
-  -tp 1 \
-  --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --speculative-config.method mtp \
-  --speculative-config.num_speculative_tokens 3 \
-  --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM
-```
 ### Qwen3.6-27B IFB BW1000 2x vLLM 0.18
 
 ```bash
@@ -65,19 +130,6 @@ vllm serve Qwen/Qwen3.6-27B \
   --speculative-config.num_speculative_tokens 3
 ```
 
-### Qwen3.6-27B IFB BW1000 2x vLLM 0.18-hotfix
-
-```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-
-vllm serve Qwen/Qwen3.6-27B \
-  -tp 2 \
-  --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --speculative-config.method mtp \
-  --speculative-config.num_speculative_tokens 3 \
-  --attention-backend FLASH_ATTN_CUSTOM
-```
 ### Qwen3.6-27B IFB K100_AI 2x vLLM 0.18
 
 ```bash
@@ -90,6 +142,31 @@ vllm serve Qwen/Qwen3.6-27B \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3
+```
+
+### Qwen3.6-27B IFB BW1100 1x vLLM 0.18-hotfix
+
+```bash
+vllm serve Qwen/Qwen3.6-27B \
+  -tp 1 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --kv-cache-dtype fp8_e4m3 \
+  --attention-backend FLASH_ATTN_CUSTOM
+```
+
+### Qwen3.6-27B IFB BW1000 2x vLLM 0.18-hotfix
+
+```bash
+vllm serve Qwen/Qwen3.6-27B \
+  -tp 2 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --attention-backend FLASH_ATTN_CUSTOM
 ```
 
 ### Qwen3.6-27B IFB K100_AI 2x vLLM 0.18-hotfix
@@ -105,6 +182,63 @@ vllm serve Qwen/Qwen3.6-27B \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3
 ```
+
+### Qwen3.6-35B-A3B IFB BW1100 1x vLLM 0.21
+
+```bash
+vllm serve Qwen/Qwen3.6-35B-A3B \
+  -tp 1 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --kv-cache-dtype fp8_e4m3 \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend aiter \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
+```
+
+### Qwen3.6-35B-A3B IFB BW1000 2x vLLM 0.21
+
+```bash
+vllm serve Qwen/Qwen3.6-35B-A3B \
+  -tp 2 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend aiter \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
+```
+
+### Qwen3.6-35B-A3B IFB K100_AI 2x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve Qwen/Qwen3.6-35B-A3B \
+  -tp 2 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --speculative-config.attention_backend TRITON_ATTN \
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3
+```
+
 ### Qwen3.6-35B-A3B IFB BW1100 1x vLLM 0.18
 
 ```bash
@@ -122,20 +256,6 @@ vllm serve Qwen/Qwen3.6-35B-A3B \
   --speculative-config.num_speculative_tokens 3
 ```
 
-### Qwen3.6-35B-A3B IFB BW1100 1x vLLM 0.18-hotfix
-
-```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-vllm serve Qwen/Qwen3.6-35B-A3B \
-  -tp 1 \
-  --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --speculative-config.method mtp \
-  --speculative-config.num_speculative_tokens 3 \
-  --kv-cache-dtype fp8_e4m3 \
-  --attention-backend FLASH_ATTN_CUSTOM \
-  --moe-backend aiter
-```
 ### Qwen3.6-35B-A3B IFB BW1000 2x vLLM 0.18
 
 ```bash
@@ -153,19 +273,6 @@ vllm serve Qwen/Qwen3.6-35B-A3B \
   --speculative-config.num_speculative_tokens 3
 ```
 
-### Qwen3.6-35B-A3B IFB BW1000 2x vLLM 0.18-hotfix
-
-```bash
-export VLLM_HCU_USE_PD_SPLIT=1
-vllm serve Qwen/Qwen3.6-35B-A3B \
-  -tp 2 \
-  --trust-remote-code \
-  --max-num-batched-tokens 10240 \
-  --speculative-config.method mtp \
-  --speculative-config.num_speculative_tokens 3 \
-  --attention-backend FLASH_ATTN_CUSTOM \
-  --moe-backend aiter
-```
 ### Qwen3.6-35B-A3B IFB K100_AI 2x vLLM 0.18
 
 ```bash
@@ -178,6 +285,33 @@ vllm serve Qwen/Qwen3.6-35B-A3B \
   --max-num-batched-tokens 10240 \
   --speculative-config.method mtp \
   --speculative-config.num_speculative_tokens 3
+```
+
+### Qwen3.6-35B-A3B IFB BW1100 1x vLLM 0.18-hotfix
+
+```bash
+vllm serve Qwen/Qwen3.6-35B-A3B \
+  -tp 1 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --kv-cache-dtype fp8_e4m3 \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend aiter
+```
+
+### Qwen3.6-35B-A3B IFB BW1000 2x vLLM 0.18-hotfix
+
+```bash
+vllm serve Qwen/Qwen3.6-35B-A3B \
+  -tp 2 \
+  --trust-remote-code \
+  --max-num-batched-tokens 10240 \
+  --speculative-config.method mtp \
+  --speculative-config.num_speculative_tokens 3 \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend aiter
 ```
 
 ### Qwen3.6-35B-A3B IFB K100_AI 2x vLLM 0.18-hotfix

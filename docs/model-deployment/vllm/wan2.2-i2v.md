@@ -9,13 +9,13 @@ Wan2.2-I2V-A14B-4steps-Diffusers-bf16 是基于Wan2.2-I2V-A14B-Diffusers 架构�
 
 | 模型权重 | 量化方式 | vLLM-Omni 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [hygon/Wan2.2-I2V-A14B-4steps-Diffusers-bf16](https://www.modelscope.cn/models/hygon/Wan2.2-I2V-A14B-4steps-Diffusers-bf16) | BF16 | 0.18 | BW1000 | 8 | IFB | [**`>_`**](#wan22-i2v-a14b-4steps-diffusers-bf16-ifb-bw1000-8x-vllm-018)
+| [hygon/Wan2.2-I2V-A14B-4steps-Diffusers-bf16](https://www.modelscope.cn/models/hygon/Wan2.2-I2V-A14B-4steps-Diffusers-bf16) | BF16 | 0.18 | BW1000 | 8 | IFB | [**`>_`**](#wan22-i2v-a14b-4steps-diffusers-bf16-ifb-bw1000bw1100-8x-vllm-018)
+| | BF16 | 0.18 | BW1100 | 8 | IFB | [**`>_`**](#wan22-i2v-a14b-4steps-diffusers-bf16-ifb-bw1000bw1100-8x-vllm-018)
 
 ## 启动命令
-### Wan2.2-I2V-A14B-4steps-Diffusers-bf16 IFB BW1000 8x vLLM 0.18
+### Wan2.2-I2V-A14B-4steps-Diffusers-bf16 IFB BW1000/BW1100 8x vLLM 0.18
 ### 离线推理(Offline Inference)
 ```bash
-export ENABLE_SPARSE_ATTN=1
 
 cd vllm-omni/examples/offline_inference/image_to_video
 
@@ -32,8 +32,11 @@ python image_to_video.py   --model hygon/Wan2.2-I2V-A14B-4steps-Diffusers-bf16  
     --boundary-ratio 0.875 \
     --tensor-parallel-size 2 \
     --ulysses-degree 4  \
+    --vae-patch-parallel-size 8 \
     --output i2v_output.mp4
 ```
+
+> 如需优先提升推理性能，可在启动前设置 `export ENABLE_SPARSE_ATTN=1` 开启稀疏注意力；该配置可能导致生成视频质量下降，默认推荐关闭以保证效果。
 
 
 
@@ -41,14 +44,17 @@ python image_to_video.py   --model hygon/Wan2.2-I2V-A14B-4steps-Diffusers-bf16  
 
 #### 启动vllm server
 ```bash
-export ENABLE_SPARSE_ATTN=1
 
 vllm serve hygon/Wan2.2-I2V-A14B-4steps-Diffusers-bf16 \
     --omni \
     --port 8000 \
     --tensor-parallel-size 2 \
-    --usp 4
+    --usp 4 \
+    --vae-patch-parallel-size 8
 ```
+
+> 如需优先提升推理性能，可在启动前设置 `export ENABLE_SPARSE_ATTN=1` 开启稀疏注意力；该配置可能导致生成视频质量下降，默认推荐关闭以保证效果。
+
 #### 启动comfyui
 ```bash
 cd ComfyUI

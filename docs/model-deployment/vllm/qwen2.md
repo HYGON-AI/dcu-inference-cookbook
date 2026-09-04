@@ -8,44 +8,121 @@ Qwen2 是阿里通义千问开源大语言模型系列，支持多种参数规�
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [Qwen/Qwen2-0.5B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2-0.5B-Instruct) | BF16 | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-bw1100-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1100 | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-bw1100-1x-vllm-018-hotfix) |
-|                                                                               | BF16      | 0.18 | BW1000  | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-bw1000-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1000 | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-bw1000-1x-vllm-018-hotfix) |
-|                                                                               | BF16      | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-k100_ai-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | K100_AI | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-k100_ai-1x-vllm-018-hotfix) |
-| [Qwen/Qwen2-1.5B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2-1.5B-Instruct) | BF16 | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-bw1100-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1100 | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-bw1100-1x-vllm-018-hotfix) |
-|                                                                               | BF16      | 0.18 | BW1000  | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-bw1000-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1000 | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-bw1000-1x-vllm-018-hotfix) |
-|                                                                               | BF16      | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-k100_ai-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | K100_AI | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-k100_ai-1x-vllm-018-hotfix) |
-| [Qwen/Qwen2-7B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2-7B-Instruct) | BF16 | 0.18 | BW1100  | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-bw1100-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1100 | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-bw1100-1x-vllm-018-hotfix) |
-|                                                                               | BF16      | 0.18 | BW1000  | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-bw1000-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1000 | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-bw1000-1x-vllm-018-hotfix) |
-|                                                                               | BF16      | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-k100_ai-1x-vllm-018) |
-|  | BF16 | 0.18-hotfix | K100_AI | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-k100_ai-1x-vllm-018-hotfix) |
-| [Qwen/Qwen2-57B-A14B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2-57B-A14B-Instruct) | BF16 | 0.18 | BW1100  | 2 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-bw1100-2x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1100 | 2 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-bw1100-2x-vllm-018-hotfix) |
-|                                                                               | BF16      | 0.18 | BW1000  | 4 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-bw1000-4x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1000 | 4 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-bw1000-4x-vllm-018-hotfix) |
-|                                                                               | BF16      | 0.18 | K100_AI | 4 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-k100_ai-4x-vllm-018) |
-|  | BF16 | 0.18-hotfix | K100_AI | 4 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-k100_ai-4x-vllm-018-hotfix) |
-| [Qwen/Qwen2-72B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2-72B-Instruct) | BF16 | 0.18 | BW1100  | 2 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-bw1100-2x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1100 | 2 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-bw1100-2x-vllm-018-hotfix) |
-|                                                                               | BF16      | 0.18 | BW1000  | 4 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-bw1000-4x-vllm-018) |
-|  | BF16 | 0.18-hotfix | BW1000 | 4 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-bw1000-4x-vllm-018-hotfix) |
-|                                                                               | BF16      | 0.18 | K100_AI | 4 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-k100_ai-4x-vllm-018) |
-|  | BF16 | 0.18-hotfix | K100_AI | 4 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-k100_ai-4x-vllm-018-hotfix) |
+| [Qwen/Qwen2-0.5B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2-0.5B-Instruct) | BF16 | 0.21 | BW1100 | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-bw1100-1x-vllm-021) |
+|  | BF16 | 0.21 | BW1000 | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-bw1000-1x-vllm-021) |
+|  | BF16 | 0.21 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-k100_ai-1x-vllm-021) |
+|  | BF16 | 0.18 | BW1100 | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-bw1100-1x-vllm-018) |
+|  | BF16 | 0.18 | BW1000 | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-bw1000-1x-vllm-018) |
+|  | BF16 | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-k100_ai-1x-vllm-018) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1100 | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-bw1100-1x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1000 | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-bw1000-1x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | K100_AI | 1 | IFB | [**`>_`**](#qwen2-05b-instruct-ifb-k100_ai-1x-vllm-018-hotfix) |
+| [Qwen/Qwen2-1.5B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2-1.5B-Instruct) | BF16 | 0.21 | BW1100 | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-bw1100-1x-vllm-021) |
+|  | BF16 | 0.21 | BW1000 | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-bw1000-1x-vllm-021) |
+|  | BF16 | 0.21 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-k100_ai-1x-vllm-021) |
+|  | BF16 | 0.18 | BW1100 | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-bw1100-1x-vllm-018) |
+|  | BF16 | 0.18 | BW1000 | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-bw1000-1x-vllm-018) |
+|  | BF16 | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-k100_ai-1x-vllm-018) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1100 | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-bw1100-1x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1000 | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-bw1000-1x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | K100_AI | 1 | IFB | [**`>_`**](#qwen2-15b-instruct-ifb-k100_ai-1x-vllm-018-hotfix) |
+| [Qwen/Qwen2-7B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2-7B-Instruct) | BF16 | 0.21 | BW1100 | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-bw1100-1x-vllm-021) |
+|  | BF16 | 0.21 | BW1000 | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-bw1000-1x-vllm-021) |
+|  | BF16 | 0.21 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-k100_ai-1x-vllm-021) |
+|  | BF16 | 0.18 | BW1100 | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-bw1100-1x-vllm-018) |
+|  | BF16 | 0.18 | BW1000 | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-bw1000-1x-vllm-018) |
+|  | BF16 | 0.18 | K100_AI | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-k100_ai-1x-vllm-018) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1100 | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-bw1100-1x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1000 | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-bw1000-1x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | K100_AI | 1 | IFB | [**`>_`**](#qwen2-7b-instruct-ifb-k100_ai-1x-vllm-018-hotfix) |
+| [Qwen/Qwen2-57B-A14B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2-57B-A14B-Instruct) | BF16 | 0.25 | BW1100 | 2 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-bw1100-2x-vllm-025) |
+|  | BF16 | 0.25 | BW1000 | 4 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-bw1000-4x-vllm-025) |
+|  | BF16 | 0.21 | BW1100 | 2 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-bw1100-2x-vllm-021) |
+|  | BF16 | 0.21 | BW1000 | 4 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-bw1000-4x-vllm-021) |
+|  | BF16 | 0.21 | K100_AI | 4 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-k100_ai-4x-vllm-021) |
+|  | BF16 | 0.18 | BW1100 | 2 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-bw1100-2x-vllm-018) |
+|  | BF16 | 0.18 | BW1000 | 4 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-bw1000-4x-vllm-018) |
+|  | BF16 | 0.18 | K100_AI | 4 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-k100_ai-4x-vllm-018) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1100 | 2 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-bw1100-2x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1000 | 4 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-bw1000-4x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | K100_AI | 4 | IFB | [**`>_`**](#qwen2-57b-a14b-instruct-ifb-k100_ai-4x-vllm-018-hotfix) |
+| [Qwen/Qwen2-72B-Instruct](https://www.modelscope.cn/models/Qwen/Qwen2-72B-Instruct) | BF16 | 0.21 | BW1100 | 2 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-bw1100-2x-vllm-021) |
+|  | BF16 | 0.21 | BW1000 | 4 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-bw1000-4x-vllm-021) |
+|  | BF16 | 0.21 | K100_AI | 4 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-k100_ai-4x-vllm-021) |
+|  | BF16 | 0.18 | BW1100 | 2 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-bw1100-2x-vllm-018) |
+|  | BF16 | 0.18 | BW1000 | 4 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-bw1000-4x-vllm-018) |
+|  | BF16 | 0.18 | K100_AI | 4 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-k100_ai-4x-vllm-018) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1100 | 2 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-bw1100-2x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | BW1000 | 4 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-bw1000-4x-vllm-018-hotfix) |
+|  | BF16 | [0.18-hotfix](../docker_images.md) | K100_AI | 4 | IFB | [**`>_`**](#qwen2-72b-instruct-ifb-k100_ai-4x-vllm-018-hotfix) |
 
 ## 启动命令
+
+### Qwen2-0.5B-Instruct IFB BW1100 1x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+
+vllm serve Qwen/Qwen2-0.5B-Instruct \
+  -tp 1 \
+  --trust-remote-code \
+  --attention-backend FLASH_ATTN_CUSTOM
+```
+
+### Qwen2-0.5B-Instruct IFB BW1000 1x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+
+vllm serve Qwen/Qwen2-0.5B-Instruct \
+  -tp 1 \
+  --trust-remote-code \
+  --attention-backend FLASH_ATTN_CUSTOM
+```
+
+### Qwen2-0.5B-Instruct IFB K100_AI 1x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve Qwen/Qwen2-0.5B-Instruct \
+  -tp 1 \
+  --trust-remote-code \
+  --attention-backend TRITON_ATTN
+```
 
 ### Qwen2-0.5B-Instruct IFB BW1100 1x vLLM 0.18
 ```bash
 export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve Qwen/Qwen2-0.5B-Instruct \
+  -tp 1 \
+  --trust-remote-code
+```
+
+### Qwen2-0.5B-Instruct IFB BW1000 1x vLLM 0.18
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve Qwen/Qwen2-0.5B-Instruct \
+  -tp 1 \
+  --trust-remote-code
+```
+
+### Qwen2-0.5B-Instruct IFB K100_AI 1x vLLM 0.18
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen2-0.5B-Instruct \
   -tp 1 \
@@ -64,16 +141,6 @@ vllm serve Qwen/Qwen2-0.5B-Instruct \
   --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
-### Qwen2-0.5B-Instruct IFB BW1000 1x vLLM 0.18
-```bash
-export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_PD_SPLIT=1
-export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-
-vllm serve Qwen/Qwen2-0.5B-Instruct \
-  -tp 1 \
-  --trust-remote-code
-```
 
 ### Qwen2-0.5B-Instruct IFB BW1000 1x vLLM 0.18-hotfix
 
@@ -85,17 +152,6 @@ vllm serve Qwen/Qwen2-0.5B-Instruct \
   -tp 1 \
   --trust-remote-code \
   --attention-backend FLASH_ATTN_CUSTOM
-```
-### Qwen2-0.5B-Instruct IFB K100_AI 1x vLLM 0.18
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_PD_SPLIT=1
-
-vllm serve Qwen/Qwen2-0.5B-Instruct \
-  -tp 1 \
-  --trust-remote-code
 ```
 
 ### Qwen2-0.5B-Instruct IFB K100_AI 1x vLLM 0.18-hotfix
@@ -109,11 +165,72 @@ vllm serve Qwen/Qwen2-0.5B-Instruct \
   -tp 1 \
   --trust-remote-code
 ```
+
+### Qwen2-1.5B-Instruct IFB BW1100 1x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+
+vllm serve Qwen/Qwen2-1.5B-Instruct \
+  -tp 1 \
+  --trust-remote-code \
+  --attention-backend FLASH_ATTN_CUSTOM
+```
+
+### Qwen2-1.5B-Instruct IFB BW1000 1x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+
+vllm serve Qwen/Qwen2-1.5B-Instruct \
+  -tp 1 \
+  --trust-remote-code \
+  --attention-backend FLASH_ATTN_CUSTOM
+```
+
+### Qwen2-1.5B-Instruct IFB K100_AI 1x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve Qwen/Qwen2-1.5B-Instruct \
+  -tp 1 \
+  --trust-remote-code \
+  --attention-backend TRITON_ATTN
+```
+
 ### Qwen2-1.5B-Instruct IFB BW1100 1x vLLM 0.18
 ```bash
 export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve Qwen/Qwen2-1.5B-Instruct \
+  -tp 1 \
+  --trust-remote-code
+```
+
+### Qwen2-1.5B-Instruct IFB BW1000 1x vLLM 0.18
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve Qwen/Qwen2-1.5B-Instruct \
+  -tp 1 \
+  --trust-remote-code
+```
+
+### Qwen2-1.5B-Instruct IFB K100_AI 1x vLLM 0.18
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen2-1.5B-Instruct \
   -tp 1 \
@@ -132,16 +249,6 @@ vllm serve Qwen/Qwen2-1.5B-Instruct \
   --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
-### Qwen2-1.5B-Instruct IFB BW1000 1x vLLM 0.18
-```bash
-export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_PD_SPLIT=1
-export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-
-vllm serve Qwen/Qwen2-1.5B-Instruct \
-  -tp 1 \
-  --trust-remote-code
-```
 
 ### Qwen2-1.5B-Instruct IFB BW1000 1x vLLM 0.18-hotfix
 
@@ -153,17 +260,6 @@ vllm serve Qwen/Qwen2-1.5B-Instruct \
   -tp 1 \
   --trust-remote-code \
   --attention-backend FLASH_ATTN_CUSTOM
-```
-### Qwen2-1.5B-Instruct IFB K100_AI 1x vLLM 0.18
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_PD_SPLIT=1
-
-vllm serve Qwen/Qwen2-1.5B-Instruct \
-  -tp 1 \
-  --trust-remote-code
 ```
 
 ### Qwen2-1.5B-Instruct IFB K100_AI 1x vLLM 0.18-hotfix
@@ -177,11 +273,72 @@ vllm serve Qwen/Qwen2-1.5B-Instruct \
   -tp 1 \
   --trust-remote-code
 ```
+
+### Qwen2-7B-Instruct IFB BW1100 1x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+
+vllm serve Qwen/Qwen2-7B-Instruct \
+  -tp 1 \
+  --trust-remote-code \
+  --attention-backend FLASH_ATTN_CUSTOM
+```
+
+### Qwen2-7B-Instruct IFB BW1000 1x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+
+vllm serve Qwen/Qwen2-7B-Instruct \
+  -tp 1 \
+  --trust-remote-code \
+  --attention-backend FLASH_ATTN_CUSTOM
+```
+
+### Qwen2-7B-Instruct IFB K100_AI 1x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve Qwen/Qwen2-7B-Instruct \
+  -tp 1 \
+  --trust-remote-code \
+  --attention-backend TRITON_ATTN
+```
+
 ### Qwen2-7B-Instruct IFB BW1100 1x vLLM 0.18
 ```bash
 export VLLM_USE_MODELSCOPE=1
 export VLLM_HCU_USE_PD_SPLIT=1
 export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve Qwen/Qwen2-7B-Instruct \
+  -tp 1 \
+  --trust-remote-code
+```
+
+### Qwen2-7B-Instruct IFB BW1000 1x vLLM 0.18
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve Qwen/Qwen2-7B-Instruct \
+  -tp 1 \
+  --trust-remote-code
+```
+
+### Qwen2-7B-Instruct IFB K100_AI 1x vLLM 0.18
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_PD_SPLIT=1
 
 vllm serve Qwen/Qwen2-7B-Instruct \
   -tp 1 \
@@ -200,16 +357,6 @@ vllm serve Qwen/Qwen2-7B-Instruct \
   --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
-### Qwen2-7B-Instruct IFB BW1000 1x vLLM 0.18
-```bash
-export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_PD_SPLIT=1
-export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-
-vllm serve Qwen/Qwen2-7B-Instruct \
-  -tp 1 \
-  --trust-remote-code
-```
 
 ### Qwen2-7B-Instruct IFB BW1000 1x vLLM 0.18-hotfix
 
@@ -221,17 +368,6 @@ vllm serve Qwen/Qwen2-7B-Instruct \
   -tp 1 \
   --trust-remote-code \
   --attention-backend FLASH_ATTN_CUSTOM
-```
-### Qwen2-7B-Instruct IFB K100_AI 1x vLLM 0.18
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_PD_SPLIT=1
-
-vllm serve Qwen/Qwen2-7B-Instruct \
-  -tp 1 \
-  --trust-remote-code
 ```
 
 ### Qwen2-7B-Instruct IFB K100_AI 1x vLLM 0.18-hotfix
@@ -245,6 +381,74 @@ vllm serve Qwen/Qwen2-7B-Instruct \
   -tp 1 \
   --trust-remote-code
 ```
+
+### Qwen2-57B-A14B-Instruct IFB BW1100 2x vLLM 0.25
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_CUSTOM_OPS=0
+
+vllm serve Qwen/Qwen2-57B-A14B-Instruct \
+  -tp 2 \
+  --trust-remote-code \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend triton
+```
+
+### Qwen2-57B-A14B-Instruct IFB BW1000 4x vLLM 0.25
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+
+vllm serve Qwen/Qwen2-57B-A14B-Instruct \
+  -tp 4 \
+  --trust-remote-code \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend triton
+```
+
+### Qwen2-57B-A14B-Instruct IFB BW1100 2x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=0
+
+vllm serve Qwen/Qwen2-57B-A14B-Instruct \
+  -tp 2 \
+  --trust-remote-code \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend triton
+```
+
+### Qwen2-57B-A14B-Instruct IFB BW1000 4x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_LIGHTOP_MOE_ALIGN=0
+
+vllm serve Qwen/Qwen2-57B-A14B-Instruct \
+  -tp 4 \
+  --trust-remote-code \
+  --attention-backend FLASH_ATTN_CUSTOM \
+  --moe-backend triton
+```
+
+### Qwen2-57B-A14B-Instruct IFB K100_AI 4x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve Qwen/Qwen2-57B-A14B-Instruct \
+  -tp 4 \
+  --trust-remote-code \
+  --attention-backend TRITON_ATTN \
+  --moe-backend triton
+```
+
 ### Qwen2-57B-A14B-Instruct IFB BW1100 2x vLLM 0.18
 ```bash
 export VLLM_USE_MODELSCOPE=1
@@ -253,6 +457,29 @@ export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 
 vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   -tp 2 \
+  --trust-remote-code
+```
+
+### Qwen2-57B-A14B-Instruct IFB BW1000 4x vLLM 0.18
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve Qwen/Qwen2-57B-A14B-Instruct \
+  -tp 4 \
+  --trust-remote-code
+```
+
+### Qwen2-57B-A14B-Instruct IFB K100_AI 4x vLLM 0.18
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_PD_SPLIT=1
+
+vllm serve Qwen/Qwen2-57B-A14B-Instruct \
+  -tp 4 \
   --trust-remote-code
 ```
 
@@ -268,16 +495,6 @@ vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
-### Qwen2-57B-A14B-Instruct IFB BW1000 4x vLLM 0.18
-```bash
-export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_PD_SPLIT=1
-export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-
-vllm serve Qwen/Qwen2-57B-A14B-Instruct \
-  -tp 4 \
-  --trust-remote-code
-```
 
 ### Qwen2-57B-A14B-Instruct IFB BW1000 4x vLLM 0.18-hotfix
 
@@ -289,17 +506,6 @@ vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   -tp 4 \
   --trust-remote-code \
   --attention-backend FLASH_ATTN_CUSTOM
-```
-### Qwen2-57B-A14B-Instruct IFB K100_AI 4x vLLM 0.18
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_PD_SPLIT=1
-
-vllm serve Qwen/Qwen2-57B-A14B-Instruct \
-  -tp 4 \
-  --trust-remote-code
 ```
 
 ### Qwen2-57B-A14B-Instruct IFB K100_AI 4x vLLM 0.18-hotfix
@@ -313,6 +519,45 @@ vllm serve Qwen/Qwen2-57B-A14B-Instruct \
   -tp 4 \
   --trust-remote-code
 ```
+
+### Qwen2-72B-Instruct IFB BW1100 2x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+
+vllm serve Qwen/Qwen2-72B-Instruct \
+  -tp 2 \
+  --trust-remote-code \
+  --kv-cache-dtype fp8_e4m3 \
+  --attention-backend FLASH_ATTN_CUSTOM
+```
+
+### Qwen2-72B-Instruct IFB BW1000 4x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+
+vllm serve Qwen/Qwen2-72B-Instruct \
+  -tp 4 \
+  --trust-remote-code \
+  --attention-backend FLASH_ATTN_CUSTOM
+```
+
+### Qwen2-72B-Instruct IFB K100_AI 4x vLLM 0.21
+
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_ROCM_USE_AITER=0
+export VLLM_ROCM_USE_AITER_MOE=0
+
+vllm serve Qwen/Qwen2-72B-Instruct \
+  -tp 4 \
+  --trust-remote-code \
+  --attention-backend TRITON_ATTN
+```
+
 ### Qwen2-72B-Instruct IFB BW1100 2x vLLM 0.18
 ```bash
 export VLLM_USE_MODELSCOPE=1
@@ -321,6 +566,29 @@ export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
 
 vllm serve Qwen/Qwen2-72B-Instruct \
   -tp 2 \
+  --trust-remote-code
+```
+
+### Qwen2-72B-Instruct IFB BW1000 4x vLLM 0.18
+```bash
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_PD_SPLIT=1
+export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
+
+vllm serve Qwen/Qwen2-72B-Instruct \
+  -tp 4 \
+  --trust-remote-code
+```
+
+### Qwen2-72B-Instruct IFB K100_AI 4x vLLM 0.18
+```bash
+export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
+export VLLM_HCU_USE_CUSTOM_OPS=0
+export VLLM_USE_MODELSCOPE=1
+export VLLM_HCU_USE_PD_SPLIT=1
+
+vllm serve Qwen/Qwen2-72B-Instruct \
+  -tp 4 \
   --trust-remote-code
 ```
 
@@ -336,16 +604,6 @@ vllm serve Qwen/Qwen2-72B-Instruct \
   --kv-cache-dtype fp8_e4m3 \
   --attention-backend FLASH_ATTN_CUSTOM
 ```
-### Qwen2-72B-Instruct IFB BW1000 4x vLLM 0.18
-```bash
-export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_PD_SPLIT=1
-export VLLM_HCU_USE_CUSTOM_FLASH_ATTN=1
-
-vllm serve Qwen/Qwen2-72B-Instruct \
-  -tp 4 \
-  --trust-remote-code
-```
 
 ### Qwen2-72B-Instruct IFB BW1000 4x vLLM 0.18-hotfix
 
@@ -357,17 +615,6 @@ vllm serve Qwen/Qwen2-72B-Instruct \
   -tp 4 \
   --trust-remote-code \
   --attention-backend FLASH_ATTN_CUSTOM
-```
-### Qwen2-72B-Instruct IFB K100_AI 4x vLLM 0.18
-```bash
-export VLLM_HCU_USE_CUSTOM_QUANTIZATION_GEMM=0
-export VLLM_HCU_USE_CUSTOM_OPS=0
-export VLLM_USE_MODELSCOPE=1
-export VLLM_HCU_USE_PD_SPLIT=1
-
-vllm serve Qwen/Qwen2-72B-Instruct \
-  -tp 4 \
-  --trust-remote-code
 ```
 
 ### Qwen2-72B-Instruct IFB K100_AI 4x vLLM 0.18-hotfix

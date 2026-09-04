@@ -8,18 +8,72 @@ GLM-5.1 是智谱 AI 推出的新一代大语言模型，在中文理解、长�
 
 | 模型权重 | 量化方式 | vLLM 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | --------- | -------- | ---- | -------- | -------- |
-| [hygon/GLM-5.1-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5.1-Channel-INT4-w4a8) | INT4 W4A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int4-w4a8-ifb-bw1100-8x-vllm-018) |
-|  | INT4 W4A8 | [0.18](../docker_images.md) | BW1000 | 16 | PP2+TP8 | [**`>_`**](#glm-51-channel-int4-w4a8-pp2tp8-bw1000-16x-vllm-018) |
-|  | INT4 W4A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int4-w4a8-ifb-bw1100-8x-vllm-015) |
-| [hygon/GLM-5.1-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.1-Channel-FP8-w8a8) | FP8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-fp8-w8a8-ifb-bw1100-8x-vllm-018) |
-|  | FP8 W8A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
-| [hygon/GLM-5.1-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.1-Channel-INT8-w8a8) | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
-|  | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 24 | 1P2D | [**`>_`**](#glm-51-channel-int8-w8a8-1p2d-bw1100-24x-vllm-018) |
-|  | INT8 W8A8 | [0.18](../docker_images.md) | BW1000 | 16 | IFB | [**`>_`**](#glm-51-channel-int8-w8a8-ifb-bw1000-16x-vllm-018) |
-|  | INT8 W8A8 | [0.15](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int8-w8a8-ifb-bw1100-8x-vllm-015) |
-|  | INT8 W8A8 | [0.15](../docker_images.md) | BW1100 | 24 | 1P2D | [**`>_`**](#glm-51-channel-int8-w8a8-1p2d-bw1100-24x-vllm-015) |
+| [hygon/GLM-5.1-Channel-INT4-w4a8](https://www.modelscope.cn/models/hygon/GLM-5.1-Channel-INT4-w4a8) | INT4 W4A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int4-w4a8-ifb-bw1100-8x-vllm-021) |
+|  | INT4 W4A8 | 0.21 | BW1000 | 8 | IFB | [**`>_`**](#glm-51-channel-int4-w4a8-ifb-bw1000-8x-vllm-021) |
+|  | INT4 W4A8 | 0.18 | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int4-w4a8-ifb-bw1100-8x-vllm-018) |
+|  | INT4 W4A8 | 0.18 | BW1000 | 16 | PP2+TP8 | [**`>_`**](#glm-51-channel-int4-w4a8-pp2tp8-bw1000-16x-vllm-018) |
+|  | INT4 W4A8 | 0.15| BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int4-w4a8-ifb-bw1100-8x-vllm-015) |
+| [hygon/GLM-5.1-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.1-Channel-FP8-w8a8) | FP8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-fp8-w8a8-ifb-bw1100-8x-vllm-021) |
+|  | FP8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-fp8-w8a8-ifb-bw1100-8x-vllm-018) |
+|  | FP8 W8A8 | 0.15| BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-fp8-w8a8-ifb-bw1100-8x-vllm-015) |
+| [hygon/GLM-5.1-Channel-INT8-w8a8](https://www.modelscope.cn/models/hygon/GLM-5.1-Channel-INT8-w8a8) | INT8 W8A8 | 0.21 | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int8-w8a8-ifb-bw1100-8x-vllm-021) |
+|  | INT8 W8A8 | [0.18](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int8-w8a8-ifb-bw1100-8x-vllm-018) |
+|  | INT8 W8A8 | 0.18 | BW1100 | 24 | 1P1D | [**`>_`**](#glm-51-channel-int8-w8a8-1p1d-bw1100-24x-vllm-018) |
+|  | INT8 W8A8 | 0.18 | BW1000 | 16 | IFB | [**`>_`**](#glm-51-channel-int8-w8a8-ifb-bw1000-16x-vllm-018) |
+|  | INT8 W8A8 | 0.15 | BW1100 | 8 | IFB | [**`>_`**](#glm-51-channel-int8-w8a8-ifb-bw1100-8x-vllm-015) |
+|  | INT8 W8A8 | 0.15 | BW1100 | 24 | 1P1D | [**`>_`**](#glm-51-channel-int8-w8a8-1p1d-bw1100-24x-vllm-015) |
 
 ## 启动命令
+
+### GLM-5.1-Channel-INT4-w4a8 IFB BW1100 8x vLLM 0.21
+
+```bash
+export LMSLIM_USE_GLOBAL_MOE_CACHE=1
+
+vllm serve hygon/GLM-5.1-Channel-INT4-w4a8 \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --max-model-len 65536 \
+  --max-num-batched-tokens 8192 \
+  -tp 8 \
+  --gpu-memory-utilization 0.92 \
+  --max-num-seqs 64 \
+  --block-size 64 \
+  --speculative_config '{
+    "method":"deepseek_mtp",
+    "num_speculative_tokens":2
+  }' \
+  --kv-cache-dtype fp8_ds_mla \
+  --attention-backend FLASHMLA_SPARSE \
+  --enable-auto-tool-choice \
+  --tool-call-parser glm47 \
+  --reasoning-parser glm45
+```
+
+### GLM-5.1-Channel-INT4-w4a8 IFB BW1000 8x vLLM 0.21
+
+```bash
+export LMSLIM_USE_GLOBAL_MOE_CACHE=1
+
+vllm serve hygon/GLM-5.1-Channel-INT4-w4a8 \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --max-model-len 65536 \
+  --max-num-batched-tokens 8192 \
+  -tp 8 \
+  --gpu-memory-utilization 0.92 \
+  --max-num-seqs 64 \
+  --block-size 64 \
+  --speculative_config '{
+    "method":"deepseek_mtp",
+    "num_speculative_tokens":2
+  }' \
+  --kv-cache-dtype fp8_ds_mla \
+  --attention-backend FLASHMLA_SPARSE \
+  --enable-auto-tool-choice \
+  --tool-call-parser glm47 \
+  --reasoning-parser glm45
+```
 
 ### GLM-5.1-Channel-INT4-w4a8 IFB BW1100 8x vLLM 0.18
 
@@ -140,6 +194,33 @@ vllm serve hygon/GLM-5.1-Channel-INT4-w4a8 \
   --speculative_config '{"method": "mtp", "num_speculative_tokens": 2, "quantization": "slimquant_w4a8_marlin"}'
 ```
 
+### GLM-5.1-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.21
+
+```bash
+export LMSLIM_USE_GLOBAL_MOE_CACHE=1
+
+vllm serve hygon/GLM-5.1-Channel-FP8-w8a8 \
+  -q slimquant_marlin \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --max-model-len 65536 \
+  --max-num-batched-tokens 8192 \
+  -tp 8 \
+  --gpu-memory-utilization 0.9 \
+  --max-num-seqs 64 \
+  --block-size 64 \
+  --speculative_config '{
+    "method":"deepseek_mtp",
+    "num_speculative_tokens":3,
+    "quantization":"slimquant_marlin"
+  }' \
+  --kv-cache-dtype fp8_ds_mla \
+  --attention-backend FLASHMLA_SPARSE \
+  --enable-auto-tool-choice \
+  --tool-call-parser glm47 \
+  --reasoning-parser glm45
+```
+
 ### GLM-5.1-Channel-FP8-w8a8 IFB BW1100 8x vLLM 0.18
 
 以下示例为单节点部署。
@@ -205,6 +286,33 @@ vllm serve hygon/GLM-5.1-Channel-FP8-w8a8 \
   --speculative_config '{"method": "mtp", "num_speculative_tokens": 2, "quantization": "slimquant_marlin"}'
 ```
 
+### GLM-5.1-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.21
+
+```bash
+export LMSLIM_USE_GLOBAL_MOE_CACHE=1
+
+vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
+  -q slimquant_marlin \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --max-model-len 65536 \
+  --max-num-batched-tokens 8192 \
+  -tp 8 \
+  --gpu-memory-utilization 0.9 \
+  --max-num-seqs 64 \
+  --block-size 64 \
+  --speculative_config '{
+    "method":"deepseek_mtp",
+    "num_speculative_tokens":3,
+    "quantization":"slimquant_marlin"
+  }' \
+  --kv-cache-dtype fp8_ds_mla \
+  --attention-backend FLASHMLA_SPARSE \
+  --enable-auto-tool-choice \
+  --tool-call-parser glm47 \
+  --reasoning-parser glm45
+```
+
 ### GLM-5.1-Channel-INT8-w8a8 IFB BW1100 8x vLLM 0.18
 
 以下示例为单节点部署。
@@ -233,7 +341,7 @@ vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
 ```
 
 
-### GLM-5.1-Channel-INT8-w8a8 1P2D BW1100 24x vLLM 0.18
+### GLM-5.1-Channel-INT8-w8a8 1P1D BW1100 24x vLLM 0.18
 
 以下示例中 `13.13.3.21` 为 P 节点，`13.13.3.25` 为 D node 0，`13.13.3.28` 为 D node 1，实际部署时请根据实际情况修改。
 
@@ -469,7 +577,7 @@ vllm serve hygon/GLM-5.1-Channel-INT8-w8a8 \
   --speculative_config '{"method": "mtp", "num_speculative_tokens": 2, "quantization": "slimquant_marlin"}'
 ```
 
-### GLM-5.1-Channel-INT8-w8a8 1P2D BW1100 24x vLLM 0.15
+### GLM-5.1-Channel-INT8-w8a8 1P1D BW1100 24x vLLM 0.15
 
 以下示例中 `10.16.1.36` 为 P 节点，也是代理节点，`10.16.1.42` 是 D node 0 的主节点，实际部署时请根据实际情况修改。
 
@@ -718,3 +826,5 @@ curl http://13.13.3.21:9351/v1/chat/completions \
   "max_tokens": 128
   }'
 ```
+
+

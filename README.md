@@ -433,6 +433,12 @@
       <td>vLLM</td>
       <td align="center">-</td><td align="center"><a href="docs/model-deployment/vllm/bge-reranker.md">✅</a></td><td align="center">-</td>
     </tr>
+    <tr>
+      <td rowspan="1" align="center"><img src="assets/sandai.png" height="40"/><br/>sand.ai</td>
+      <td rowspan="1">MAGI-2 preview</td>
+      <td>-</td>
+      <td align="center">🚧</td><td align="center">🚧</td><td align="center">🚧</td>
+    </tr>
   </tbody>
 </table>
 

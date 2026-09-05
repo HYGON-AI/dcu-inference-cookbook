@@ -71,7 +71,7 @@
     </tr>
     <tr>
       <td>SGLang</td>
-      <td align="center">🚧</td><td align="center">🚧</td><td align="center">🚧</td>
+      <td align="center">🚧</td><td align="center"><a href="docs/model-deployment/sglang/qwen2.5-vl.md">✅</a></td><td align="center"><a href="docs/model-deployment/sglang/qwen2.5-vl.md">✅</a></td>
     </tr>
     <tr>
       <td rowspan="2">Qwen3</td>

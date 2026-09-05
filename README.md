@@ -119,6 +119,16 @@
       <td align="center">-</td><td align="center">-</td><td align="center">-</td>
     </tr>
     <tr>
+      <td rowspan="2" align="center">inclusionAI</td>
+      <td rowspan="2">Ling-1T</td>
+      <td>vLLM</td>
+      <td align="center">-</td><td align="center">-</td><td align="center">-</td>
+    </tr>
+    <tr>
+      <td>SGLang</td>
+      <td align="center">-</td><td align="center">-</td><td align="center"><a href="docs/model-deployment/sglang/ling-1t.md">✅</a></td>
+    </tr>
+    <tr>
       <td rowspan="10" align="center"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6538815d1bdb3c40db94fbfa/xMBly9PUMphrFVMxLX4kq.png" height="40"/><br/>DeepSeek</td>
       <td rowspan="2">DeepSeek-V4</td>
       <td>vLLM</td>

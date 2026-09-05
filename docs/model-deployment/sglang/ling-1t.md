@@ -2,7 +2,7 @@
 
 ## 模型简介
 
-Ling-1T-FP8 是 inclusionAI 发布的 Ling 系列模型。本页提供该模型在海光 DCU 上使用 SGLang 0.5.12 部署的参考配置。
+Ling-1T-FP8 是 inclusionAI 发布的 Ling 系列模型。
 
 ## 模型列表
 

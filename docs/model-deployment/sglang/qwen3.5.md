@@ -4,6 +4,8 @@
 
 Qwen3.5 是 Qwen3 系列的增强版本，在推理能力、代码生成、多语言理解等方面进一步提升。
 
+Qwen3.5-397B-A17B 采用 MoE 架构（397B 总参数 / 17B 激活参数）。
+
 ## 模型列表
 
 | 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
@@ -25,13 +27,9 @@ Qwen3.5 是 Qwen3 系列的增强版本，在推理能力、代码生成、多�
 | [hygon/Qwen3.5-122B-A10B-w8a8](https://www.modelscope.cn/models/hygon/Qwen3.5-122B-A10B-w8a8) | INT8 W8A8 | [0.5.12](../docker_images.md) | BW1000 | 4 | IFB | [**`>_`**](#qwen35-122b-a10b-w8a8-ifb-bw1000-4x-sglang-0512) |
 |                                                                                                  | INT8 W8A8 | [0.5.12](../docker_images.md) | K100_AI | 4 | IFB | [**`>_`**](#qwen35-122b-a10b-w8a8-ifb-k100_ai-4x-sglang-0512) |
 | [hygon/Qwen3.5-122B-A10B-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Qwen3.5-122B-A10B-Channel-FP8-w8a8) | FP8 W8A8 | [0.5.12](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen35-122b-a10b-channel-fp8-w8a8-ifb-bw1100-4x-sglang-0512) |
-
-### Qwen3.5-397B-A17B 部署配置
-
-Qwen3.5-397B-A17B 采用 MoE 架构（397B 总参数 / 17B 激活参数）。
-
-| 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
-| -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
+| [Qwen/Qwen3.5-397B-A17B](https://www.modelscope.cn/models/Qwen/Qwen3.5-397B-A17B) | BF16 | [0.5.12](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#qwen35-397b-a17b-ifb-bw1100-8x-sglang-0512) |
+|  | BF16 | [0.5.12](../docker_images.md) | BW1000 | 16 | IFB | [**`>_`**](#qwen35-397b-a17b-ifb-bw1000-16x-sglang-0512) |
+| [hygon/Qwen3.5-397B-A17B-Channel-FP8-w8a8](https://www.modelscope.cn/models/hygon/Qwen3.5-397B-A17B-Channel-FP8-w8a8) | FP8 W8A8 | [0.5.12](../docker_images.md) | BW1100 | 4 | IFB | [**`>_`**](#qwen35-397b-a17b-channel-fp8-w8a8-ifb-bw1100-4x-sglang-0512) |
 | [hygon/Qwen3.5-397B-A17B-Channel-FP8](https://www.modelscope.cn/models/hygon/Qwen3.5-397B-A17B-Channel-FP8) | FP8 W8A8 | [0.5.10](../docker_images.md) | BW1100 |  4 | IFB  | [**`>_`**](#qwen35-397b-a17b-channel-fp8-ifb-bw1100-4x-sglang-0510)   |
 |                                                                                                            | FP8 W8A8 | 0.5.10 | BW1100 | 12 | 1P1D | [**`>_`**](#qwen35-397b-a17b-channel-fp8-1p1d-bw1100-12x-sglang-0510) |
 | [hygon/Qwen3.5-397B-A17B-W8A8](https://www.modelscope.cn/models/hygon/Qwen3.5-397B-A17B-W8A8)              | INT8 W8A8 | [0.5.10](../docker_images.md) | BW1000 |  8 | IFB  | [**`>_`**](#qwen35-397b-a17b-w8a8-ifb-bw1000-8x-sglang-0510)          |
@@ -591,6 +589,164 @@ sglang serve \
   --kv-cache-dtype fp8_e4m3 \
   --tool-call-parser qwen3_coder \
   --reasoning-parser qwen3
+```
+
+### Qwen3.5-397B-A17B IFB BW1100 8x SGLang 0.5.12
+
+```bash
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MAX_NCHANNELS=16
+export SGLANG_ENABLE_SPEC_V2=1
+export SGLANG_TORCH_PROFILER_DIR=/home/proj_qwen3.5-397b/profiling
+export HSA_ENABLE_COREDUMP=1
+export USE_DCU_CUSTOM_ALLREDUCE=1
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export HIP_KERNEL_EVENT_SYSTENFENCE=1
+export SGL_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export HIP_KERNEL_BATCH_CEILING=100
+export GPU_FORCE_BLIT_COPY_SIZE=16
+export HSA_KERNARG_POOL_SIZE=8388608
+export ROC_AQL_QUEUE_SIZE=131072
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_FUSED_TOPK_SOFTMAX=1
+export SGLANG_USE_CAUSAL_CONV1D=1
+export SGLANG_KV_LAYOUT_DCU_FA=1
+export SGLANG_USE_AITER_LINEAR_ATTN=1
+export SGLANG_USE_MARLIN_W16A16_MOE=1
+
+sglang serve \
+  --numa-node 0 0 0 0 1 1 1 1 \
+  --tp-size 8 \
+  --pp-size 1 \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --port 30005 \
+  --attention-backend fa3 \
+  --mm-attention-backend fa3 \
+  --page-size 64 \
+  --watchdog-timeout 36000 \
+  --kv-cache-dtype fp8_e4m3 \
+  --enable-piecewise-cuda-graph \
+  --speculative-algorithm EAGLE \
+  --speculative-num-steps 3 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 4 \
+  --model-path Qwen/Qwen3.5-397B-A17B \
+  --host "$(hostname -I | awk '{print $1}')" \
+  --mem-fraction-static 0.85 \
+  --mamba-scheduler-strategy extra_buffer \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3 \
+  --chunked-prefill-size -1 \
+  --skip-server-warmup \
+  --cuda-graph-max-bs 64 \
+  --max-running-requests 64
+```
+
+### Qwen3.5-397B-A17B IFB BW1000 16x SGLang 0.5.12
+
+```bash
+export SGLANG_ENABLE_SPEC_V2=1
+export HSA_ENABLE_COREDUMP=1
+export USE_DCU_CUSTOM_ALLREDUCE=1
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export HIP_KERNEL_EVENT_SYSTENFENCE=1
+export SGL_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export HIP_KERNEL_BATCH_CEILING=100
+export GPU_FORCE_BLIT_COPY_SIZE=16
+export HSA_KERNARG_POOL_SIZE=8388608
+export ROC_AQL_QUEUE_SIZE=131072
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_FUSED_TOPK_SOFTMAX=1
+export SGLANG_USE_CAUSAL_CONV1D=1
+export SGLANG_KV_LAYOUT_DCU_FA=1
+export SGLANG_USE_AITER_LINEAR_ATTN=1
+
+sglang serve \
+  --numa-node 0 0 0 0 1 1 1 1 \
+  --tp-size 16 \
+  --pp-size 1 \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --port 30005 \
+  --mm-attention-backend fa3 \
+  --attention-backend fa3 \
+  --page-size 64 \
+  --watchdog-timeout 36000 \
+  --kv-cache-dtype fp8_e5m2 \
+  --enable-piecewise-cuda-graph \
+  --speculative-algorithm EAGLE \
+  --speculative-num-steps 3 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 4 \
+  --model-path Qwen/Qwen3.5-397B-A17B \
+  --host "$(hostname -I | awk '{print $1}')" \
+  --mem-fraction-static 0.85 \
+  --mamba-scheduler-strategy extra_buffer \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3 \
+  --dist-init-addr "$(hostname -I | awk '{print $1}'):5019" \
+  --nnodes 2 \
+  --node-rank 0 \
+  --chunked-prefill-size -1 \
+  --skip-server-warmup \
+  --cuda-graph-max-bs 64 \
+  --max-running-requests 64
+```
+
+### Qwen3.5-397B-A17B-Channel-FP8-w8a8 IFB BW1100 4x SGLang 0.5.12
+
+```bash
+export NCCL_MIN_NCHANNELS=16
+export NCCL_MAX_NCHANNELS=16
+export SGLANG_ENABLE_SPEC_V2=1
+export SGLANG_TORCH_PROFILER_DIR=/home/proj_qwen3.5-397b/profiling
+export HSA_ENABLE_COREDUMP=1
+export USE_DCU_CUSTOM_ALLREDUCE=1
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+export HIP_KERNEL_EVENT_SYSTENFENCE=1
+export SGL_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export HIP_KERNEL_BATCH_CEILING=100
+export GPU_FORCE_BLIT_COPY_SIZE=16
+export HSA_KERNARG_POOL_SIZE=8388608
+export ROC_AQL_QUEUE_SIZE=131072
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_FUSED_TOPK_SOFTMAX=1
+export SGLANG_USE_CAUSAL_CONV1D=1
+export SGLANG_KV_LAYOUT_DCU_FA=1
+export SGLANG_USE_AITER_LINEAR_ATTN=1
+export SGLANG_USE_FP8_W8A8_MOE=1
+
+sglang serve \
+  --numa-node 0 0 0 0 1 1 1 1 \
+  --tp-size 4 \
+  --pp-size 1 \
+  --trust-remote-code \
+  --dtype bfloat16 \
+  --port 30005 \
+  --attention-backend fa3 \
+  --quantization slimquant_marlin \
+  --page-size 64 \
+  --watchdog-timeout 36000 \
+  --kv-cache-dtype fp8_e4m3 \
+  --enable-piecewise-cuda-graph \
+  --speculative-algorithm EAGLE \
+  --speculative-num-steps 3 \
+  --speculative-eagle-topk 1 \
+  --speculative-num-draft-tokens 4 \
+  --model-path hygon/Qwen3.5-397B-A17B-Channel-FP8-w8a8 \
+  --host "$(hostname -I | awk '{print $1}')" \
+  --mem-fraction-static 0.85 \
+  --mamba-scheduler-strategy extra_buffer \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3 \
+  --chunked-prefill-size -1 \
+  --skip-server-warmup \
+  --cuda-graph-max-bs 64 \
+  --max-running-requests 64
 ```
 
 ### Qwen3.5-397B-A17B-Channel-FP8 IFB BW1100 4x SGLang 0.5.10

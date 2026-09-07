@@ -14,7 +14,9 @@ Qwen3 是阿里通义千问第三代大语言模型，支持 0.6B ~ 235B 多种�
 | [Qwen/Qwen3-4B](https://www.modelscope.cn/models/Qwen/Qwen3-4B) | BF16 | [0.5.12](../docker_images.md) | BW1100 | 1 | IFB | [**\`>_\`**](#qwen3-4b-ifb-bw1100-1x-sglang-0512) |
 |                                                                     | BF16 | [0.5.12](../docker_images.md) | BW1000 | 1 | IFB | [**\`>_\`**](#qwen3-4b-ifb-bw1000-1x-sglang-0512) |
 |                                                                     | BF16 | [0.5.12](../docker_images.md) | K100_AI | 1 | IFB | [**\`>_\`**](#qwen3-4b-ifb-k100_ai-1x-sglang-0512) |
-| [Qwen/Qwen3-8B](https://www.modelscope.cn/models/Qwen/Qwen3-8B) | BF16 | 0.5.10 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-8b-ifb-bw1000-1x-sglang-0510) |
+| [Qwen/Qwen3-8B](https://www.modelscope.cn/models/Qwen/Qwen3-8B) | BF16 | [0.5.12](../docker_images.md) | BW1100 | 1 | IFB | [**\`>_\`**](#qwen3-8b-ifb-bw1100-1x-sglang-0512) |
+|  | BF16 | [0.5.12](../docker_images.md) | BW1000 | 1 | IFB | [**\`>_\`**](#qwen3-8b-ifb-bw1000-1x-sglang-0512) |
+|  | BF16 | 0.5.10 | BW1000 | 1x | IFB | [**\`>_\`**](#qwen3-8b-ifb-bw1000-1x-sglang-0510) |
 | [Qwen/Qwen3-30B-A3B](https://www.modelscope.cn/models/Qwen/Qwen3-30B-A3B) | BF16 | [0.5.12](../docker_images.md) | BW1100 | 1x | IFB | [**\`>_\`**](#qwen3-30b-a3b-ifb-bw1100-1x-sglang-0512) |
 |  | BF16 | [0.5.12](../docker_images.md) | BW1000 | 2x | IFB | [**\`>_\`**](#qwen3-30b-a3b-ifb-bw1000-2x-sglang-0512) |
 |  | BF16 | [0.5.12](../docker_images.md) | K100_AI | 2x | IFB | [**\`>_\`**](#qwen3-30b-a3b-ifb-k100_ai-2x-sglang-0512) |
@@ -312,6 +314,34 @@ sglang serve \
   --attention-backend fa3 \
   --tool-call-parser qwen3_coder \
   --reasoning-parser qwen3
+```
+
+### Qwen3-8B IFB BW1100 1x SGLang 0.5.12
+
+```bash
+sglang serve \
+  --model-path Qwen/Qwen3-8B \
+  --tp-size 1 \
+  --trust-remote-code \
+  --attention-backend fa3 \
+  --page-size 64 \
+  --mem-fraction-static 0.85 \
+  --reasoning-parser qwen3 \
+  --tool-call-parser qwen
+```
+
+### Qwen3-8B IFB BW1000 1x SGLang 0.5.12
+
+```bash
+sglang serve \
+  --model-path Qwen/Qwen3-8B \
+  --tp-size 1 \
+  --trust-remote-code \
+  --attention-backend fa3 \
+  --page-size 64 \
+  --mem-fraction-static 0.85 \
+  --reasoning-parser qwen3 \
+  --tool-call-parser qwen
 ```
 
 ### Qwen3-8B IFB BW1000 1x SGLang 0.5.10

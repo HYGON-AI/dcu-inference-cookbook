@@ -8,11 +8,146 @@ Kimi K2.6 是一个开源的原生多模态智能体模型，在长周期编码�
 
 | 模型权重 | 量化方式 | SGLang 版本 | 推荐硬件 | 卡数 | 部署方式 | 启动命令 |
 | -------- | -------- | ----------- | -------- | ---- | -------- | -------- |
-| [moonshotai/Kimi-K2.6](https://www.modelscope.cn/models/moonshotai/Kimi-K2.6) | INT4 W4A16 | 0.5.10 | BW1100 | 8 | IFB | [**`>_`**](#kimi-k26-ifb-bw1100-8x-sglang-0510) |
+| [moonshotai/Kimi-K2.6](https://www.modelscope.cn/models/moonshotai/Kimi-K2.6) | INT4 W4A16 | [0.5.12](../docker_images.md) | BW1100 | 8 | IFB | [**`>_`**](#kimi-k26-ifb-bw1100-8x-sglang-0512) |
+|  | INT4 W4A16 | [0.5.12](../docker_images.md) | BW1000 | 16 | IFB | [**`>_`**](#kimi-k26-ifb-bw1000-16x-sglang-0512) |
+|  | INT4 W4A16 | 0.5.10 | BW1100 | 8 | IFB | [**`>_`**](#kimi-k26-ifb-bw1100-8x-sglang-0510) |
 |  | INT4 W4A16 | 0.5.10 | BW1100 | 16 | 1P1D | [**`>_`**](#kimi-k26-1p1d-bw1100-16x-sglang-0510) |
 |  | INT4 W4A16 | 0.5.12 | ScaleX40 | 24 | 1P1D | [**`>_`**](#kimi-k26-1p1d-bw1100-超节点ep16-24x-sglang-0512) |
 
 ## 启动命令
+
+### Kimi-K2.6 IFB BW1100 8x SGLang 0.5.12
+
+```bash
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_OPT_CAT=1
+export USE_HCU_CUSTOM_ALLREDUCE=1
+export SGL_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export HIP_GRAPH_ACCUMULATE_DISPATCH=0
+export SGLANG_TORCH_PROFILER_DIR=/workspace/profiling
+export SGLANG_KVALLOC_KERNEL=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
+export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
+export SGLANG_GET_LAST_LOC=1
+export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
+export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+
+sglang serve \
+  --model-path moonshotai/Kimi-K2.6 \
+  --kv-cache-dtype fp8_e4m3 \
+  --trust-remote-code \
+  --page-size 64 \
+  --nnodes 1 \
+  --node-rank 0 \
+  --dtype bfloat16 \
+  --tp-size 8 \
+  --pp-size 1 \
+  --reasoning-parser kimi_k2 \
+  --tool-call-parser kimi_k2 \
+  --mem-fraction-static 0.85 \
+  --attention-backend hcu_mla \
+  --enable-torch-compile \
+  --chunked-prefill-size -1 \
+  --max-running-requests 512 \
+  --context-length 65536
+```
+
+### Kimi-K2.6 IFB BW1000 16x SGLang 0.5.12
+
+#### node 0
+
+```bash
+export GLOO_SOCKET_IFNAME=ens47f0np0
+export NCCL_SOCKET_IFNAME=ens47f0np0
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_OPT_CAT=1
+export USE_DCU_CUSTOM_ALLREDUCE=1
+export SGL_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export HIP_GRAPH_ACCUMULATE_DISPATCH=0
+export SGLANG_TORCH_PROFILER_DIR=/workspace/profiling
+export SGLANG_KVALLOC_KERNEL=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
+export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
+export SGLANG_GET_LAST_LOC=1
+export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
+export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+
+sglang serve \
+  --model-path moonshotai/Kimi-K2.6 \
+  --kv-cache-dtype fp8_e5m2 \
+  --host <node0_ip> \
+  --port <port0> \
+  --trust-remote-code \
+  --page-size 64 \
+  --dist-init-addr <node0_ip>:<port1> \
+  --nnodes 2 \
+  --node-rank 0 \
+  --dtype bfloat16 \
+  --tp-size 8 \
+  --pp-size 2 \
+  --reasoning-parser kimi_k2 \
+  --tool-call-parser kimi_k2 \
+  --mem-fraction-static 0.9 \
+  --enable-torch-compile \
+  --attention-backend hcu_mla \
+  --chunked-prefill-size -1 \
+  --max-running-requests 512 \
+  --context-length 65536
+```
+
+#### node 1
+
+```bash
+export GLOO_SOCKET_IFNAME=ens47f0np0
+export NCCL_SOCKET_IFNAME=ens47f0np0
+export SGLANG_USE_LIGHTOP=1
+export SGLANG_USE_OPT_CAT=1
+export USE_DCU_CUSTOM_ALLREDUCE=1
+export SGL_CHUNKED_PREFIX_CACHE_THRESHOLD=0
+export SGLANG_DISAGGREGATION_BOOTSTRAP_TIMEOUT=1200
+export GLIBC_TUNABLES=glibc.rtld.optional_static_tls=0x40000
+export HIP_GRAPH_ACCUMULATE_DISPATCH=0
+export SGLANG_TORCH_PROFILER_DIR=/workspace/profiling
+export SGLANG_KVALLOC_KERNEL=1
+export SGLANG_CREATE_EXTEND_AFTER_DECODE_SPEC_INFO=1
+export SGLANG_ASSIGN_EXTEND_CACHE_LOCS=1
+export SGLANG_ASSIGN_REQ_TO_TOKEN_POOL=1
+export SGLANG_GET_LAST_LOC=1
+export SGLANG_CREATE_FLASHMLA_KV_INDICES_TRITON=1
+export SGLANG_CREATE_CHUNKED_PREFIX_CACHE_KV_INDICES=1
+export ALLREDUCE_STREAM_WITH_COMPUTE=1
+
+sglang serve \
+  --model-path moonshotai/Kimi-K2.6 \
+  --kv-cache-dtype fp8_e5m2 \
+  --host <node1_ip> \
+  --port <port0> \
+  --trust-remote-code \
+  --page-size 64 \
+  --dist-init-addr <node0_ip>:<port1> \
+  --nnodes 2 \
+  --node-rank 1 \
+  --dtype bfloat16 \
+  --tp-size 8 \
+  --pp-size 2 \
+  --reasoning-parser kimi_k2 \
+  --tool-call-parser kimi_k2 \
+  --mem-fraction-static 0.9 \
+  --enable-torch-compile \
+  --attention-backend hcu_mla \
+  --chunked-prefill-size -1 \
+  --max-running-requests 512 \
+  --context-length 65536
+```
 
 ### Kimi-K2.6 IFB BW1100 8x SGLang 0.5.10
 
